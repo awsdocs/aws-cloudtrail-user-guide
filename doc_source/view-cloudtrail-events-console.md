@@ -4,6 +4,11 @@ You can use the CloudTrail console to view the last 90 days of recorded API acti
 
 For information about which events are recorded, see [Services Supported by CloudTrail Event History](view-cloudtrail-events-supported-services.md) and [Resource Types Supported by CloudTrail Event History](view-cloudtrail-events-supported-resource-types.md)\.
 
+**Note**  
+For an ongoing record of activity and events, create a trail\. Creating a trail also allows you to take advantage of the following integrations:  
+Analyze your AWS service activity with queries in Amazon Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](http://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](http://docs.aws.amazon.com/athena/latest/ug/), or simply choose the option to create a table directly from **Event history** in the CloudTrail console\. 
+Monitor your trail logs and be notified when specific activity occurs with Amazon CloudWatch Logs\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
+
 **To view CloudTrail events**
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/home/](https://console.aws.amazon.com/cloudtrail/home/)\.

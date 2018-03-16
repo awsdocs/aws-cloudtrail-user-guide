@@ -4,13 +4,14 @@ The following table describes the documentation release history of AWS CloudTrai
 
 + **API version**: 2013\-11\-01
 
-+ **Latest documentation update**: February 13, 2018
++ **Latest documentation update**: March 15, 2018
 
 
 ****  
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added functionality | This release supports making it easier to search CloudTrail log files with Amazon Athena\. You can automatically create tables for querying logs directly from the CloudTrail console, and use those tables to run queries in Athena\. For more information, see [CloudTrail Integration Topics by AWS Service](cloudtrail-aws-service-specific-topics.md) and [Creating a Table for CloudTrail Logs in the CloudTrail Console](http://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct)\. | March 15, 2018 | 
 | Added service support | This release supports AWS AppSync\. See [CloudTrail Supported Services](cloudtrail-supported-services.md)\.  | February 13, 2018 | 
 |  Added region support  |  This release supports an additional region: Asia Pacific \(Osaka\-Local\) \(ap\-northeast\-3\)\. See [CloudTrail Supported Regions](cloudtrail-supported-regions.md)\.   |  February 12, 2018  | 
 | Added service support | This release supports AWS Shield\. See [CloudTrail Supported Services](cloudtrail-supported-services.md)\.  | Februrary 12, 2018 | 

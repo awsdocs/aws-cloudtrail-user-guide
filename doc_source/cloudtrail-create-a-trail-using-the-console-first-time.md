@@ -1,6 +1,9 @@
 # Creating a Trail<a name="cloudtrail-create-a-trail-using-the-console-first-time"></a>
 
-Follow the procedure to create a trail that applies to all regions\. A trail that applies to all regions delivers log files from all regions to an S3 bucket\. After you create the trail, CloudTrail automatically starts logging the events that you specified\.
+Follow the procedure to create a trail that applies to all regions\. A trail that applies to all regions delivers log files from all regions to an S3 bucket\. After you create the trail, CloudTrail automatically starts logging the events that you specified\. 
+
+**Note**  
+After you create a trail, you can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see [CloudTrail Integration Topics by AWS Service](cloudtrail-aws-service-specific-topics.md)\.
 
 
 
@@ -114,6 +117,8 @@ If you chose **No**, choose an existing topic\. You can also enter the ARN of a 
 After you create your trail, you can return to the trail to make changes:
 
 + Configure CloudTrail to send log files to CloudWatch Logs\. For more information, see [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
+
++ Create a table and use it to run a query in Amazon Athena to analyze your AWS service activity\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](http://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](http://docs.aws.amazon.com/athena/latest/ug/)\.
 
 + Add custom tags \(key\-value pairs\) to the trail\.
 
