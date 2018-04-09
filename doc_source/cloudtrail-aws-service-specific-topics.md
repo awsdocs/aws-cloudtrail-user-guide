@@ -82,8 +82,10 @@ You can learn more about how the events for individual AWS services are recorded
 | AWS OpsWorks for Chef Automate | [Logging AWS OpsWorks for Chef Automate API Calls with AWS CloudTrail](http://docs.aws.amazon.com/opsworks/latest/userguide/logging-using-cloudtrail.html) | 
 | AWS Organizations |  [Logging AWS Organizations Events with AWS CloudTrail](http://docs.aws.amazon.com/organizations/latest/userguide/orgs_cloudtrail-integration.html) | 
 | Amazon Polly | [Logging Amazon Polly API Calls with AWS CloudTrail](http://docs.aws.amazon.com/polly/latest/dg/logging-using-cloudtrail.html) | 
+| AWS Private Certificate Authority \(PCA\) | [Using CloudTrail](http://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCtIntro.html) | 
 | Amazon QuickSight | [Logging Operations with CloudTrail](http://docs.aws.amazon.com/quicksight/latest/user/logging-using-cloudtrail.html) | 
 | Amazon Redshift | [Amazon Redshift API Reference](http://docs.aws.amazon.com/redshift/latest/APIReference/) | 
+| Amazon Rekognition | [Logging Amazon Rekognition API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/rekognition/latest/dg/logging-using-cloudtrail.html) | 
 | Amazon Relational Database Service \(Amazon RDS\) | [Logging Amazon RDS API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Auditing.html) | 
 | Route 53 | [Using AWS CloudTrail to Capture Requests Sent to the Route 53 API](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/logging-using-cloudtrail.html) | 
 | Amazon SageMaker | [Logging Amazon SageMaker API Calls with AWS CloudTrail](http://docs.aws.amazon.com/sagemaker/latest/dg/logging-using-cloudtrail.html) | 

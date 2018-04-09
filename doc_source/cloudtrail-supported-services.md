@@ -241,6 +241,10 @@ Support began 12/10/2015
 Amazon Polly is a service that converts text into lifelike speech\. You can use Amazon Polly to develop applications that increase engagement and accessibility\. For more information, see the [Amazon Polly Developer Guide](http://docs.aws.amazon.com/polly/latest/dg/)\. For information about the Amazon Polly calls logged by CloudTrail, see [Logging Amazon Polly API Calls with AWS CloudTrail](http://docs.aws.amazon.com/polly/latest/dg/logging-using-cloudtrail.html)\.  
 Support began 11/30/2016
 
+ **Amazon Rekognition**   
+Amazon Rekognition makes it easy to add image and video analysis to your applications\. You just provide an image or video to the Amazon Rekognition API, and the service can identify objects, people, text, scenes, and activities\. For more information, see the [Amazon Rekognition Developer Guide](http://docs.aws.amazon.com/rekognition/latest/dg/)\. For information about the Amazon Rekognition calls logged by CloudTrail, see [Logging Amazon Rekognition API Calls with AWS CloudTrail](http://docs.aws.amazon.com/rekognition/latest/dg/logging-using-cloudtrail.html)\.  
+Support began 4/6/2018
+
  **Amazon SageMaker**   
 Amazon SageMaker is a fully managed machine learning service\. With Amazon SageMaker, data scientists and developers can quickly and easily build and train machine learning models, and then directly deploy them into a production\-ready hosted environment\. For more information, see the [Amazon SageMaker Developer Guide](http://docs.aws.amazon.com/sagemaker/latest/dg/)\. For information about the Amazon SageMaker calls logged by CloudTrail, see [Logging Amazon SageMaker API Calls with AWS CloudTrail](http://docs.aws.amazon.com/sagemaker/latest/dg/logging-using-cloudtrail.html)\.  
 Support began 1/11/2018
@@ -395,6 +399,10 @@ Support began 02/12/2018
  **AWS Key Management Service**   
 AWS Key Management Service is a managed service that makes it easy for you to create and control the encryption keys used to encrypt your data\. AWS KMS is integrated with other AWS services including Amazon EBS, Amazon S3, and Amazon Redshift\. For more information, see the [AWS Key Management Service Developer Guide](http://docs.aws.amazon.com/kms/latest/developerguide/)\. For information about the AWS KMS calls logged by CloudTrail, see [Logging AWS KMS API Calls](http://docs.aws.amazon.com/kms/latest/developerguide/logging-using-cloudtrail.html)\.  
 Support began 11/12/2014
+
+ **AWS Private Certificate Authority \(PCA\)**   
+AWS Private Certificate Authority \(PCA\) is a hosted private certificate authority service for issuing and revoking private digital certificates\. For more information, see the [AWS Private Certificate Authority \(PCA\) User Guide](http://docs.aws.amazon.com/acm-pca/latest/userguide/PcaWelcome.html)\. For information about the calls logged by CloudTrail, see [Using CloudTrail](http://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCtIntro.html)\.  
+Support began 4/4/2018
 
  **AWS Security Token Service**   
 You can use the AWS Security Token Service \(AWS STS\) to grant a trusted user temporary, limited access to your AWS resources\. For more information, see [Temporary Security Credentials](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html) in the *IAM User Guide*\. For information about both the IAM and AWS STS calls logged by CloudTrail, see [Logging IAM Events with AWS CloudTrail](http://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html)\. For a complete list of AWS STS calls, see the [AWS Security Token Service API Reference](http://docs.aws.amazon.com/STS/latest/APIReference/)\.   

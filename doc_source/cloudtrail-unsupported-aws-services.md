@@ -16,7 +16,6 @@ For a list of supported AWS services, see [CloudTrail Supported Services](cloudt
 | Amazon Mobile Analytics | December 17, 2014 | 
 | Amazon MQ | November 28, 2017 | 
 | Amazon Pinpoint | December 1, 2016 | 
-| Amazon Rekognition | November 30, 2016 | 
 | Amazon Sumerian | November 27, 2017 | 
 | Amazon Transcribe | November 29, 2017 | 
 | Amazon Translate | November 29, 2017 | 
