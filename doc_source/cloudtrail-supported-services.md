@@ -215,6 +215,10 @@ Support began 07/09/2015
 AWS CodeStar is a cloud\-based service for creating, managing, and working with software development projects on AWS\. You can develop, build, and deploy applications on AWS with an AWS CodeStar project\. An AWS CodeStar project creates and integrates AWS services for your project development toolchain\. For more information, see the [AWS CodeStar User Guide](http://docs.aws.amazon.com/codestar/latest/userguide/)\. For information about the AWS CodeStar calls logged by CloudTrail, see [Logging AWS CodeStar API Calls with AWS CloudTrail\.](http://docs.aws.amazon.com/codestar/latest/userguide/cloudtrail.html)   
 Support began 06/14/2017
 
+ **AWS X\-Ray**   
+AWS X\-Ray is a service that collects data about requests that your application serves, and provides tools you can use to view, filter, and gain insights into that data to identify issues and opportunities for optimization\. For more information, see the [AWS X\-Ray Developer Guide](http://docs.aws.amazon.com/xray/latest/devguide/)\. For information about the AWS CodeStar calls logged by CloudTrail, see [Logging AWS X\-Ray API Calls With CloudTrail](http://docs.aws.amazon.com/xray/latest/devguide/xray-api-cloudtrail.html)\.  
+Support began 04/25/2018
+
 ## Game Development<a name="cloudtrail-supported-services-game-development"></a>
 
  **Amazon GameLift**   
@@ -226,6 +230,10 @@ Support began 01/27/2016
  **AWS IoT**   
 AWS IoT provides secure, bi\-directional communication between Internet\-connected things \(such as sensors, actuators, embedded devices, or smart appliances\) and the AWS cloud\. This enables you to collect telemetry data from multiple devices and store and analyze the data\. **AWS IoT Device Management** is a cloud\-based device management service that makes it easy for customers to securely manage IoT devices throughout their lifecycle\. For more information about AWS IoT and AWS IoT Device Management, see the [AWS IoT Developer Guide](http://docs.aws.amazon.com/iot/latest/developerguide/)\. For information about the AWS IoT and AWS IoT Device Management calls logged by CloudTrail, see [Logging AWS IoT API calls with AWS CloudTrail](http://docs.aws.amazon.com/iot/latest/developerguide/monitoring_overview.html#iot-using-cloudtrail)\.  
 Support began 04/11/2016
+
+ **AWS IoT Analytics**   
+AWS IoT Analytics allows you to collect large amounts of device data, process messages, and store them\. You can then query the data and run sophisticated analytics on it\. For more information about AWS IoT Analytics, see the [AWS IoT Analytics User Guide](http://docs.aws.amazon.com/iotanalytics/latest/userguide/welcome.html)\. For information about the AWS IoT calls logged by CloudTrail, see [Logging AWS IoT Analytics API calls with AWS CloudTrail](http://docs.aws.amazon.com/iotanalytics/latest/userguide/cloudtrail.html)\.  
+Support began 04/23/2018
 
 ## Machine Learning<a name="cloudtrail-supported-services-artificial-intelligence"></a>
 
@@ -312,7 +320,7 @@ AWS Elemental MediaConvert is a file\-based video processing service that provid
 Support began 11/27/2017
 
  **AWS Elemental MediaStore**   
-AWS Elemental MediaStore is a video origination and storage service that offers the high performance and immediate consistency required for live and on\-demand media\. For more information, see the [AWS Elemental MediaStore User Guide](http://docs.aws.amazon.com/mediastore/latest/ug/what-is.html)\. For information about the Elastic Transcoder calls logged by CloudTrail, see [Logging AWS Elemental MediaStore API Calls with CloudTrail](http://docs.aws.amazon.com/mediastore/latest/ug/logging-using-cloudtrail.html)\.   
+AWS Elemental MediaStore is a video origination and storage service that offers the high performance and immediate consistency required for live and on\-demand media\. For more information, see the [AWS Elemental MediaStore User Guide](http://docs.aws.amazon.com/mediastore/latest/ug/what-is.html)\. For information about the AWS Elemental MediaStore calls logged by CloudTrail, see [Logging AWS Elemental MediaStore API Calls with CloudTrail](http://docs.aws.amazon.com/mediastore/latest/ug/logging-using-cloudtrail.html)\.   
 Support began 11/27/2017
 
 ## Migration<a name="cloudtrail-supported-services-migration"></a>
@@ -342,6 +350,10 @@ Support began 02/18/2016
  **AWS Device Farm**   
 AWS Device Farm is an app testing service that enables you to test your Android and Fire OS apps on real, physical phones and tablets that are hosted by AWS\. For more information, see the [Device Farm Developer Guide](http://docs.aws.amazon.com/devicefarm/latest/developerguide/)\. For information about the AWS Device Farm calls logged by CloudTrail, see [Logging AWS Device Farm API Calls By Using AWS CloudTrail\.](http://docs.aws.amazon.com/devicefarm/latest/developerguide/cloudtrail.html)   
 Support began 07/13/2015
+
+ **Amazon Pinpoint**   
+Amazon Pinpoint is an AWS service that you can use to engage with your customers across multiple messaging channels\. For more information, see the [Amazon Pinpoint Developer Guide](http://docs.aws.amazon.com/pinpoint/latest/developerguide/)\. For information about the AWS Device Farm calls logged by CloudTrail, see [Logging Amazon Pinpoint API Calls with AWS CloudTrail](http://docs.aws.amazon.com/pinpoint/latest/developerguide/logging-using-cloudtrail.html)\.   
+Support began 02/06/2018
 
 ## Networking & Content Delivery<a name="cloudtrail-supported-services-networking"></a>
 
@@ -404,6 +416,10 @@ Support began 11/12/2014
 AWS Private Certificate Authority \(PCA\) is a hosted private certificate authority service for issuing and revoking private digital certificates\. For more information, see the [AWS Private Certificate Authority \(PCA\) User Guide](http://docs.aws.amazon.com/acm-pca/latest/userguide/PcaWelcome.html)\. For information about the calls logged by CloudTrail, see [Using CloudTrail](http://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCtIntro.html)\.  
 Support began 4/4/2018
 
+ **AWS Secrets Manager**   
+AWS Secrets Manager helps you to securely encrypt, store, and retrieve credentials for your databases and other services\. For more information, see the [AWS Secrets Manager User Guide](http://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)\. For information about the calls logged by CloudTrail, see [Monitor the Use of Your AWS Secrets Manager Secrets](http://docs.aws.amazon.com/secretsmanager/latest/userguide/monitoring.html#monitoring_cloudtrail)\.  
+Support began 4/5/2018
+
  **AWS Security Token Service**   
 You can use the AWS Security Token Service \(AWS STS\) to grant a trusted user temporary, limited access to your AWS resources\. For more information, see [Temporary Security Credentials](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html) in the *IAM User Guide*\. For information about both the IAM and AWS STS calls logged by CloudTrail, see [Logging IAM Events with AWS CloudTrail](http://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html)\. For a complete list of AWS STS calls, see the [AWS Security Token Service API Reference](http://docs.aws.amazon.com/STS/latest/APIReference/)\.   
 Support began 11/13/2013
@@ -411,6 +427,10 @@ Support began 11/13/2013
 **AWS Shield**  
 AWS Shield is a managed Distributed Denial of Service \(DDoS\) protection service that safeguards web applications running on AWS\. For more information, see [AWS WAF Developer Guide](http://docs.aws.amazon.com/waf/latest/developerguide/)\. For information about the AWS Shield calls logged by CloudTrail, see [Logging Shield Advanced API Calls with AWS CloudTrail](http://docs.aws.amazon.com/waf/latest/developerguide/logging-shield-using-cloudtrail.html)\.  
 Support began 2/8/2018
+
+**AWS Single Sign\-On \(AWS SSO\)**  
+AWS Single Sign\-On is a cloud\-based service that simplifies managing AWS SSO access to AWS accounts and business applications\. For more information, see [AWS Single Sign\-On User Guide](http://docs.aws.amazon.com/singlesignon/latest/userguide/)\. For information about the AWS Single Sign\-On calls logged by CloudTrail, see [Logging AWS SSO API Calls with AWS CloudTrail](http://docs.aws.amazon.com/singlesignon/latest/userguide/logging-using-cloudtrail.html)\.  
+Support began 12/7/2017
 
  **AWS WAF**   
 AWS WAF is a web application firewall that lets you monitor the HTTP and HTTPS requests that are forwarded to Amazon CloudFront and lets you control access to your content\. For more information, see the [AWS WAF Developer Guide](http://docs.aws.amazon.com/waf/latest/developerguide/)\. For information about the AWS WAF calls logged by CloudTrail, see [Logging AWS WAF API Calls with AWS CloudTrail](http://docs.aws.amazon.com/waf/latest/developerguide/logging-using-cloudtrail.html)\.   

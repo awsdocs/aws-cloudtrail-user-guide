@@ -3,7 +3,7 @@
 Follow the procedure to create a trail that applies to all regions\. A trail that applies to all regions delivers log files from all regions to an S3 bucket\. After you create the trail, CloudTrail automatically starts logging the events that you specified\. 
 
 **Note**  
-After you create a trail, you can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see [CloudTrail Integration Topics by AWS Service](cloudtrail-aws-service-specific-topics.md)\.
+After you create a trail, you can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 
 
@@ -24,6 +24,8 @@ After you create a trail, you can configure other AWS services to further analyz
 1. Choose the region where you want the trail to be created\.
 
 1. Choose **Get Started Now**\.
+**Tip**  
+If you do not see **Get Started Now**, choose **Trails**, and then choose **Create trail**\.
 
 1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)\.
 

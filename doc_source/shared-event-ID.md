@@ -18,4 +18,4 @@ The following is an example that describes how CloudTrail delivers two events fo
 
    + The events have the same `sharedEventID`, but the `eventID` and `recipientAccountID` are unique\.
 
-![\[How the sharedEventID field appears in logs\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/event-reference-sharedEventId.png)![\[How the sharedEventID field appears in logs\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[How the sharedEventID field appears in logs\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+![\[How the sharedEventID field appears in logs\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/event-reference-sharedEventId.png)

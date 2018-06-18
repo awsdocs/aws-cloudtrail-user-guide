@@ -56,7 +56,7 @@ These steps are a continuation of the previous steps for creating a metric filte
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw-alarm-wizard-root-account-usage.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw-alarm-wizard-root-account-usage.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail-additional-examples.html)
 
@@ -103,7 +103,7 @@ These steps are a continuation of the previous steps for creating a metric filte
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw-alarm-wizard-api-without-mfa.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw-alarm-wizard-api-without-mfa.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail-additional-examples.html)
 
@@ -150,7 +150,7 @@ These steps are a continuation of the previous steps for creating a metric filte
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw-alarm-wizard-console-signin-without-mfa.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw-alarm-wizard-console-signin-without-mfa.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail-additional-examples.html)
 

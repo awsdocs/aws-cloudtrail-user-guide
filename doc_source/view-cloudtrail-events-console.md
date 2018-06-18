@@ -1,11 +1,11 @@
 # Viewing CloudTrail Events in the CloudTrail Console<a name="view-cloudtrail-events-console"></a>
 
-You can use the CloudTrail console to view the last 90 days of recorded API activity and events in an AWS Region\. You can also download a file with that information, or a subset of information based on the filter and time range you choose\. You can customize your view of event history by selecting which columns are displayed in the console\.
+You can use the CloudTrail console to view the last 90 days of recorded API activity and events in an AWS Region\. You can also download a file with that information, or a subset of information based on the filter and time range you choose\. You can customize your view of event history by selecting which columns are displayed in the console\. You can also look up and filter events by the resource types available for a particular service\.
 
-For information about which events are recorded, see [Services Supported by CloudTrail Event History](view-cloudtrail-events-supported-services.md) and [Resource Types Supported by CloudTrail Event History](view-cloudtrail-events-supported-resource-types.md)\.
+CloudTrail logging varies between AWS services\. While most AWS services support CloudTrail logging of all events, some services only support logging a subset of APIs and events, and a few services are unsupported\. You can learn more about the specifics of how CloudTrail logs events for a specific service by consulting the documentation for that service\. For more information, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md) and [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)\.
 
 **Note**  
-For an ongoing record of activity and events, create a trail\. Creating a trail also allows you to take advantage of the following integrations:  
+For an ongoing record of activity and events, create a trail\. Creating a trail also enables you to take advantage of the following integrations:  
 Analyze your AWS service activity with queries in Amazon Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](http://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](http://docs.aws.amazon.com/athena/latest/ug/), or simply choose the option to create a table directly from **Event history** in the CloudTrail console\. 
 Monitor your trail logs and be notified when specific activity occurs with Amazon CloudWatch Logs\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 
@@ -15,9 +15,7 @@ Monitor your trail logs and be notified when specific activity occurs with Amazo
 
 1. In the navigation pane, choose **Event history**\. 
 
-A list of events appears in the content pane with the latest event first\. Scroll down to see more events\. Events that are not recorded do not appear\.
-
-For a list of supported services and regions, see [Services Supported by CloudTrail Event History](view-cloudtrail-events-supported-services.md) and [Regions Supported by CloudTrail Event History](view-cloudtrail-events-supported-regions.md)\.
+A list of events appears in the content pane with the latest event first\. Scroll down to see more events\. 
 
 
 
@@ -64,7 +62,7 @@ The AWS service to which the request was made, such as `iam.amazonaws.com` or `s
 The name or ID of the resource referenced by the event\. For example, the resource name might be "auto\-scaling\-test\-group" for an Auto Scaling group or "i\-1234567" for an EC2 instance\.
 
 ** Resource type **  
-The type of resource referenced by the event\. For example, a resource type can be `Instance` for EC2 or `DBInstance` for RDS\. For more information, see [Resource Types Supported by CloudTrail Event History](view-cloudtrail-events-supported-resource-types.md)\.
+The type of resource referenced by the event\. For example, a resource type can be `Instance` for EC2 or `DBInstance` for RDS\. Resource types vary for each AWS service\. 
 
 ** Time range **  
 The time range in which you want to filter events\. You can filter events for the last 90 days\.
@@ -104,7 +102,7 @@ The following steps describe how to filter by a start and end date and time\.
 
 ## Downloading Events<a name="downloading-events"></a>
 
-You can download recorded event history as a file in CSV or JSON format\. Use filters and time ranges to reduce the size of the file you download\. For more information about which events are recorded, see [Services Supported by CloudTrail Event History](view-cloudtrail-events-supported-services.md) and [Resource Types Supported by CloudTrail Event History](view-cloudtrail-events-supported-resource-types.md)\.
+You can download recorded event history as a file in CSV or JSON format\. Use filters and time ranges to reduce the size of the file you download\. 
 
 **Note**  
 CloudTrail event history files are data files that contain information \(such as resource names\) that can be configured by individual users\. Some data can potentially be interpreted as commands in programs used to read and analyze this data \(CSV injection\)\. For example, when CloudTrail events are exported to CSV and imported to a spreadsheet program, that program might warn you about security concerns\. You should choose to disable this content to keep your system secure\. Always disable links or macros from downloaded event history files\.

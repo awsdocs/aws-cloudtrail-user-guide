@@ -8,7 +8,7 @@ You can configure your trails to log the following:
 
 + **Management events**: Management events provide insight into management operations that are performed on resources in your AWS account\. These are also known as control plane operations\. Management events can also include non\-API events that occur in your account\. For example, when a user logs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)\. 
 **Note**  
-Not all AWS services support CloudTrail management events or data events\. For more information about unsupported services, see [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)\. For specific details about what APIs are logged for a specific service, see that service's documentation in [CloudTrail Integration Topics by AWS Service](cloudtrail-aws-service-specific-topics.md)\.
+Not all AWS services support CloudTrail management events or data events\. For more information about unsupported services, see [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)\. For specific details about what APIs are logged for a specific service, see that service's documentation in [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 You can configure multiple trails differently so that the trails process and log only the events that you specify\. For example, one trail can log read\-only data and management events, so that all read\-only events are delivered to one S3 bucket\. Another trail can log only write\-only data and management events, so that all write\-only events are delivered to a separate S3 bucket\. 
 
@@ -31,11 +31,9 @@ Data events provide insight into the resource operations performed on or within 
 
 + AWS Lambda function execution activity \(the `Invoke` API\)
 
- Data events are disabled by default when you create a trail\. To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity to a trail\. For more information, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md), [Data Events](#logging-data-events), and [Services That Support Logging Data Events](cloudtrail-supported-services.md#cloud-trail-supported-services-data-events)\.
+ Data events are disabled by default when you create a trail\. To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity to a trail\. For more information, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data Events](#logging-data-events)\.
 
 Additional charges apply for logging data events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
-
-For information about what AWS services support logging data events, and the APIs that are included in data event logging for each service, see [Services That Support Logging Data Events](cloudtrail-supported-services.md#cloud-trail-supported-services-data-events)\.
 
 ### Logging Data Events with the AWS Management Console<a name="logging-data-events-with-the-cloudtrail-console"></a>
 
@@ -148,9 +146,9 @@ Management events provide insight into management operations that are performed 
 
 + Setting up logging \(for example, AWS CloudTrail `CreateTrail` API operations\)
 
-Management events can also include non\-API events that occur in your account\. For example, when a user logs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)\. For a list of supported management events that CloudTrail logs for AWS services, see [CloudTrail Integration Topics by AWS Service](cloudtrail-aws-service-specific-topics.md)\.
+Management events can also include non\-API events that occur in your account\. For example, when a user logs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)\. For a list of supported management events that CloudTrail logs for AWS services, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
-By default, trails are configured to log management events\. For a list of supported management events that CloudTrail logs for AWS services, see [CloudTrail Integration Topics by AWS Service](cloudtrail-aws-service-specific-topics.md)\.
+By default, trails are configured to log management events\. For a list of supported management events that CloudTrail logs for AWS services, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 **Note**  
 The CloudTrail **Event history **feature supports only management events\. Not all management events are supported in event history\. For more information, see [Viewing Events with CloudTrail Event History](view-cloudtrail-events.md)\. 

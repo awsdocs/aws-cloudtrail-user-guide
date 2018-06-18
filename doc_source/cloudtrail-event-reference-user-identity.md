@@ -34,8 +34,8 @@ The following example shows a `userIdentity` element for a request made with tem
     "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
     "sessionContext": {
       "attributes": {
-        "creationDate": "20131102T010628Z",
-        "mfaAuthenticated": "false"
+        "mfaAuthenticated": "false",
+        "creationDate": "20131102T010628Z"
       },
       "sessionIssuer": {
         "type": "Role",

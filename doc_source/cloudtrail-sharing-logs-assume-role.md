@@ -6,7 +6,7 @@ You must designate a separate IAM user to assume each role you've created in eac
 
 After you have created the necessary roles and policies in Account A for scenarios 1 and 2, you must designate an IAM user in each of the accounts B, C, and Z\. Each IAM user will programmatically assume the appropriate role to access the log files\. That is, the user in account B will assume the role created for account B, the user in account C will assume the role created for account C, and the user in account Z will assume the role created for account Z\. When a user assumes a role, AWS returns temporary security credentials that can be used to make requests to list, retrieve, copy, or delete the log files depending on the permissions granted by the access policy associated with the role\. 
 
-For more information about working with IAM users, see [ Working with IAM Users and Groups ](http://docs.aws.amazon.com/IAM/latest/UserGuide//Using_WorkingWithGroupsAndUsers.html)\. 
+For more information about working with IAM users, see [ Working with IAM Users and Groups ](http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html)\. 
 
 The primary difference between scenarios 1 and 2 is in the access policy that you create for each IAM role in each scenario\.
 

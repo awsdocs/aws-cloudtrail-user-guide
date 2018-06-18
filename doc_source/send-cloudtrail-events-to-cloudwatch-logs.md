@@ -127,7 +127,7 @@ aws iam create-role --role-name role_name --assume-role-policy-document file://<
 
 When the command completes, take a note of the role ARN in the output\.
 
-### Creating a Policy Document<a name="w3ab1b9c17c23c19b8"></a>
+### Creating a Policy Document<a name="w3ab1c10c17c23c19b8"></a>
 
 Create the following role policy document for CloudTrail\. This document grants CloudTrail the permissions required to create a CloudWatch Logs log stream in the log group you specify and to deliver CloudTrail events to that log stream\.
 

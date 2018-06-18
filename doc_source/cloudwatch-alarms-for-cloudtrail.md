@@ -75,7 +75,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the **S3BucketActivity** filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_s3bucket.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_s3bucket.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -138,7 +138,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_secgroup.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_secgroup.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -185,7 +185,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_networkacl.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_networkacl.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -232,7 +232,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_gateway.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_gateway.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -279,7 +279,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_vpc.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_vpc.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -326,7 +326,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ec2instance.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ec2instance.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -373,7 +373,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ec2large.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ec2large.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -420,7 +420,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_cloudtrail.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_cloudtrail.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -467,7 +467,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_consolesignin.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_consolesignin.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -514,7 +514,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ authorizationfailures.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ authorizationfailures.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 
@@ -561,7 +561,7 @@ After you create the metric filter, follow this procedure to create an alarm\.
 1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ iampolicychanges.png)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)  
+![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ iampolicychanges.png)  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
 

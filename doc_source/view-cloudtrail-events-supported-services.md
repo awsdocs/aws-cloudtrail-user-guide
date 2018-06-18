@@ -11,9 +11,11 @@ To view API calls that are supported by the event history feature, choose a serv
 + [Alexa for Business APIs](#view-cloudtrail-events-supported-apis-a4b)
 + [Amazon API Gateway APIs](#view-cloudtrail-events-supported-apis-api-gateway)
 + [AWS Application Discovery Service APIs](#view-cloudtrail-events-supported-apis-app-ds)
++ [AWS AppSync APIs](#view-cloudtrail-events-supported-apis-apsy)
 + [Amazon Athena APIs](#view-cloudtrail-events-supported-apis-athena)
-+ [Amazon EC2 Auto Scaling APIs](#view-cloudtrail-events-supported-apis-autoscaling)
++ [AWS Batch APIs](#view-cloudtrail-events-supported-apis-batch)
 + [AWS Certificate Manager APIs](#view-cloudtrail-events-supported-apis-certificate-manager)
++ [AWS Certificate Manager Private Certificate Authority APIs](#view-cloudtrail-events-supported-apis-pca)
 + [Amazon Chime APIs](#view-cloudtrail-events-supported-apis-chime)
 + [Amazon Cloud Directory APIs](#view-cloudtrail-events-supported-apis-cloud-directory)
 + [AWS CloudFormation APIs](#view-cloudtrail-events-supported-apis-cloudformation)
@@ -32,17 +34,24 @@ To view API calls that are supported by the event history feature, choose a serv
 + [Amazon Cognito User Pools APIs](#view-cloudtrail-events-supported-apis-cognito-your-user-pools)
 + [AWS Config APIs](#view-cloudtrail-events-supported-apis-config)
 + [AWS Data Pipeline APIs](#view-cloudtrail-events-supported-apis-datapipeline)
++ [AWS Database Migration Service APIs](#view-cloudtrail-events-supported-apis-dms)
 + [AWS Direct Connect APIs](#view-cloudtrail-events-supported-apis-directconnect)
++ [AWS Directory Service APIs](#view-cloudtrail-events-supported-apis-ads)
 + [Amazon DynamoDB APIs](#view-cloudtrail-events-supported-apis-dynamodb)
 + [Amazon DynamoDB Accelerator \(DAX\) APIs](#view-cloudtrail-events-supported-apis-dynamodb-accelerator)
 + [Amazon EC2 APIs](#view-cloudtrail-events-supported-apis-ec2)
++ [Amazon EC2 Auto Scaling APIs](#view-cloudtrail-events-supported-apis-autoscaling)
++ [Amazon Elastic Container Service APIs](#view-cloudtrail-events-supported-apis-ecs)
 + [Amazon Elastic Container Registry \(Amazon ECR\) APIs](#view-cloudtrail-events-supported-apis-ecr)
 + [AWS Elastic Beanstalk APIs](#view-cloudtrail-events-supported-apis-elasticbeanstalk)
 + [Amazon Elastic File System APIs](#view-cloudtrail-events-supported-apis-elastic-file-system)
 + [Elastic Load Balancing APIs](#view-cloudtrail-events-supported-apis-elasticloadbalancing)
++ [Amazon Elasticsearch Service APIs](#view-cloudtrail-events-supported-apis-es)
++ [AWS Elemental MediaStore APIs](#view-cloudtrail-events-supported-apis-ems)
 + [Amazon EMR APIs](#view-cloudtrail-events-supported-apis-elasticmapreduce)
 + [Amazon Elastic Transcoder APIs](#view-cloudtrail-events-supported-apis-elastictranscoder)
 + [Amazon ElastiCache APIs](#view-cloudtrail-events-supported-apis-elasticache)
++ [AWS Firewall Manager API Calls](#view-cloudtrail-events-supported-apis-fms)
 + [Amazon GameLift APIs](#view-cloudtrail-events-supported-apis-gamelift)
 + [Amazon Glacier APIs](#view-cloudtrail-events-supported-apis-glacier)
 + [AWS Glue APIs](#view-cloudtrail-events-supported-apis-glue)
@@ -55,24 +64,35 @@ To view API calls that are supported by the event history feature, choose a serv
 + [Amazon Kinesis Data Streams APIs](#view-cloudtrail-events-supported-apis-kinesis)
 + [AWS Lambda APIs](#view-cloudtrail-events-supported-apis-lambda)
 + [Amazon Lex APIs](#view-cloudtrail-events-supported-apis-lex)
++ [AWS Amazon Lightsail APIs](#view-cloudtrail-events-supported-apis-lightsail)
 + [AWS Managed Services APIs](#view-cloudtrail-events-supported-apis-managed-services)
 + [AWS Marketplace Metering Service APIs](#view-cloudtrail-events-supported-apis-marketplace-metering)
 + [AWS Migration Hub APIs](#view-cloudtrail-events-supported-apis-migration-hub)
 + [AWS OpsWorks APIs](#view-cloudtrail-events-supported-apis-opsworks)
 + [AWS Organizations Events](#view-cloudtrail-events-supported-apis-organizations)
++ [AWS Personal Health Dashboard APIs](#view-cloudtrail-events-supported-apis-phd)
++ [Amazon Pinpoint APIs](#view-cloudtrail-events-supported-apis-pin)
++ [Amazon Polly APIs](#view-cloudtrail-events-supported-apis-pol)
 + [Amazon QuickSight Events](#view-cloudtrail-events-supported-apis-quicksight)
 + [Amazon Redshift APIs](#view-cloudtrail-events-supported-apis-redshift)
++ [Amazon Rekognition APIs](#view-cloudtrail-events-supported-apis-rekognition)
 + [Amazon Relational Database Service APIs](#view-cloudtrail-events-supported-apis-rds)
 + [Amazon Route 53 APIs](#view-cloudtrail-events-supported-apis-route53)
++ [Amazon SageMaker APIs](#view-cloudtrail-events-supported-apis-sm)
++ [AWS Secrets Manager APIs](#view-cloudtrail-events-supported-apis-asm)
 + [AWS Server Migration Service APIs](#view-cloudtrail-events-supported-apis-sms)
 + [AWS Service Catalog APIs](#view-cloudtrail-events-supported-apis-service-catalog)
++ [AWS Shield APIs](#view-cloudtrail-events-supported-apis-shield)
 + [Amazon Simple Storage Service \(S3\) Bucket Level APIs](#view-cloudtrail-events-supported-apis-s3)
 + [Amazon Simple Workflow Service APIs](#view-cloudtrail-events-supported-apis-swf)
++ [AWS Single Sign\-On APIs](#view-cloudtrail-events-supported-apis-sso)
 + [AWS Step Functions APIs](#view-cloudtrail-events-supported-apis-step-functions)
 + [AWS Storage Gateway APIs](#view-cloudtrail-events-supported-apis-storage-gateway)
 + [AWS Support APIs](#view-cloudtrail-events-supported-apis-aws-support)
 + [AWS WAF APIs](#view-cloudtrail-events-supported-apis-waf)
-+ [Amazon WorkDocs APIs](#view-cloudtrail-events-supported-apis-workdocs)
++ [Amazon WorkMail APIs](#view-cloudtrail-events-supported-apis-wm)
++ [AWS X\-Ray APIs](#console-view-cloudtrail-events-supported-apis-xray)
++ [AWS Billing Events](#console-billing-events)
 + [AWS Console Sign\-in Events](#console-sign-in-events)
 
 ## Alexa for Business APIs<a name="view-cloudtrail-events-supported-apis-a4b"></a>
@@ -205,6 +225,32 @@ For more information, see [Logging Amazon API Gateway API Calls with AWS CloudTr
 
 For more information, see the [Application Discovery Service User Guide](http://docs.aws.amazon.com/application-discovery/latest/userguide/)\.
 
+## AWS AppSync APIs<a name="view-cloudtrail-events-supported-apis-apsy"></a>
+
+
+****  
+
+|  | 
+| --- |
+| CreateApiKey | 
+| CreateDataSource | 
+| CreateGraphqlApi | 
+| CreateResolver | 
+| CreateType | 
+| DeleteApiKey | 
+| DeleteDataSource | 
+| DeleteGraphqlApi | 
+| DeleteResolver | 
+| DeleteType | 
+| StartSchemaCreation | 
+| UpdateApiKey | 
+| UpdateDataSource | 
+| UpdateGraphqlApi | 
+| UpdateResolver | 
+| UpdateType | 
+
+For more information, see [Logging AWS AppSync API Calls with AWS CloudTrail](http://docs.aws.amazon.com/appsync/latest/devguide/cloudtrail-logging.html) in the *AWS AppSync Developer Guide*\.
+
 ## Amazon Athena APIs<a name="view-cloudtrail-events-supported-apis-athena"></a>
 
 
@@ -219,47 +265,33 @@ For more information, see the [Application Discovery Service User Guide](http://
 
 For more information, see [Logging Amazon Athena API Calls with AWS CloudTrail](http://docs.aws.amazon.com/athena/latest/ug/monitor-with-cloudtrail.html) in the *Amazon Athena User Guide*\.
 
-## Amazon EC2 Auto Scaling APIs<a name="view-cloudtrail-events-supported-apis-autoscaling"></a>
+## AWS Batch APIs<a name="view-cloudtrail-events-supported-apis-batch"></a>
 
 
 ****  
 
 |  | 
 | --- |
-| AttachInstances | 
-| AttachLoadBalancers | 
-| CompleteLifecycleAction | 
-| CreateAutoScalingGroup | 
-| CreateLaunchConfiguration | 
-| CreateOrUpdateTags | 
-| DeleteAutoScalingGroup | 
-| DeleteLaunchConfiguration | 
-| DeleteLifecycleHook | 
-| DeleteNotificationConfiguration | 
-| DeletePolicy | 
-| DeleteScheduledAction | 
+| AddTags | 
+| CreateBatchPrediction | 
+| CreateDataSourceFromRDS | 
+| CreateDataSourceFromRedshift | 
+| CreateDataSourceFromS3 | 
+| CreateEvaluation | 
+| CreateMLModel | 
+| CreateRealtimeEndpoint | 
+| DeleteBatchPrediction | 
+| DeleteDataSource | 
+| DeleteEvaluation | 
+| DeleteMLModel | 
+| DeleteRealtimeEndpoint | 
 | DeleteTags | 
-| DetachInstances | 
-| DetachLoadBalancers | 
-| DisableMetricsCollection | 
-| EnableMetricsCollection | 
-| EnterStandby | 
-| ExecutePolicy | 
-| ExitStandby | 
-| PutLifecycleHook | 
-| PutNotificationConfiguration | 
-| PutScalingPolicy | 
-| PutScheduledUpdateGroupAction | 
-| RecordLifecycleActionHeartbeat | 
-| ResumeProcesses | 
-| SetDesiredCapacity | 
-| SetInstanceHealth | 
-| SetInstanceProtection | 
-| SuspendProcesses | 
-| TerminateInstanceInAutoScalingGroup | 
-| UpdateAutoScalingGroup | 
+| UpdateBatchPrediction | 
+| UpdateDataSource | 
+| UpdateEvaluation | 
+| UpdateMLModel | 
 
-For more information, see [Logging Auto Scaling API Calls By Using CloudTrail](http://docs.aws.amazon.com/autoscaling/latest/userguide/logging-using-cloudtrail.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+For more information, see [Logging AWS Batch API Calls with AWS CloudTrail](http://docs.aws.amazon.com/batch/latest/userguide/logging-using-cloudtrail.html) in the *AWS Batch User Guide*\.
 
 ## AWS Certificate Manager APIs<a name="view-cloudtrail-events-supported-apis-certificate-manager"></a>
 
@@ -275,6 +307,25 @@ For more information, see [Logging Auto Scaling API Calls By Using CloudTrail](h
 | ResendValidationEmail | 
 
 For more information, see [Using AWS CloudTrail](http://docs.aws.amazon.com/acm/latest/userguide/cloudtrail.html) in the *AWS Certificate Manager User Guide*\.
+
+## AWS Certificate Manager Private Certificate Authority APIs<a name="view-cloudtrail-events-supported-apis-pca"></a>
+
+
+****  
+
+|  | 
+| --- |
+| CreateCertificateAuthority | 
+| CreateCertificateAuthorityAuditReport | 
+| DeleteCertificateAuthority | 
+| ImportCertificateAuthorityCertificate | 
+| IssueCertificate | 
+| RevokeCertificate | 
+| TagCertificateAuthority | 
+| UntagCertificateAuthority | 
+| UpdateCertificateAuthority | 
+
+For more information, see [Using CloudTrail](http://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCtIntro.html) in the *AWS Certificate Manager Private Certificate Authority User Guide*\.
 
 ## Amazon Chime APIs<a name="view-cloudtrail-events-supported-apis-chime"></a>
 
@@ -731,6 +782,41 @@ For more information, see [Logging AWS Config API Calls By Using AWS CloudTrail]
 
 For more information, see [Logging AWS Data Pipeline API Calls by using AWS CloudTrail](http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-cloudtrail-logging.html) in the *AWS Data Pipeline Developer Guide*\.
 
+## AWS Database Migration Service APIs<a name="view-cloudtrail-events-supported-apis-dms"></a>
+
+
+****  
+
+|  | 
+| --- |
+| AddTagsToResource | 
+| CreateEndpoint | 
+| CreateEventSubscription | 
+| CreateReplicationInstance | 
+| CreateReplicationSubnetGroup | 
+| CreateReplicationTask | 
+| DeleteCertificate | 
+| DeleteEndpoint | 
+| DeleteEventSubscription | 
+| DeleteReplicationInstance | 
+| DeleteReplicationSubnetGroup | 
+| DeleteReplicationTask | 
+| ImportCertificate | 
+| ModifyEndpoint | 
+| ModifyEventSubscription | 
+| ModifyReplicationInstance | 
+| ModifyReplicationSubnetGroup | 
+| ModifyReplicationTask | 
+| RebootReplicationInstance | 
+| RefreshSchemas | 
+| ReloadTables | 
+| RemoveTagsFromResource | 
+| StartReplicationTask | 
+| StartReplicationTaskAssessment | 
+| StopReplicationTask | 
+
+For more information, see [Logging AWS Database Migration Service API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.CloudTrail.html) in the *AWS Database Migration Service User Guide*\.
+
 ## AWS Direct Connect APIs<a name="view-cloudtrail-events-supported-apis-directconnect"></a>
 
 
@@ -738,6 +824,7 @@ For more information, see [Logging AWS Data Pipeline API Calls by using AWS Clou
 
 |  | 
 | --- |
+| AcceptDirectConnectGatewayAssociationProposal | 
 | AllocateConnectionOnInterconnect | 
 | AllocateHostedConnection | 
 | AllocatePrivateVirtualInterface | 
@@ -749,11 +836,17 @@ For more information, see [Logging AWS Data Pipeline API Calls by using AWS Clou
 | ConfirmPrivateVirtualInterface | 
 | ConfirmPublicVirtualInterface | 
 | CreateConnection | 
+| CreateDirectConnectGateway | 
+| CreateDirectConnectGatewayConnection | 
+| CreateDirectConnectGatewayAssociationProposal | 
 | CreateInterconnect | 
 | CreateLag | 
 | CreatePrivateVirtualInterface | 
 | CreatePublicVirtualInterface | 
 | DeleteConnection | 
+| DeleteDirectConnectGateway | 
+| DeleteDirectConnectGatewayAssociation | 
+| DeleteDirectConnectGatewayAssociationProposal | 
 | DeleteInterconnect | 
 | DeleteLag | 
 | DeleteVirtualInterface | 
@@ -761,6 +854,44 @@ For more information, see [Logging AWS Data Pipeline API Calls by using AWS Clou
 | UpdateLag | 
 
 For more information, see [Logging AWS Direct Connect API Calls in AWS CloudTrail](http://docs.aws.amazon.com/directconnect/latest/UserGuide/logging_dc_api_calls.html) in the *AWS Direct Connect User Guide*\.
+
+## AWS Directory Service APIs<a name="view-cloudtrail-events-supported-apis-ads"></a>
+
+
+****  
+
+|  | 
+| --- |
+| AddIpRoutes | 
+| AddTagsToResource | 
+| CancelSchemaExtension | 
+| ConnectDirectory | 
+| CreateAlias | 
+| CreateComputer | 
+| CreateConditionalForwarder | 
+| CreateDirectory | 
+| CreateMicrosoftAD | 
+| CreateSnapshot | 
+| CreateTrust | 
+| DeleteConditionalForwarder | 
+| DeleteDirectory | 
+| DeleteSnapshot | 
+| DeleteTrust | 
+| DeregisterEventTopic | 
+| DisableRadius | 
+| DisableSso | 
+| EnableRadius | 
+| EnableSso | 
+| RegisterEventTopic | 
+| RemoveIpRoutes | 
+| RemoveTagsFromResource | 
+| RestoreFromSnapshot | 
+| StartSchemaExtension | 
+| UpdateConditionalForwarder | 
+| UpdateNumberOfDomainControllers | 
+| UpdateRadius | 
+
+For more information, see [Logging AWS Directory Service API Calls by Using CloudTrail](http://docs.aws.amazon.com/directoryservice/latest/devguide/cloudtrail_logging.html) in the *AWS Directory Service Administration Guide*\.
 
 ## Amazon DynamoDB APIs<a name="view-cloudtrail-events-supported-apis-dynamodb"></a>
 
@@ -955,6 +1086,75 @@ For more information, see the [DAX API Reference](http://docs.aws.amazon.com/ama
 
 For more information, see [Logging API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/using-cloudtrail.html) in the *Amazon EC2 API Reference*\.
 
+## Amazon EC2 Auto Scaling APIs<a name="view-cloudtrail-events-supported-apis-autoscaling"></a>
+
+
+****  
+
+|  | 
+| --- |
+| AttachInstances | 
+| AttachLoadBalancers | 
+| CompleteLifecycleAction | 
+| CreateAutoScalingGroup | 
+| CreateLaunchConfiguration | 
+| CreateOrUpdateTags | 
+| DeleteAutoScalingGroup | 
+| DeleteLaunchConfiguration | 
+| DeleteLifecycleHook | 
+| DeleteNotificationConfiguration | 
+| DeletePolicy | 
+| DeleteScheduledAction | 
+| DeleteTags | 
+| DetachInstances | 
+| DetachLoadBalancers | 
+| DisableMetricsCollection | 
+| EnableMetricsCollection | 
+| EnterStandby | 
+| ExecutePolicy | 
+| ExitStandby | 
+| PutLifecycleHook | 
+| PutNotificationConfiguration | 
+| PutScalingPolicy | 
+| PutScheduledUpdateGroupAction | 
+| RecordLifecycleActionHeartbeat | 
+| ResumeProcesses | 
+| SetDesiredCapacity | 
+| SetInstanceHealth | 
+| SetInstanceProtection | 
+| SuspendProcesses | 
+| TerminateInstanceInAutoScalingGroup | 
+| UpdateAutoScalingGroup | 
+
+For more information, see [Logging Auto Scaling API Calls By Using CloudTrail](http://docs.aws.amazon.com/autoscaling/latest/userguide/logging-using-cloudtrail.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+
+## Amazon Elastic Container Service APIs<a name="view-cloudtrail-events-supported-apis-ecs"></a>
+
+
+****  
+
+|  | 
+| --- |
+| RegisterTaskDefinition | 
+| DeleteAttributes | 
+| CreateCluster | 
+| DeleteCluster | 
+| RunTask | 
+| UpdateContainerAgent | 
+| StartTask | 
+| UpdateContainerInstancesState | 
+| StopTask | 
+| CreateService | 
+| SubmitContainerStateChange | 
+| PutAttributes | 
+| RegisterContainerInstance | 
+| DeregisterTaskDefinition | 
+| UpdateService | 
+| DeleteService | 
+| DeregisterContainerInstance | 
+
+For more information, see [Logging Amazon ECS API Calls By Using AWS CloudTrail](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/logging-using-cloudtrail.html) in the *Amazon Elastic Container Service Developer Guide*\.
+
 ## Amazon Elastic Container Registry \(Amazon ECR\) APIs<a name="view-cloudtrail-events-supported-apis-ecr"></a>
 
 
@@ -1059,6 +1259,36 @@ For information about the Amazon EFS calls logged by CloudTrail, see [Logging Am
 
 For more information, see [ Logging Elastic Load Balancing API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/ELB-API-Logs.html) in the *Elastic Load Balancing User Guide*\.
 
+## Amazon Elasticsearch Service APIs<a name="view-cloudtrail-events-supported-apis-es"></a>
+
+
+****  
+
+|  | 
+| --- |
+| AddTags | 
+| CreateElasticssearchDomain | 
+| CreateElasticsearchServiceRole | 
+| DeleteElasticsearchDomain | 
+| RemoveTags | 
+| UpdateElasticsearchDomainConfig | 
+
+For information, see [Auditing Amazon Elasticsearch Service Domains with AWS CloudTrail](http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-cloudtrailauditing) in the *Amazon Elasticsearch Service Developer Guide*\.
+
+## AWS Elemental MediaStore APIs<a name="view-cloudtrail-events-supported-apis-ems"></a>
+
+
+****  
+
+|  | 
+| --- |
+| CreateContainer | 
+| DeleteContainer | 
+| DeleteContainerPolicy | 
+| PutContainerPolicy | 
+
+For more information, see [Logging AWS Elemental MediaStore API Calls with CloudTrail](http://docs.aws.amazon.com/mediastore/latest/ug/logging-using-cloudtrail.html) in the *AWS Elemental MediaStore User Guide*\.
+
 ## Amazon EMR APIs<a name="view-cloudtrail-events-supported-apis-elasticmapreduce"></a>
 
 
@@ -1141,6 +1371,18 @@ For more information, see [Logging Elastic Transcoder API Calls Using CloudTrail
 | RevokeCacheSecurityGroupIngress | 
 
 For more information, see [Logging Amazon ElastiCache API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Logging.html) in the *Amazon ElastiCache User Guide*\.
+
+## AWS Firewall Manager API Calls<a name="view-cloudtrail-events-supported-apis-fms"></a>
+
+
+****  
+
+|  | 
+| --- |
+| DeletePolicy | 
+| PutPolicy | 
+
+For more information, see [Logging AWS WAF API Calls with AWS CloudTrail](http://docs.aws.amazon.com/waf/latest/developerguide/logging-using-cloudtrail.html) in the *AWS WAF Developer Guide*\.
 
 ## Amazon GameLift APIs<a name="view-cloudtrail-events-supported-apis-gamelift"></a>
 
@@ -1470,6 +1712,29 @@ For more information, see [Logging Amazon Inspector API calls with AWS CloudTrai
 | UpdateThingGroup | 
 | UpdateThingGroupsForThing | 
 
+AWS IoT Analytics
+
+
+|  | 
+| --- |
+| CreateChannel | 
+| CreateDataset | 
+| CreateDatasetContent | 
+| CreateDatastore | 
+| CreatePipeline | 
+| DeleteChannel | 
+| DeleteDataset | 
+| DeleteDatasetContent | 
+| DeleteDatastore | 
+| DeletePipeline | 
+| PutLoggingOptions | 
+| RunPipelineActivity | 
+| StartPipelineReprocessing | 
+| UpdateChannel | 
+| UpdateDataset | 
+| UpdateDatastore | 
+| UpdatePipeline | 
+
 For more information, see [Logging AWS IoT API Calls with AWS CloudTrail](http://docs.aws.amazon.com/iot/latest/developerguide/monitoring_overview.html#iot-using-cloudtrail) in the *AWS IoT Developer Guide*\.
 
 ## Amazon Kinesis Data Firehose APIs<a name="view-cloudtrail-events-supported-apis-kinesis-firehose"></a>
@@ -1481,6 +1746,8 @@ For more information, see [Logging AWS IoT API Calls with AWS CloudTrail](http:/
 | --- |
 | CreateDeliveryStream | 
 | DeleteDeliveryStream | 
+| TagDeliveryStream | 
+| UntagDeliveryStream | 
 | UpdateDestination | 
 
 For more information, see [Logging Amazon Kinesis Data Firehose API Calls with AWS CloudTrail](http://docs.aws.amazon.com/firehose/latest/dev/monitoring-with-cloudtrail.html) in the *Amazon Kinesis Data Firehose Developer Guide*\.
@@ -1540,7 +1807,7 @@ For more information, see [Logging Amazon Kinesis Data Streams API Calls Using A
 | UpdateFunctionConfiguration20150331 | 
 | UpdateFunctionConfiguration20150331v2 | 
 
-For more information, see [Logging AWS Lambda API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/lambda/latest/dg/logging_using_cloudtrail.html) in the *AWS Lambda Developer Guide*\.
+For more information, see [Logging AWS Lambda API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html) in the *AWS Lambda Developer Guide*\.
 
 ## Amazon Lex APIs<a name="view-cloudtrail-events-supported-apis-lex"></a>
 
@@ -1567,6 +1834,43 @@ For more information, see [Logging AWS Lambda API Calls Using AWS CloudTrail](ht
 | PutSlotType" | 
 
 For more information, see [Monitoring Amazon Lex API Calls With AWS CloudTrail Logs](http://docs.aws.amazon.com/lex/latest/dg/monitoring-aws-lex-cloudtrail.html) in the *Amazon Lex Developer Guide*\.
+
+## AWS Amazon Lightsail APIs<a name="view-cloudtrail-events-supported-apis-lightsail"></a>
+
+
+****  
+
+|  | 
+| --- |
+| AllocateStaticIp | 
+| AttachInstancesToLoadBalancer | 
+| AttachLoadBalancerTlsCertificate | 
+| CreateDiskFromSnapshot | 
+| CreateDomain | 
+| CreateDomainEntry | 
+| CreateInstances | 
+| CreateInstancesFromSnapshot | 
+| CreateInstanceSnapshot | 
+| CreateKeyPair | 
+| CreateLoadBalancerTlsCertificate | 
+| DeleteDisk | 
+| DeleteDiskSnapshot | 
+| DeleteInstanceSnapshot | 
+| DeleteLoadBalancer | 
+| DeleteLoadBalancerTlsCertificate | 
+| DetachDisk | 
+| DetachInstancesFromLoadBalancer | 
+| DetachStaticIp | 
+| ImportKeyPair | 
+| PeerVpc | 
+| RebootInstance | 
+| StartInstance | 
+| StopInstance | 
+| UnpeerVpc | 
+| UpdateDomainEntry | 
+| UpdateLoadBalancerAttribute | 
+
+For more information, see [Logging Lightsail API Calls with AWS CloudTrail](https://lightsail.aws.amazon.com/ls/docs/how-to/article/logging-lightsail-api-calls-using-aws-cloudtrail) in the *Amazon Lightsail Developer Guide*\.
 
 ## AWS Managed Services APIs<a name="view-cloudtrail-events-supported-apis-managed-services"></a>
 
@@ -1734,6 +2038,67 @@ For more information, see [Logging AWS OpsWorks API Calls By Using AWS CloudTrai
 
 For more information, see [Logging AWS Organizations API Calls By Using AWS CloudTrail](http://docs.aws.amazon.com/organizations/latest/userguide/orgs_monitoring.html#orgs_cloudtrail-integration) in the *AWS Organizations User Guide*\.
 
+## AWS Personal Health Dashboard APIs<a name="view-cloudtrail-events-supported-apis-phd"></a>
+
+
+****  
+
+|  | 
+| --- |
+| DescribeEvents | 
+| DescribeEventAggregates | 
+| DescribeEventtypes | 
+
+For more information, see [Logging AWS Health API Calls with AWS CloudTrail](http://docs.aws.amazon.com/health/latest/ug/logging-using-cloudtrail.html) in the *AWS Health User Guide*\.
+
+## Amazon Pinpoint APIs<a name="view-cloudtrail-events-supported-apis-pin"></a>
+
+
+****  
+
+|  | 
+| --- |
+| CreateApp | 
+| CreateCampaign | 
+| CreateExportJob | 
+| CreateImportJob | 
+| CreateSegment | 
+| DeleteAdmChannel | 
+| DeleteApnsChannel | 
+| DeleteApnsSandboxChannel | 
+| DeleteApp | 
+| DeleteBaiduChannel | 
+| DeleteCampaign | 
+| DeleteEmailChannel | 
+| DeleteEventStream | 
+| DeleteGcmChannel | 
+| DeleteSegment | 
+| DeleteSmsChannel | 
+| PutEventStream | 
+| UpdateAdmChannel | 
+| UpdateApnsChannel | 
+| UpdateApnsSandboxChannel | 
+| UpdateApplicationSettings | 
+| UpdateBaiduChannel | 
+| UpdateCampaign | 
+| UpdateEmailChannel | 
+| UpdateGcmChannel | 
+| UpdateSegment | 
+
+For more information, see [Logging Amazon Pinpoint API Calls with AWS CloudTrail](http://docs.aws.amazon.com/pinpoint/latest/developerguide/logging-using-cloudtrail.html) in the *Amazon Pinpoint Developer Guide*\.
+
+## Amazon Polly APIs<a name="view-cloudtrail-events-supported-apis-pol"></a>
+
+
+****  
+
+|  | 
+| --- |
+| PutLexicon | 
+| SynthesizeSpeech | 
+
+For more information, see [Logging Amazon Polly API Calls with AWS CloudTrail](http://docs.aws.amazon.com/polly/latest/dg/logging-using-cloudtrail.html) in the *Amazon Polly Developer Guide*\.
+
 ## Amazon QuickSight Events<a name="view-cloudtrail-events-supported-apis-quicksight"></a>
 
 
@@ -1820,6 +2185,20 @@ For more information, see [Logging Operations with CloudTrail](http://docs.aws.a
 | RotateEncryptionKey | 
 
 For more information, see [Using AWS CloudTrail for Amazon Redshift](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#rs-db-auditing-cloud-trail) in the *Amazon Redshift Cluster Management Guide*\.
+
+## Amazon Rekognition APIs<a name="view-cloudtrail-events-supported-apis-rekognition"></a>
+
+
+****  
+
+|  | 
+| --- |
+| CreateCollection | 
+| CreateStreamProcessor | 
+| DeleteCollection | 
+| DeleteStreamProcessor | 
+
+For more information, see the [Logging Amazon Rekognition API Calls with AWS CloudTrail](http://docs.aws.amazon.com/rekognition/latest/dg/logging-using-cloudtrail.html)\.
 
 ## Amazon Relational Database Service APIs<a name="view-cloudtrail-events-supported-apis-rds"></a>
 
@@ -1917,6 +2296,23 @@ For more information, see [Logging Amazon RDS API Calls Using AWS CloudTrail](ht
 | UpdateTrafficPolicyComment | 
 | UpdateTrafficPolicyInstance | 
 
+**Amazon Route 53 Auto Naming**
+
+
+****  
+
+|  | 
+| --- |
+| CreatePrivateDnsNamespace | 
+| CreatePublicDnsNamespace | 
+| CreateService | 
+| DeleteNamespace | 
+| DeleteService | 
+| DeregisterInstance | 
+| RegisterInstance | 
+| UpdateInstanceCustomHealthStatus | 
+| UpdateService | 
+
 **Amazon Route 53 Domains**
 
 
@@ -1947,6 +2343,65 @@ For more information, see [Logging Amazon RDS API Calls Using AWS CloudTrail](ht
 | UpdatePrivacyProtection | 
 
 For more information, see [Using AWS CloudTrail to Capture Requests Sent to the Route 53 API](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/logging-using-cloudtrail.html) in the *Amazon Route 53 Developer Guide*\.
+
+## Amazon SageMaker APIs<a name="view-cloudtrail-events-supported-apis-sm"></a>
+
+
+****  
+
+|  | 
+| --- |
+| AddTags | 
+| CreateEndpoint | 
+| CreateEndpointConfig | 
+| CreateHyperParameterTuningJob | 
+| CreateModel | 
+| CreateNotebookInstance | 
+| CreateNotebookInstanceLifecycleConfig | 
+| CreatePresignedNotebookInstanceUrl | 
+| CreateTrainingJob | 
+| DeleteEndpoint | 
+| DeleteEndpointConfig | 
+| DeleteModel | 
+| DeleteNotebookInstance | 
+| DeleteNotebookInstanceLifecycleConfig | 
+| DeleteTags | 
+| StartNotebookInstance | 
+| StopHyperParameterTuningJob | 
+| StopNotebookInstance | 
+| StopTrainingJob | 
+| UpdateEndpoint | 
+| UpdateEndpointWeightsAndCapacities | 
+| UpdateNotebookInstance | 
+| UpdateNotebookInstanceLifecycleConfig | 
+
+For more information, see [Logging Amazon SageMaker API Calls with AWS CloudTrail](http://docs.aws.amazon.com/sagemaker/latest/dg/logging-using-cloudtrail.html) in the *Amazon SageMaker Developer Guide*\.
+
+## AWS Secrets Manager APIs<a name="view-cloudtrail-events-supported-apis-asm"></a>
+
+
+****  
+
+|  | 
+| --- |
+| CancelRotateSecret | 
+| CancelSecretVersionDelete | 
+| CreateSecret | 
+| DeleteSecret | 
+| EndSecretVersionDelete | 
+| PutSecretValue | 
+| RestoreSecret | 
+| RotateSecret | 
+| RotationFailed | 
+| RotationStarted | 
+| RotationSucceeded | 
+| StartSecretVersionDelete | 
+| TagResource | 
+| UntagResource | 
+| UpdateSecret | 
+| UpdateSecretVersionStage | 
+
+For more information, see [Monitor the Use of Your AWS Secrets Manager Secrets](http://docs.aws.amazon.com/secretsmanager/latest/userguide/monitoring.html#monitoring_cloudtrail) in the *AWS Secrets Manager User Guide*\.
 
 ## AWS Server Migration Service APIs<a name="view-cloudtrail-events-supported-apis-sms"></a>
 
@@ -1999,6 +2454,20 @@ For more information, see the [AWS SMS API Reference](http://docs.aws.amazon.com
 
 For information, see [Logging AWS Service Catalog API Calls with AWS CloudTrail](http://docs.aws.amazon.com/servicecatalog/latest/dg/logging-using-cloudtrail.html) in the *AWS Service Catalog Developer Guide*\.
 
+## AWS Shield APIs<a name="view-cloudtrail-events-supported-apis-shield"></a>
+
+
+****  
+
+|  | 
+| --- |
+| CreateProtection | 
+| CreateSubscription | 
+| DeleteProtection | 
+| DeleteSubscription | 
+
+For information, see [Logging Shield Advanced API Calls with AWS CloudTrail](http://docs.aws.amazon.com/waf/latest/developerguide/logging-shield-using-cloudtrail.html) in the *AWS WAF Developer Guide*\.
+
 ## Amazon Simple Storage Service \(S3\) Bucket Level APIs<a name="view-cloudtrail-events-supported-apis-s3"></a>
 
 
@@ -2045,6 +2514,41 @@ Event history doesn't support Amazon S3 object\-level API operations such as `De
 | RegisterWorkflowType | 
 
 For more information, see [Logging Amazon Simple Workflow Service API Calls with AWS CloudTrail](http://docs.aws.amazon.com/amazonswf/latest/developerguide/ct-logging.html) in the *Amazon Simple Workflow Service Developer Guide*\.
+
+## AWS Single Sign\-On APIs<a name="view-cloudtrail-events-supported-apis-sso"></a>
+
+
+****  
+
+|  | 
+| --- |
+| AssociateDirectory | 
+| AssociateProfile | 
+| CreateApplicationInstance | 
+| CreateApplicationInstanceCertificate | 
+| CreatePermissionSet | 
+| CreateProfile | 
+| DeleteApplicationInstance | 
+| DeleteApplicationInstanceCertificate | 
+| DeletePermissionSet | 
+| DeletePermissionsPolicy | 
+| DeleteProfile | 
+| DisassociateDirectory | 
+| DisassociateProfile | 
+| ImportApplicationInstanceServiceProviderMetadata | 
+| PutPermissionsPolicy | 
+| StartSSO | 
+| UpdateApplicationInstanceActiveCertificate | 
+| UpdateApplicationInstanceDisplayData | 
+| UpdateApplicationInstanceResponseConfiguration | 
+| UpdateApplicationInstanceResponseSchemaConfiguration | 
+| UpdateApplicationInstanceSecurityConfiguration | 
+| UpdateApplicationInstanceServiceProviderConfiguration | 
+| UpdateApplicationInstanceStatus | 
+| UpdateDirectoryAssociation | 
+| UpdateProfile | 
+
+For more information, see [Logging AWS SSO API Calls with AWS CloudTrail](http://docs.aws.amazon.com/singlesignon/latest/userguide/logging-using-cloudtrail.html) in the *AWS Single Sign\-On User Guide*\.
 
 ## AWS Step Functions APIs<a name="view-cloudtrail-events-supported-apis-step-functions"></a>
 
@@ -2149,34 +2653,76 @@ For more information, see [Logging AWS Support API Calls with AWS CloudTrail](ht
 
 For more information, see [Logging AWS WAF API Calls with AWS CloudTrail](http://docs.aws.amazon.com/waf/latest/developerguide/logging-using-cloudtrail.html) in the *AWS WAF Developer Guide*\.
 
-## Amazon WorkDocs APIs<a name="view-cloudtrail-events-supported-apis-workdocs"></a>
+## Amazon WorkMail APIs<a name="view-cloudtrail-events-supported-apis-wm"></a>
 
 
 ****  
 
 |  | 
 | --- |
-| ActivateUser | 
-| AddResourcePermissions | 
-| AddUserToGroup | 
-| CreateInstance | 
-| CreateNotificationTopic | 
-| DeactivateUser | 
-| DeleteAllResourcePermissions | 
-| DeleteInstance | 
-| DeleteNotificationTopic | 
-| DeleteResourcePermission | 
-| DeregisterDirectory | 
-| DisableDirectoryMFA | 
-| EnableDirectoryMFA | 
-| RegisterDirectory | 
-| RemoveUserFromGroup | 
-| ResendUserNotification | 
-| SetPublishRoleArn | 
-| UpdateDirectoryMFA | 
-| UpdateInstanceAlias | 
+| AddMembersToGroup | 
+| CreateAlias | 
+| CreateGroup | 
+| CreateMailUser | 
+| CreateResource | 
+| CreateUser | 
+| DeleteFreeBusyConfiguration | 
+| DeleteGroup | 
+| DeleteMailDomain | 
+| DeleteMailFlowRule | 
+| DeleteResource | 
+| DeleteResources | 
+| DeregisterFromWorkMail | 
+| DisableInteroperabilityMode | 
+| DisableMailGroups | 
+| DisableMailUsers | 
+| DisassociateDelegateFromResource | 
+| DisassociateMemberFromGroup | 
+| EnableMailDomain | 
+| EnableMailUsers | 
+| EvaluateMailFlowRules | 
+| PutMailboxPermissions | 
+| RemoveMembersFromGroup | 
+| ResetPassword | 
+| SetJournalingRules | 
+| SetMobilePolicyDetails | 
+| UpdateMailFlowRule | 
+| UpdatePrimaryEmailAddress | 
+| UpdateResource | 
+| UpdateUser | 
 
-For more information, see [Logging Amazon WorkDocs API Calls By Using AWS CloudTrail](http://docs.aws.amazon.com/workdocs/latest/adminguide/cloudtrail_logging.html) in the *Amazon WorkDocs Administration Guide*\.
+For more information, see [Logging Amazon WorkMail API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/workmail/latest/adminguide/logging-using-cloudtrail.html) in the *Amazon WorkMail Administrator Guide*\.
+
+## AWS X\-Ray APIs<a name="console-view-cloudtrail-events-supported-apis-xray"></a>
+
+
+****  
+
+|  | 
+| --- |
+| PutEncryptionConfig | 
+
+For more information, see [Logging AWS X\-Ray API Calls With CloudTrail](http://docs.aws.amazon.com/xray/latest/devguide/xray-api-cloudtrail.html) in the *AWS X\-Ray Developer Guide*\.
+
+## AWS Billing Events<a name="console-billing-events"></a>
+
+You can look up non\-API events in your account, such as changes to your billing information for your AWS account\.
+
+
+****  
+
+|  | 
+| --- |
+| AcceptFxPaymentCurrencyTermsAndConditions | 
+| CloseAccount | 
+| SetAccountContractMetadata | 
+| SetAdditionalContacts | 
+| SetContactAddress | 
+| SetFxPaymentCurrency | 
+| SetIAMAccessPreference | 
+| SetSecurityQuestions | 
+
+For more information, see [AWS Billing and Cost Management User Guide](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
 
 ## AWS Console Sign\-in Events<a name="console-sign-in-events"></a>
 

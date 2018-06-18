@@ -12,4 +12,6 @@
 
 1. At the top of the configuration page, click the trash icon\. 
 
-1. Choose **Delete** to delete the trail permanently\. The trail will be removed from the list of trails for the region\. Log files that were already delivered will not be deleted\.
+1. Choose **Delete** to delete the trail permanently\. The trail will be removed from the list of trails for the region\. Log files that were already delivered to the Amazon S3 bucket will not be deleted\.
+**Note**  
+Content delivered to Amazon S3 buckets might contain customer content\. For more information about removing personally identifiable information, see [How Do I Empty an S3 Bucket?](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/empty-bucket.html) or [How Do I Delete an S3 Bucket?](http://docs.aws.amazon.com/AmazonS3/latest/user-guide//delete-bucket.html)\.

@@ -51,13 +51,13 @@ A CloudFormation stack is a collection of related resources that you provision a
 1. Open the AWS CloudFormation console at [https://console\.aws\.amazon\.com/cloudformation](https://console.aws.amazon.com/cloudformation/)\.
 
 1. Choose **Create Stack**\.  
-![\[Create an AWS CloudFormation stack in the console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_createstack.png)![\[Create an AWS CloudFormation stack in the console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[Create an AWS CloudFormation stack in the console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+![\[Create an AWS CloudFormation stack in the console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_createstack.png)
 
 1. On the **Select Template** page, for **Name**, type a stack name\. The following example uses `CloudWatchAlarmsForCloudTrail`\.  
-![\[Choose a template in the AWS CloudFormation console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_select_template.png)![\[Choose a template in the AWS CloudFormation console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[Choose a template in the AWS CloudFormation console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+![\[Choose a template in the AWS CloudFormation console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_select_template.png)
 
 1. For **Source**, choose **Upload a template to Amazon S3**\.  
-![\[Upload a template to the AWS CloudFormation console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_upload_template.png)![\[Upload a template to the AWS CloudFormation console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[Upload a template to the AWS CloudFormation console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+![\[Upload a template to the AWS CloudFormation console.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_upload_template.png)
 
 1. Choose **Choose File**, and then select the AWS CloudFormation template that you downloaded\.
 
@@ -67,30 +67,28 @@ A CloudFormation stack is a collection of related resources that you provision a
 
 1. For **LogGroupName**, type the name of the log group that you specified when you configured your trail to deliver log files to CloudWatch Logs\.  
 ![\[Specify the email address and log group name for the AWS CloudFormation
-                            stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_parameters.png)![\[Specify the email address and log group name for the AWS CloudFormation
-                            stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[Specify the email address and log group name for the AWS CloudFormation
-                            stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+                            stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_parameters.png)
 
 1. Choose **Next**\.
 
 1. For **Options**, you can create tags or configure other advanced options\. These are not required\.  
-![\[Specify additional options for the AWS CloudFormation stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_options.png)![\[Specify additional options for the AWS CloudFormation stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[Specify additional options for the AWS CloudFormation stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+![\[Specify additional options for the AWS CloudFormation stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_options.png)
 
 1. Choose **Next**\.
 
 1. On the **Review** page, verify that your settings are correct\.  
-![\[Review the AWS CloudFormation stack before creating it.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_review.png)![\[Review the AWS CloudFormation stack before creating it.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[Review the AWS CloudFormation stack before creating it.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+![\[Review the AWS CloudFormation stack before creating it.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_review.png)
 
 1. Choose **Create**\. The stack is created in a few minutes\.  
-![\[The AWS CloudFormation stack is created.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_stack_create_complete.png)![\[The AWS CloudFormation stack is created.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[The AWS CloudFormation stack is created.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+![\[The AWS CloudFormation stack is created.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_stack_create_complete.png)
 
 1. After the stack is created, you will receive an email at the address that you specified\.
 
 1. In the email, choose **Confirm subscription**\. You receive email notifications when the alarms specified by the template are triggered\.  
-![\[Confirm the subscription in your email.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_confirm_subscription.png)![\[Confirm the subscription in your email.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[Confirm the subscription in your email.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+![\[Confirm the subscription in your email.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_confirm_subscription.png)
 
    The following example notification was sent when an API call changed an IAM policy, which triggered the metric alarm\.  
-![\[See the following email notification example.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_sample_notification.png)![\[See the following email notification example.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)![\[See the following email notification example.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)
+![\[See the following email notification example.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_sample_notification.png)
 
 ## CloudFormation Template Contents<a name="use-cloudformation-template-template-contents"></a>
 

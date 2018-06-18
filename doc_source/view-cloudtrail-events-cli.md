@@ -14,9 +14,7 @@ You can look up CloudTrail events for the last 90 days using the aws cloudtrail 
 
 + `--cli-input-json`
 
-These options are explained in this topic\. For a list of services supported for event lookup, see [Services Supported by CloudTrail Event History](view-cloudtrail-events-supported-services.md)\. For a list of regions supported for event lookup, see [Regions Supported by CloudTrail Event History](view-cloudtrail-events-supported-regions.md)\. 
-
-For general information on using the AWS Command Line Interface, see the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/)\.
+These options are explained in this topic\.  For general information on using the AWS Command Line Interface, see the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/)\. 
 
 
 
@@ -116,7 +114,7 @@ aws cloudtrail lookup-events --start-time <timestamp> --end-time <timestamp>
 
 The default start time is the earliest date that data is available within the last 90 days\.The default end time is the time of the event that occurred closest to the current time\.
 
-### Valid *<timestamp>* formats<a name="w3ab1b7c11c15c23c12"></a>
+### Valid *<timestamp>* formats<a name="look-up-events-by-time-range-formats"></a>
 
 The `--start-time` and `--end-time` attributes take UNIX time values or valid equivalents\.
 
@@ -154,8 +152,6 @@ You can specify only one attribute key/value pair for each lookup\-events comman
 + ResourceType
 
 + Username
-
-For a list of the resource types that are supported for lookup\-events, see [Resource Types Supported by CloudTrail Event History](view-cloudtrail-events-supported-resource-types.md)\.
 
 ### Attribute lookup examples<a name="attribute-lookup-example"></a>
 

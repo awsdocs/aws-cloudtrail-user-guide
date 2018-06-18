@@ -11,7 +11,7 @@ An event in CloudTrail is the record of an activity in an AWS account\. This act
 Both management events and data events use the same CloudTrail JSON log format\. You can identify them by the value in the `managementEvent` field\.
 
 **Note**  
-CloudTrail does not log all AWS services\. Some AWS services do not enable logging of all APIs and events\. Even if you configure logging all management and data events in a trail, you will not create a log with all possible AWS events\. For more information about unsupported services, see [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)\. For details about which APIs are logged for a specific service, see documentation for that service in [CloudTrail Integration Topics by AWS Service](cloudtrail-aws-service-specific-topics.md)\.
+CloudTrail does not log all AWS services\. Some AWS services do not enable logging of all APIs and events\. Even if you configure logging all management and data events in a trail, you will not create a log with all possible AWS events\. For more information about unsupported services, see [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)\. For details about which APIs are logged for a specific service, see documentation for that service in [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 ### What Are Management Events?<a name="cloudtrail-concepts-management-events"></a>
 
@@ -25,7 +25,7 @@ Management events provide insight into management operations that are performed 
 
 + Setting up logging \(for example, AWS CloudTrail `CreateTrail` API operations\)\.
 
-Management events can also include non\-API events that occur in your account\. For example, when a user signs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)\. For a list of management events that CloudTrail logs for AWS services, see [CloudTrail Integration Topics by AWS Service](cloudtrail-aws-service-specific-topics.md)\.
+Management events can also include non\-API events that occur in your account\. For example, when a user signs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)\. For a list of management events that CloudTrail logs for AWS services, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 ### What Are Data Events?<a name="cloudtrail-concepts-data-events"></a>
 
@@ -35,13 +35,13 @@ Data events provide insight into the resource operations performed on or in a re
 
 + AWS Lambda function execution activity \(the `Invoke` API\)\.
 
- Data events are disabled by default when you create a trail\. To record CloudTrail data events, you must explicitly add to a trail the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md), [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events), and [Services That Support Logging Data Events](cloudtrail-supported-services.md#cloud-trail-supported-services-data-events)\.
+ Data events are disabled by default when you create a trail\. To record CloudTrail data events, you must explicitly add to a trail the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
 
 Additional charges apply for logging data events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
 ## What Is CloudTrail Event History?<a name="cloudtrail-concepts-event-history"></a>
 
-CloudTrail event history provides a viewable, searchable, and downloadable record of the past 90 days of CloudTrail events\. You can use this history to gain visibility into actions taken in your AWS account in the AWS Management Console, AWS SDKs, command line tools, and other AWS services\. You can customize your view of event history in the CloudTrail console by selecting which columns are displayed\. For more information about what is included in CloudTrail event history, see [Services Supported by CloudTrail Event History](view-cloudtrail-events-supported-services.md) and [Resource Types Supported by CloudTrail Event History](view-cloudtrail-events-supported-resource-types.md)\. 
+CloudTrail event history provides a viewable, searchable, and downloadable record of the past 90 days of CloudTrail events\. You can use this history to gain visibility into actions taken in your AWS account in the AWS Management Console, AWS SDKs, command line tools, and other AWS services\. You can customize your view of event history in the CloudTrail console by selecting which columns are displayed\. 
 
 ## What Are Trails?<a name="cloudtrail-concepts-trails"></a>
 
