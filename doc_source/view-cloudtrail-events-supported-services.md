@@ -1807,7 +1807,11 @@ For more information, see [Logging Amazon Kinesis Data Streams API Calls Using A
 | UpdateFunctionConfiguration20150331 | 
 | UpdateFunctionConfiguration20150331v2 | 
 
+<<<<<<< HEAD
 For more information, see [Logging AWS Lambda API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html) in the *AWS Lambda Developer Guide*\.
+=======
+For more information, see [Logging AWS Lambda API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html) in the *AWS Lambda Developer Guide*\.
+>>>>>>> b83e3151f9f2aa169b73876bee166609f127d8f5
 
 ## Amazon Lex APIs<a name="view-cloudtrail-events-supported-apis-lex"></a>
 
