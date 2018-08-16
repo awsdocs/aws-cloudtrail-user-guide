@@ -45,7 +45,7 @@ Specifies that log files delivered on or after the specified UTC timestamp value
 Optionally specifies that log files delivered on or before the specified UTC timestamp value will be validated\. The default value is the current UTC time \(`Date.now()`\)\. Example: `2015-01-08T12:31:41Z`\.   
 For the time range specified, the `validate-logs` command checks only the log files that are referenced in their corresponding digest files\. No other log files in the Amazon S3 bucket are checked\. For more information, see [Checking Whether a Particular File was Delivered by CloudTrail ](#cloudtrail-log-file-validation-cli-validate-logs-check-file)\. 
 
-`--bucket-name`  
+`--s3-bucket`  
 Optionally specifies the Amazon S3 bucket where the digest files are stored\. If a bucket name is not specified, the AWS CLI will retrieve it by calling `DescribeTrails()`\. 
 
 `--prefix`  
