@@ -52,7 +52,7 @@ Optionally specifies the Amazon S3 bucket where the digest files are stored\. If
 Optionally specifies the Amazon S3 prefix where the digest files are stored\. If not specified, the AWS CLI will retrieve it by calling `DescribeTrails()`\.   
 You should use this option only if your current prefix is different from the prefix that was in use during the time range that you specify\.
 
-`--trailARN`  
+`--trail-arn`  
 Specifies the Amazon Resource Name \(ARN\) of the trail to be validated\. The format of a trail ARN follows\.  
 
 ```
