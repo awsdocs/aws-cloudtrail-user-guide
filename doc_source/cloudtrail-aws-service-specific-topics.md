@@ -108,7 +108,7 @@ You can learn more about how the events for individual AWS services are recorded
 | Amazon QuickSight | [Logging Operations with CloudTrail](http://docs.aws.amazon.com/quicksight/latest/user/logging-using-cloudtrail.html) | 04/28/2017 | 
 | Amazon Redshift | [Amazon Redshift API Reference](http://docs.aws.amazon.com/redshift/latest/APIReference/) | 06/10/2014 | 
 | Amazon Rekognition | [Logging Amazon Rekognition API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/rekognition/latest/dg/logging-using-cloudtrail.html) | 04/6/2018 | 
-| Amazon Relational Database Service \(Amazon RDS\) | [Logging Amazon RDS API Calls Using AWS CloudTrail](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Auditing.html) | 11/13/2013 | 
+| Amazon Relational Database Service \(Amazon RDS\) | [Logging Amazon RDS API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/logging-using-cloudtrail.html) | 11/13/2013 | 
 | Route 53 | [Using AWS CloudTrail to Capture Requests Sent to the Route 53 API](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/logging-using-cloudtrail.html) | 02/11/2015 | 
 | Amazon SageMaker |  [Logging Amazon SageMaker API Calls with AWS CloudTrail](http://docs.aws.amazon.com/sagemaker/latest/dg/logging-using-cloudtrail.html)  | 01/11/2018 | 
 | AWS Secrets Manager | [Monitor the Use of Your AWS Secrets Manager Secrets](http://docs.aws.amazon.com/secretsmanager/latest/userguide/monitoring.html#monitoring_cloudtrail) | 04/05/2018 | 
