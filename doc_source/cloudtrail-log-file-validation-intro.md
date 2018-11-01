@@ -16,7 +16,7 @@ When you enable log file integrity validation, CloudTrail creates a hash for eve
 
 ### Storing log and digest files<a name="cloudtrail-log-file-validation-intro-storage"></a>
 
- You can store the CloudTrail log files and digest files in Amazon S3 or Amazon Glacier securely, durably and inexpensively for an indefinite period of time\. To enhance the security of the digest files stored in Amazon S3, you can use [Amazon S3 MFA Delete](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMFADelete.html)\. 
+ You can store the CloudTrail log files and digest files in Amazon S3 or Amazon Glacier securely, durably and inexpensively for an indefinite period of time\. To enhance the security of the digest files stored in Amazon S3, you can use [Amazon S3 MFA Delete](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMFADelete.html)\. 
 
 ### Enabling Validation and Validating Files<a name="cloudtrail-log-file-validation-intro-enabling-and-using"></a>
 

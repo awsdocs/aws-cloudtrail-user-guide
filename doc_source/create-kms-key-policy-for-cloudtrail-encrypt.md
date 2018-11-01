@@ -26,9 +26,7 @@ CloudTrail needs explicit permission to use the CMK to encrypt logs on behalf of
 The following example policy statement illustrates how another account can use your CMK to encrypt CloudTrail logs\.
 
 **Scenario**
-
 + Your CMK is in account 111111111111\.
-
 + Both you and account 222222222222 will encrypt logs\.
 
 In the policy, you add one or more accounts that will encrypt with your key to the CloudTrail **EncryptionContext**\. This restricts CloudTrail to using your key to encrypt logs only for those accounts that you specify\. Giving the root of account 222222222222 permission to encrypt logs delegates the administrator of that account to allocate encrypt permissions as required to other users in account 222222222222 by changing their IAM user policies\.
@@ -55,4 +53,4 @@ CMK policy statement:
 }
 ```
 
-For steps on editing a CMK policy for use with CloudTrail, see [Editing a Key Policy](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-editing) in the AWS Key Management Service Developer Guide\.
+For steps on editing a CMK policy for use with CloudTrail, see [Editing a Key Policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-editing) in the AWS Key Management Service Developer Guide\.

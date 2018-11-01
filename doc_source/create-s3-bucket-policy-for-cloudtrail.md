@@ -2,20 +2,14 @@
 
 By default, Amazon S3 buckets and objects are private\. Only the resource owner \(the AWS account that created the bucket\) can access the bucket and objects it contains\. The resource owner can grant access permissions to other resources and users by writing an access policy\. 
 
-To deliver log files to an S3 bucket, CloudTrail must have the required permissions, and it cannot be configured as a [Requester Pays](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) bucket\. CloudTrail automatically attaches the required permissions to a bucket when you do the following:
-
+To deliver log files to an S3 bucket, CloudTrail must have the required permissions, and it cannot be configured as a [Requester Pays](https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) bucket\. CloudTrail automatically attaches the required permissions to a bucket when you do the following:
 + Create an S3 bucket as part of creating or updating a trail in the CloudTrail console\.
-
 + Create an S3 bucket with the AWS CLI `create-subscription` and `update-subscription` commands\.
 
  CloudTrail adds the following fields in the policy for you: 
-
 + The allowed SIDs\.
-
 + The bucket name\.
-
 + The service principal name for CloudTrail\.
-
 + The name of the folder where the log files are stored, including the bucket name, a prefix \(if you specified one\), and your AWS account ID\.
 
 The following policy allows CloudTrail to write log files to the bucket from supported regions\. For more information, see [CloudTrail Supported Regions](cloudtrail-supported-regions.md)\. 
@@ -45,7 +39,13 @@ The following policy allows CloudTrail to write log files to the bucket from sup
 }
 ```
 
-
+**Contents**
++ [Specifying an Existing Bucket for CloudTrail Log Delivery](#specify-an-existing-bucket-for-cloudtrail-log-delivery)
++ [Receiving Log Files from Other Accounts](#aggregration-option)
++ [Troubleshooting the S3 Bucket Policy](#troubleshooting-s3-bucket-policy)
+  + [Common S3 Policy Configuration Errors](#s3-bucket-policy-for-multiple-regions)
+  + [Changing a Prefix for an Existing Bucket](#cloudtrail-add-change-or-remove-a-bucket-prefix)
++ [Additional Resources](#cloudtrail-S3-bucket-policy-resources)
 
 ## Specifying an Existing Bucket for CloudTrail Log Delivery<a name="specify-an-existing-bucket-for-cloudtrail-log-delivery"></a>
 
@@ -193,4 +193,4 @@ If you try to add, modify, or remove a log file prefix for an S3 bucket that rec
 
 ## Additional Resources<a name="cloudtrail-S3-bucket-policy-resources"></a>
 
-For more information about S3 buckets and policies, see the [Amazon Simple Storage Service Developer Guide](http://docs.aws.amazon.com/AmazonS3/latest/dev/)\.
+For more information about S3 buckets and policies, see the [Amazon Simple Storage Service Developer Guide](https://docs.aws.amazon.com/AmazonS3/latest/dev/)\.

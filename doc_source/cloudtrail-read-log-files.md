@@ -6,7 +6,7 @@ For example, if you use Mozilla Firefox, you can also download the [JSONView](ht
 
 CloudTrail log files are Amazon S3 objects\. You can use the Amazon S3 console, the AWS Command Line Interface \(CLI\), or the Amazon S3 API to retrieve log files\. 
 
-For more information, see [Working with Amazon S3 Objects](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingObjects.html) in the* Amazon Simple Storage Service Developer Guide\.*
+For more information, see [Working with Amazon S3 Objects](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingObjects.html) in the* Amazon Simple Storage Service Developer Guide\.*
 
 The following procedure describes how to download a log file with the AWS Management Console\.
 

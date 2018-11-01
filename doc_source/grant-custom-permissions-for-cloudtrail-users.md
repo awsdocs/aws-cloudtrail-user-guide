@@ -2,7 +2,12 @@
 
 CloudTrail policies grant permissions to users who work with CloudTrail\. If you need to grant different permissions to users, you can attach a CloudTrail policy to an IAM group or to a user\. You can edit the policy to include or exclude specific permissions\. You can also create your own custom policy\. Policies are JSON documents that define the actions a user is allowed to perform and the resources that the user is allowed to perform those actions on\. 
 
-
+**Contents**
++ [Read\-only access](#grant-custom-permissions-for-cloudtrail-users-read-only)
++ [Full access](#grant-custom-permissions-for-cloudtrail-users-full-access)
++ [Controlling User Permissions for Actions on Specific Trails](#grant-custom-permissions-for-cloudtrail-users-resource-level)
++ [Granting Permission to View AWS Config Information on the CloudTrail Console](#grant-aws-config-permissions-for-cloudtrail-users)
++ [Additional Information](#cloudtrail-notifications-more-info-2)
 
 ## Read\-only access<a name="grant-custom-permissions-for-cloudtrail-users-read-only"></a>
 
@@ -38,20 +43,17 @@ The following example shows a policy that grants read\-only access to CloudTrail
 In the policy statements, the `Effect` element specifies whether the actions are allowed or denied\. The `Action` element lists the specific actions that the user is allowed to perform\. The `Resource` element lists the AWS resources the user is allowed to perform those actions on\. For policies that control access to CloudTrail actions, the `Resource` element is always set to `*`, a wildcard that means "all resources\." 
 
 The values in the `Action` element correspond to the APIs that the services support\. The actions are preceded by `cloudtrail:` to indicate that they refer to CloudTrail actions\. You can use the `*` wildcard character in the `Action` element , such as in the following examples: 
-
 + `"Action": ["cloudtrail:*Logging"]`
 
   This allows all CloudTrail actions that end with "Logging" \(`StartLogging`, `StopLogging`\)\.
-
 + `"Action": ["cloudtrail:*"]`
 
   This allows all CloudTrail actions, but not actions for other AWS services\.
-
 + `"Action": ["*"]`
 
   This allows all AWS actions\. This permission is suitable for a user who acts as an AWS administrator for your account\.
 
-The read\-only policy doesn't grant user permission for the `CreateTrail`, `UpdateTrail`, `StartLogging`, and `StopLogging` actions\. Users with this policy are not allowed to create trails, update trails, or turn logging on and off\. For the list of CloudTrail actions, see the [AWS CloudTrail API Reference](http://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
+The read\-only policy doesn't grant user permission for the `CreateTrail`, `UpdateTrail`, `StartLogging`, and `StopLogging` actions\. Users with this policy are not allowed to create trails, update trails, or turn logging on and off\. For the list of CloudTrail actions, see the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
 
 ## Full access<a name="grant-custom-permissions-for-cloudtrail-users-full-access"></a>
 
@@ -267,4 +269,4 @@ For more information, see [Viewing Resources Referenced with AWS Config](view-cl
 
 ## Additional Information<a name="cloudtrail-notifications-more-info-2"></a>
 
- To learn more about creating IAM users, groups, policies, and permissions, see [Creating Your First IAM User and Administrators Group](http://docs.aws.amazon.com/IAM/latest/UserGuide/GSGHowToCreateAdminsGroup.html) and [Access Management](http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\. 
+ To learn more about creating IAM users, groups, policies, and permissions, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/GSGHowToCreateAdminsGroup.html) and [Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\. 

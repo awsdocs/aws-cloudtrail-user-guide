@@ -11,11 +11,8 @@ The following is an example that describes how CloudTrail delivers two events fo
 1.  Bob uses the CMK to call the `Encrypt` API\. 
 
 1.  CloudTrail sends two separate events\. 
-
    + One event is sent to Bob\. The event shows that he used the CMK\.
-
    + One event is sent to Alice\. The event shows that Bob used the CMK\.
-
    + The events have the same `sharedEventID`, but the `eventID` and `recipientAccountID` are unique\.
 
 ![\[How the sharedEventID field appears in logs\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/event-reference-sharedEventId.png)

@@ -1,12 +1,12 @@
 # Viewing CloudTrail Events in the CloudTrail Console<a name="view-cloudtrail-events-console"></a>
 
-You can use the CloudTrail console to view the last 90 days of recorded API activity and events in an AWS Region\. You can also download a file with that information, or a subset of information based on the filter and time range you choose\. You can customize your view of event history by selecting which columns are displayed in the console\. You can also look up and filter events by the resource types available for a particular service\.
+You can use the CloudTrail console to view the last 90 days of recorded API activity and events in an AWS Region\. You can also download a file with that information, or a subset of information based on the filter and time range you choose\. You can customize your view of **Event history** by selecting which columns are displayed in the console\. You can also look up and filter events by the resource types available for a particular service\.
 
 CloudTrail logging varies between AWS services\. While most AWS services support CloudTrail logging of all events, some services only support logging a subset of APIs and events, and a few services are unsupported\. You can learn more about the specifics of how CloudTrail logs events for a specific service by consulting the documentation for that service\. For more information, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md) and [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)\.
 
 **Note**  
-For an ongoing record of activity and events, create a trail\. Creating a trail also enables you to take advantage of the following integrations:  
-Analyze your AWS service activity with queries in Amazon Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](http://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](http://docs.aws.amazon.com/athena/latest/ug/), or simply choose the option to create a table directly from **Event history** in the CloudTrail console\. 
+For an ongoing record of activity and events, [create a trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\. Creating a trail also enables you to take advantage of the following integrations:  
+Analyze your AWS service activity with queries in Amazon Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](https://docs.aws.amazon.com/athena/latest/ug/), or simply choose the option to create a table directly from **Event history** in the CloudTrail console\. 
 Monitor your trail logs and be notified when specific activity occurs with Amazon CloudWatch Logs\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 
 **To view CloudTrail events**
@@ -15,27 +15,29 @@ Monitor your trail logs and be notified when specific activity occurs with Amazo
 
 1. In the navigation pane, choose **Event history**\. 
 
-A list of events appears in the content pane with the latest event first\. Scroll down to see more events\. 
+A filtered list of events appears in the content pane with the latest event first\. Scroll down to see more events\. 
 
+The default view of events in **Event history** has a filter applied so that it does not display read\-only events\. To remove this filter, or to apply other filters, change the filter settings\. For more information, see [Filtering CloudTrail Events](#filtering-cloudtrail-events)\.
 
+**Contents**
++ [Displaying CloudTrail Events](#displaying-cloudtrail-events)
++ [Filtering CloudTrail Events](#filtering-cloudtrail-events)
++ [Viewing Details for an Event](#viewing-details-for-an-event)
++ [Downloading Events](#downloading-events)
++ [Viewing Resources Referenced with AWS Config](#viewing-resources-config)
 
 ## Displaying CloudTrail Events<a name="displaying-cloudtrail-events"></a>
 
-You can customize the display of event history by selecting which columns to display in the CloudTrail console\. By default, the following columns are displayed:
-
+You can customize the display of **Event history** by selecting which columns to display in the CloudTrail console\. By default, the following columns are displayed:
 + **Event time**
-
 + **User name**
-
 + **Event name**
-
 + **Resource type**
-
 + **Resource name**
 
 You cannot change the order of the columns\.
 
-**To customize the columns displayed in event history**
+**To customize the columns displayed in **Event history****
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/home/](https://console.aws.amazon.com/cloudtrail/home/)\.
 
@@ -47,7 +49,13 @@ You cannot change the order of the columns\.
 
 ## Filtering CloudTrail Events<a name="filtering-cloudtrail-events"></a>
 
- You can filter events by the following attributes\. You can filter by time range and one other attribute\.
+The default display of events in **Event history** uses an attribute filter to exclude read\-only events from the list of displayed events\. This attribute filter is named **Read only**, and it is set to **false**\. You can remove this filter to display both read and write events\. If you want to view only the read events, you can change the filter value to **true**\. You can also filter events by other attributes\. You can additionally filter by time range\.
+
+**Note**  
+You can only apply one attribute filter and a time range filter\. You cannot apply multiple attribute filters\.
+
+** AWS access key **  
+The AWS access key ID that was used to sign the request\. If the request was made with temporary security credentials, this is the access key ID of the temporary credentials\.
 
 ** Event ID **  
 The CloudTrail ID of the event\. Each event has a unique ID\.
@@ -57,6 +65,9 @@ The name of the event\. For example, you can filter on IAM events, such as `Crea
 
 ** Event source **  
 The AWS service to which the request was made, such as `iam.amazonaws.com` or `s3.amazonaws.com`\. You can scroll through a list of event sources after you choose the **Event source** filter\. 
+
+** Read only **  
+The read type of the event\. Events are categorized as read events or write events\. If set to **false**, read events are not included in the list of displayed events\. By default, this attribute filter is applied and the value is set to **false**\.
 
 ** Resource name **  
 The name or ID of the resource referenced by the event\. For example, the resource name might be "auto\-scaling\-test\-group" for an Auto Scaling group or "i\-1234567" for an EC2 instance\.
@@ -68,7 +79,7 @@ The type of resource referenced by the event\. For example, a resource type can 
 The time range in which you want to filter events\. You can filter events for the last 90 days\.
 
 ** User name **  
-The name of the user referenced by the event\. For example, this can be an IAM user\.
+The identity of the user referenced by the event\. For example, this can be an IAM user, an IAM role name, or a service role\.
 
 If there are no events logged for the attribute or time that you choose, the results list is empty\. You can apply only one attribute filter in addition to the time range\. If you choose a different attribute filter, your specified time range is preserved\.
 
@@ -123,20 +134,14 @@ AWS Config records configuration details, relationships, and changes to your AWS
 
 On the **Resources Referenced** pane, choose the ![\[AWS Config timeline icon\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/config-timeline.png) in the **Config timeline** column to view the resource in the AWS Config console\.
 
-If the ![\[AWS Config timeline\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/config-timeline-gray.png) icon is gray, AWS Config is not turned on, or it's not recording the resource type\. Choose the icon to go to the AWS Config console to turn on the service or start recording that resource type\. For more information, see [Set Up AWS Config Using the Console](http://docs.aws.amazon.com/config/latest/developerguide/gs-console.html) in the *AWS Config Developer Guide*\.
+If the ![\[AWS Config timeline\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/config-timeline-gray.png) icon is gray, AWS Config is not turned on, or it's not recording the resource type\. Choose the icon to go to the AWS Config console to turn on the service or start recording that resource type\. For more information, see [Set Up AWS Config Using the Console](https://docs.aws.amazon.com/config/latest/developerguide/gs-console.html) in the *AWS Config Developer Guide*\.
 
 If **Link not available** appears in the column, the resource can't be viewed for one of the following reasons:
-
-+  AWS Config doesn't support the resource type\. For more information, see [Supported Resources, Configuration Items, and Relationships](http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html) in the *AWS Config Developer Guide*\.
-
++  AWS Config doesn't support the resource type\. For more information, see [Supported Resources, Configuration Items, and Relationships](https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html) in the *AWS Config Developer Guide*\.
 + AWS Config recently added support for the resource type, but it's not yet available from the CloudTrail console\. You can look up the resource in the AWS Config console to see the timeline for the resource\.
-
 + The resource is owned by another AWS account\.
-
 + The resource is owned by another AWS service, such as a managed IAM policy\.
-
 + The resource was created and then deleted immediately\.
-
 + The resource was recently created or updated\.
 
 **Example**  
@@ -153,4 +158,4 @@ If **Link not available** appears in the column, the resource can't be viewed fo
 
 To grant users read\-only permission to view resources in the AWS Config console, see [Granting Permission to View AWS Config Information on the CloudTrail Console](grant-custom-permissions-for-cloudtrail-users.md#grant-aws-config-permissions-for-cloudtrail-users)\.
 
-For more information about AWS Config, see the [AWS Config Developer Guide](http://docs.aws.amazon.com/config/latest/developerguide/)\.
+For more information about AWS Config, see the [AWS Config Developer Guide](https://docs.aws.amazon.com/config/latest/developerguide/)\.

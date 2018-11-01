@@ -41,7 +41,7 @@ The following example shows a single log record at the beginning of a log file\.
 
 The following topics list the data fields that CloudTrail captures for each AWS API call and sign\-in event\. 
 
-
+**Topics**
 + [CloudTrail Record Contents](cloudtrail-event-reference-record-contents.md)
 + [CloudTrail userIdentity Element](cloudtrail-event-reference-user-identity.md)
 + [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)

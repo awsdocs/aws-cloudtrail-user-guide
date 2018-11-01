@@ -23,6 +23,6 @@
 | EU \(Paris\) | eu\-west\-3 | cloudtrail\.eu\-west\-3\.amazonaws\.com | HTTPS | 262312530599  | 12/18/2017 | 
 | South America \(São Paulo\) | sa\-east\-1 | cloudtrail\.sa\-east\-1\.amazonaws\.com | HTTPS | 814480443879 | 06/30/2014 | 
 
-For information about using CloudTrail in the AWS GovCloud \(US\), Region, see [AWS GovCloud \(US\) Endpoints](http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\. 
+For information about using CloudTrail in the AWS GovCloud \(US\), Region, see [AWS GovCloud \(US\) Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\. 
 
 For information about using CloudTrail in the China \(Beijing\) Region, see [China \(Beijing\) Region Endpoints](http://docs.amazonaws.cn/en_us/general/latest/gr/rande.html#cnnorth_region) in the *Amazon Web Services General Reference*\.

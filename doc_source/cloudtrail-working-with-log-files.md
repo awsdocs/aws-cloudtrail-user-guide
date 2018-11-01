@@ -1,18 +1,13 @@
 # Working with CloudTrail Log Files<a name="cloudtrail-working-with-log-files"></a>
 
 You can perform more advanced tasks with your CloudTrail files\.
-
 + Create multiple trails per region\.
-
 + Monitor CloudTrail log files by sending them to CloudWatch Logs\.
-
 + Share log files between accounts\. 
-
 + Use the AWS CloudTrail Processing Library to write log processing applications in Java\.
-
 + Validate your log files to verify that they have not changed after delivery by CloudTrail\.
 
-
+**Topics**
 + [Create Multiple Trails](create-multiple-trails.md)
 + [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)
 + [Receiving CloudTrail Log Files from Multiple Regions](receive-cloudtrail-log-files-from-multiple-regions.md)

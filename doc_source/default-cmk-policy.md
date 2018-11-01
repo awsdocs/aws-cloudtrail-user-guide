@@ -1,13 +1,9 @@
 # Default Key Policy Created in CloudTrail Console<a name="default-cmk-policy"></a>
 
 If you create a customer master key \(CMK\) in the CloudTrail console, the following policy is automatically created for you\. The policy allows these permissions:
-
 + Allows AWS account \(root\) permissions for the CMK
-
 + Allows CloudTrail to encrypt log files under the CMK and describe the CMK
-
 + Allows all users in the specified accounts to decrypt log files
-
 + Allows all users in the specified account to create a KMS alias for the CMK
 
 ```

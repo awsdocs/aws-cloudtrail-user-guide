@@ -1,38 +1,52 @@
 # Creating a Trail with the AWS Command Line Interface<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli"></a>
 
 **Note**  
-You need the AWS command line tools to run the AWS Command Line Interface \(AWS CLI\) commands in this topic\. For more information, see the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/)\. For help with CloudTrail commands at the AWS CLI command line, type `aws cloudtrail help`\.
+You need the AWS command line tools to run the AWS Command Line Interface \(AWS CLI\) commands in this topic\. For more information, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\. For help with CloudTrail commands at the AWS CLI command line, type `aws cloudtrail help`\.
 
-
+**Contents**
++ [Two options for creating and updating trails](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-options)
+  + [create\-trail and update\-trail](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-ctut)
+  + [create\-subscription and update\-subscription](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-subs)
++ [Using create\-trail](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail)
+  + [Creating a single\-region trail](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single)
+    + [Start logging for the trail](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single-start-logging)
+  + [Creating a trail that applies to all regions](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-mrt)
+  + [Creating a trail that applies to all regions and that has log file validation enabled](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-mrtlfi)
++ [Using update\-trail](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail)
+  + [Converting a trail that applies to one region to apply to all regions](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-convert)
+  + [Converting a multi\-region trail to a single\-region trail](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-reduce)
+  + [Enabling and disabling logging global service events](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-gses)
+  + [Enabling log file validation](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-lfi)
+  + [Disabling log file validation](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-lfi-disable)
++ [Using create\-subscription](#cloudtrail-create-and-update-a-trail-cli-create-subscription)
++ [Using update\-subscription](#cloudtrail-create-and-update-a-trail-cli-update-subscription)
++ [Managing Trails](#cloudtrail-additional-cli-commands)
+  + [Retrieving trail settings and the status of a trail](#cloudtrail-additional-cli-commands-retrieve)
+  + [Configuring event selectors](#configuring-event-selector-examples)
+    + [Example: A trail with specific event selectors](#configuring-event-selector-example1)
+    + [Example: A trail that logs all events](#configuring-event-selector-example2)
+  + [Stopping and starting logging for a trail](#cloudtrail-start-stop-logging-cli-commands)
+  + [Deleting a trail](#cloudtrail-delete-trail-cli)
 
 ## Two options for creating and updating trails<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-options"></a>
 
 When creating or updating a trail with the AWS CLI, you have two sets of options:
-
 + `create-trail` and `update-trail`
-
 + `create-subscription` and `update-subscription`
 
 ### create\-trail and update\-trail<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-ctut"></a>
 
 The `create-trail` and `update-trail` commands offer the following functionality that the `create-subscription` and `update-subscription` commands do not:
-
 + Create a trail that receives logs across regions, or update a trail with the `--is-multi-region-trail` option\. 
-
 + Convert a multi\-region trail to single\-region trail with the `--no-is-multi-region-trail` option\.
-
 + Enable or disable log file encryption with the `--kms-key-id` option\. The option specifies an AWS KMS key that you have already created and to which you have attached a policy that allows CloudTrail to encrypt your logs\. For more information, see [Enabling and disabling CloudTrail log file encryption with the AWS CLI](cloudtrail-log-file-encryption-cli.md)\.
-
 + Enable or disable log file validation with the `--enable-log-file-validation` and `--no-enable-log-file-validation` options\. For more information, see [Validating CloudTrail Log File Integrity](cloudtrail-log-file-validation-intro.md)\.
-
 + Specify a CloudWatch Logs log group and role so that CloudTrail can deliver events to a CloudWatch Logs log group\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 
 ### create\-subscription and update\-subscription<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-subs"></a>
 
 The `create-subscription` and `update-subscription` commands offer the following advantages:
-
 + You can have CloudTrail create an S3 bucket for you\. With the `create-trail` command, you must specify an existing bucket in which you have already applied the bucket policy for CloudTrail\.
-
 + The `create-subscription` command starts logging for the trail\. With the `create-trail` command, you must run the `start-logging` command\.
 
 ## Using create\-trail<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail"></a>
@@ -273,17 +287,12 @@ To validate log files with the AWS CLI, see [Validating CloudTrail Log File Inte
 The `create-subscription` command creates a trail\. You can also use this command to create an Amazon S3 bucket for log file delivery and an Amazon SNS topic for notifications\. The `create-subscription` command also starts logging for the trail that it creates\. 
 
 The `create-subscription` command includes the following options: 
-
 + `--name` specifies the name of the trail\. This option is required\. For more information, see [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)\.
-
 +  `--s3-use-bucket` specifies an existing Amazon S3 bucket for log file storage\.
-
 +  `--s3-new-bucket` specifies the name of the new bucket created when the command executes\. The name of the bucket must be globally unique\. For more information, see [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)\.
-
 +  `--s3-prefix` specifies a prefix for the log file delivery path \(optional\)\. The maximum length is 200 characters\.
 **Note**  
 If you want to use a new log file prefix for an existing bucket, add the prefix to the bucket policy first\. For more information, see [Changing a Prefix for an Existing Bucket](create-s3-bucket-policy-for-cloudtrail.md#cloudtrail-add-change-or-remove-a-bucket-prefix)\.
-
 +  `--sns-new-topic` specifies the name of the Amazon SNS topic to which you can subscribe for notification of log file delivery to your bucket \(optional\)\.
 
 **Note**  
@@ -416,9 +425,7 @@ If the command succeeds, you see output similar to the following:
 ```
 
 In addition to the fields shown in the preceding JSON code, the status contains the following fields if there are Amazon SNS or Amazon S3 errors: 
-
 + `LatestNotificationError`\. Contains the error emitted by Amazon SNS if a subscription to a topic fails\.
-
 + `LatestDeliveryError`\. Contains the error emitted by Amazon S3 if CloudTrail cannot deliver a log file to a bucket\.
 
 ### Configuring event selectors<a name="configuring-event-selector-examples"></a>
@@ -446,7 +453,7 @@ The following example returns the default settings for an event selector for a t
 
 To create an event selector, run the `put-event-selectors` command\. When an event occurs in your account, CloudTrail evaluates the configuration for your trails\. If the event matches any event selector for a trail, the trail processes and logs the event\. You can configure up to 5 event selectors for a trail and up to 250 data resources for a trail\. For more information, see [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)\.
 
-
+**Topics**
 + [Example: A trail with specific event selectors](#configuring-event-selector-example1)
 + [Example: A trail that logs all events](#configuring-event-selector-example2)
 

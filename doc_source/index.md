@@ -38,6 +38,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)
       + [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
       + [AWS KMS Alias Naming Requirements](KMS-key-naming-requirements.md)
+      + [Using AWS CloudTrail with Interface VPC Endpoints](cloudtrail-and-interface-VPC.md)
       + [Tips for Managing Trails](cloudtrail-concepts-trails-managing-and-using.md)
    + [Getting and Viewing Your CloudTrail Log Files](get-and-view-cloudtrail-log-files.md)
       + [Finding Your CloudTrail Log Files](cloudtrail-find-log-files.md)

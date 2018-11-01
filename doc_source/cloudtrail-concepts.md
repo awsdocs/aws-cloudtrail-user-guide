@@ -2,7 +2,29 @@
 
 This section summarizes basic concepts related to CloudTrail\.
 
-
+**Contents**
++ [What Are CloudTrail Events?](#cloudtrail-concepts-events)
+  + [What Are Management Events?](#cloudtrail-concepts-management-events)
+  + [What Are Data Events?](#cloudtrail-concepts-data-events)
++ [What Is CloudTrail Event History?](#cloudtrail-concepts-event-history)
++ [What Are Trails?](#cloudtrail-concepts-trails)
++ [How Do You Manage CloudTrail?](#cloudtrail-concepts-manage)
+  + [CloudTrail Console](#cloudtrail-concepts-console)
+  + [CloudTrail CLI](#cloudtrail-concepts-cli)
+  + [CloudTrail APIs](#cloudtrail-concepts-api)
+  + [AWS SDKs](#cloudtrail-concepts-sdk)
++ [How Do You Control Access to CloudTrail?](#cloudtrail-concepts-iam)
++ [How Do You Log Management and Data Events?](#understanding-event-selectors)
++ [How Do You Perform Monitoring with CloudTrail?](#cloudtrail-concepts-monitoring)
+  + [CloudWatch Logs and CloudTrail](#cloudtrail-concepts-cloudwatch-logs)
++ [How Does CloudTrail Behave Regionally and Globally?](#cloudtrail-concepts-regional-and-global-services)
+  + [What Are the Advantages of Applying a Trail to All Regions?](#cloudtrail-concepts-trails-enable-all-regions-advantages)
+  + [What Happens When You Apply a Trail to All Regions?](#cloudtrail-concepts-trails-enable-all-regions)
+  + [Multiple Trails per Region](#cloudtrail-concepts-trails-multiple-trails-per-region)
+  + [AWS Security Token Service \(AWS STS\) and CloudTrail](#cloudtrail-concepts-sts-regionalization)
++ [About Global Service Events](#cloudtrail-concepts-global-service-events)
++ [How Does CloudTrail Relate to Other AWS Monitoring Services?](#cloudtrail-concepts-other-aws-monitoring-services)
++ [Partner Solutions](#cloudtrail-concepts-partner-solutions)
 
 ## What Are CloudTrail Events?<a name="cloudtrail-concepts-events"></a>
 
@@ -16,13 +38,9 @@ CloudTrail does not log all AWS services\. Some AWS services do not enable loggi
 ### What Are Management Events?<a name="cloudtrail-concepts-management-events"></a>
 
 Management events provide insight into management operations that are performed on resources in your AWS account\. These are also known as *control plane operations*\. Example management events include:
-
 + Configuring security \(for example, IAM `AttachRolePolicy` API operations\)\.
-
 + Registering devices \(for example, Amazon EC2 `CreateDefaultVpc` API operations\)\.
-
 + Configuring rules for routing data \(for example, Amazon EC2 `CreateSubnet` API operations\)\.
-
 + Setting up logging \(for example, AWS CloudTrail `CreateTrail` API operations\)\.
 
 Management events can also include non\-API events that occur in your account\. For example, when a user signs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)\. For a list of management events that CloudTrail logs for AWS services, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
@@ -30,9 +48,7 @@ Management events can also include non\-API events that occur in your account\. 
 ### What Are Data Events?<a name="cloudtrail-concepts-data-events"></a>
 
 Data events provide insight into the resource operations performed on or in a resource\. These are also known as *data plane operations*\. Data events are often high\-volume activities\. Example data events include:
-
 +  Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\)\.
-
 + AWS Lambda function execution activity \(the `Invoke` API\)\.
 
  Data events are disabled by default when you create a trail\. To record CloudTrail data events, you must explicitly add to a trail the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
@@ -52,34 +68,25 @@ CloudTrail event history provides a viewable, searchable, and downloadable recor
 ### CloudTrail Console<a name="cloudtrail-concepts-console"></a>
 
 You can use and manage the CloudTrail service with the AWS CloudTrail console\. The console provides a user interface for performing many CloudTrail tasks such as:
-
 + Viewing recent events and event history for your AWS account\.
-
 + Downloading a filtered or complete file of the last 90 days of events\.
-
 + Creating and editing CloudTrail trails\.
-
 + Configuring CloudTrail trails, including: 
-
   + Selecting an Amazon S3 bucket\.
-
   + Setting a prefix\.
-
   + Configuring delivery to CloudWatch Logs\.
-
   + Using AWS KMS keys for encryption\. 
-
   + Enabling Amazon SNS notifications for log file delivery\.
 
-For more information about the AWS Management Console, see [AWS Management Console](http://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/getting-started.html)\. 
+For more information about the AWS Management Console, see [AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/getting-started.html)\. 
 
 ### CloudTrail CLI<a name="cloudtrail-concepts-cli"></a>
 
-The AWS Command Line Interface is a unified tool that you can use to interact with CloudTrail from the command line\. For more information, see the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/)\. For a complete list of CloudTrail CLI commands, see [Available Commands](http://docs.aws.amazon.com/cli/latest/reference/cloudtrail/index.html)\.
+The AWS Command Line Interface is a unified tool that you can use to interact with CloudTrail from the command line\. For more information, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\. For a complete list of CloudTrail CLI commands, see [Available Commands](https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/index.html)\.
 
 ### CloudTrail APIs<a name="cloudtrail-concepts-api"></a>
 
-In addition to the console and the CLI, you can also use the CloudTrail RESTful APIs to program CloudTrail directly\. For more information, see the [AWS CloudTrail API Reference](http://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
+In addition to the console and the CLI, you can also use the CloudTrail RESTful APIs to program CloudTrail directly\. For more information, see the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
 
 ### AWS SDKs<a name="cloudtrail-concepts-sdk"></a>
 
@@ -101,7 +108,7 @@ Amazon CloudWatch is a web service that collects and tracks metrics to monitor y
 
 ## How Does CloudTrail Behave Regionally and Globally?<a name="cloudtrail-concepts-regional-and-global-services"></a>
 
- A trail can be applied to all regions or a single region\. As a best practice, create a trail that applies to all regions in the [AWS partition](http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in which you are working\. This is the default setting when you create a trail in the CloudTrail console\.
+ A trail can be applied to all regions or a single region\. As a best practice, create a trail that applies to all regions in the [AWS partition](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in which you are working\. This is the default setting when you create a trail in the CloudTrail console\.
 
 **Note**  
 *Turning on a trail* means that you create a trail and start delivery of CloudTrail event log files to an Amazon S3 bucket\. In the CloudTrail console, logging is turned on automatically when you create a trail\.
@@ -109,15 +116,10 @@ Amazon CloudWatch is a web service that collects and tracks metrics to monitor y
 ### What Are the Advantages of Applying a Trail to All Regions?<a name="cloudtrail-concepts-trails-enable-all-regions-advantages"></a>
 
 A trail that applies to all regions has the following advantages:
-
 + The configuration settings for the trail apply consistently across all regions\.
-
 + You receive CloudTrail events from all regions in a single S3 bucket and, optionally, in a CloudWatch Logs log group\.
-
 + You manage trail configuration for all regions from one location\. 
-
 + You immediately receive events from a new region\. When a new region is launched, CloudTrail automatically creates a trail for you in the new region with the same settings as your original trail\.
-
 + You can create trails in regions that you don't use often to monitor for unusual activity\.
 
 ### What Happens When You Apply a Trail to All Regions?<a name="cloudtrail-concepts-trails-enable-all-regions"></a>
@@ -125,11 +127,8 @@ A trail that applies to all regions has the following advantages:
  When you apply a trail to all regions, CloudTrail uses the trail that you create in a particular region to create trails with identical configurations in all other regions in your account\.
 
  This has the following effects:
-
 + CloudTrail delivers log files for account activity from all regions to the single Amazon S3 bucket that you specify, and, optionally, to a CloudWatch Logs log group\.
-
 + If you configured an Amazon SNS topic for the trail, SNS notifications about log file deliveries in all regions are sent to that single SNS topic\.
-
 + If you enabled it, log file integrity validation is enabled for the trail in all regions\. For information, see [Validating CloudTrail Log File Integrity](cloudtrail-log-file-validation-intro.md)\.
 
 ### Multiple Trails per Region<a name="cloudtrail-concepts-trails-multiple-trails-per-region"></a>
@@ -139,11 +138,8 @@ A trail that applies to all regions has the following advantages:
  CloudTrail supports five trails per region\. A trail that applies to all regions counts as one trail in every region\. 
 
 The following example is a region with five trails:
-
 + You create two trails in the US West \(N\. California\) Region that apply to this region only\.
-
 + You create two more trails in US West \(N\. California\) Region that apply to all regions\. 
-
 + You create a trail in the Asia Pacific \(Sydney\) Region that applies to all regions\. This trail also exists as a trail in the US West \(N\. California\) Region\.
 
 You can see a list of your trails in all regions on the **Trails** page of the CloudTrail console\. For more information, see [Updating a Trail](cloudtrail-update-a-trail-console.md)\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
@@ -152,20 +148,17 @@ You can see a list of your trails in all regions on the **Trails** page of the C
 
 AWS STS is a service that has a global endpoint and also supports region\-specific endpoints\. An endpoint is a URL that is the entry point for web service requests\. For example, `https://cloudtrail.us-west-2.amazonaws.com` is the US West \(Oregon\) regional entry point for the AWS CloudTrail service\. Regional endpoints help reduce latency in your applications\. 
 
-When you use an AWS STS region\-specific endpoint, the trail in that region delivers only the AWS STS events that occur in that region\. For example, if you are using the endpoint `sts.us-west-2.amazonaws.com`, the trail in us\-west\-2 delivers only the AWS STS events that originate from us\-west\-2\. For more information about AWS STS regional endpoints, see [Activating and Deactivating AWS STS in an AWS Region](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html) in the *IAM User Guide*\.
+When you use an AWS STS region\-specific endpoint, the trail in that region delivers only the AWS STS events that occur in that region\. For example, if you are using the endpoint `sts.us-west-2.amazonaws.com`, the trail in us\-west\-2 delivers only the AWS STS events that originate from us\-west\-2\. For more information about AWS STS regional endpoints, see [Activating and Deactivating AWS STS in an AWS Region](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html) in the *IAM User Guide*\.
 
-For a complete list of AWS regional endpoints, see [AWS Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html) in the *AWS General Reference*\. For details about events from the global AWS STS endpoint, see [About Global Service Events](#cloudtrail-concepts-global-service-events)\.
+For a complete list of AWS regional endpoints, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *AWS General Reference*\. For details about events from the global AWS STS endpoint, see [About Global Service Events](#cloudtrail-concepts-global-service-events)\.
 
 ## About Global Service Events<a name="cloudtrail-concepts-global-service-events"></a>
 
 For most services, events are recorded in the region where the action occurred\. For global services such as AWS Identity and Access Management \(IAM\), AWS STS, Amazon CloudFront, and Route 53, events are delivered to any trail that includes global services, and are logged as occurring in US East \(N\. Virginia\) Region\. 
 
 To avoid receiving duplicate global service events, remember the following:
-
 + Global service events are delivered by default to trails that are created using the CloudTrail console\. Events are delivered to the bucket for the trail\.
-
 + If you have multiple single region trails, consider configuring your trails so that global service events are delivered in only one of the trails\. For more information, see [Enabling and disabling logging global service events](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-gses)\. 
-
 + If you change the configuration of a trail from logging all regions to logging a single region, global service event logging is turned off automatically for that trail\. Similarly, if you change the configuration of a trail from logging a single region to logging all regions, global service event logging is turned on automatically for that trail\. 
 
   For more information about changing global service event logging for a trail, see [Enabling and disabling logging global service events](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-gses)\.

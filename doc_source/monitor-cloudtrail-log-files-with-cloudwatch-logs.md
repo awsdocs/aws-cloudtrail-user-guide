@@ -39,7 +39,7 @@ You can configure your trails to send logs to CloudWatch Logs in the following r
 
 \* This region requires a separate account\. For more information, see [AWS GovCloud \(US\)](https://aws.amazon.com/govcloud-us/)\.
 
-
+**Topics**
 + [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)
 + [Creating CloudWatch Alarms with an AWS CloudFormation Template](use-cloudformation-template-to-create-cloudwatch-alarms.md)
 + [Creating CloudWatch Alarms for CloudTrail Events: Examples](cloudwatch-alarms-for-cloudtrail.md)

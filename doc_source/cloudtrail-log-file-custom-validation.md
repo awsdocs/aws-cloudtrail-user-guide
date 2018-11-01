@@ -21,13 +21,9 @@ This topic describes how digest files are signed, and then details the steps tha
 ### Contents of the Data Signing String<a name="cloudtrail-log-file-custom-validation-data-signing-string-summary"></a>
 
  The following CloudTrail objects are included in the string for data signing: 
-
 + The ending timestamp of the digest file in UTC extended format \(for example, `2015-05-08T07:19:37Z`\)
-
 + The current digest file S3 path
-
 + The hexadecimal\-encoded SHA\-256 hash of the current digest file
-
 + The hexadecimal\-encoded signature of the previous digest file
 
 The format for calculating this string and an example string are provided later in this document\.
@@ -70,7 +66,7 @@ The following sections describe these steps in detail\.
 
 The first steps are to get the most recent digest file, verify that you have retrieved it from its original location, verify its digital signature, and get the fingerprint of the public key\.
 
-1. Using [http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) or the [AmazonS3Client class](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3Client.html) \(for example\), get the most recent digest file from your Amazon S3 bucket for the time range that you want to validate\. 
+1. Using [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) or the [AmazonS3Client class](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3Client.html) \(for example\), get the most recent digest file from your Amazon S3 bucket for the time range that you want to validate\. 
 
 1.  Check that the S3 bucket and S3 object used to retrieve the file match the S3 bucket S3 object locations that are recorded in the digest file itself\. 
 
@@ -212,11 +208,8 @@ The following shows how validate the log files:
 ### G\. Validate Additional Digest and Log Files<a name="cloudtrail-log-file-custom-validation-steps-validate-additional-files"></a>
 
 In each digest file, the following fields provide the location and signature of the previous digest file:
-
 +  `previousDigestS3Bucket` 
-
 +  `previousDigestS3Object` 
-
 +  `previousDigestSignature` 
 
 Use this information to visit previous digest files sequentially, validating the signature of each and the log files that they reference by using the steps in the previous sections\. The only difference is that for previous digest files, you do not need to retrieve the digital signature from the digest file object's Amazon S3 metadata properties\. The signature for the previous digest file is provided for you in the `previousDigestSignature` field\. 
@@ -232,10 +225,8 @@ When validating digest and log files offline, you can generally follow the proce
 The digital signature of the most recent \(that is, "current"\) digest file is in the Amazon S3 metadata properties of the digest file object\. In an offline scenario, the digital signature for the current digest file will not be available\.
 
 Two possible ways of handling this are:
-
 + Since the digital signature for the previous digest file is in the current digest file, start validating from the next\-to\-last digest file\. With this method, the most recent digest file cannot be validated\.
-
-+ As a preliminary step, obtain the signature for the current digest file from the digest file object's metadata properties \(for example, by calling the Amazon S3 [getObjectMetadata](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3.html#getObjectMetadata(com.amazonaws.services.s3.model.GetObjectMetadataRequest)) API\) and then store it securely offline\. This would allow the current digest file to be validated in addition to the previous files in the chain\.
++ As a preliminary step, obtain the signature for the current digest file from the digest file object's metadata properties \(for example, by calling the Amazon S3 [getObjectMetadata](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3.html#getObjectMetadata(com.amazonaws.services.s3.model.GetObjectMetadataRequest)) API\) and then store it securely offline\. This would allow the current digest file to be validated in addition to the previous files in the chain\.
 
 ### Path Resolution<a name="cloudtrail-log-file-custom-validation-offline-path-resolution"></a>
 
@@ -250,13 +241,9 @@ In order to validate offline, all of the public keys that you need for validatin
  The following sample snippet provides skeleton code for validating CloudTrail digest and log files\. The skeleton code is online/offline agnostic; that is, it is up to you to decide whether to implement it with or without online connectivity to AWS\. The suggested implementation uses the [Java Cryptography Extension \(JCE\)](https://en.wikipedia.org/wiki/Java_Cryptography_Extension) and [Bouncy Castle](http://www.bouncycastle.org/) as a security provider\. 
 
 The sample snippet shows:
-
 + How to create the data signing string used to validate the digest file signature\. 
-
 + How to verify the digest file signature\.
-
 + How to verify the log file hashes\.
-
 + A code structure for validating a chain of digest files\.
 
 ```

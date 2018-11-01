@@ -2,7 +2,7 @@
 
 You can configure the following settings when you create or update a trail with the CloudTrail console or the AWS Command Line Interface \(AWS CLI\)\. Both methods follow the same steps: 
 
-1. Turn on CloudTrail by creating a trail\. By default, when you create a trail in a region in the CloudTrail console, the trail applies to all regions\.
+1. Create a trail\. By default, when you create a trail in a region in the CloudTrail console, the trail applies to all regions\.
 
 1. Create an Amazon S3 bucket or specify an existing bucket where you want the log files delivered\. By default, log files from all regions in your account are delivered to the bucket that you specify\.
 
@@ -12,17 +12,18 @@ You can configure the following settings when you create or update a trail with 
 
 1. Configure CloudWatch Logs to receive your logs from CloudTrail so that you can monitor for specific log events\. 
 
-1. Turn on log file encryption\. This encrypts your files for added security\.
+1. Change the encryption method for your log files from server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\) to server\-side encryption with AWS KMS–managed keys \(SSE\-KMS\)\. 
 
 1. Turn on integrity validation for log files\. This enables the delivery of digest files that you can use to validate the integrity of log files after CloudTrail has delivered them\.
 
 1. Add tags \(custom key\-value pairs\) to your trail\.
 
-
+**Topics**
 + [Creating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)
 + [Creating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)
 + [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)
 + [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)
 + [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
 + [AWS KMS Alias Naming Requirements](KMS-key-naming-requirements.md)
++ [Using AWS CloudTrail with Interface VPC Endpoints](cloudtrail-and-interface-VPC.md)
 + [Tips for Managing Trails](cloudtrail-concepts-trails-managing-and-using.md)

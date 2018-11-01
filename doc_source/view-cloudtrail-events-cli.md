@@ -1,30 +1,32 @@
 # Viewing CloudTrail Events with the AWS CLI<a name="view-cloudtrail-events-cli"></a>
 
 You can look up CloudTrail events for the last 90 days using the aws cloudtrail lookup\-events command\. `lookup-events` has the following options:
-
 + `--max-results`
-
 + `--start-time`
-
 + `--lookup-attributes`
-
 + `--next-token`
-
 + `--generate-cli-skeleton`
-
 + `--cli-input-json`
 
-These options are explained in this topic\.  For general information on using the AWS Command Line Interface, see the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/)\. 
+These options are explained in this topic\. For general information on using the AWS Command Line Interface, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\. 
 
-
+**Contents**
++ [Prerequisites](#aws-cli-prerequisites-for-aws-cloudtrail)
++ [Getting command line help](#getting-command-line-help)
++ [Looking up events](#looking-up-events-with-the-aws-cli)
++ [Specifying the number of events to return](#specify-the-number-of-events-to-return)
++ [Looking up events by time range](#look-up-events-by-time-range)
+  + [Valid *<timestamp>* formats](#look-up-events-by-time-range-formats)
++ [Looking up events by attribute](#look-up-events-by-attributes)
+  + [Attribute lookup examples](#attribute-lookup-example)
++ [Specifying the next page of results](#specify-next-page-of-lookup-results)
++ [Getting JSON input from a file](#json-input-from-file)
++ [Lookup Output Fields](#view-cloudtrail-events-cli-output-fields)
 
 ## Prerequisites<a name="aws-cli-prerequisites-for-aws-cloudtrail"></a>
-
-+ To run AWS CLI commands, you must install the AWS CLI\. For information, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
-
++ To run AWS CLI commands, you must install the AWS CLI\. For information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 + Make sure your AWS CLI version is greater than 1\.6\.6\. To verify the CLI version, run aws \-\-version on the command line\.
-
-+ To set the account, region, and default output format for an AWS CLI session, use the aws configure command\. For more information, see [ Configuring the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
++ To set the account, region, and default output format for an AWS CLI session, use the aws configure command\. For more information, see [ Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
 **Note**  
 The CloudTrail AWS CLI commands are case\-sensitive\.
@@ -140,20 +142,22 @@ aws cloudtrail lookup-events --lookup-attributes AttributeKey=<attribute>,Attrib
 ```
 
 You can specify only one attribute key/value pair for each lookup\-events command\. The following are values for `AttributeKey`\. Value names are case sensitive\.
-
++ AccessKeyId
 + EventId
-
 + EventName
-
 + EventSource
-
++ ReadOnly
 + ResourceName
-
 + ResourceType
-
 + Username
 
 ### Attribute lookup examples<a name="attribute-lookup-example"></a>
+
+The following example command returns events in which the value of `AccessKeyId` is `AKIAIOSFODNN7EXAMPLE`\.
+
+```
+aws cloudtrail lookup-events --lookup-attributes AttributeKey=AccessKeyId,AttributeValue=AKIAIOSFODNN7EXAMPLE
+```
 
 The following example command returns the event for the specified CloudTrail `EventId`\.
 
@@ -171,6 +175,12 @@ The following example command returns events in which the value of `EventSource`
 
 ```
 aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventSource,AttributeValue=iam.amazonaws.com
+```
+
+The following example command returns write events\. It excludes read events such as `GetBucketLocation` and `DescribeStream`\.
+
+```
+aws cloudtrail lookup-events --lookup-attributes AttributeKey=ReadOnly,AttributeValue=false
 ```
 
 The following example command returns events in which the value of `ResourceName` is `CloudTrail_CloudWatchLogs_Role`\.
@@ -215,7 +225,7 @@ aws cloudtrail lookup-events --lookup-attributes AttributeKey=Username,Attribute
 
 ## Getting JSON input from a file<a name="json-input-from-file"></a>
 
-The AWS CLI for some AWS services has two parameters, `--generate-cli-skeleton` and `--cli-input-json`, that you can use to generate a JSON template which you can modify and use as input to the `--cli-input-json` parameter\. This section describes how to use these parameters with `aws cloudtrail lookup-events`\. For more general information, see [ Generate CLI Skeleton and CLI Input JSON Parameters](http://docs.aws.amazon.com/cli/latest/userguide/generate-cli-skeleton.html)\.
+The AWS CLI for some AWS services has two parameters, `--generate-cli-skeleton` and `--cli-input-json`, that you can use to generate a JSON template which you can modify and use as input to the `--cli-input-json` parameter\. This section describes how to use these parameters with `aws cloudtrail lookup-events`\. For more general information, see [ Generate CLI Skeleton and CLI Input JSON Parameters](https://docs.aws.amazon.com/cli/latest/userguide/generate-cli-skeleton.html)\.
 
 **To look up CloudTrail events by getting JSON input from a file**
 
@@ -272,7 +282,7 @@ A list of lookup events based on the lookup attribute and time range that were s
  The following entries describe the fields in each lookup event\. 
 
 **CloudTrailEvent**  
-A JSON string that contains an object representation of the event returned\. For information about each of the elements returned, see [ Record Body Contents](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 
+A JSON string that contains an object representation of the event returned\. For information about each of the elements returned, see [ Record Body Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 
 
 **EventId**  
 A string that contains the GUID of the event returned\.

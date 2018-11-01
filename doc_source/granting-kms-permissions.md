@@ -12,4 +12,4 @@ You can grant users permission to create a customer master key \(CMK\) with the 
 
 1. Search for **AWSKeyManagementServicePowerUser**, choose the policy, and then choose **Attach policy**\. 
 
-   The user now has permission to create a CMK\. If you want to create custom policies for your users, see [Creating Customer Managed Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html#create-managed-policy-console) in the *IAM User Guide*\.
+   The user now has permission to create a CMK\. If you want to create custom policies for your users, see [Creating Customer Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html#create-managed-policy-console) in the *IAM User Guide*\.

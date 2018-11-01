@@ -6,13 +6,9 @@ You can use CloudTrail log files to troubleshoot operational or security issues 
 Creating multiple trails will incur additional costs\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\. 
 
 For example, you might have the following users:
-
 + A security administrator creates a trail in the EU \(Ireland\) Region and configures KMS log file encryption\. The trail delivers the log files to an S3 bucket in the EU \(Ireland\) Region\.
-
 + An IT auditor creates a trail in the EU \(Ireland\) Region and configures log file integrity validation to ensure the log files have not changed since CloudTrail delivered them\. The trail is configured to deliver log files to an S3 bucket in the EU \(Frankfurt\) Region
-
 + A developer creates a trail in the EU \(Frankfurt\) Region and configures CloudWatch alarms to receive notifications for specific API activity\. The trail shares the same S3 bucket as the trail configured for log file integrity\.
-
 + Another developer creates a trail in the EU \(Frankfurt\) Region and configures SNS\. The log files are delivered to a separate S3 bucket in the EU \(Frankfurt\) Region\.
 
 The following image illustrates this example\.
@@ -29,7 +25,5 @@ For example, you might grant one user permission to view trail activity, but res
 For more information about resource\-level permissions, see [Controlling User Permissions for Actions on Specific Trails](grant-custom-permissions-for-cloudtrail-users.md#grant-custom-permissions-for-cloudtrail-users-resource-level)\. 
 
 For more information about multiple trails, see the following resources:
-
 + [How Does CloudTrail Behave Regionally and Globally?](cloudtrail-concepts.md#cloudtrail-concepts-regional-and-global-services)
-
 +  [CloudTrail FAQs](https://aws.amazon.com/cloudtrail/faqs/) 

@@ -14,4 +14,4 @@ CloudTrail requires the ability to describe the properties of the CMK\. To enabl
 }
 ```
 
-For steps on editing a CMK policy for use with CloudTrail, see [Editing a Key Policy](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-editing) in the *AWS Key Management Service Developer Guide*\.
+For steps on editing a CMK policy for use with CloudTrail, see [Editing a Key Policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-editing) in the *AWS Key Management Service Developer Guide*\.

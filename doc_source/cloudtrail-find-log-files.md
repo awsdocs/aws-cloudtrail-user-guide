@@ -1,25 +1,15 @@
 # Finding Your CloudTrail Log Files<a name="cloudtrail-find-log-files"></a>
 
 CloudTrail publishes log files to your S3 bucket in a gzip archive\. In the S3 bucket, the log file has a formatted name that includes the following elements: 
-
 + The bucket name that you specified when you created trail \(found on the Trails page of the CloudTrail console\)
-
 + The \(optional\) prefix you specified when you created your trail
-
 + The string "AWSLogs"
-
 + The account number
-
 + The string "CloudTrail"
-
 + A region identifier such as us\-west\-1
-
 + The year the log file was published in `YYYY` format
-
 + The month the log file was published in `MM` format
-
 + The day the log file was published in `DD` format
-
 + An alphanumeric string that disambiguates the file from others that cover the same time period 
 
 The following example shows a complete log file object name:

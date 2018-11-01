@@ -1,17 +1,12 @@
 # Amazon SNS Topic Policy for CloudTrail<a name="cloudtrail-permissions-for-sns-notifications"></a>
 
 To send notifications to an SNS topic, CloudTrail must have the required permissions\. CloudTrail automatically attaches the required permissions to the topic when you do the following:
-
 + Create an SNS topic as part of creating or updating a trail in the CloudTrail console\.
-
 + Create an SNS topic with the AWS CLI `create-subscription` and `update-subscription` commands\.
 
 CloudTrail adds the following fields in the policy for you:
-
 + The allowed SIDs\.
-
 + The service principal name for CloudTrail\.
-
 + The SNS topic, including region, account ID, and topic name\.
 
 The following policy allows CloudTrail to send notifications about log file delivery from supported regions\. For more information, see [CloudTrail Supported Regions](cloudtrail-supported-regions.md)\. 
@@ -31,7 +26,11 @@ The following policy allows CloudTrail to send notifications about log file deli
 }
 ```
 
-
+**Contents**
++ [Specifying an Existing Topic for Sending Notifications](#specifying-an-existing-topic-for-sns-notifications)
++ [Troubleshooting the SNS Topic Policy](#troubleshooting-sns-topic-policy)
+  + [Common SNS Policy Configuration Errors](#sns-topic-policy-for-multiple-regions)
++ [Additional Resources](#cloudtrail-notifications-more-info-5)
 
 ## Specifying an Existing Topic for Sending Notifications<a name="specifying-an-existing-topic-for-sns-notifications"></a>
 
@@ -110,11 +109,9 @@ This gives CloudTrail permission to send notifications for current and new regio
 ```
 
 Verify that the policy has the correct values:
-
 + In the `Resource` field, specify the account number of the topic owner\. For topics that you create, specify your account number\.
-
 + Specify the appropriate values for the region and SNS topic name\.
 
 ## Additional Resources<a name="cloudtrail-notifications-more-info-5"></a>
 
-For more information about SNS topics and subscribing to them, see the [Amazon Simple Notification Service Developer Guide](http://docs.aws.amazon.com/sns/latest/dg/)\.
+For more information about SNS topics and subscribing to them, see the [Amazon Simple Notification Service Developer Guide](https://docs.aws.amazon.com/sns/latest/dg/)\.

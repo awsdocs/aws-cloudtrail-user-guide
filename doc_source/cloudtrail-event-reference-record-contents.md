@@ -13,11 +13,8 @@ Information about the user that made a request\. For more information, see [Clou
 
 **`eventSource`**  
 The service that the request was made to\. This name is typically a short form of the service name without spaces plus `.amazonaws.com`\. For example:  
-
 + AWS CloudFormation is `cloudformation.amazonaws.com`\.
-
 + Amazon EC2 is `ec2.amazonaws.com`\.
-
 + Amazon Simple Workflow Service is `swf.amazonaws.com`\.
 This convention has some exceptions\. For example, the `eventSource` for Amazon CloudWatch is `monitoring.amazonaws.com`\.
 
@@ -32,17 +29,11 @@ The IP address that the request was made from\. For actions that originate from 
 
 **`userAgent`**  
 The agent through which the request was made, such as the AWS Management Console, an AWS service, the AWS SDKs or the AWS CLI\. The following are example values:  
-
 + `signin.amazonaws.com` – The request was made by an IAM user with the AWS Management Console\.
-
 + `console.amazonaws.com `– The request was made by a root user with the AWS Management Console\.
-
 + `lambda.amazonaws.com` – The request was made with AWS Lambda\.
-
 + `aws-sdk-java` – The request was made with the AWS SDK for Java\. 
-
 + `aws-sdk-ruby` – The request was made with the AWS SDK for Ruby\. 
-
 + `aws-cli/1.3.23 Python/2.7.6 Linux/2.6.18-164.el5` – The request was made with the AWS CLI installed on Linux\. 
 For events originated by AWS, this field is usually `aws-internal/#` where `#` is a number used for internal purposes\.
 
@@ -73,11 +64,8 @@ Support for this field begins with `eventVersion` ` 1.01`\.
 
 **`eventType`**  
 Identifies the type of event that generated the event record\. This can be the one of the following values:   
-
 + `AwsApiCall` – An API was called\. 
-
 + `AwsServiceEvent` – The service generated an event related to your trail\. For example, this can occur when another account made a call with a resource that you own\. 
-
 + `ConsoleSignin` – A user in your account \(root, IAM, federated, SAML, or SwitchRole\) signed in to the AWS Management Console\.
 Support for this field begins with `eventVersion` ` 1.02`\. 
 
@@ -91,32 +79,24 @@ Support for this field begins with `eventVersion` ` 1.06`\.
 
  **`readOnly`**   
 Identifies whether this operation is a read\-only operation\. This can be one of the following values:  
-
 + `true` – The operation is read\-only \(for example, `DescribeTrails`\)\.
-
 + `false` – The operation is write\-only \(for example, `DeleteTrail`\)\.
 Support for this field begins with `eventVersion` ` 1.01`\.
 
  **`resources`**   
 A list of resources accessed in the event\. The field can contain the following information:  
-
 + Resource ARNs
-
 + Account ID of the resource owner
-
 + Resource type identifier in the format: `AWS::aws-service-name::data-type-name`
 For example, when an `AssumeRole` event is logged, the `resources` field can appear like the following:  
-
 + ARN: `arn:aws:iam::123456789012:role/myRole`
-
 + Account ID: `123456789012`
-
 + Resource type identifier: `AWS::IAM::Role`
-For example logs with the `resources` field, see [AWS STS API Event in CloudTrail Log File](http://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#stscloudtrailexample) in the *IAM User Guide* or [ Logging AWS KMS API Calls](http://docs.aws.amazon.com/kms/latest/developerguide/logging-using-cloudtrail.html) in the *AWS Key Management Service Developer Guide*\.  
+For example logs with the `resources` field, see [AWS STS API Event in CloudTrail Log File](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#stscloudtrailexample) in the *IAM User Guide* or [ Logging AWS KMS API Calls](https://docs.aws.amazon.com/kms/latest/developerguide/logging-using-cloudtrail.html) in the *AWS Key Management Service Developer Guide*\.  
 Support for this field begins with `eventVersion` ` 1.01`\.
 
 **`recipientAccountID`**  
-Represents the account ID that received this event\. The `recipientAccountID` may be different from the [CloudTrail userIdentity Element](cloudtrail-event-reference-user-identity.md) `accountId`\. This can occur in cross\-account resource access\. For example, if a KMS key, also known as a [customer master key \(CMK\)](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html), was used by a separate account to call the [Encrypt API](http://docs.aws.amazon.com/kms/latest/developerguide/ct-encrypt.html), the `accountId` and `recipientAccountID` values will be the same for the event delivered to the account that made the call, but the values will be different for the event that is delivered to the account that owns the CMK\.  
+Represents the account ID that received this event\. The `recipientAccountID` may be different from the [CloudTrail userIdentity Element](cloudtrail-event-reference-user-identity.md) `accountId`\. This can occur in cross\-account resource access\. For example, if a KMS key, also known as a [customer master key \(CMK\)](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html), was used by a separate account to call the [Encrypt API](https://docs.aws.amazon.com/kms/latest/developerguide/ct-encrypt.html), the `accountId` and `recipientAccountID` values will be the same for the event delivered to the account that made the call, but the values will be different for the event that is delivered to the account that owns the CMK\.  
 Support for this field begins with `eventVersion` ` 1.02`\.
 
 **`serviceEventDetails`**  
@@ -125,7 +105,7 @@ Support for this field begins with `eventVersion 1.05`\.
 
 **`sharedEventID`**  
 GUID generated by CloudTrail to uniquely identify CloudTrail events from the same AWS action that is sent to different AWS accounts\.  
-For example, when an account uses a KMS key, also known as a [customer master key \(CMK\)](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html), that belongs to another account, the account that used the CMK and the account that owns the CMK receive separate CloudTrail events for the same action\. Each CloudTrail event delivered for this AWS action shares the same `sharedEventID`, but also has a unique `eventID` and `recipientAccountID`\.  
+For example, when an account uses a KMS key, also known as a [customer master key \(CMK\)](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html), that belongs to another account, the account that used the CMK and the account that owns the CMK receive separate CloudTrail events for the same action\. Each CloudTrail event delivered for this AWS action shares the same `sharedEventID`, but also has a unique `eventID` and `recipientAccountID`\.  
 For more information, see [sharedEventID Example](shared-event-ID.md)\.  
 The `sharedEventID` field is present only when CloudTrail events are delivered to multiple accounts\. If the caller and owner are the same AWS account, CloudTrail sends only one event, and the `sharedEventID` field is not present\.
 Support for this field begins with `eventVersion 1.03`\.

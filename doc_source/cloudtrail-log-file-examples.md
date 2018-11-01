@@ -2,7 +2,7 @@
 
 CloudTrail monitors events for your account\. If you create a trail, it delivers those events as log files to your Amazon S3 bucket\. See the following to learn more about log files\.
 
-
+**Topics**
 + [CloudTrail Log File Name Format](#cloudtrail-log-filename-format)
 + [Log File Examples](#cloudtrail-log-file-examples-section)
 
@@ -13,13 +13,10 @@ CloudTrail uses the following file name format for the log file objects that it 
 ```
 AccountID_CloudTrail_RegionName_YYYYMMDDTHHmmZ_UniqueString.FileNameFormat 
 ```
-
 + The `YYYY`, `MM`, `DD`, `HH`, and `mm` are the digits of the year, month, day, hour, and minute when the log file was delivered\. Hours are in 24\-hour format\. The `Z` indicates that the time is in UTC\. 
 **Note**  
 A log file delivered at a specific time can contain records written at any point before that time\.
-
 + The 16\-character `UniqueString` component of the log file name is there to prevent overwriting of files\. It has no meaning, and log processing software should ignore it\. 
-
 + `FileNameFormat` is the encoding of the file\. Currently, this is `json.gz`, which is a JSON text file in compressed gzip format\.
 
  **Example CloudTrail Log File Name**
@@ -32,11 +29,14 @@ A log file delivered at a specific time can contain records written at any point
 
 A log file contains one or more records\. The following examples are snippets of logs that show the records for an action that started the creation of a log file\. 
 
-
+**Contents**
++ [Amazon EC2 Log Examples](#cloudtrail-log-file-examples-ec2)
++ [IAM Log Examples](#cloudtrail-log-file-examples-iam)
++ [Error Code and Message Log Example](#error-code-and-error-message)
 
 ### Amazon EC2 Log Examples<a name="cloudtrail-log-file-examples-ec2"></a>
 
-Amazon Elastic Compute Cloud \(Amazon EC2\) provides resizeable computing capacity in the AWS Cloud\. You can launch virtual servers, configure security and networking, and manage storage\. Amazon EC2 can also scale up or down quickly to handle changes in requirements or spikes in popularity, thereby reducing your need to forecast server traffic\. For more information, see the [Amazon EC2 User Guide for Linux Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/)\.
+Amazon Elastic Compute Cloud \(Amazon EC2\) provides resizeable computing capacity in the AWS Cloud\. You can launch virtual servers, configure security and networking, and manage storage\. Amazon EC2 can also scale up or down quickly to handle changes in requirements or spikes in popularity, thereby reducing your need to forecast server traffic\. For more information, see the [Amazon EC2 User Guide for Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/)\.
 
 The following example shows that an IAM user named Alice used the AWS CLI to call the Amazon EC2 `StartInstances` action by using the `ec2-start-instances` command for instance `i-ebeaf9e2`\. 
 
@@ -143,7 +143,7 @@ The following example shows that the Amazon EC2 console backend called the `Crea
 
 ### IAM Log Examples<a name="cloudtrail-log-file-examples-iam"></a>
 
-AWS Identity and Access Management \(IAM\) is a web service that enables AWS customers to manage users and user permissions\. With IAM, you can manage users, security credentials such as access keys, and permissions that control which AWS resources users can access\. For more information, see the [IAM User Guide](http://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
+AWS Identity and Access Management \(IAM\) is a web service that enables AWS customers to manage users and user permissions\. With IAM, you can manage users, security credentials such as access keys, and permissions that control which AWS resources users can access\. For more information, see the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
 The following example shows that the IAM user Alice used the AWS CLI to call the `CreateUser` action to create a new user named Bob\.
 

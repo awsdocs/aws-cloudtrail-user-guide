@@ -4,22 +4,19 @@ This topic describes how to configure alarms for CloudTrail events using example
 
 **Prerequisites**  
 Before you can use the examples in this topic, you must:
-
 + Create a trail with the console or CLI\.
-
 + Create a log group\.
-
 + Specify or create an IAM role that grants CloudTrail the permissions to create a CloudWatch Logs log stream in the log group that you specify and to deliver CloudTrail events to that log stream\. The default `CloudTrail_CloudWatchLogs_Role` does this for you\.
 
 For more information, see [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
 
 **Create a metric filter and create an alarm**  
-To create an alarm, you must first create a metric filter and then configure an alarm based on the filter\. The procedures are shown for all examples\. For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and Pattern Syntax](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html) in the *Amazon CloudWatch Logs User Guide*\.
+To create an alarm, you must first create a metric filter and then configure an alarm based on the filter\. The procedures are shown for all examples\. For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html) in the *Amazon CloudWatch Logs User Guide*\.
 
 **Note**  
 Instead of manually creating the following metric filters and alarms examples, you can use an AWS CloudFormation template to create them all at once\. For more information, see [Creating CloudWatch Alarms with an AWS CloudFormation Template](use-cloudformation-template-to-create-cloudwatch-alarms.md)\. 
 
-
+**Topics**
 + [Example: Amazon S3 Bucket Activity](#cloudwatch-alarms-for-cloudtrail-s3-bucket-activity)
 + [Example: Security Group Configuration Changes](#cloudwatch-alarms-for-cloudtrail-security-group)
 + [Example: Network Access Control List \(ACL\) Changes](#cloudwatch-alarms-for-cloudtrail-network-acl)
@@ -36,7 +33,7 @@ Instead of manually creating the following metric filters and alarms examples, y
 
 Follow this procedure to create an Amazon CloudWatch alarm that is triggered when an Amazon S3 API call is made to `PUT` or `DELETE` bucket policy, bucket lifecycle, bucket replication, or to `PUT` a bucket ACL\. 
 
-The alarm also is triggered for the CORS \(cross\-origin resource sharing\) `PUT` bucket and `DELETE` bucket events\. For more information, see [Cross\-Origin Resource Sharing](http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) in the *Amazon Simple Storage Service Developer Guide*\.
+The alarm also is triggered for the CORS \(cross\-origin resource sharing\) `PUT` bucket and `DELETE` bucket events\. For more information, see [Cross\-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
 ### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-s3-bucket-activity-metric-filter"></a>
 

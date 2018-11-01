@@ -1,16 +1,14 @@
 # Creating CloudWatch Alarms for CloudTrail Events: Additional Examples<a name="cloudwatch-alarms-for-cloudtrail-additional-examples"></a>
 
- [AWS Identity and Access Management \(IAM\) best practices ](http://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html) recommend that you do not use your root account credentials to access AWS\. Instead, you should [ create individual IAM users](http://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html#create-iam-users) so that you can give each user a unique set of security credentials\. The IAM Best Practices also recommend that you [ enable multi\-factor authentication \(MFA\) ](http://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html#enable-mfa-for-privileged-users) for IAM users who are allowed access to sensitive resources or APIs\. 
+ [AWS Identity and Access Management \(IAM\) best practices ](https://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html) recommend that you do not use your root account credentials to access AWS\. Instead, you should [ create individual IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html#create-iam-users) so that you can give each user a unique set of security credentials\. The IAM Best Practices also recommend that you [ enable multi\-factor authentication \(MFA\) ](https://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html#enable-mfa-for-privileged-users) for IAM users who are allowed access to sensitive resources or APIs\. 
 
 You can monitor whether activity in your AWS account adheres to these best practices by creating the CloudWatch alarms that notify you when root account credentials have been used to access AWS, or when API activity or console sign\-ins without MFA have occurred\. These alarms are described in this document\.
 
 Configuring an alarm involves two main steps: 
-
 + Create a metric filter 
-
 + Create an alarm based on the filter
 
-
+**Topics**
 + [Example: Monitor for Root Usage](#cloudwatch-alarms-for-cloudtrail-root-example)
 + [Example: Monitor for API Activity Without Multi\-factor Authentication \(MFA\)](#cloudwatch-alarms-for-cloudtrail-no-mfa-example)
 + [Example: Monitor for Console Sign In Without Multi\-factor Authentication \(MFA\)](#cloudwatch-alarms-for-cloudtrail-console-no-mfa-example)
@@ -35,7 +33,7 @@ This scenario walks you through how to use the AWS Management Console to create 
    { $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }
    ```
 **Note**  
-For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and Pattern Syntax](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html) in the Amazon CloudWatch User Guide\.
+For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html) in the Amazon CloudWatch User Guide\.
 
 1. Choose **Assign Metric**, and then on the **Create Metric Filter and Assign a Metric** screen, in the **Filter Name** box, enter **RootAccountUsage**
 
@@ -82,7 +80,7 @@ This scenario walks you through how to use the AWS Management Console to create 
    { $.userIdentity.sessionContext.attributes.mfaAuthenticated != "true" }
    ```
 **Note**  
-For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and Pattern Syntax](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html) in the Amazon CloudWatch User Guide\.
+For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html) in the Amazon CloudWatch User Guide\.
 
 1. Choose **Assign Metric**, and then on the **Create Metric Filter and Assign a Metric** screen, in the **Filter Name** box, enter **ApiActivityWithoutMFA**\.
 
@@ -129,7 +127,7 @@ This scenario walks you through how to use the AWS Management Console to create 
    { $.eventName = "ConsoleLogin" && $.additionalEventData.MFAUsed = "No" }
    ```
 **Note**  
-For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and Pattern Syntax](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html) in the Amazon CloudWatch User Guide\.
+For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html) in the Amazon CloudWatch User Guide\.
 
 1. Choose **Assign Metric**, and then on the **Create Metric Filter and Assign a Metric** screen, in the **Filter Name** box, enter **ConsoleSignInWithoutMfa**
 

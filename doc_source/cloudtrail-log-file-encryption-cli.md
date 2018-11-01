@@ -4,13 +4,13 @@ This topic describes how to enable and disable SSE\-KMS log file encryption for 
 
 ## Enabling CloudTrail log file encryption by using the AWS CLI<a name="cloudtrail-log-file-encryption-cli-enable"></a>
 
-1. Create a key with the AWS CLI\. The key that you create must be in the same region as the S3 bucket that receives your CloudTrail log files\. For this step, you use the KMS [create\-key](http://docs.aws.amazon.com/cli/latest/reference/kms/create-key.html) command\.
+1. Create a key with the AWS CLI\. The key that you create must be in the same region as the S3 bucket that receives your CloudTrail log files\. For this step, you use the KMS [create\-key](https://docs.aws.amazon.com/cli/latest/reference/kms/create-key.html) command\.
 
-1. Get the existing key policy so that you can modify it for use with CloudTrail\. You can retrieve the key policy with the KMS [get\-key\-policy](http://docs.aws.amazon.com/cli/latest/reference/kms/get-key-policy.html) command\. 
+1. Get the existing key policy so that you can modify it for use with CloudTrail\. You can retrieve the key policy with the KMS [get\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/get-key-policy.html) command\. 
 
 1. Add the necessary sections to the key policy so that CloudTrail can encrypt and users can decrypt your log files\. Make sure that all users who will read the log files are granted decrypt permissions\. Do not modify any existing sections of the policy\. For information on the policy sections to include, see [AWS KMS Key Policy for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
 
-1. Attach the modified \.json policy file to the key by using the KMS [put\-key\-policy](http://docs.aws.amazon.com/cli/latest/reference/kms/put-key-policy.html) command\.  
+1. Attach the modified \.json policy file to the key by using the KMS [put\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/put-key-policy.html) command\.  
 
 1. Run the CloudTrail `create-trail` or `update-trail` command with the `--kms-key-id` parameter\. This command will enable log encryption\.
 
@@ -19,13 +19,9 @@ This topic describes how to enable and disable SSE\-KMS log file encryption for 
    ```
 
    The `--kms-key-id` parameter specifies the key whose policy you modified for CloudTrail\. It can be any one of the following four formats: 
-
    + **Alias Name**\. Example: `alias/MyAliasName`
-
    + **Alias ARN**\. Example: `arn:aws:kms:us-east-2:123456789012:alias/MyAliasName` 
-
    + **Key ARN**\. Example: `arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012` 
-
    + **Globally unique key ID\.** Example: `12345678-1234-1234-1234-123456789012` 
 
    The response will look like the following:

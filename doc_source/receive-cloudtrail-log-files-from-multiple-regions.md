@@ -13,10 +13,8 @@ You can configure CloudTrail to deliver log files from multiple regions to a sin
 1. Choose **Save**\. The original trail is now replicated across all regions\. CloudTrail delivers log files from all regions to the specified S3 bucket\.
 
 **Note**  
-When a new region launches in the [aws partition](http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html), CloudTrail automatically creates a trail for you in the new region with the same settings as your original trail\.
+When a new region launches in the [aws partition](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html), CloudTrail automatically creates a trail for you in the new region with the same settings as your original trail\.
 
 For more information, see the following resources:
-
 + [How Does CloudTrail Behave Regionally and Globally?](cloudtrail-concepts.md#cloudtrail-concepts-regional-and-global-services)
-
 +  [CloudTrail FAQs](https://aws.amazon.com/cloudtrail/faqs/) 

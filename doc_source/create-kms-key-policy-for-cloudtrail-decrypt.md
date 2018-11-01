@@ -28,9 +28,7 @@ Users of your key must be given explicit permissions to read the log files that 
 This policy statement illustrates how to allow an IAM user or role in your account to use your key to read the encrypted logs in your account's S3 bucket\.
 
 **Example Scenario**  
-
 + Your CMK, S3 bucket, and IAM user Bob are in account 111111111111\.
-
 + You give IAM user Bob permission to decrypt CloudTrail logs in the S3 bucket\.
 
 In the key policy, you enable CloudTrail log decrypt permissions for IAM user Bob\.
@@ -54,7 +52,7 @@ CMK policy statement:
 }
 ```
 
-
+**Topics**
 
 ## Allow users in other accounts to decrypt with your CMK<a name="create-kms-key-policy-for-cloudtrail-decrypt-other-accounts"></a>
 
@@ -66,9 +64,7 @@ You can allow users in other accounts to use your CMK to decrypt logs\. The chan
 This policy statement illustrates how to allow an IAM user or role in another account to use your key to read encrypted logs from an S3 bucket in the other account\.
 
 **Scenario**
-
 + Your CMK is in account 111111111111\.
-
 + The IAM user Alice and S3 bucket are in account 222222222222\.
 
 In this case, you give CloudTrail permission to decrypt logs under account 222222222222, and you give Alice's IAM user policy permission to use your key `KeyA`, which is in account 111111111111\. 
@@ -115,9 +111,7 @@ Alice's IAM user policy statement:
 This policy illustrates how another account can use your key to read encrypted logs from your S3 bucket\.
 
 **Example Scenario**  
-
 + Your CMK and S3 bucket are in account 111111111111\.
-
 + The user who will read logs from your bucket is in account 222222222222\.
 
 To enable this scenario, you enable decrypt permissions for the IAM role **CloudTrailReadRole** in your account, and then give the other account permission to assume that role\.
@@ -161,4 +155,4 @@ CMK policy statement:
  }
 ```
 
-For steps on editing a CMK policy for use with CloudTrail, see [Editing a Key Policy](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-editing) in the *AWS Key Management Service Developer Guide*\.
+For steps on editing a CMK policy for use with CloudTrail, see [Editing a Key Policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-editing) in the *AWS Key Management Service Developer Guide*\.

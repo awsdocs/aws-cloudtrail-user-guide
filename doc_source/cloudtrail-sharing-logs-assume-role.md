@@ -6,17 +6,15 @@ You must designate a separate IAM user to assume each role you've created in eac
 
 After you have created the necessary roles and policies in Account A for scenarios 1 and 2, you must designate an IAM user in each of the accounts B, C, and Z\. Each IAM user will programmatically assume the appropriate role to access the log files\. That is, the user in account B will assume the role created for account B, the user in account C will assume the role created for account C, and the user in account Z will assume the role created for account Z\. When a user assumes a role, AWS returns temporary security credentials that can be used to make requests to list, retrieve, copy, or delete the log files depending on the permissions granted by the access policy associated with the role\. 
 
-For more information about working with IAM users, see [ Working with IAM Users and Groups ](http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html)\. 
+For more information about working with IAM users, see [ Working with IAM Users and Groups ](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html)\. 
 
 The primary difference between scenarios 1 and 2 is in the access policy that you create for each IAM role in each scenario\.
-
 + In scenario 1, the access policies for accounts B and C limit each account to reading only its own log files\. For more information, see [Creating an Access Policy to Grant Access to Accounts You Own](cloudtrail-sharing-logs-your-accounts.md)\.
-
 + In scenario 2, the access policy for Account Z allows it to read all the log files that are aggregated in the Amazon S3 bucket\. For more information, see [Creating an Access Policy to Grant Access to a Third Party ](cloudtrail-sharing-logs-third-party.md)\.
 
 ## Creating permissions policies for IAM users<a name="cloudtrail-sharing-logs-assume-role-create-policy"></a>
 
-To perform the actions permitted by the roles, the IAM user must have permission to call the AWS STS [ `AssumeRole` ](http://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API\. You must edit the *user\-based policy* for each IAM user to grant them the appropriate permissions\. That is, you set a **Resource** element in the policy that is attached to the IAM user\. The following example shows a policy for an IAM user in Account B that allows the user to assume a role named "Test" created earlier by Account A\. 
+To perform the actions permitted by the roles, the IAM user must have permission to call the AWS STS [ `AssumeRole` ](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API\. You must edit the *user\-based policy* for each IAM user to grant them the appropriate permissions\. That is, you set a **Resource** element in the policy that is attached to the IAM user\. The following example shows a policy for an IAM user in Account B that allows the user to assume a role named "Test" created earlier by Account A\. 
 
 **To attach the required policy to the IAM role**
 
@@ -52,7 +50,7 @@ Only IAM users can assume a role\. If you attempt to use AWS root account creden
 
 ## Calling AssumeRole<a name="cloudtrail-sharing-logs-assume-role-call"></a>
 
-A user in accounts B, C, or Z can assume a role by creating an application that calls the AWS STS [http://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html](http://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API and passes the role session name, the Amazon Resource Number \(ARN\) of the role to assume, and an optional external ID\. The role session name is defined by Account A when it creates the role to assume\. The external ID, if any, is defined by Account Z and passed to Account A for inclusion during role creation\. For more information, see [How to Use an External ID When Granting Access to Your AWS Resources to a Third Party](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) in the *IAM User Guide*\. You can retrieve the ARN from the Account A by opening the IAM console\.
+A user in accounts B, C, or Z can assume a role by creating an application that calls the AWS STS [https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API and passes the role session name, the Amazon Resource Number \(ARN\) of the role to assume, and an optional external ID\. The role session name is defined by Account A when it creates the role to assume\. The external ID, if any, is defined by Account Z and passed to Account A for inclusion during role creation\. For more information, see [How to Use an External ID When Granting Access to Your AWS Resources to a Third Party](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) in the *IAM User Guide*\. You can retrieve the ARN from the Account A by opening the IAM console\.
 
 **To find the ARN Value in Account A with the IAM console**
 

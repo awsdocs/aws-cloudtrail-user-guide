@@ -3,16 +3,22 @@
 When you configure your trail to send events to CloudWatch Logs, CloudTrail sends only the events that match your trail settings\. For example, if you configure your trail to log data events only, your trail sends data events only to your CloudWatch Logs log group\. CloudTrail supports sending data and management events to CloudWatch Logs\. For more information, see [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)\.
 
 To send events to a CloudWatch Logs log group:
-
 + Create a new trail or specify an existing one\. For more information, see [Creating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)\.
-
 + Create a log group or specify an existing one\.
-
 + Specify an IAM role\.
-
 + Attach a role policy or use the default\.
 
-
+**Contents**
++ [Configuring CloudWatch Logs Monitoring with the Console](#send-cloudtrail-events-to-cloudwatch-logs-console)
+  + [Creating a Log Group or Specifying an Existing Log Group](#send-cloudtrail-events-to-cloudwatch-logs-console-create-log-group)
+  + [Specifying an IAM Role](#send-cloudtrail-events-to-cloudwatch-logs-console-create-role)
+  + [Viewing Events in the CloudWatch Console](#viewing-events-in-cloudwatch)
++ [Configuring CloudWatch Logs Monitoring with the AWS CLI](#send-cloudtrail-events-to-cloudwatch-logs-cli)
+  + [Creating a Log Group](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-log-group)
+  + [Creating a Role](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-role)
+  + [Creating a Policy Document](#w4aac10c17c23c19b8)
+  + [Updating the Trail](#send-cloudtrail-events-to-cloudwatch-logs-cli-update-trail)
++ [Limitation](#send-cloudtrail-events-to-cloudwatch-logs-limitations)
 
 ## Configuring CloudWatch Logs Monitoring with the Console<a name="send-cloudtrail-events-to-cloudwatch-logs-console"></a>
 
@@ -127,7 +133,7 @@ aws iam create-role --role-name role_name --assume-role-policy-document file://<
 
 When the command completes, take a note of the role ARN in the output\.
 
-### Creating a Policy Document<a name="w3ab1c10c17c23c19b8"></a>
+### Creating a Policy Document<a name="w4aac10c17c23c19b8"></a>
 
 Create the following role policy document for CloudTrail\. This document grants CloudTrail the permissions required to create a CloudWatch Logs log stream in the log group you specify and to deliver CloudTrail events to that log stream\.
 
@@ -177,8 +183,8 @@ Update the trail with the log group and role information using the CloudTrail `u
 aws cloudtrail update-trail --name trail_name --cloud-watch-logs-log-group-arn log_group_arn --cloud-watch-logs-role-arn role_arn
 ```
 
-For more information about the AWS CLI commands, see the [AWS CloudTrail Command Line Reference](http://docs.aws.amazon.com/cli/latest/reference/cloudtrail/index.html)\. 
+For more information about the AWS CLI commands, see the [AWS CloudTrail Command Line Reference](https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/index.html)\. 
 
 ## Limitation<a name="send-cloudtrail-events-to-cloudwatch-logs-limitations"></a>
 
-Because CloudWatch Logs has an [event size limitation of 256 KB](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html), CloudTrail does not send events larger than 256 KB to CloudWatch Logs\. For example, a call to the EC2 `RunInstances` API to launch 500 instances will exceed the 256 KB limit\. CloudTrail does not send the event to CloudWatch Logs\. To ensure that CloudTrail sends events to CloudWatch Logs, break large requests into smaller batches\.
+Because CloudWatch Logs has an [event size limitation of 256 KB](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html), CloudTrail does not send events larger than 256 KB to CloudWatch Logs\. For example, a call to the EC2 `RunInstances` API to launch 500 instances will exceed the 256 KB limit\. CloudTrail does not send the event to CloudWatch Logs\. To ensure that CloudTrail sends events to CloudWatch Logs, break large requests into smaller batches\.

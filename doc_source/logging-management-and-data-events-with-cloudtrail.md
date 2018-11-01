@@ -3,10 +3,8 @@
 When an event occurs in your account, CloudTrail evaluates whether the event matches the settings for your trails\. Only events that match your trail settings are delivered to your Amazon S3 bucket and Amazon CloudWatch Logs log group\.
 
 You can configure your trails to log the following:
-
-+ **Data events**: These events provide insight into the resource operations performed on or within a resource\. These are also known as data plane operations\. 
-
-+ **Management events**: Management events provide insight into management operations that are performed on resources in your AWS account\. These are also known as control plane operations\. Management events can also include non\-API events that occur in your account\. For example, when a user logs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)\. 
++ **[Data events](#logging-data-events)**: These events provide insight into the resource operations performed on or within a resource\. These are also known as data plane operations\. 
++ **[Management events](#logging-management-events)**: Management events provide insight into management operations that are performed on resources in your AWS account\. These are also known as control plane operations\. Management events can also include non\-API events that occur in your account\. For example, when a user logs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)\. 
 **Note**  
 Not all AWS services support CloudTrail management events or data events\. For more information about unsupported services, see [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)\. For specific details about what APIs are logged for a specific service, see that service's documentation in [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
@@ -17,18 +15,26 @@ You can also configure your trails to have one trail log and deliver all managem
 By default, trails log all management events and don't include data events\. Additional charges apply for data events\. For more information, see [ AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
 **Note**  
-The events that are logged by your trails are available in Amazon CloudWatch Events\. For example, if you configure a trail to log data events for S3 objects but not management events, your trail processes and logs only data events for the specified S3 objects\. The data events for these S3 objects are available in Amazon CloudWatch Events\. For more information, see [AWS API Call Events](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/EventTypes.html#api_event_type) in the *Amazon CloudWatch Events User Guide*\. 
+The events that are logged by your trails are available in Amazon CloudWatch Events\. For example, if you configure a trail to log data events for S3 objects but not management events, your trail processes and logs only data events for the specified S3 objects\. The data events for these S3 objects are available in Amazon CloudWatch Events\. For more information, see [AWS API Call Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/EventTypes.html#api_event_type) in the *Amazon CloudWatch Events User Guide*\. 
 
-
+**Contents**
++ [Data Events](#logging-data-events)
+  + [Logging Data Events with the AWS Management Console](#logging-data-events-with-the-cloudtrail-console)
+  + [Examples: Logging Data Events for Amazon S3 Objects](#logging-data-events-examples)
+  + [Logging Data Events for S3 Objects in Other AWS Accounts](#logging-data-events-for-s3-resources-in-other-accounts)
++ [Management Events](#logging-management-events)
+  + [Logging Management Events with the AWS Management Console](#logging-management-events-with-the-cloudtrail-console)
++ [Read\-only and Write\-only Events](#read-write-events)
++ [Logging Events with the AWS Command Line Interface](#creating-event-selectors-with-the-AWS-CLI)
++ [Logging Events with the AWS SDKs](#logging-management-and-data-events-with-the-AWS-SDKs)
++ [Sending Events to Amazon CloudWatch Logs](#sending-management-and-data-events-to-cloudwatch-logs)
 
 ## Data Events<a name="logging-data-events"></a>
 
 Data events provide insight into the resource operations performed on or within a resource\. These are also known as data plane operations\. Data events are often high\-volume activities\. 
 
  Example data events include:
-
 +  Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\)
-
 + AWS Lambda function execution activity \(the `Invoke` API\)
 
  Data events are disabled by default when you create a trail\. To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity to a trail\. For more information, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data Events](#logging-data-events)\.
@@ -46,14 +52,11 @@ Additional charges apply for logging data events\. For CloudTrail pricing, see [
    1. To configure data event logging for all Amazon S3 buckets in your AWS account, select **Select all S3 buckets in your account**\. Then choose whether you want to log **Read** events, such as `GetObject`; **Write** events, such as `PutObject`; or both types of events\. This setting takes precedence over any settings you configure for individual buckets\. For example, if you specify logging **Read** events for all S3 buckets, and then choose to add a specific bucket for data event logging, **Read** will already be selected for that bucket\. You cannot clear the selection\. You can only configure the option for **Write**\. 
 **Note**  
 If you select or clear an option for all buckets, that change is applied to all buckets you might have individually configured for data event logging\. Consider reviewing the data event settings for individual buckets after you change the data event settings for all buckets\.   
-If you configure data event logging for all buckets in your AWS account, and you do not want an audit trail of data event logging, consider delivering your log files to an Amazon S3 bucket that belongs to another AWS account\. For more information, see [Receiving CloudTrail Log Files from Multiple Accounts](cloudtrail-receive-logs-from-multiple-accounts.md) and [[ERROR] BAD/MISSING LINK TEXT](#logging-data-events-examples)\.
+If you configure data event logging for all buckets in your AWS account, and you do not want an audit trail of data event logging, consider delivering your log files to an Amazon S3 bucket that belongs to another AWS account\. For more information, see [Receiving CloudTrail Log Files from Multiple Accounts](cloudtrail-receive-logs-from-multiple-accounts.md) and [Examples: Logging Data Events for Amazon S3 Objects](#logging-data-events-examples)\.
 
    1. To configure data event logging for individual Amazon S3 buckets, choose **Add S3 bucket**\. Type the bucket name and prefix \(optional\)\. For each trail, you can add up to 250 data resources, such as Amazon S3 bucket and object prefixes\. The overall total of individual data event resources cannot exceed 250 in a single trail\. That total includes other data resources, such as Lambda functions\. This restriction does not apply if you configure data event logging for all Amazon S3 buckets\.
-
       + To log data events for all S3 objects in a bucket, specify an S3 bucket and an empty prefix\. When an event occurs on an object in that S3 bucket, the trail processes and logs the event\. For more information, see [Example: Logging data events for all S3 objects](#example-logging-all-S3-objects)\.
-
       + To log data events for S3 prefixes, specify an S3 bucket and the object prefix\. When an event occurs on an object in that S3 bucket and the object starts with the specified prefix, the trail processes and logs the event\. For more information, see [Example: Logging data events for specific S3 objects](#example-logging-specific-objects)\. 
-
       + You can also specify S3 objects that belong to other AWS accounts\. For more information, see [Logging Data Events for S3 Objects in Other AWS Accounts](#logging-data-events-for-s3-resources-in-other-accounts)\.
 
    1. For each resource, specify whether you want to log **Read**, **Write**, or both types of events\.
@@ -137,13 +140,9 @@ The following example shows how two AWS accounts configure CloudTrail to log eve
 ## Management Events<a name="logging-management-events"></a>
 
 Management events provide insight into management operations that are performed on resources in your AWS account\. These are also known as control plane operations\. Example management events include:
-
 + Configuring security \(for example, IAM `AttachRolePolicy` API operations\)
-
 + Registering devices \(for example, Amazon EC2 `CreateDefaultVpc` API operations\)
-
 + Configuring rules for routing data \(for example, Amazon EC2 `CreateSubnet` API operations\)
-
 + Setting up logging \(for example, AWS CloudTrail `CreateTrail` API operations\)
 
 Management events can also include non\-API events that occur in your account\. For example, when a user logs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)\. For a list of supported management events that CloudTrail logs for AWS services, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
@@ -164,19 +163,15 @@ The CloudTrail **Event history **feature supports only management events\. Not a
 ## Read\-only and Write\-only Events<a name="read-write-events"></a>
 
 When you configure your trail to log data and management events, you can specify whether you want read\-only events, write\-only events, both, or none\.
-
 + **Read\-only**
 
   Read\-only events include API operations that read your resources, but don't make changes\. For example, read\-only events include the Amazon EC2 `DescribeSecurityGroups` and `DescribeSubnets` API operations\. These operations return only information about your Amazon EC2 resources and don't change your configurations\. 
-
 + **Write\-only**
 
   Write\-only events include API operations that modify \(or might modify\) your resources\. For example, the Amazon EC2 `RunInstances` and `TerminateInstances` API operations modify your instances\.
-
 + **All**
 
   Your trail logs both\.
-
 + **None**
 
   Your trail logs neither read\-only nor write\-only management events\.
@@ -254,7 +249,7 @@ The following example returns the event selector configured for the trail\.
 
 ## Logging Events with the AWS SDKs<a name="logging-management-and-data-events-with-the-AWS-SDKs"></a>
 
-Use the [GetEventSelectors](http://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_GetEventSelectors.html) operation to see whether your trail is logging management and data events for a trail\. You can configure your trails to log management and data events with the [PutEventSelectors](http://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html) operation\. For more information, see the [AWS CloudTrail API Reference](http://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
+Use the [GetEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_GetEventSelectors.html) operation to see whether your trail is logging management and data events for a trail\. You can configure your trails to log management and data events with the [PutEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html) operation\. For more information, see the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
 
 ## Sending Events to Amazon CloudWatch Logs<a name="sending-management-and-data-events-to-cloudwatch-logs"></a>
 

@@ -4,7 +4,7 @@ After you configure your trail to deliver log files to your CloudWatch log group
 
 You can use the example CloudFormation template as is, or as a reference to create your own template\. 
 
-
+**Topics**
 + [Example CloudFormation Template](#use-cloudformation-template-to-create-cloudwatch-alarms-example)
 + [Creating a CloudFormation Stack with the Template](#use-cloudformation-template-create-a-stack)
 + [CloudFormation Template Contents](#use-cloudformation-template-template-contents)
@@ -18,15 +18,10 @@ You can download the template with the following link:
 [https://s3\-us\-west\-2\.amazonaws\.com/awscloudtrail/cloudwatch\-alarms\-for\-cloudtrail\-api\-activity/CloudWatch\_Alarms\_for\_CloudTrail\_API\_Activity\.json](https://s3-us-west-2.amazonaws.com/awscloudtrail/cloudwatch-alarms-for-cloudtrail-api-activity/CloudWatch_Alarms_for_CloudTrail_API_Activity.json)\. 
 
 The template defines metric filters that monitor create, delete, and update operations for the following resource types:
-
 + Amazon EC2 instances
-
 + IAM policies
-
 + Internet gateways
-
 + Network ACLs
-
 + Security groups
 
  When an API call occurs in your account, a metric filter monitors that API call\. If the API call exceeds the thresholds that you specify, this triggers the alarm and CloudWatch sends you an email notification\.
@@ -66,8 +61,7 @@ A CloudFormation stack is a collection of related resources that you provision a
 1. On the **Specify Parameters** page, for **Email**, type the email address to receive notifications\.
 
 1. For **LogGroupName**, type the name of the log group that you specified when you configured your trail to deliver log files to CloudWatch Logs\.  
-![\[Specify the email address and log group name for the AWS CloudFormation
-                            stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_parameters.png)
+![\[Specify the email address and log group name for the AWS CloudFormation stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_parameters.png)
 
 1. Choose **Next**\.
 

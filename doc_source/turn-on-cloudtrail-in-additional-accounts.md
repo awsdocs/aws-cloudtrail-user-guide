@@ -28,16 +28,12 @@ In about 15 minutes, CloudTrail starts publishing log files that show the AWS ca
 
 ## Using the CLI to Turn on CloudTrail in Additional AWS Accounts<a name="turn-on-cloudtrail-in-additional-accounts-cli"></a>
 
-You can use the AWS command line tools to turn on CloudTrail in additional accounts and aggregate their log files to one Amazon S3 bucket\. For more information about these tools, see the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/)\. 
+You can use the AWS command line tools to turn on CloudTrail in additional accounts and aggregate their log files to one Amazon S3 bucket\. For more information about these tools, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\. 
 
 Turn on CloudTrail in your additional accounts by using the `create-subscription` command\. Use the following options to specify additional settings:
-
 + `--name` specifies the name of the trail\. 
-
 + `--s3-use-bucket` specifies the existing Amazon S3 bucket, created when you turned on CloudTrail in your first account \(111111111111 in this example\)\. 
-
 + `--s3-prefix` specifies a prefix for the log file delivery path \(optional\)\.
-
 + `--sns-new-topic` specifies the name of the Amazon SNS topic to which you can subscribe for notification of log file delivery to your bucket \(optional\)\. 
 
 In contrast to trails that you create using the console, you must give every trail you create with the AWS CLI a name\. You can create one trail for each region in which an account is running AWS resources\. 
@@ -65,4 +61,4 @@ CloudTrail configuration:
 }
 ```
 
-For more information about using CloudTrail from the AWS command line tools, see the [CloudTrail command line reference](http://docs.aws.amazon.com/cli/latest/reference/cloudtrail/index.html)\. 
+For more information about using CloudTrail from the AWS command line tools, see the [CloudTrail command line reference](https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/index.html)\. 

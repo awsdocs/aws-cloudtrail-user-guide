@@ -84,7 +84,7 @@ The hexadecimal encoded hash value of the uncompressed contents of the previous 
 The name of the hash algorithm that was used to hash the previous digest file\. 
 
 `publicKeyFingerprint`  
-The hexadecimal encoded fingerprint of the public key that matches the private key used to sign this digest file\. You can retrieve the public keys for the time range corresponding to the digest file by using the AWS CLI or the CloudTrail API\. Of the public keys returned, the one whose fingerprint matches this value can be used for validating the digest file\. For information about retrieving public keys for digest files, see the AWS CLI [http://docs.aws.amazon.com/cli/latest/reference/cloudtrail/list-public-keys.html](http://docs.aws.amazon.com/cli/latest/reference/cloudtrail/list-public-keys.html) command or the CloudTrail [http://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_ListPublicKeys.html](http://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_ListPublicKeys.html) API\.   
+The hexadecimal encoded fingerprint of the public key that matches the private key used to sign this digest file\. You can retrieve the public keys for the time range corresponding to the digest file by using the AWS CLI or the CloudTrail API\. Of the public keys returned, the one whose fingerprint matches this value can be used for validating the digest file\. For information about retrieving public keys for digest files, see the AWS CLI [https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/list-public-keys.html](https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/list-public-keys.html) command or the CloudTrail [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_ListPublicKeys.html](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_ListPublicKeys.html) API\.   
  CloudTrail uses different private/public key pairs per region\. Each digest file is signed with a private key unique to its region\. Therefore, when you validate a digest file from a particular region, you must look in the same region for its corresponding public key\. 
 
 `digestSignatureAlgorithm`  
@@ -111,15 +111,10 @@ The hash algorithm used to hash the log file\.
 ## Starting Digest File<a name="cloudtrail-log-file-validation-digest-file-starting"></a>
 
  When log file integrity validation is started, a starting digest file will be generated\. A starting digest file will also be generated when log file integrity validation is restarted \(by either disabling and then reenabling log file integrity validation, or by stopping logging and then restarting logging with validation enabled\)\. In a starting digest file, the following fields relating to the previous digest file will be null:
-
 + `previousDigestS3Bucket`
-
 + `previousDigestS3Object`
-
 + `previousDigestHashValue`
-
 + `previousDigestHashAlgorithm`
-
 + `previousDigestSignature`
 
 ## 'Empty' Digest Files<a name="cloudtrail-log-file-validation-digest-file-empty"></a>
@@ -151,7 +146,6 @@ The hash algorithm used to hash the log file\.
 ## Signature of the Digest File<a name="cloudtrail-log-file-validation-digest-file-signature"></a>
 
  The signature information for a digest file is located in two object metadata properties of the Amazon S3 digest file object\. Each digest file has the following metadata entries: 
-
 + `x-amz-meta-signature`
 
   The hexadecimal encoded value of the digest file signature\. The following is an example signature:
@@ -161,7 +155,6 @@ The hash algorithm used to hash the log file\.
   28f1cc237f372264a51b611c01da429565def703539f4e71009051769469231bc22232fa260df02740047af532229885ea2b0e95ecd353326b7104941e0cbddb076a391f1fcf2923c19565f4841770a78723451aeb732ff1b6162dc40e601fc6720bc5325987942ebd817783b322f0ac77698523bf742fdea7aa44f4911b3101221b7e1233387f16a52077610498f4a1254211258e37da0fb4cb207aef593b4c1baa13674e85acc52046b3adb889e63331a66abac5de7e42ffdd6952987c31ae871650e130bd2e63bfe145b22bbd39ea192210f6df64d49b888a321e02d3fc4cf126accae30d2857ccd6b2286a7c9feba6c35c44161b24147d645e6ca26844ba
   05d3ffcb5d2dd5dc28f8bb5b7993938e8a5f912a82b448a367eccb2ec0f198ba71e23eb0b97278cf65f3c8d1e652c6de33a22ca8428821ffc95bf8b726ba9f37cfbc20c54dc5bd6159bdea1c4d951b68cb8e0528852c55bb0c5e499ea60560f7c2bb3af7f694407da863a2594f7a2f2838cb09254afbaf8003587746e719a0437f85eeffae534f283f3837eb939a9bccc3c71573500661245891051231b580ac92d9e0e68c6f47ad38975f493e2c40e7f303353c4adc7d563ef1e875977afac2e085f0c824045d998c9543d8a3293ad3c063b7a109d0bfd84b0b1e3f72c4f057e744e6a2cf9cc97727b08584f44bfa47799c5072b60f0b619aea88a17de585e9
   ```
-
 + `x-amz-meta-signature-algorithm`
 
   The following shows an example value of the algorithm used to generate the digest signature:

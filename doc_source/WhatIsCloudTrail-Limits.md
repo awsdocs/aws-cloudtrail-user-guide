@@ -1,6 +1,6 @@
 # Limits in AWS CloudTrail<a name="WhatIsCloudTrail-Limits"></a>
 
-The following table describes limits within CloudTrail\. CloudTrail has no adjustable limits\. For information about other limits in AWS, see [AWS Service Limits](http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)\.
+The following table describes limits within CloudTrail\. CloudTrail has no adjustable limits\. For information about other limits in AWS, see [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)\.
 
 
 | Resource | Default Limit | Comments | 

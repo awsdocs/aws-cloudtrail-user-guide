@@ -6,10 +6,10 @@ You can troubleshoot operational and security incidents over the past 90 days in
 CloudTrail began logging all CloudTrail management events in **Event history** on June 14, 2018, but these events are not logged retroactively\. A full 90\-day record of all management event activity in your AWS account will not be available in **Event history** until after 90 days have passed\.  
 Over time, AWS services might add additional events\. CloudTrail will record these events in **Event history**, but a full 90\-day record of activity that includes added events will not be available until 90 days after the events are added\.
 
-This section describes how to look up events by using the CloudTrail console and the AWS CLI\. It also describes how to download a file of events\. For information on using the `LookupEvents` API to retrieve information from CloudTrail events, see the [AWS CloudTrail API Reference](http://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
+This section describes how to look up events by using the CloudTrail console and the AWS CLI\. It also describes how to download a file of events\. For information on using the `LookupEvents` API to retrieve information from CloudTrail events, see the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
 
 For information on creating a trail so that you have a record of events that extends past 90 days, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Getting and Viewing Your CloudTrail Log Files](get-and-view-cloudtrail-log-files.md)\.
 
-
+**Topics**
 + [Viewing CloudTrail Events in the CloudTrail Console](view-cloudtrail-events-console.md)
 + [Viewing CloudTrail Events with the AWS CLI](view-cloudtrail-events-cli.md)

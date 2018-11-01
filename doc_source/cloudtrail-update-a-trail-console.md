@@ -15,13 +15,9 @@ To change trail settings, use the following procedure\.
 1. For **Data events**, choose the pencil icon or **Configure**, make your changes, and then choose **Save**\. By default, trails don't log data events\. For more information, see [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
 
 1. For **Storage location**, choose the pencil icon to update the settings for the following: 
-
    + The S3 bucket \(with optional prefix\) that is receiving your log files\.
-
    + Log file encryption with AWS KMS\.
-
    + Log file validation for logs\.
-
    + The Amazon SNS topic to notify you when log files are delivered\.
 
    For more information, see [Configuring Advanced Settings for Your Trail](cloudtrail-create-a-trail-using-the-console-first-time.md#advanced-settings-for-your-trail)\.
