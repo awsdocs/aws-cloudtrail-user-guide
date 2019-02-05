@@ -65,30 +65,33 @@ The AssumeRole API returns temporary credentials that a user in accounts B, C, o
 The following Python example \(using the [AWS SDK for Python \(Boto\)](https://aws.amazon.com/tools/)\) shows how to call `AssumeRole` and how to use the temporary security credentials returned to list all Amazon S3 buckets controlled by Account A\.
 
 ```
-import boto
-from boto.sts import STSConnection
-from boto.s3.connection import S3Connection
+import boto3
 
-# The calls to AWS STS AssumeRole must be signed using the access key ID and secret
-# access key of an IAM user or using existing temporary credentials. (You cannot call
-# AssumeRole using the access key for an account.) The credentials can be in 
-# environment variables or in a configuration file and will be discovered automatically
-# by the STSConnection() function. For more information, see the Python SDK 
-# documentation: http://boto.readthedocs.org/en/latest/boto_config_tut.html
+# Create an STS client
+sts_client = boto3.client('sts')
 
-sts_connection = STSConnection()
-assumedRoleObject = sts_connection.assume_role(
-    role_arn="arn:aws:iam::account-of-role-to-assume:role/name-of-role",
-    role_session_name="AssumeRoleSession1"
-)
+# Assume a role defined on an external account. The role specifies the
+# permissions that are allowed on the account.
+# Replace EXTERNAL_ACCOUNT_NUMBER with the account number of the external
+# account.
+# Replace ROLE_NAME with the name of the role defined on the external account.
+# Optional, but recommended: Specify a unique ExternalId= string assigned by
+# the external account.
+response = sts_client.assume_role(RoleArn='arn:aws:iam::EXTERNAL_ACCOUNT_NUMBER:role/ROLE_NAME',
+                                  RoleSessionName='AssumeRoleSession1')
 
-# Use the temporary credentials returned by AssumeRole to call Amazon S3  
-# and list the bucket in the account that owns the role (the trusting account)
-s3_connection = S3Connection(
-    aws_access_key_id=assumedRoleObject.credentials.access_key,
-    aws_secret_access_key=assumedRoleObject.credentials.secret_key,
-    security_token=assumedRoleObject.credentials.session_token
-)
-bucket = s3_connection.get_bucket(bucketname)
-print bucket.name
+# Reference the temporary credentials section of the response
+tempCredentials = response['Credentials']
+
+# Use the temporary credentials to create an S3 resource that can access the
+# external account. The assumed role's permissions must allow the desired S3
+# access.
+s3_resource = boto3.resource('s3',
+                             aws_access_key_id=tempCredentials['AccessKeyId'],
+                             aws_secret_access_key=tempCredentials['SecretAccessKey'],
+                             aws_session_token=tempCredentials['SessionToken'])
+
+# Use the S3 resource to list the external account's buckets.
+for bucket in s3_resource.buckets.all():
+    print(bucket.name)
 ```

@@ -2,18 +2,20 @@
 
 CloudTrail is enabled on your AWS account when you create it\. When activity occurs in your AWS account, that activity is recorded in a CloudTrail event\. You can easily view events in the CloudTrail console by going to **Event history**\. 
 
- Event history allows you to view, search, and download the past 90 days of  activity in your AWS account\. In addition, you can create a CloudTrail trail to archive, analyze, and respond to changes in your AWS resources\. A trail is a configuration that enables delivery of events to an Amazon S3 bucket that you specify\. You can also deliver and analyze events in a trail with Amazon CloudWatch Logs and Amazon CloudWatch Events\. You can create a trail with the CloudTrail console, the AWS CLI, or the CloudTrail API\. 
+ Event history allows you to view, search, and download the past 90 days of activity in your AWS account\. In addition, you can create a CloudTrail trail to archive, analyze, and respond to changes in your AWS resources\. A trail is a configuration that enables delivery of events to an Amazon S3 bucket that you specify\. You can also deliver and analyze events in a trail with Amazon CloudWatch Logs and Amazon CloudWatch Events\. You can create a trail with the CloudTrail console, the AWS CLI, or the CloudTrail API\. 
 
-You can create two types of trails:
+You can create two types of trails for an AWS account:
 
 ** A trail that applies to all regions **  
 When you create a trail that applies to all regions, CloudTrail records events in each region and delivers the CloudTrail event log files to an S3 bucket that you specify\. If a region is added after you create a trail that applies to all regions, that new region is automatically included, and events in that region are logged\. This is the default option when you create a trail in the CloudTrail console\. For more information, see [Creating a Trail in the Console](cloudtrail-create-a-trail-using-the-console-first-time.md#creating-a-trail-in-the-console)\.
 
 ** A trail that applies to one region **  
-When you create a trail that applies to one region, CloudTrail records the events in that region only\. It then delivers the CloudTrail event log files to an Amazon S3 bucket that you specify\. If you create additional single trails, you can have those trails deliver CloudTrail event log files to the same Amazon S3 bucket or to separate buckets\. This is the default option when you create a trail using the AWS CLI or the CloudTrail API\. For more information, see [Creating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)\.
+When you create a trail that applies to one region, CloudTrail records the events in that region only\. It then delivers the CloudTrail event log files to an Amazon S3 bucket that you specify\. If you create additional single trails, you can have those trails deliver CloudTrail event log files to the same Amazon S3 bucket or to separate buckets\. This is the default option when you create a trail using the AWS CLI or the CloudTrail API\. For more information, see [Creating and Updating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)\.
 
 **Note**  
 For both types of trails, you can specify an Amazon S3 bucket from any region\.
+
+If you have created an organization in AWS Organizations, you can also create a trail that will log all events for all AWS accounts in that organization\. This is referred to as an *organization trail*\. Organization trails can apply to all AWS Regions or one Region\. Organization trails must be created in the master account, and when specified as applying to an organization, are automatically applied to all member accounts in the organization\. Member accounts will be able to see the organization trail, but cannot modify or delete it\. By default, member accounts will not have access to the log files for the organization trail in the Amazon S3 bucket\.
 
 You can change the configuration of a trail after you create it, including whether it logs events in one region or all regions\. You can also change whether it logs data events\. Changing whether a trail logs events in one region or in all regions affects which events are logged\. For more information, see [Updating a Trail](cloudtrail-update-a-trail-console.md) \(console\), [Managing Trails](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md#cloudtrail-additional-cli-commands) \(AWS CLI\), and [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)\.
 

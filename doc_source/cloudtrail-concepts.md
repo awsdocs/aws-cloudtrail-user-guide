@@ -8,6 +8,7 @@ This section summarizes basic concepts related to CloudTrail\.
   + [What Are Data Events?](#cloudtrail-concepts-data-events)
 + [What Is CloudTrail Event History?](#cloudtrail-concepts-event-history)
 + [What Are Trails?](#cloudtrail-concepts-trails)
++ [What Are Organization Trails?](#cloudtrail-concepts-trails-org)
 + [How Do You Manage CloudTrail?](#cloudtrail-concepts-manage)
   + [CloudTrail Console](#cloudtrail-concepts-console)
   + [CloudTrail CLI](#cloudtrail-concepts-cli)
@@ -61,7 +62,13 @@ CloudTrail event history provides a viewable, searchable, and downloadable recor
 
 ## What Are Trails?<a name="cloudtrail-concepts-trails"></a>
 
- A trail is a configuration that enables delivery of CloudTrail events to an Amazon S3 bucket, CloudWatch Logs, and CloudWatch Events\. You can use a trail to filter the CloudTrail events you want delivered, encrypt your CloudTrail event log files with an AWS KMS key, and set up Amazon SNS notifications for log file delivery\. 
+ A trail is a configuration that enables delivery of CloudTrail events to an Amazon S3 bucket, CloudWatch Logs, and CloudWatch Events\. You can use a trail to filter the CloudTrail events you want delivered, encrypt your CloudTrail event log files with an AWS KMS key, and set up Amazon SNS notifications for log file delivery\. For more information about how to create and manage a trail, see [Creating a Trail For Your AWS Account](cloudtrail-create-and-update-a-trail.md)\.
+
+## What Are Organization Trails?<a name="cloudtrail-concepts-trails-org"></a>
+
+ An organization trail is a configuration that enables delivery of CloudTrail events in the master account and all member accounts in an organization to the same Amazon S3 bucket, CloudWatch Logs, and CloudWatch Events\. Creating an organization trail helps you define a uniform event logging strategy for your organization\. 
+
+When you create an organization trail, a trail with the name that you give it will be created in every AWS account that belongs to your organization\. Users with CloudTrail permissions in member accounts will be able to see this trail \(including the trail ARN\) when they log into the AWS CloudTrail console from their AWS accounts, or when they run AWS CLI commands such as `describe-trails` \(although member accounts must use the ARN for the organization trail, and not the name, when using the AWS CLI\)\. However, users in member accounts will not have sufficient permissions to delete the organization trail, turn logging on or off, change what types of events are logged, or otherwise alter the organization trail in any way\. For more information about AWS Organizations, see [Organizations Terminology and Concepts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html)\. For more information about creating and working with organization trails, see [Creating a Trail for an Organization](creating-trail-organization.md)\.
 
 ## How Do You Manage CloudTrail?<a name="cloudtrail-concepts-manage"></a>
 
@@ -169,7 +176,7 @@ To avoid receiving duplicate global service events, remember the following:
 
 1. You have multiple single region trails\.
 
-1. You do not need to include global services for the single region trails\. Global service events are delivered for the first trail\. For more information, see [Creating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)\.
+1. You do not need to include global services for the single region trails\. Global service events are delivered for the first trail\. For more information, see [Creating and Updating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)\.
 
 **Note**  
  When you create or update a trail with the AWS CLI, AWS SDKs, or CloudTrail API, you can specify whether to include or exclude global service events for trails\. You cannot configure global service event logging from the CloudTrail console\.

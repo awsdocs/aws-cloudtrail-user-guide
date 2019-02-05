@@ -1,6 +1,6 @@
 # AWS Service Events<a name="non-api-aws-service-events"></a>
 
-CloudTrail supports logging non\-API service events to your Amazon S3 bucket\. These events are related to AWS services but are not directly triggered by a request to a public AWS API\. For these events, the `eventType` field is `AwsServiceEvent`\. The following is an example scenario of an AWS service event\.
+CloudTrail supports logging non\-API service events to your Amazon S3 bucket\. These events are created by AWS services but are not directly triggered by a request to a public AWS API\. For these events, the `eventType` field is `AwsServiceEvent`\. The following is an example scenario of an AWS service event\.
 
 ****
 

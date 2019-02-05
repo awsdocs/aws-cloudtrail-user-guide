@@ -18,11 +18,12 @@
 | Asia Pacific \(Tokyo\) | ap\-northeast\-1 | cloudtrail\.ap\-northeast\-1\.amazonaws\.com | HTTPS | 216624486486 | 06/30/2014 | 
 | China \(Ningxia\) | cn\-northwest\-1 | cloudtrail\.cn\-northwest\-1\.amazonaws\.com\.cn | HTTPS | 681348832753  | 12/11/2017 | 
 | EU \(Frankfurt\) | eu\-central\-1 | cloudtrail\.eu\-central\-1\.amazonaws\.com | HTTPS | 035351147821 | 10/23/2014 | 
+| EU \(Stockholm\) | eu\-north\-1 | cloudtrail\.eu\-north\-1\.amazonaws\.com | HTTPS | 829690693026 | 12/11/2018 | 
 | EU \(Ireland\) | eu\-west\-1 | cloudtrail\.eu\-west\-1\.amazonaws\.com | HTTPS | 859597730677 | 05/13/2014 | 
 | EU \(London\) | eu\-west\-2 | cloudtrail\.eu\-west\-2\.amazonaws\.com | HTTPS | 282025262664 | 12/13/2016 | 
 | EU \(Paris\) | eu\-west\-3 | cloudtrail\.eu\-west\-3\.amazonaws\.com | HTTPS | 262312530599  | 12/18/2017 | 
 | South America \(São Paulo\) | sa\-east\-1 | cloudtrail\.sa\-east\-1\.amazonaws\.com | HTTPS | 814480443879 | 06/30/2014 | 
 
-For information about using CloudTrail in the AWS GovCloud \(US\), Region, see [AWS GovCloud \(US\) Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\. 
+For information about using CloudTrail in the AWS GovCloud \(US\-West\), Region, see [AWS GovCloud \(US\-West\) Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\. 
 
 For information about using CloudTrail in the China \(Beijing\) Region, see [China \(Beijing\) Region Endpoints](http://docs.amazonaws.cn/en_us/general/latest/gr/rande.html#cnnorth_region) in the *Amazon Web Services General Reference*\.

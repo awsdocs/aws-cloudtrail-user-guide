@@ -1,4 +1,14 @@
-# Overview for Creating a Trail<a name="cloudtrail-create-and-update-a-trail"></a>
+# Creating a Trail For Your AWS Account<a name="cloudtrail-create-and-update-a-trail"></a>
+
+When you create a trail, you enable ongoing delivery of events as log files to an Amazon S3 bucket that you specify\. Creating a trail has many benefits, including:
++ A record of events that extends past 90 days\.
++ The option to automatically monitor and alarm on specified events by sending log events to Amazon CloudWatch Logs\. 
++ The option to query logs and analyze AWS service activity with Amazon Athena\.
+
+If you use AWS Organizations, you can create a trail that will log events for all AWS accounts in the organization\. A trail with the same name will be created in each member account, and events from each trail will be delivered to the Amazon S3 bucket that you specify\. 
+
+**Note**  
+Only the master account for an organization can create a trail for the organization\. Creating a trail for an organization automatically enables integration between CloudTrail and Organizations\. For more information, see [Creating a Trail for an Organization](creating-trail-organization.md)\.
 
 You can configure the following settings when you create or update a trail with the CloudTrail console or the AWS Command Line Interface \(AWS CLI\)\. Both methods follow the same steps: 
 
@@ -6,7 +16,7 @@ You can configure the following settings when you create or update a trail with 
 
 1. Create an Amazon S3 bucket or specify an existing bucket where you want the log files delivered\. By default, log files from all regions in your account are delivered to the bucket that you specify\.
 
-1. Configure your trail to log read\-only, write\-only, or all management and data events\. By default, trails log all management events\.
+1. Configure your trail to log read\-only, write\-only, or all management events, and all or a subset of data events\. By default, trails log all management events and no data events\.
 
 1. Create an Amazon SNS topic to receive notifications when log files are delivered\. Delivery notifications from all regions are sent to the topic that you specify\.
 
@@ -19,11 +29,5 @@ You can configure the following settings when you create or update a trail with 
 1. Add tags \(custom key\-value pairs\) to your trail\.
 
 **Topics**
-+ [Creating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)
-+ [Creating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)
-+ [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)
-+ [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)
-+ [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
-+ [AWS KMS Alias Naming Requirements](KMS-key-naming-requirements.md)
-+ [Using AWS CloudTrail with Interface VPC Endpoints](cloudtrail-and-interface-VPC.md)
-+ [Tips for Managing Trails](cloudtrail-concepts-trails-managing-and-using.md)
++ [Creating and Updating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)
++ [Creating and Updating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)

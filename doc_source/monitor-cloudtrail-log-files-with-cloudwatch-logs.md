@@ -37,7 +37,7 @@ You can configure your trails to send logs to CloudWatch Logs in the following r
 | South America \(São Paulo\) | sa\-east\-1 | 
 | AWS GovCloud \(US\)\* | us\-gov\-west\-1 | 
 
-\* This region requires a separate account\. For more information, see [AWS GovCloud \(US\)](https://aws.amazon.com/govcloud-us/)\.
+\* This region requires a separate account\. For more information, see [AWS GovCloud \(US\-West\)](https://aws.amazon.com/govcloud-us/)\.
 
 **Topics**
 + [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)

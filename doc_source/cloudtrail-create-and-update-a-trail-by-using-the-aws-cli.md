@@ -1,4 +1,4 @@
-# Creating a Trail with the AWS Command Line Interface<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli"></a>
+# Creating and Updating a Trail with the AWS Command Line Interface<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli"></a>
 
 **Note**  
 You need the AWS command line tools to run the AWS Command Line Interface \(AWS CLI\) commands in this topic\. For more information, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\. For help with CloudTrail commands at the AWS CLI command line, type `aws cloudtrail help`\.
@@ -69,7 +69,8 @@ Sample output:
     "Name": "my-trail", 
     "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail", 
     "LogFileValidationEnabled": false,
-    "IsMultiRegionTrail": false, 
+    "IsMultiRegionTrail": false,
+    "IsOrganizationTrail": false, 
     "S3BucketName": "my-bucket"
 }
 ```
@@ -131,6 +132,7 @@ To confirm that your trail exists in all regions, the `IsMultiRegionTrail` eleme
     "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail", 
     "LogFileValidationEnabled": false, 
     "IsMultiRegionTrail": true, 
+    "IsOrganizationTrail": false,
     "S3BucketName": "my-bucket"
 }
 ```
@@ -159,6 +161,7 @@ To confirm that log file validation is enabled, the `LogFileValidationEnabled` e
     "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail", 
     "LogFileValidationEnabled": true, 
     "IsMultiRegionTrail": true, 
+    "IsOrganizationTrail": false,
     "S3BucketName": "my-bucket"
 }
 ```
@@ -190,6 +193,7 @@ To confirm that the trail now applies to all regions, the `IsMultiRegionTrail` e
     "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail", 
     "LogFileValidationEnabled": false, 
     "IsMultiRegionTrail": true, 
+    "IsOrganizationTrail": false,
     "S3BucketName": "my-bucket"
 }
 ```
@@ -211,6 +215,7 @@ To confirm that the trail now applies to a single region, the `IsMultiRegionTrai
     "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail", 
     "LogFileValidationEnabled": false, 
     "IsMultiRegionTrail": false, 
+    "IsOrganizationTrail": false,
     "S3BucketName": "my-bucket"
 }
 ```
@@ -232,6 +237,7 @@ To confirm that the trail no longer logs global service events, the `IncludeGlob
     "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail", 
     "LogFileValidationEnabled": false, 
     "IsMultiRegionTrail": false, 
+    "IsOrganizationTrail": false,
     "S3BucketName": "my-bucket"
 }
 ```
@@ -255,6 +261,7 @@ To confirm that log file validation is enabled, the `LogFileValidationEnabled` e
     "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail", 
     "LogFileValidationEnabled": true, 
     "IsMultiRegionTrail": false, 
+    "IsOrganizationTrail": false,
     "S3BucketName": "my-bucket"
 }
 ```
@@ -276,6 +283,7 @@ To confirm that log file validation is disabled, the `LogFileValidationEnabled` 
     "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail", 
     "LogFileValidationEnabled": false, 
     "IsMultiRegionTrail": false, 
+    "IsOrganizationTrail": false,
     "S3BucketName": "my-bucket"
 }
 ```
@@ -320,6 +328,7 @@ CloudTrail configuration:
       "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/awscloudtrail-example",
       "LogFileValidationEnabled": false, 
       "IsMultiRegionTrail": false,
+      "IsOrganizationTrail": false,
       "HasCustomEventSelectors": false,  
       "S3BucketName": "awscloudtrail-new-bucket-example"
       "SnsTopicName": "awscloudtrail-example-log-deliverytopic",
@@ -356,6 +365,7 @@ CloudTrail configuration:
       "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/awscloudtrail-example",
       "LogFileValidationEnabled": false,
       "IsMultiRegionTrail": false,
+      "IsOrganizationTrail": false,
       "HasCustomEventSelectors": false,  
       "S3BucketName": "awscloudtrail-new-bucket-example2"
       "SnsTopicName": "awscloudtrail-example-log-deliverytopic",
@@ -392,6 +402,7 @@ If the command succeeds, you see output similar to the following:
       "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail",
       "LogFileValidationEnabled": false,
       "IsMultiRegionTrail": false,
+      "IsOrganizationTrail": false,
       "HasCustomEventSelectors": false, 
       "S3BucketName": "my-bucket"
       "SnsTopicName": "my-topic",
@@ -402,6 +413,9 @@ If the command succeeds, you see output similar to the following:
 ```
 
 Run the `get-trail-status` command to retrieve the status of a trail\. 
+
+**Note**  
+If the trail is an organization trail and you are a member account in the organization in AWS Organizations, you must provide the full ARN of that trail, and not just the name\.
 
 ```
 aws cloudtrail get-trail-status --name awscloudtrail-example
@@ -435,6 +449,9 @@ To view the event selector settings for a trail, run the `get-event-selectors` c
 ```
 aws cloudtrail get-event-selectors --trail-name TrailName
 ```
+
+**Note**  
+If the trail is an organization trail and you are a member account in the organization in AWS Organizations, you must provide the full ARN of that trail, and not just the name\.
 
 The following example returns the default settings for an event selector for a trail\.
 

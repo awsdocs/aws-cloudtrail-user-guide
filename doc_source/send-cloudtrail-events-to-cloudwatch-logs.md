@@ -3,9 +3,9 @@
 When you configure your trail to send events to CloudWatch Logs, CloudTrail sends only the events that match your trail settings\. For example, if you configure your trail to log data events only, your trail sends data events only to your CloudWatch Logs log group\. CloudTrail supports sending data and management events to CloudWatch Logs\. For more information, see [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)\.
 
 To send events to a CloudWatch Logs log group:
-+ Create a new trail or specify an existing one\. For more information, see [Creating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)\.
++ Create a new trail or specify an existing one\. For more information, see [Creating and Updating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)\.
 + Create a log group or specify an existing one\.
-+ Specify an IAM role\.
++ Specify an IAM role\. If you are modifying an existing IAM role for an organization trail, you must manually update the policy to allow logging for the organization trail\. For more information, see [this policy example](#policy-cwl-org) and [Creating a Trail for an Organization](creating-trail-organization.md)\.
 + Attach a role policy or use the default\.
 
 **Contents**
@@ -16,7 +16,7 @@ To send events to a CloudWatch Logs log group:
 + [Configuring CloudWatch Logs Monitoring with the AWS CLI](#send-cloudtrail-events-to-cloudwatch-logs-cli)
   + [Creating a Log Group](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-log-group)
   + [Creating a Role](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-role)
-  + [Creating a Policy Document](#w4aac10c17c23c19b8)
+  + [Creating a Policy Document](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-policy-document)
   + [Updating the Trail](#send-cloudtrail-events-to-cloudwatch-logs-cli-update-trail)
 + [Limitation](#send-cloudtrail-events-to-cloudwatch-logs-limitations)
 
@@ -51,6 +51,8 @@ You can specify a role for CloudTrail to assume to deliver events to the log str
 **To specify a role**
 
 1. By default, the `CloudTrail_CloudWatchLogs_Role` is specified for you\. The default role policy has the required permissions to create a CloudWatch Logs log stream in a log group that you specify, and to deliver CloudTrail events to that log stream\. 
+**Note**  
+If you want to use this role for a log group for an organization trail, you must manually modify the policy after you create the role\. For more information, see [this policy example](#policy-cwl-org) and [Creating a Trail for an Organization](creating-trail-organization.md)\.
 
    1. To verify the role, go to the AWS Identity and Access Management console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -133,7 +135,7 @@ aws iam create-role --role-name role_name --assume-role-policy-document file://<
 
 When the command completes, take a note of the role ARN in the output\.
 
-### Creating a Policy Document<a name="w4aac10c17c23c19b8"></a>
+### Creating a Policy Document<a name="send-cloudtrail-events-to-cloudwatch-logs-cli-create-policy-document"></a>
 
 Create the following role policy document for CloudTrail\. This document grants CloudTrail the permissions required to create a CloudWatch Logs log stream in the log group you specify and to deliver CloudTrail events to that log stream\.
 
@@ -167,7 +169,41 @@ Create the following role policy document for CloudTrail\. This document grants 
 }
 ```
 
-Save the policy document in a file called `role-policy-document.json`\.
+Save the policy document in a file called `role-policy-document.json`\.<a name="policy-cwl-org"></a>
+
+If you're creating a policy that might be used for organization trails as well, you will need to configure it slightly differently\. For example, the following policy grants CloudTrail the permissions required to create a CloudWatch Logs log stream in the log group you specify and to deliver CloudTrail events to that log stream for both trails in the AWS account 111111111111 and for organization trails created in the 111111111111 account that are applied to the AWS Organizations organization with the ID of *o\-exampleorgid*:
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AWSCloudTrailCreateLogStream20141101",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:111111111111_CloudTrail_us-east-2*",
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:o-exampleorgid_*",
+            ]
+        },
+        {
+            "Sid": "AWSCloudTrailPutLogEvents20141101",
+            "Effect": "Allow",
+            "Action": [
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:111111111111_CloudTrail_us-east-2*",             
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:o-exampleorgid_*",
+            ]
+        }
+    ]
+}
+```
+
+For more information about organization trails, see [Creating a Trail for an Organization](creating-trail-organization.md)\.
 
 Run the following command to apply the policy to the role\.
 

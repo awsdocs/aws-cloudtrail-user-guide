@@ -1,7 +1,7 @@
 # AWS CloudTrail User Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -27,19 +27,17 @@ Amazon's trademarks and trade dress may not be used in
    + [Viewing Events with CloudTrail Event History](view-cloudtrail-events.md)
       + [Viewing CloudTrail Events in the CloudTrail Console](view-cloudtrail-events-console.md)
       + [Viewing CloudTrail Events with the AWS CLI](view-cloudtrail-events-cli.md)
-   + [Overview for Creating a Trail](cloudtrail-create-and-update-a-trail.md)
-      + [Creating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)
+   + [Creating a Trail For Your AWS Account](cloudtrail-create-and-update-a-trail.md)
+      + [Creating and Updating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)
          + [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md)
          + [Updating a Trail](cloudtrail-update-a-trail-console.md)
          + [Deleting a Trail](cloudtrail-delete-trails-console.md)
          + [Turning off Logging for a Trail](cloudtrail-turning-off-logging.md)
-      + [Creating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)
-      + [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)
-      + [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)
-      + [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
-      + [AWS KMS Alias Naming Requirements](KMS-key-naming-requirements.md)
-      + [Using AWS CloudTrail with Interface VPC Endpoints](cloudtrail-and-interface-VPC.md)
-      + [Tips for Managing Trails](cloudtrail-concepts-trails-managing-and-using.md)
+      + [Creating and Updating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)
+   + [Creating a Trail for an Organization](creating-trail-organization.md)
+      + [Prepare For Creating a Trail For Your Organization](creating-an-organizational-trail-prepare.md)
+      + [Creating a Trail For Your Organization in the Console](creating-an-organizational-trail-in-the-console.md)
+      + [Creating a Trail for an Organization with the AWS Command Line Interface](cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli.md)
    + [Getting and Viewing Your CloudTrail Log Files](get-and-view-cloudtrail-log-files.md)
       + [Finding Your CloudTrail Log Files](cloudtrail-find-log-files.md)
       + [Downloading Your CloudTrail Log Files](cloudtrail-read-log-files.md)
@@ -49,6 +47,12 @@ Amazon's trademarks and trade dress may not be used in
    + [Controlling User Permissions for CloudTrail](control-user-permissions-for-cloudtrail.md)
       + [Granting Permissions for CloudTrail Administration](grant-permissions-for-cloudtrail-administration.md)
       + [Granting Custom Permissions for CloudTrail Users](grant-custom-permissions-for-cloudtrail-users.md)
+   + [Tips for Managing Trails](cloudtrail-concepts-trails-managing-and-using.md)
+      + [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)
+      + [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)
+      + [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
+      + [AWS KMS Alias Naming Requirements](KMS-key-naming-requirements.md)
+   + [Using AWS CloudTrail with Interface VPC Endpoints](cloudtrail-and-interface-VPC.md)
 + [Working with CloudTrail Log Files](cloudtrail-working-with-log-files.md)
    + [Create Multiple Trails](create-multiple-trails.md)
    + [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)

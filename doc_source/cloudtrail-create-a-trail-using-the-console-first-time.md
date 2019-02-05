@@ -82,7 +82,7 @@ You can configure the following settings for your trail:
 
 1. In the **Log file prefix** field, type a prefix for your Amazon S3 bucket\. The prefix is an addition to the URL for an Amazon S3 object that creates a folder\-like organization in your bucket\. The location where your log files will be stored appears under the text field\.
 
-1. For **Encrypt log files with SSE\-KMS**, choose **Yes** if you want  to encrypt your log files with SSE\-KMS instead of SSE\-S3\.
+1. For **Encrypt log files with SSE\-KMS**, choose **Yes** if you want to encrypt your log files with SSE\-KMS instead of SSE\-S3\.
 
 1. For **Create a new KMS key**, choose **Yes** to create a key or **No** to use an existing one\.
 
