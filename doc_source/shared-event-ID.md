@@ -4,11 +4,11 @@ The following is an example that describes how CloudTrail delivers two events fo
 
 1.  Alice has AWS account \(111111111111\) and creates a customer master key \(CMK\)\. She is the owner of this CMK\. 
 
-1.  Bob has AWS account \(222222222222\)\. Alice gives Bob permission to use the CMK\. 
+1.  Bob has AWS account \(222222222222\)\. Alice gives AWS account \(222222222222\)\ permission to use the CMK\. 
 
 1.  Each account has a trail and a separate bucket\.
 
-1.  Bob uses the CMK to call the `Encrypt` API\. 
+1.  Bob calls the `Encrypt` API specifying Alice's CMK\. 
 
 1.  CloudTrail sends two separate events\. 
    + One event is sent to Bob\. The event shows that he used the CMK\.
