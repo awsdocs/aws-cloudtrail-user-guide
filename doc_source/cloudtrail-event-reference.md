@@ -35,8 +35,9 @@ The following example shows a single log record at the beginning of a log file\.
 		"requestID": "cdc73f9d-aea9-11e3-9d5a-835b769c0d9c",
 		"eventID": "3074414d-c626-42aa-984b-68ff152d6ab7"
 	},
-    ... additional entries ...
+	... additional entries ...
 	]
+}
 ```
 
 The following topics list the data fields that CloudTrail captures for each AWS API call and sign\-in event\. 
