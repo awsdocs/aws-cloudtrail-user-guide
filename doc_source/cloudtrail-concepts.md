@@ -85,6 +85,8 @@ You can use and manage the CloudTrail service with the AWS CloudTrail console\. 
   + Using AWS KMS keys for encryption\. 
   + Enabling Amazon SNS notifications for log file delivery\.
 
+Beginning on April 12, 2019, trails will be viewable only in the AWS Regions where they log events\. If you create a trail that logs events in all AWS Regions, it will appear in the console in all AWS Regions\. If you create a trail that only logs events in a single AWS Region, you can view and manage it only in that AWS Region\.
+
 For more information about the AWS Management Console, see [AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/getting-started.html)\. 
 
 ### CloudTrail CLI<a name="cloudtrail-concepts-cli"></a>

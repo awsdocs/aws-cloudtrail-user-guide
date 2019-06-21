@@ -16,15 +16,44 @@ The following policy allows CloudTrail to send notifications about log file deli
 ```
 {
     "Version": "2012-10-17",
-    "Statement": [{
-        "Sid": "AWSCloudTrailSNSPolicy20131101",
-        "Effect": "Allow",
-        "Principal": {"Service": "cloudtrail.amazonaws.com"},
-        "Action": "SNS:Publish",
-        "Resource": "arn:aws:sns:Region:SNSTopicOwnerAccountId:SNSTopicName"
-    }]
+    "Statement": [
+        {
+            "Sid": "AWSCloudTrailSNSPolicy20131101",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "cloudtrail.amazonaws.com"
+            },
+            "Action": "SNS:Publish",
+            "Resource": "arn:aws:sns:region:SNSTopicOwnerAccountId:SNSTopicName"
+        }
+    ]
+}
+```<a name="cmk-policy"></a>
+
+If you want to use a AWS KMS\-encrypted Amazon SNS topic to send notifications, you must also enable compatibility between the event source \(CloudTrail\) and the encrypted topic by adding the following statement to the policy of the customer master key \(CMK\)\.
+
+**CMK policy**
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "cloudtrail.amazonaws.com"
+            },
+            "Action": [
+                "kms:GenerateDataKey*",
+                "kms:Decrypt"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
+
+For more information, see [Enable Compatibility between Event Sources from AWS Services and Encrypted Topics](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sns-what-permissions-for-sse)\.
 
 **Contents**
 + [Specifying an Existing Topic for Sending Notifications](#specifying-an-existing-topic-for-sns-notifications)
@@ -34,7 +63,7 @@ The following policy allows CloudTrail to send notifications about log file deli
 
 ## Specifying an Existing Topic for Sending Notifications<a name="specifying-an-existing-topic-for-sns-notifications"></a>
 
-You can manually add the permissions to your topic policy in the Amazon SNS console and then specify the topic in the CloudTrail console\.
+You can manually add the permissions for an Amazon SNS topic to your topic policy in the Amazon SNS console and then specify the topic in the CloudTrail console\.
 
 **To manually update an SNS topic policy**
 
@@ -47,6 +76,8 @@ You can manually add the permissions to your topic policy in the Amazon SNS cons
 1. Choose **Advanced view**, and add the statement from [SNS topic policy](#sns-topic-policy) with the appropriate values for the region, account ID, and topic name\.
 
 1. Choose **Update policy**\.
+
+1. If your topic is an encrypted topic, you must allow CloudTrail to have the `kms:GenerateDataKey*` and the `kms:Decrypt` permissions\. For more information, see [Encrypted SNS topic CMK policy](#cmk-policy)\. 
 
 1. Return to the CloudTrail console and specify the topic for the trail\.
 

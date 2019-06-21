@@ -3,7 +3,11 @@
 Before you create a trail for your organization, you'll need to make sure that both your organization and your master account are set up correctly for trail creation\. 
 + Your organization must have all features enabled before you can create a trail for it\. For more information, see [Enabling All Features in Your Organization](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html)\.
 + The master account must have the **AWSServiceRoleForOrganizations** role\. This role is created automatically by Organizations when you create your organization, and is required for CloudTrail to log events for an organization\. For more information, see [Organizations and Service\-Linked Roles](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html#orgs_integrate_services-using_slrs)\.
-+ The IAM user or role that will be used to create the organization trail in the master account must have sufficient permissions to create an organization trail\. At a minimum, in order to create an organization trail, you must have the **AWSCloudTrailFullAccess** policy or equivalent permissions applied\. You must also have sufficient permissions in IAM and Organizations to create the service\-linked role and enable trusted access\. The example policy below shows the minimum required permissions:
++ The IAM user or role that will be used to create the organization trail in the master account must have sufficient permissions to create an organization trail\. At a minimum, in order to create an organization trail, you must have the **AWSCloudTrailFullAccess** policy or equivalent permissions applied\. You must also have sufficient permissions in IAM and Organizations to create the service\-linked role and enable trusted access\. 
+**Note**  
+The **AWSCloudTrailFullAccess** policy is not intended to be shared broadly across your AWS account\. Instead, it should be restricted to AWS account administrators due to the highly sensitive information collected by CloudTrail\. Users with this role have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. For this reason, access to this policy should be closely controlled and monitored\.
+
+  The example policy below shows the minimum required permissions:
 
   ```
   {

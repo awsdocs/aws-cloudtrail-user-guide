@@ -5,6 +5,8 @@ When you create a trail, you enable ongoing delivery of events as log files to a
 + The option to automatically monitor and alarm on specified events by sending log events to Amazon CloudWatch Logs\. 
 + The option to query logs and analyze AWS service activity with Amazon Athena\.
 
+Beginning on April 12, 2019, trails will be viewable only in the AWS Regions where they log events\. If you create a trail that logs events in all AWS Regions, it will appear in the console in all AWS Regions\. If you create a trail that only logs events in a single AWS Region, you can view and manage it only in that AWS Region\.
+
 If you use AWS Organizations, you can create a trail that will log events for all AWS accounts in the organization\. A trail with the same name will be created in each member account, and events from each trail will be delivered to the Amazon S3 bucket that you specify\. 
 
 **Note**  

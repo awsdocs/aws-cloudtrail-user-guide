@@ -17,6 +17,8 @@ A typical approach is to create an IAM group that has the appropriate permission
 
 1. On the **Attach Policy** page, find and choose one of the following policies for CloudTrail:
    +  **AWSCloudTrailFullAccess**\. This policy gives users in the group full access to CloudTrail actions\. These users have permissions to manage the Amazon S3 bucket, the log group for CloudWatch Logs, and an Amazon SNS topic for a trail\.
+**Note**  
+The **AWSCloudTrailFullAccess** policy is not intended to be shared broadly across your AWS account\. Instead, it should be restricted to AWS account administrators due to the highly sensitive information collected by CloudTrail\. Users with this role have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. For this reason, access to this policy should be closely controlled and monitored\.
    +  **AWSCloudTrailReadOnlyAccess**\. This policy lets users in the group view the CloudTrail console, including recent events and event history\. These users can also view existing trails and their buckets\. Users can download a file of event history, but they cannot create or update trails\.
 **Note**  
 You can also create a custom policy that grants permissions to individual actions\. For more information, see [Granting Custom Permissions for CloudTrail Users](grant-custom-permissions-for-cloudtrail-users.md)\.

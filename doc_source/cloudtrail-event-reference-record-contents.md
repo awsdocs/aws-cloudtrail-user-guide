@@ -95,7 +95,7 @@ For example, when an `AssumeRole` event is logged, the `resources` field can app
 For example logs with the `resources` field, see [AWS STS API Event in CloudTrail Log File](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#stscloudtrailexample) in the *IAM User Guide* or [ Logging AWS KMS API Calls](https://docs.aws.amazon.com/kms/latest/developerguide/logging-using-cloudtrail.html) in the *AWS Key Management Service Developer Guide*\.  
 Support for this field begins with `eventVersion` ` 1.01`\.
 
-**`recipientAccountID`**  
+**`recipientAccountId`**  
 Represents the account ID that received this event\. The `recipientAccountID` may be different from the [CloudTrail userIdentity Element](cloudtrail-event-reference-user-identity.md) `accountId`\. This can occur in cross\-account resource access\. For example, if a KMS key, also known as a [customer master key \(CMK\)](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html), was used by a separate account to call the [Encrypt API](https://docs.aws.amazon.com/kms/latest/developerguide/ct-encrypt.html), the `accountId` and `recipientAccountID` values will be the same for the event delivered to the account that made the call, but the values will be different for the event that is delivered to the account that owns the CMK\.  
 Support for this field begins with `eventVersion` ` 1.02`\.
 

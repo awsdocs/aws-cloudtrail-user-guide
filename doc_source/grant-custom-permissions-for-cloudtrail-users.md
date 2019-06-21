@@ -59,6 +59,9 @@ The read\-only policy doesn't grant user permission for the `CreateTrail`, `Upda
 
 The following example shows a policy that grants full access to CloudTrail\. It grants users the permission to perform all CloudTrail actions\. It also lets users manage files in Amazon S3 buckets, manage how CloudWatch Logs monitors CloudTrail log events, and manage Amazon SNS topics in the account that the user is associated with\. 
 
+**Note**  
+The **AWSCloudTrailFullAccess** policy, or any policy that emulates its permissions, is not intended to be shared broadly across your AWS account\. Instead, it should be restricted to AWS account administrators due to the highly sensitive information collected by CloudTrail\. Users with this role have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. For this reason, access to this policy should be closely controlled and monitored\.
+
 ```
 {
   "Version": "2012-10-17",
