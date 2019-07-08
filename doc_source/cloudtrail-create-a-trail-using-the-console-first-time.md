@@ -1,6 +1,6 @@
 # Creating a Trail<a name="cloudtrail-create-a-trail-using-the-console-first-time"></a>
 
-Follow the procedure to create a trail that applies to all regions\. A trail that applies to all regions delivers log files from all regions to an S3 bucket\. After you create the trail, CloudTrail automatically starts logging the events that you specified\. 
+Follow the procedure to create a trail that applies to all Regions\. A trail that applies to all Regions delivers log files from all Regions to an S3 bucket\. After you create the trail, CloudTrail automatically starts logging the events that you specified\. 
 
 **Note**  
 After you create a trail, you can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
@@ -13,7 +13,7 @@ After you create a trail, you can configure other AWS services to further analyz
 ## Creating a Trail in the Console<a name="creating-a-trail-in-the-console"></a>
 
  You can configure your trail for the following: 
-+ Specify if you want the trail to apply to all regions or a single region\.
++ Specify if you want the trail to apply to all Regions or a single Region\.
 + Specify an Amazon S3 bucket to receive log files\.
 + For management and data events, specify if you want to log read\-only, write\-only, or all events\.
 
@@ -21,7 +21,7 @@ After you create a trail, you can configure other AWS services to further analyz
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1. Choose the region where you want the trail to be created\.
+1. Choose the AWS Region where you want the trail to be created\.
 
 1. Choose **Get Started Now**\.
 **Tip**  
@@ -29,7 +29,7 @@ If you do not see **Get Started Now**, choose **Trails**, and then choose **Crea
 
 1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)\.
 
-1. For **Apply trail to all regions**, choose **Yes** to receive log files from all regions\. This is the default and recommended setting\. If you choose **No**, the trail logs files only from the region in which you create the trail\.
+1. For **Apply trail to all regions**, choose **Yes** to receive log files from all Regions\. This is the default and recommended setting\. If you choose **No**, the trail logs files only from the Region in which you create the trail\.
 
 1. For **Management events**, for **Read/Write events**, choose if you want your trail to log **All**, **Read\-only**, **Write\-only**, or **None**, and then choose **Save**\. By default, trails log all management events\. For more information, see [Management Events](logging-management-and-data-events-with-cloudtrail.md#logging-management-events)\.
 
@@ -43,16 +43,16 @@ If you do not see **Get Started Now**, choose **Trails**, and then choose **Crea
    + To log data events for all S3 buckets in your AWS account, select **Select all S3 buckets in your account**\. Then choose whether you want to log **Read** events, such as `GetObject`, **Write** events, such as `PutObject`, or both\. This setting takes precedence over individual settings you configure for individual buckets\. For example, if you specify logging **Read** events for all S3 buckets, and then choose to add a specific bucket for data event logging, **Read** is already selected for the bucket you added\. You cannot clear the selection\. You can only configure the option for **Write**\. 
 **Note**  
 Selecting the **Select all S3 buckets in your account** option enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
-If the trail applies only to one region, selecting the **Select all S3 buckets in your account** option enables data event logging for all buckets in the same region as your trail and any buckets you create later in that region\. It will not log data events for Amazon S3 buckets in other regions in your AWS account\.
+If the trail applies only to one Region, selecting the **Select all S3 buckets in your account** option enables data event logging for all buckets in the same Region as your trail and any buckets you create later in that Region\. It will not log data events for Amazon S3 buckets in other Regions in your AWS account\.
 
    For Lambda functions:
    + Choose the **Lambda** tab\.
    + To specify logging individual functions, select them from the list\. 
 **Note**  
-If you have more than 15,000 Lambda functions in your account, you cannot view or select all functions in the CloudTrail console when creating a trail\. You can still select the option to log all functions, even if they are not displayed\. If you want to log data events for specific functions, you can manually add a function if you know its ARN\. You can also finish creating the trail in the console, and then use the AWS CLI and the put\-event\-selectors command to configure data event logging for specific Lambda functions\. For more information, see [Managing Trails](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md#cloudtrail-additional-cli-commands)\.
+If you have more than 15,000 Lambda functions in your account, you cannot view or select all functions in the CloudTrail console when creating a trail\. You can still select the option to log all functions, even if they are not displayed\. If you want to log data events for specific functions, you can manually add a function if you know its ARN\. You can also finish creating the trail in the console, and then use the AWS CLI and the put\-event\-selectors command to configure data event logging for specific Lambda functions\. For more information, see [Managing Trails With the AWS CLI](cloudtrail-additional-cli-commands.md)\.
    + To log data events for all Lambda functions in your AWS account, select **Log all current and future functions**\. This setting takes precedence over individual settings you configure for individual functions\. All functions are logged, even if all functions are not displayed\.
 **Note**  
-If you are creating a trail for all regions, this selection enables data event logging for all functions currently in your AWS account, and any Lambda functions you might create in any region after you finish creating the trail\. If you are creating a trail for a single region, this selection enables data event logging for all functions currently in that region in your AWS account, and any Lambda functions you might create in that region after you finish creating the trail\. It does not enable data event logging for Lambda functions created in other regions\.  
+If you are creating a trail for all Regions, this selection enables data event logging for all functions currently in your AWS account, and any Lambda functions you might create in any Region after you finish creating the trail\. If you are creating a trail for a single Region, this selection enables data event logging for all functions currently in that Region in your AWS account, and any Lambda functions you might create in that Region after you finish creating the trail\. It does not enable data event logging for Lambda functions created in other Regions\.  
 Logging data events for all functions also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
 
 1. For **Storage location**, for **Create a new S3 bucket**, choose **Yes** to create a bucket\. When you create a bucket, CloudTrail creates and applies the required bucket policies\.
@@ -63,7 +63,7 @@ If you chose **No**, choose an existing S3 bucket\. The bucket policy must grant
 
 1. To configure advanced settings, see [Configuring Advanced Settings for Your Trail](#advanced-settings-for-your-trail)\. Otherwise, choose **Create**\.
 
-1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all regions\. In about 15 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\.
+1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all Regions\. In about 15 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\.
 
 **Note**  
 You can't rename a trail after it has been created\. Instead, you can delete the trail and create a new one\. 
@@ -88,15 +88,15 @@ You can configure the following settings for your trail:
 
 1. If you chose **Yes**, in the **KMS key** field, type an alias\. CloudTrail encrypts your log files with the key and adds the policy for you\.
 **Note**  
-If you chose **No**, choose an existing KMS key\. You can also type the ARN of a key from another account\. For more information, see [Updating a Trail to Use Your CMK](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [AWS KMS Key Policy for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
+If you chose **No**, choose an existing KMS key\. You can also type the ARN of a key from another account\. For more information, see [Updating a Trail to Use Your CMK](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [Configure AWS KMS Key Policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
 
 1. For **Enable log file validation**, choose **Yes** to have log digests delivered to your S3 bucket\. You can use the digest files to verify that your log files did not change after CloudTrail delivered them\. For more information, see [Validating CloudTrail Log File Integrity](cloudtrail-log-file-validation-intro.md)\. 
 
 1. For **Send SNS notification for every log file delivery**, choose **Yes** if you want to be notified each time a log is delivered to your bucket\. CloudTrail stores multiple events in a log file\. SNS notifications are sent for every log file, not for every event\. 
 
-1. For **Create a new SNS topic**, choose **Yes** to create a topic, or choose **No** to use an existing topic\. If you are creating a trail that applies to all regions, SNS notifications for log file deliveries from all regions are sent to the single SNS topic that you create\.
+1. For **Create a new SNS topic**, choose **Yes** to create a topic, or choose **No** to use an existing topic\. If you are creating a trail that applies to all Regions, SNS notifications for log file deliveries from all Regions are sent to the single SNS topic that you create\.
 **Note**  
-If you chose **No**, choose an existing topic\. You can also enter the ARN of a topic from another region or from an account with appropriate permissions\. For more information, see [Amazon SNS Topic Policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\.
+If you chose **No**, choose an existing topic\. You can also enter the ARN of a topic from another Region or from an account with appropriate permissions\. For more information, see [Amazon SNS Topic Policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\.
 
 1. If you chose **Yes**, in the **SNS topic** field, type a name\.
 

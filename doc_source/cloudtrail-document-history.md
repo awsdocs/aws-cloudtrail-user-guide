@@ -2,10 +2,11 @@
 
 The following table describes the important changes to the documentation for AWS CloudTrail\. For notification about updates to this documentation, you can subscribe to an RSS feed\.
 + **API version**: 2013\-11\-01
-+ **Latest documentation update**: June 6, 2019
++ **Latest documentation update**: July 3, 2019
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Documentation update](#cloudtrail-document-history) | The documentation has been updated with information about security for CloudTrail\. See [Security in AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Security.html)\. | July 3, 2019 | 
 | [Added service support](#cloudtrail-document-history) | This release supports AWS Ground Station\. See [AWS CloudTrail Supported Services and Integrations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html)\. | June 6, 2019 | 
 | [Added service support](#cloudtrail-document-history) | This release supports AWS IoT Things Graph\. See [AWS CloudTrail Supported Services and Integrations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html)\. | June 4, 2019 | 
 | [Added service support](#cloudtrail-document-history) | This release supports Amazon AppStream 2\.0\. See [AWS CloudTrail Supported Services and Integrations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html)\. | April 25, 2019 | 

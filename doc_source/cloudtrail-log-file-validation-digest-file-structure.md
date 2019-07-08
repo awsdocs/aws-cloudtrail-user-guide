@@ -12,6 +12,15 @@ s3://s3-bucket-name/AWSLogs/aws-account-id/CloudTrail-Digest/
     aws-account-id_CloudTrail-Digest_region_trail-name_region_digest_end_timestamp.json.gz
 ```
 
+**Note**  
+For organization trails, the bucket location also includes the organization unit ID, as follows:  
+
+```
+s3://s3-bucket-name/AWSLogs/OU-ID/aws-account-id/CloudTrail-Digest/
+    region/digest-end-year/digest-end-month/digest-end-date/
+    aws-account-id_CloudTrail-Digest_region_trail-name_region_digest_end_timestamp.json.gz
+```
+
 ## Sample Digest File Contents<a name="cloudtrail-log-file-validation-digest-file-contents"></a>
 
 The following example digest file contains information for a CloudTrail log\.

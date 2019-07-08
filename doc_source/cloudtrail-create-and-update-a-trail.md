@@ -32,4 +32,4 @@ You can configure the following settings when you create or update a trail with 
 
 **Topics**
 + [Creating and Updating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)
-+ [Creating and Updating a Trail with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)
++ [Creating, Updating, and Managing Trails with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)

@@ -43,7 +43,9 @@ Additional charges apply for logging data events\. For CloudTrail pricing, see [
 
 ### Logging Data Events with the AWS Management Console<a name="logging-data-events-with-the-cloudtrail-console"></a>
 
-1. Navigate to the **Trails** page of the CloudTrail console and choose the trail\.
+1. Navigate to the **Trails** page of the CloudTrail console and choose **Create trail**\. 
+**Note**  
+While you can edit an existing trail to add logging data events, as a best practice, consider creating a separate trail specifically for logging data events\.
 
 1. For **Data events**, choose the pencil icon to enable editing\. 
 
@@ -67,9 +69,9 @@ If you configured data event logging for all S3 buckets in your AWS account, the
 
 1. For Lambda data events, on the **Lambda** tab:
 
-   1. To configure data event logging for individual Lambda functions, select them from the list\. If the trail applies to all regions, you can select from functions in all regions in your AWS account\. If the trail applies to only one region, you can only select from functions in that region\. For each trail, you can add up to 250 data resources, such as individual Lambda functions\. The overall total of individual data event resources cannot exceed 250 in a single trail\. That total includes other data resources, such as Amazon S3 bucket and object prefixes\. This restriction does not apply if you configure data event logging for all Lambda functions\.
+   1. To configure data event logging for individual Lambda functions, select them from the list\. If the trail applies to all AWS Regions, you can select from functions in all regions in your AWS account\. If the trail applies to only one region, you can only select from functions in that region\. For each trail, you can add up to 250 data resources, such as individual Lambda functions\. The total of individual data event resources cannot exceed 250 in a single trail\. That total includes other data resources, such as Amazon S3 bucket and object prefixes\. This restriction does not apply if you configure data event logging for all Lambda functions\.
 **Note**  
-If you have more than 15,000 Lambda functions in your account, you cannot view or select all functions in the CloudTrail console\. You can still select the option to log all Lambda functions\. You can also manually add a function if you know its ARN, or you can use the AWS CLI and the put\-event\-selectors command to configure specific data event logging for resources\. For more information, see [Managing Trails](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md#cloudtrail-additional-cli-commands)\.
+If you have more than 15,000 Lambda functions in your account, you cannot view or select all functions in the CloudTrail console\. You can still select the option to log all Lambda functions\. You can also manually add a function if you know its ARN, or you can use the AWS CLI and the put\-event\-selectors command to configure specific data event logging for resources\. For more information, see [Managing Trails With the AWS CLI](cloudtrail-additional-cli-commands.md)\.
 
    1. To configure data event logging for all Lambda functions in your AWS account, and any Lambda function you might create in the future, select **Log all current and future functions**\. If the trail applies to all regions, this will log all functions in all regions in your AWS account, including any you might create in any region\. If the trail applies to a single region, this will log all functions in the current region and any you might create in that region, but will not enable logging of functions in other regions\. Logging data events for all functions will also enable logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
 

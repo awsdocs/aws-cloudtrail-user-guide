@@ -1,4 +1,4 @@
-# Getting Started with CloudTrail<a name="cloudtrail-getting-started"></a>
+# Working with CloudTrail<a name="cloudtrail-getting-started"></a>
 
  CloudTrail is enabled by default for your AWS account\. You can use **Event history** in the CloudTrail console to view, search, download, archive, analyze, and respond to account activity across your AWS infrastructure\. This includes activity made through the AWS Management Console, AWS Command Line Interface, and AWS SDKs and APIs\.
 

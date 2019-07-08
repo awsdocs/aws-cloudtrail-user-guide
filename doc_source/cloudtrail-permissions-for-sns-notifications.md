@@ -1,10 +1,8 @@
 # Amazon SNS Topic Policy for CloudTrail<a name="cloudtrail-permissions-for-sns-notifications"></a>
 
-To send notifications to an SNS topic, CloudTrail must have the required permissions\. CloudTrail automatically attaches the required permissions to the topic when you do the following:
-+ Create an SNS topic as part of creating or updating a trail in the CloudTrail console\.
-+ Create an SNS topic with the AWS CLI `create-subscription` and `update-subscription` commands\.
+To send notifications to an SNS topic, CloudTrail must have the required permissions\. CloudTrail automatically attaches the required permissions to the topic when you create an Amazon SNS topic as part of creating or updating a trail in the CloudTrail console\.
 
-CloudTrail adds the following fields in the policy for you:
+CloudTrail adds the following statement to the policy for you with the following fields:
 + The allowed SIDs\.
 + The service principal name for CloudTrail\.
 + The SNS topic, including region, account ID, and topic name\.

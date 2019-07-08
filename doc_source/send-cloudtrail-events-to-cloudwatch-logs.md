@@ -3,6 +3,7 @@
 When you configure your trail to send events to CloudWatch Logs, CloudTrail sends only the events that match your trail settings\. For example, if you configure your trail to log data events only, your trail sends data events only to your CloudWatch Logs log group\. CloudTrail supports sending data and management events to CloudWatch Logs\. For more information, see [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)\.
 
 To send events to a CloudWatch Logs log group:
++ Make sure you have sufficient permissions to create or specify an IAM role\. For more information, see [Granting Permission to View and Configure Amazon CloudWatch Logs Information on the CloudTrail Console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
 + Create a new trail or specify an existing one\. For more information, see [Creating and Updating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)\.
 + Create a log group or specify an existing one\.
 + Specify an IAM role\. If you are modifying an existing IAM role for an organization trail, you must manually update the policy to allow logging for the organization trail\. For more information, see [this policy example](#policy-cwl-org) and [Creating a Trail for an Organization](creating-trail-organization.md)\.
@@ -29,6 +30,8 @@ You can use the AWS Management Console to configure your trail to send events to
 CloudTrail uses a CloudWatch Logs log group as a delivery endpoint for log events\. You can create a log group or specify an existing one\.
 
 **To create or specify a log group**
+
+1. Make sure you are logged in with an administrative IAM user or role with sufficient permissions to configure CloudWatch Logs integration\. For more information, see [Granting Permission to View and Configure Amazon CloudWatch Logs Information on the CloudTrail Console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
 
 1. Open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 

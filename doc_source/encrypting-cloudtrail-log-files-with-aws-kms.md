@@ -11,13 +11,13 @@ To use SSE\-KMS with CloudTrail, you create and manage a KMS key, also known as 
 +  You can create and manage the CMK encryption keys yourself\. 
 +  You can use a single CMK to encrypt and decrypt log files for multiple accounts across all regions\. 
 +  You have control over who can use your key for encrypting and decrypting CloudTrail log files\. You can assign permissions for the key to the users in your organization according to your requirements\. 
-+  You have enhanced security\. With this feature, in order to read log files, you now need to meet two conditions: 
-  + You must have S3 read permission on the bucket\. 
-  + You must be granted decrypt permission by the CMK policy\.
++  You have enhanced security\. With this feature, in order to read log files, the following permissions are required: 
+  + A user must have S3 read permissions for the bucket that contains the log files\. 
+  + A user must also have a policy or role applied that allows decrypt permissions by the CMK policy\.
 + Because S3 automatically decrypts the log files for requests from users authorized to use the CMK, SSE\-KMS encryption for CloudTrail log files is backward\-compatible with applications that read CloudTrail log data\. 
 
 **Note**  
-The key that you choose must be in the same region as the S3 bucket that receives your log files\. To verify the region for an S3 bucket, inspect its properties in the S3 console\. 
+The CMK that you choose must be created in the same AWS Region as the Amazon S3 bucket that receives your log files\. For example, if the log files will be stored in a bucket in the US East \(Ohio\) Region, you must create or choose a CMK that was created in that Region\. To verify the Region for an Amazon S3 bucket, inspect its properties in the Amazon S3 console\. 
 
 ## Enabling Log File Encryption<a name="encrypting-cloudtrail-log-files-with-aws-kms-enabling"></a>
 
@@ -33,9 +33,9 @@ To enable SSE\-KMS encryption for CloudTrail log files, perform the following hi
 The CMK that you choose must be in the same region as the S3 bucket that receives your log files\. To verify the region for an S3 bucket, inspect the bucket's properties in the S3 console\. 
 
 1. Add policy sections to the key that enable CloudTrail to encrypt and users to decrypt log files\. 
-   + For information about what to include in the policy, see [AWS KMS Key Policy for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\. 
+   + For information about what to include in the policy, see [Configure AWS KMS Key Policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\. 
 **Warning**  
-Be sure to include decrypt permissions in the policy for all users who need to read log files\. If you do not perform this step before adding the key to your trail configuration, users without decrypt permissions cannot read encrypted files\.
+Be sure to include decrypt permissions in the policy for all users who need to read log files\. If you do not perform this step before adding the key to your trail configuration, users without decrypt permissions cannot read encrypted files until you grant them those permissions\.
    + For information about editing a policy with the IAM console, see [Editing a Key Policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-editing) in the *AWS Key Management Service Developer Guide*\.
    + For information about attaching a policy to a CMK with the AWS CLI, see [put\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/put-key-policy.html)\.
 

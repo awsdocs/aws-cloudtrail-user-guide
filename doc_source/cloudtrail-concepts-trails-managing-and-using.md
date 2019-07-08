@@ -9,5 +9,4 @@
 **Topics**
 + [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)
 + [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)
-+ [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
 + [AWS KMS Alias Naming Requirements](KMS-key-naming-requirements.md)

@@ -8,7 +8,7 @@ This topic describes how to enable and disable SSE\-KMS log file encryption for 
 
 1. Get the existing key policy so that you can modify it for use with CloudTrail\. You can retrieve the key policy with the KMS [get\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/get-key-policy.html) command\. 
 
-1. Add the necessary sections to the key policy so that CloudTrail can encrypt and users can decrypt your log files\. Make sure that all users who will read the log files are granted decrypt permissions\. Do not modify any existing sections of the policy\. For information on the policy sections to include, see [AWS KMS Key Policy for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
+1. Add the necessary sections to the key policy so that CloudTrail can encrypt and users can decrypt your log files\. Make sure that all users who will read the log files are granted decrypt permissions\. Do not modify any existing sections of the policy\. For information on the policy sections to include, see [Configure AWS KMS Key Policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
 
 1. Attach the modified \.json policy file to the key by using the KMS [put\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/put-key-policy.html) command\.  
 

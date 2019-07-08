@@ -156,6 +156,6 @@ If **Link not available** appears in the column, the resource can't be viewed fo
 
 1. You can choose the icon to view the Bob\-admin IAM resource in the timeline\. However, you can't choose the icon for Bob\-user, because the resource name changed\. AWS Config is now recording the updated resource\.
 
-To grant users read\-only permission to view resources in the AWS Config console, see [Granting Permission to View AWS Config Information on the CloudTrail Console](grant-custom-permissions-for-cloudtrail-users.md#grant-aws-config-permissions-for-cloudtrail-users)\.
+To grant users read\-only permission to view resources in the AWS Config console, see [Granting Permission to View AWS Config Information on the CloudTrail Console](security_iam_id-based-policy-examples.md#grant-aws-config-permissions-for-cloudtrail-users)\.
 
 For more information about AWS Config, see the [AWS Config Developer Guide](https://docs.aws.amazon.com/config/latest/developerguide/)\.

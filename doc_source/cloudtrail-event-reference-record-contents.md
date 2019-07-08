@@ -6,7 +6,7 @@ The body of the record contains fields that help you determine the requested act
 The date and time the request was made, in coordinated universal time \(UTC\)\. 
 
 **`eventVersion`**  
-The version of the log event format\. The current version is 1\.06\.
+The version of the log event format\. The current version is 1\.05\.
 
 **`userIdentity`**  
 Information about the user that made a request\. For more information, see [CloudTrail userIdentity Element](cloudtrail-event-reference-user-identity.md)\. 
@@ -65,8 +65,8 @@ Support for this field begins with `eventVersion` ` 1.01`\.
 **`eventType`**  
 Identifies the type of event that generated the event record\. This can be the one of the following values:   
 + `AwsApiCall` – An API was called\. 
-+ `AwsServiceEvent` – The service generated an event related to your trail\. For example, this can occur when another account made a call with a resource that you own\. 
-+ `ConsoleSignin` – A user in your account \(root, IAM, federated, SAML, or SwitchRole\) signed in to the AWS Management Console\.
++ `[AwsServiceEvent](non-api-aws-service-events.md)` – The service generated an event related to your trail\. For example, this can occur when another account made a call with a resource that you own\. 
++ `[AwsConsoleSignin](cloudtrail-event-reference-aws-console-sign-in-events.md)` – A user in your account \(root, IAM, federated, SAML, or SwitchRole\) signed in to the AWS Management Console\.
 Support for this field begins with `eventVersion` ` 1.02`\. 
 
 **`apiVersion`**  
@@ -75,7 +75,7 @@ Support for this field begins with `eventVersion` ` 1.02`\.
 
 **`managementEvent`**  
 A Boolean value that identifies whether the event is a management event\.  
-Support for this field begins with `eventVersion` ` 1.06`\.
+Support for this field begins with `eventVersion` ` 1.05`\.
 
  **`readOnly`**   
 Identifies whether this operation is a read\-only operation\. This can be one of the following values:  

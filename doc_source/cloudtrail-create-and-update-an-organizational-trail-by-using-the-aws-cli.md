@@ -3,11 +3,14 @@
 You can create an organization trail by using the AWS CLI\. The AWS CLI is regularly updated with additional functionality and commands\. To help ensure success, make sure that you have installed or updated to a recent AWS CLI version before you begin\.
 
 **Note**  
-The examples in this section are specific to creating and updating organization trails\. For examples of using the AWS CLI to manage trails, see [Managing Trails](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md#cloudtrail-additional-cli-commands)\. When creating or updating an organization trail with the AWS CLI, you must use an AWS CLI profile in the master account with sufficient permissions\.
+The examples in this section are specific to creating and updating organization trails\. For examples of using the AWS CLI to manage trails, see [Managing Trails With the AWS CLI](cloudtrail-additional-cli-commands.md)\. When creating or updating an organization trail with the AWS CLI, you must use an AWS CLI profile in the master account with sufficient permissions\.  
+You must configure the Amazon S3 bucket used for an organization trail with sufficient permissions\. 
 
-## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="cloudtrail-create-organizational-trail-by-using-the-cli-bucket"></a>
+## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="w25aac10c19c29b7"></a>
 
-When creating an organization trail using the AWS CLI, you must specify an Amazon S3 bucket to receive the log files for the trail\. This bucket must have a policy that allows CloudTrail to put the log files for the organization into the bucket\. The following is an example policy for an Amazon S3 bucket named *my\-organization\-bucket* in an AWS account with the ID *111111111111* that is the master account for an organization with the ID *o\-exampleorgid* that will allow logging for an organization trail\. It also allows logging for the *111111111111* account in the event that the trail is changed from an organization trail to a trail for that account only\.
+You must specify an Amazon S3 bucket to receive the log files for an organization trail\. This bucket must have a policy that allows CloudTrail to put the log files for the organization into the bucket\.
+
+The following is an example policy for an Amazon S3 bucket named *my\-organization\-bucket*\. This bucket is in an AWS account with the ID *111111111111*, which is the master account for an organization with the ID *o\-exampleorgid* that allows logging for an organization trail\. It also allows logging for the *111111111111* account in the event that the trail is changed from an organization trail to a trail for that account only\.
 
 ```
 {
@@ -60,7 +63,7 @@ When creating an organization trail using the AWS CLI, you must specify an Amazo
 }
 ```
 
-This example policy does not allow any users from member accounts to access the log files created for the organization\. By default, organization log files will be accessible only to the master account\. For information about how to allow read access to the Amazon S3 bucket for IAM users in member accounts, see [Sharing CloudTrail Log Files Between AWS Accounts](cloudtrail-sharing-logs.md)\.
+This example policy does not allow any users from member accounts to access the log files created for the organization\. By default, organization log files are accessible only to the master account\. For information about how to allow read access to the Amazon S3 bucket for IAM users in member accounts, see [Sharing CloudTrail Log Files Between AWS Accounts](cloudtrail-sharing-logs.md)\.
 
 ## Enabling CloudTrail as a trusted service in AWS Organizations<a name="cloudtrail-create-organization-trail-by-using-the-cli-enable-trusted-service"></a>
 
@@ -108,7 +111,7 @@ To confirm that your trail exists in all regions, the `IsOrganizationTrail` and 
 ```
 
 **Note**  
-Use the `start-logging` command to start logging for your trail\. For more information, see [Stopping and starting logging for a trail](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md#cloudtrail-start-stop-logging-cli-commands)\.
+Use the `start-logging` command to start logging for your trail\. For more information, see [Stopping and starting logging for a trail](cloudtrail-additional-cli-commands.md#cloudtrail-start-stop-logging-cli-commands)\.
 
 ### Creating an organization trail as a single\-region trail<a name="cloudtrail-create-organization-trail-by-using-the-cli-single"></a>
 
@@ -144,7 +147,7 @@ Use the `start-logging` command to start logging for your trail\.
 You can use the `update-trail` command to change the configuration settings for an organization trail, or to apply an existing trail for a single AWS account to an entire organization\. When doing so, remember that you can run the `update-trail` command only from the region in which the trail was created\.
 
 **Note**  
-If you use the AWS CLI or one of the AWS SDKs to modify a trail, be sure that the trail's bucket policy is up\-to\-date\. For more information, see [Create or update an Amazon S3 bucket to use to store the log files for an organization trail](#cloudtrail-create-organizational-trail-by-using-the-cli-bucket)\.  
+If you use the AWS CLI or one of the AWS SDKs to modify a trail, be sure that the trail's bucket policy is up\-to\-date\. For more information, see [Creating a Trail for an Organization with the AWS Command Line Interface](#cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli)\.  
 When creating or updating an organization trail with the AWS CLI, you must use an AWS CLI profile in the master account with sufficient permissions\.
 
 ### Applying an existing trail to an organization<a name="cloudtrail-update-organization-trail-by-using-the-cli-apply-org"></a>

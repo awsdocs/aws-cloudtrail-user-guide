@@ -14,6 +14,5 @@ You can perform more advanced tasks with your CloudTrail files\.
 + [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)
 + [Receiving CloudTrail Log Files from Multiple Accounts](cloudtrail-receive-logs-from-multiple-accounts.md)
 + [Sharing CloudTrail Log Files Between AWS Accounts](cloudtrail-sharing-logs.md)
-+ [Encrypting CloudTrail Log Files with AWS KMS–Managed Keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)
 + [Validating CloudTrail Log File Integrity](cloudtrail-log-file-validation-intro.md)
 + [Using the CloudTrail Processing Library](use-the-cloudtrail-processing-library.md)

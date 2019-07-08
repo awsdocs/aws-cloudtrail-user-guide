@@ -22,7 +22,7 @@ You can use resource\-level permissions to manage a user's ability to perform sp
 
 For example, you might grant one user permission to view trail activity, but restrict the user from starting or stopping logging for a trail\. You might grant another user full permission to create and delete trails\. This gives you granular control over your trails and user access\.
 
-For more information about resource\-level permissions, see [Controlling User Permissions for Actions on Specific Trails](grant-custom-permissions-for-cloudtrail-users.md#grant-custom-permissions-for-cloudtrail-users-resource-level)\. 
+For more information about resource\-level permissions, see [Examples: Creating and Applying Policies for Actions on Specific Trails](security_iam_id-based-policy-examples.md#grant-custom-permissions-for-cloudtrail-users-resource-level)\. 
 
 For more information about multiple trails, see the following resources:
 + [How Does CloudTrail Behave Regionally and Globally?](cloudtrail-concepts.md#cloudtrail-concepts-regional-and-global-services)

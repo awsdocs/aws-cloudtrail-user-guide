@@ -30,34 +30,31 @@ In about 15 minutes, CloudTrail starts publishing log files that show the AWS ca
 
 You can use the AWS command line tools to turn on CloudTrail in additional accounts and aggregate their log files to one Amazon S3 bucket\. For more information about these tools, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\. 
 
-Turn on CloudTrail in your additional accounts by using the `create-subscription` command\. Use the following options to specify additional settings:
+Turn on CloudTrail in your additional accounts by using the `create-trail` command, specifying the following:
 + `--name` specifies the name of the trail\. 
-+ `--s3-use-bucket` specifies the existing Amazon S3 bucket, created when you turned on CloudTrail in your first account \(111111111111 in this example\)\. 
++ `--s3-bucket-name` specifies the existing Amazon S3 bucket you created when you turned on CloudTrail in your first account \(111111111111 in this example\)\. 
 + `--s3-prefix` specifies a prefix for the log file delivery path \(optional\)\.
-+ `--sns-new-topic` specifies the name of the Amazon SNS topic to which you can subscribe for notification of log file delivery to your bucket \(optional\)\. 
++ `--is-multi-region-trail` specifies that this trail will log events in all AWS Regions\. 
 
 In contrast to trails that you create using the console, you must give every trail you create with the AWS CLI a name\. You can create one trail for each region in which an account is running AWS resources\. 
 
-The following example command shows how to create a trail for your additional accounts by using the AWS CLI\. To have log files for these account delivered to the bucket you created in your first account \(111111111111 in this example\), specify the bucket name in the `--s3-new-bucket` option\. Amazon S3 bucket names are globally unique\. 
+The following example command shows how to create a trail for your additional accounts by using the AWS CLI\. To have log files for these account delivered to the bucket you created in your first account \(111111111111 in this example\), specify the bucket name in the `--s3-bucket-name` option\. Amazon S3 bucket names are globally unique\. 
 
 ```
-aws cloudtrail create-subscription --name AWSCloudTrailExample --s3-use-bucket MyBucketBelongingToAccount111111111111 --s3-prefix AWSCloudTrailPrefixExample --sns-new-topic AWSCloudTrailLogDeliveryTopicExample
+aws cloudtrail create-trail --name my-trail --s3-bucket-name my-bucket --is-multi-region-trail
 ```
 
 When you run the command, you will see output similar to the following:
 
 ```
-CloudTrail configuration:
 {
-  "trailList": [
-    {
-      "S3KeyPrefix": "AWSCloudTrailPrefixExample",
-      "IncludeGlobalServiceEvents": true,
-      "Name": "AWSCloudTrailExample",
-      "SnsTopicName": "AWSCloudTrailLogDeliveryTopicExample",
-      "S3BucketName": "MyBucketBelongingToAccount111111111111"
-    }
-  ]
+    "IncludeGlobalServiceEvents": true, 
+    "Name": "AWSCloudTrailExample", 
+    "TrailARN": "arn:aws:cloudtrail:us-east-2:222222222222:trail/my-trail", 
+    "LogFileValidationEnabled": false, 
+    "IsMultiRegionTrail": true, 
+    "IsOrganizationTrail": false,
+    "S3BucketName": "MyBucketBelongingToAccount111111111111"
 }
 ```
 
