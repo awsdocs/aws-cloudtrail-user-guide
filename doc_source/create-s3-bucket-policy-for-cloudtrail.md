@@ -42,7 +42,7 @@ The following policy allows CloudTrail to write log files to the bucket from sup
 **Contents**
 + [Specifying an Existing Bucket for CloudTrail Log Delivery](#specify-an-existing-bucket-for-cloudtrail-log-delivery)
 + [Receiving Log Files from Other Accounts](#aggregration-option)
-+ [Create or update an Amazon S3 bucket to use to store the log files for an organization trail](#w25aac15c21c31c41)
++ [Create or update an Amazon S3 bucket to use to store the log files for an organization trail](#w37aac15c21c31c41)
 + [Troubleshooting the S3 Bucket Policy](#troubleshooting-s3-bucket-policy)
   + [Common S3 Policy Configuration Errors](#s3-bucket-policy-for-multiple-regions)
   + [Changing a Prefix for an Existing Bucket](#cloudtrail-add-change-or-remove-a-bucket-prefix)
@@ -73,7 +73,7 @@ If the existing bucket already has one or more policies attached, add the statem
 
 You can configure CloudTrail to deliver log files from multiple AWS accounts to a single S3 bucket\. For more information, see [Receiving CloudTrail Log Files from Multiple Accounts](cloudtrail-receive-logs-from-multiple-accounts.md)\.
 
-## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="w25aac15c21c31c41"></a>
+## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="w37aac15c21c31c41"></a>
 
 You must specify an Amazon S3 bucket to receive the log files for an organization trail\. This bucket must have a policy that allows CloudTrail to put the log files for the organization into the bucket\.
 

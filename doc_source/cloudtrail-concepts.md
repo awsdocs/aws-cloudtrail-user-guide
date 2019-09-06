@@ -35,7 +35,7 @@ An event in CloudTrail is the record of an activity in an AWS account\. This act
 Both management events and data events use the same CloudTrail JSON log format\. 
 
 **Note**  
-CloudTrail does not log all AWS services\. Some AWS services do not enable logging of all APIs and events\. Even if you configure logging all management and data events in a trail, you will not create a log with all possible AWS events\. For more information about unsupported services, see [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)\. For details about which APIs are logged for a specific service, see documentation for that service in [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
+CloudTrail does not log all AWS services\. Some AWS services do not enable logging of all APIs and events\. Even if you configure logging all management and data events in a trail, you will not create a log with all possible AWS events\. For details about which APIs are logged for a specific service, see documentation for that service in [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 ### What Are Management Events?<a name="cloudtrail-concepts-management-events"></a>
 

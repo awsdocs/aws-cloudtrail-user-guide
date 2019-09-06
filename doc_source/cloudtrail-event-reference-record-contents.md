@@ -35,7 +35,7 @@ The agent through which the request was made, such as the AWS Management Console
 + `aws-sdk-java` – The request was made with the AWS SDK for Java\. 
 + `aws-sdk-ruby` – The request was made with the AWS SDK for Ruby\. 
 + `aws-cli/1.3.23 Python/2.7.6 Linux/2.6.18-164.el5` – The request was made with the AWS CLI installed on Linux\. 
-For events originated by AWS, this field is usually `aws-internal/#` where `#` is a number used for internal purposes\.
+For events originated by AWS, this field is usually `AWS Internal/#`, where `#` is a number used for internal purposes\.
 
 **`errorCode`**  
 The AWS service error if the request returns an error\. 

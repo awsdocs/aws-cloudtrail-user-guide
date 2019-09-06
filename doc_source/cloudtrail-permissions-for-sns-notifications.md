@@ -65,7 +65,7 @@ You can manually add the permissions for an Amazon SNS topic to your topic polic
 
 **To manually update an SNS topic policy**
 
-1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
 1. Choose **Topics** and then choose the topic\.
 

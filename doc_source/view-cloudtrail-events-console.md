@@ -2,7 +2,7 @@
 
 You can use the CloudTrail console to view the last 90 days of recorded API activity and events in an AWS Region\. You can also download a file with that information, or a subset of information based on the filter and time range you choose\. You can customize your view of **Event history** by selecting which columns are displayed in the console\. You can also look up and filter events by the resource types available for a particular service\.
 
-CloudTrail logging varies between AWS services\. While most AWS services support CloudTrail logging of all events, some services only support logging a subset of APIs and events, and a few services are unsupported\. You can learn more about the specifics of how CloudTrail logs events for a specific service by consulting the documentation for that service\. For more information, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md) and [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)\.
+CloudTrail logging varies between AWS services\. While most AWS services support CloudTrail logging of all events, some services only support logging a subset of APIs and events, and a few services are unsupported\. You can learn more about the specifics of how CloudTrail logs events for a specific service by consulting the documentation for that service\. For more information, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 **Note**  
 For an ongoing record of activity and events, [create a trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\. Creating a trail also enables you to take advantage of the following integrations:  

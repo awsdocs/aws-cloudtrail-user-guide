@@ -24,6 +24,7 @@
 | EU \(Ireland\) | eu\-west\-1 | cloudtrail\.eu\-west\-1\.amazonaws\.com | HTTPS | 859597730677 | 05/13/2014 | 
 | EU \(London\) | eu\-west\-2 | cloudtrail\.eu\-west\-2\.amazonaws\.com | HTTPS | 282025262664 | 12/13/2016 | 
 | EU \(Paris\) | eu\-west\-3 | cloudtrail\.eu\-west\-3\.amazonaws\.com | HTTPS | 262312530599  | 12/18/2017 | 
+| Middle East \(Bahrain\) | me\-south\-1 | cloudtrail\.me\-south\-1\.amazonaws\.com | HTTPS | 034638983726 | 07/29/2019 | 
 | AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | cloudtrail\.us\-gov\-east\-1\.amazonaws\.com | HTTPS | 886388586500  | 11/12/2018 | 
 | AWS GovCloud \(US\-West\) | us\-gov\-west\-1 | cloudtrail\.us\-gov\-west\-1\.amazonaws\.com | HTTPS | 608710470296  | 08/16/2011 | 
 | South America \(São Paulo\) | sa\-east\-1 | cloudtrail\.sa\-east\-1\.amazonaws\.com | HTTPS | 814480443879 | 06/30/2014 | 
