@@ -48,4 +48,6 @@ An AWS account ID is a twelve\-digit number, and leading zeros must not be omitt
        }
      ]
    }
+   
+   1. Optional restrict access to the bucket to either a specific AWS Organization or Account by utilizing the Condition Context Key [aws:PrincipalOrgID](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#principal-org-id) or [`aws:SourceAccount`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount)
    ```
