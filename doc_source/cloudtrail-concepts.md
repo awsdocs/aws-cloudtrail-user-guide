@@ -18,7 +18,7 @@ This section summarizes basic concepts related to CloudTrail\.
 + [How Do You Control Access to CloudTrail?](#cloudtrail-concepts-iam)
 + [How Do You Log Management and Data Events?](#understanding-event-selectors)
 + [How Do You Perform Monitoring with CloudTrail?](#cloudtrail-concepts-monitoring)
-  + [CloudWatch Logs, Amazon CloudWatch Events, and CloudTrail](#cloudtrail-concepts-cloudwatch-logs)
+  + [CloudWatch Logs, CloudWatch Events, and CloudTrail](#cloudtrail-concepts-cloudwatch-logs)
 + [How Does CloudTrail Behave Regionally and Globally?](#cloudtrail-concepts-regional-and-global-services)
   + [What Are the Advantages of Applying a Trail to All Regions?](#cloudtrail-concepts-trails-enable-all-regions-advantages)
   + [What Happens When You Apply a Trail to All Regions?](#cloudtrail-concepts-trails-enable-all-regions)
@@ -117,7 +117,7 @@ By default, trails log all management events for your AWS account and don't incl
 
 ## How Do You Perform Monitoring with CloudTrail?<a name="cloudtrail-concepts-monitoring"></a>
 
-### CloudWatch Logs, Amazon CloudWatch Events, and CloudTrail<a name="cloudtrail-concepts-cloudwatch-logs"></a>
+### CloudWatch Logs, CloudWatch Events, and CloudTrail<a name="cloudtrail-concepts-cloudwatch-logs"></a>
 
 Amazon CloudWatch is a web service that collects and tracks metrics to monitor your Amazon Web Services \(AWS\) resources and the applications that you run on AWS\. Amazon CloudWatch Logs is a feature of CloudWatch that you can use specifically to monitor log data\. Integration with CloudWatch Logs enables CloudTrail to send events containing API activity in your AWS account to a CloudWatch Logs log group\. CloudTrail events that are sent to CloudWatch Logs can trigger alarms according to the metric filters you define\. You can optionally configure CloudWatch alarms to send notifications or make changes to the resources that you are monitoring based on log stream events that your metric filters extract\. Using CloudWatch Logs, you can also track CloudTrail events alongside events from the operating system, applications, or other AWS services that are sent to CloudWatch Logs\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 

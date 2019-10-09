@@ -34,7 +34,7 @@ The following example policy document contains the permissions required to creat
 }
 ```
 
-If you're creating a policy that might be used for organization trails as well, you will need to modify it from the default policy created for the role\. For example, the following policy grants CloudTrail the permissions required to create a CloudWatch Logs log stream in the log group you specify and to deliver CloudTrail events to that log stream for both trails in the AWS account 111111111111 and for organization trails created in the 111111111111 account that are applied to the AWS Organizations organization with the ID of *o\-exampleorgid*:
+If you're creating a policy that might be used for organization trails as well, you will need to modify it from the default policy created for the role\. For example, the following policy grants CloudTrail the permissions required to create a CloudWatch Logs log stream in the log group you specify as the value of *log\_group\_name*, and to deliver CloudTrail events to that log stream for both trails in the AWS account 111111111111 and for organization trails created in the 111111111111 account that are applied to the AWS Organizations organization with the ID of *o\-exampleorgid*:
 
 ```
 {
@@ -47,8 +47,8 @@ If you're creating a policy that might be used for organization trails as well, 
                 "logs:CreateLogStream"
             ],
             "Resource": [
-                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:111111111111_CloudTrail_us-east-2*",
-                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:o-exampleorgid_*",
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/log_group_name:log-stream:111111111111_CloudTrail_us-east-2*",
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/log_group_name:log-stream:o-exampleorgid_*"
             ]
         },
         {
@@ -58,8 +58,8 @@ If you're creating a policy that might be used for organization trails as well, 
                 "logs:PutLogEvents"
             ],
             "Resource": [
-                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:111111111111_CloudTrail_us-east-2*",             
-                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:o-exampleorgid_*",
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/log_group_name:log-stream:111111111111_CloudTrail_us-east-2*",             
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/log_group_name:log-stream:o-exampleorgid_*"
             ]
         }
     ]

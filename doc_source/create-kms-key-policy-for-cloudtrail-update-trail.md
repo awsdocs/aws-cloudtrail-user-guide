@@ -15,15 +15,13 @@ To update a trail using the AWS CLI, see [Enabling and disabling CloudTrail log 
 
 1. For **Storage location**, choose the pencil icon\.
 
-1. Choose **Advanced**\. 
-
-1. For **Encrypt log files**, choose **Yes** to have CloudTrail encrypt your log files with the CMK\. 
+1. For **Encrypt log files with SSE\-KMS**, choose **Yes** to have CloudTrail encrypt your log files with the CMK\.
 
 1. For **Create a new KMS key**, choose **No**\.
 
 1. For **KMS key**, choose the CMK alias whose policy you modified for use with CloudTrail\.
 **Note**  
-Choose a CMK that is in the same region as the S3 bucket that receives your log files\. To verify the region for an S3 bucket, inspect its properties in the S3 console\.
+Choose a CMK that is in the same region as the S3 bucket that receives your log files\. To verify the region for an S3 bucket, view its properties in the S3 console\.
 
    You can type the alias name, ARN, or the globally unique key ID\. If the CMK belongs to another account, verify that the key policy has permissions that enable you to use it\. The value can be one of the following formats:
    + **Alias Name**: `alias/MyAliasName`

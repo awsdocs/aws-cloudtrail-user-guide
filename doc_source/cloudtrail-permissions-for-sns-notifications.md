@@ -132,7 +132,7 @@ This gives CloudTrail permission to send notifications for current and new regio
         "Effect": "Allow",
         "Principal": {Service": "cloudtrail.amazonaws.com"},
         "Action": "SNS:Publish",
-        "Resource": arn:aws:sns:us-east-1:123456789012:myTopic"
+        "Resource": arn:aws:sns:us-west-2:123456789012:myTopic"
     }]
 }
 ```

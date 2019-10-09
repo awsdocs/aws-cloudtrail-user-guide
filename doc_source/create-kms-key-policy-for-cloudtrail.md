@@ -189,7 +189,7 @@ Alice's IAM user policy statement:
     {
       "Effect": "Allow",
       "Action": "kms:Decrypt",
-      "Resource": "arn:aws:kms:us-east-1:111111111111:key/keyA"
+      "Resource": "arn:aws:kms:us-west-2:111111111111:key/keyA"
     }
   ]
 }

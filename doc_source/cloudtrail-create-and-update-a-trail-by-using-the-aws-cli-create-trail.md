@@ -37,7 +37,7 @@ Use the `start-logging` command to start logging for your trail\.
 After the `create-trail` command completes, run the `start-logging` command to start logging for that trail\.
 
 **Note**  
-When you create a trail with the CloudTrail console or the `create-subscription` command, logging is turned on automatically\.
+When you create a trail with the CloudTrail console, logging is turned on automatically\.
 
 The following example starts logging for a trail\.
 

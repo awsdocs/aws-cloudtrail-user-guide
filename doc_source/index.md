@@ -21,6 +21,7 @@ Amazon's trademarks and trade dress may not be used in
    + [CloudTrail Supported Regions](cloudtrail-supported-regions.md)
    + [CloudTrail Log File Examples](cloudtrail-log-file-examples.md)
    + [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)
+      + [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)
    + [Limits in AWS CloudTrail](WhatIsCloudTrail-Limits.md)
 + [Getting Started with AWS CloudTrail Tutorial](cloudtrail-tutorial.md)
 + [Working with CloudTrail](cloudtrail-getting-started.md)

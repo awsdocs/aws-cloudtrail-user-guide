@@ -2,10 +2,11 @@
 
 The following table describes the important changes to the documentation for AWS CloudTrail\. For notification about updates to this documentation, you can subscribe to an RSS feed\.
 + **API version**: 2013\-11\-01
-+ **Latest documentation update**: August 13, 2019
++ **Latest documentation update**: October 7, 2019
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Documentation update](#cloudtrail-document-history) | The documentation has been updated with changes to the `AWSCloudTrailFullAccess` policy\. A policy example that shows equivalent permissions to `AWSCloudTrailFullAccess` has been updated to restrict the resources on which the `iam:PassRole` action can act to those matching the following condition statement: `"iam:PassedToService": "cloudtrail.amazonaws.com"`\. See [AWS CloudTrail Identity\-Based Policy Examples](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/security_iam_id-based-policy-examples.html#grant-custom-permissions-for-cloudtrail-users-full-access)\. | September 24, 2019 | 
 | [Documentation update](#cloudtrail-document-history) | The documentation has been updated with a new topic, [Managing CloudTrail Costs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-manage-costs.html), to help you get the log data you need out of CloudTrail while staying within a budget\. | September 3, 2019 | 
 | [Added service support](#cloudtrail-document-history) | This release supports AWS Control Tower\. See [AWS CloudTrail Supported Services and Integrations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html)\. | August 13, 2019 | 
 | [Added region support](#cloudtrail-document-history) | This release supports an additional region: Middle East \(Bahrain\)\. See [AWS CloudTrail Supported Regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-supported-regions.html)\.  | July 29, 2019 | 
