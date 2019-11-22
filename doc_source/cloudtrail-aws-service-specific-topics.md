@@ -38,6 +38,7 @@ You can learn more about how the events for individual AWS services are recorded
 | Amazon API Gateway | [Log API management calls to Amazon API Gateway Using AWS CloudTrail](https://docs.aws.amazon.com/apigateway/latest/developerguide/cloudtrail.html) | 07/09/2015 | 
 | Application Auto Scaling | [Logging Application Auto Scaling API calls with AWS CloudTrail](https://docs.aws.amazon.com/autoscaling/application/APIReference/logging-using-cloudtrail.html) | 10/31/2016 | 
 | AWS Application Discovery Service | [Application Discovery Service API Reference](https://docs.aws.amazon.com/application-discovery/latest/APIReference/) | 05/12/2016 | 
+| AWS App Mesh | [Logging App Mesh API Calls with AWS CloudTrail](https://docs.aws.amazon.com/app-mesh/latest/userguide/logging-using-cloudtrail.html) |  | 
 | Amazon AppStream 2\.0 | [Logging Amazon AppStream 2\.0 API Calls with AWS CloudTrail](https://docs.aws.amazon.com/appstream2/latest/developerguide/logging-using-cloudtrail.html) | 04/25/2019 | 
 | AWS AppSync | [Logging AWS AppSync API Calls with AWS CloudTrail](https://docs.aws.amazon.com/appsync/latest/devguide/cloudtrail-logging.html) | 02/13/2018 | 
 | Amazon Athena | [Logging Amazon Athena API Calls with AWS CloudTrail](https://docs.aws.amazon.com/athena/latest/ug/monitor-with-cloudtrail.html) | 05/19/2017 | 
@@ -62,8 +63,9 @@ You can learn more about how the events for individual AWS services are recorded
 | AWS CodeBuild | [Logging AWS CodeBuild API Calls with AWS CloudTrail](https://docs.aws.amazon.com/codebuild/latest/userguide/cloudtrail.html) | 12/01/2016 | 
 | AWS CodeCommit | [Logging AWS CodeCommit API Calls with AWS CloudTrail](https://docs.aws.amazon.com/codecommit/latest/userguide/integ-cloudtrail.html) | 01/11/2017 | 
 | AWS CodeDeploy | [Monitoring Deployments with AWS CloudTrail](https://docs.aws.amazon.com/codedeploy/latest/userguide/cloudtrail-integ.html) | 12/16/2014 | 
-| CodePipeline | [Logging CodePipeline API Calls By Using AWS CloudTrail](https://docs.aws.amazon.com/codepipeline/latest/userguide/integ-cloudtrail.html) | 07/09/2015 | 
+| AWS CodePipeline | [Logging CodePipeline API Calls By Using AWS CloudTrail](https://docs.aws.amazon.com/codepipeline/latest/userguide/integ-cloudtrail.html) | 07/09/2015 | 
 | AWS CodeStar | [Logging AWS CodeStar API Calls with AWS CloudTrail](https://docs.aws.amazon.com/codestar/latest/userguide/logging-using-cloudtrail.html) | 06/14/2017 | 
+| AWS CodeStar Notifications | [Logging AWS CodeStar Notifications API Calls with AWS CloudTrail](https://docs.aws.amazon.com/codestar-notifications/latest/userguide/logging-using-cloudtrail.html) | 11/05/2019 | 
 | Amazon Cognito | [Logging Amazon Cognito API Calls with AWS CloudTrail](https://docs.aws.amazon.com/cognito/latest/developerguide/logging-using-cloudtrail.html) | 02/18/2016 | 
 | Amazon Comprehend | [Logging Amazon Comprehend API Calls with AWS CloudTrail](https://docs.aws.amazon.com/comprehend/latest/dg/logging-using-cloudtrail.html) | 01/17/2018 | 
 | AWS Config | [Logging AWS Config API Calls By with AWS CloudTrail](https://docs.aws.amazon.com/config/latest/developerguide/log-api-calls.html) | 02/10/2015 | 
@@ -127,7 +129,7 @@ You can learn more about how the events for individual AWS services are recorded
 | Amazon Lightsail | [Logging Lightsail API Calls with AWS CloudTrail](https://lightsail.aws.amazon.com/ls/docs/how-to/article/logging-lightsail-api-calls-using-aws-cloudtrail) | 12/23/2016 | 
 | Amazon Machine Learning |  [Logging Amazon ML API Calls By Using AWS CloudTrail](https://docs.aws.amazon.com/machine-learning/latest/dg/logging-using-cloudtrail.html)  | 12/10/2015 | 
 | AWS Managed Services  | [AWS Managed Services](https://aws.amazon.com/managed-services) | 12/21/2016 | 
-| Amazon Managed Streaming for Kafka | [Logging Amazon MSK API Calls with AWS CloudTrail](https://docs.aws.amazon.com/msk/latest/developerguide/logging-using-cloudtrail.html) | 12/11/2018 | 
+| Amazon Managed Streaming for Apache Kafka | [Logging Amazon MSK API Calls with AWS CloudTrail](https://docs.aws.amazon.com/msk/latest/developerguide/logging-using-cloudtrail.html) | 12/11/2018 | 
 | AWS Marketplace | [Logging AWS Marketplace API Calls with AWS CloudTrail](https://docs.aws.amazon.com/marketplace/latest/userguide/logging-aws-marketplace-api-calls-with-aws-cloudtrail.html) | 05/02/2017 | 
 | AWS Marketplace Metering Service | [Logging AWS Marketplace API Calls with AWS CloudTrail](https://docs.aws.amazon.com/marketplace/latest/userguide/logging-aws-marketplace-api-calls-with-aws-cloudtrail.html) | 08/22/2018 | 
 | AWS Migration Hub  | [Logging AWS Migration Hub API Calls with AWS CloudTrail](https://docs.aws.amazon.com/migrationhub/latest/ug/logging-using-cloudtrail.html) | 08/14/2017 | 
@@ -178,6 +180,7 @@ You can learn more about how the events for individual AWS services are recorded
 | Amazon Textract | [Logging Amazon Textract API Calls with AWS CloudTrail](https://docs.aws.amazon.com/textract/latest/dg/logging-using-cloudtrail.html) | 05/29/2019 | 
 | Amazon Transcribe | [Logging Amazon Transcribe API Calls with AWS CloudTrail](https://docs.aws.amazon.com/transcribe/latest/dg/monitoring-transcribe-cloud-trail.html) | 06/28/2018 | 
 | AWS Transfer for SFTP | [Logging AWS Transfer for SFTP API Calls with AWS CloudTrail](https://docs.aws.amazon.com/transfer/latest/userguide/logging-using-cloudtrail.html) | 01/08/2019 | 
+| Amazon Translate | [Logging Amazon Translate API Calls with AWS CloudTrail](https://docs.aws.amazon.com/translate/latest/dg/logging-using-cloudtrail.html) | 04/04/2018 | 
 | AWS Transit Gateway | [Logging API Calls for Your Transit Gateway Using AWS CloudTrail](https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-cloudtrail-logs.html) | 11/26/2018 | 
 | Amazon Virtual Private Cloud \(Amazon VPC\) |  [Logging API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/using-cloudtrail.html) The Amazon VPC API is a subset of the Amazon EC2 API\.   | 11/13/2013 | 
 | AWS WAF | [Logging AWS WAF API Calls with AWS CloudTrail](https://docs.aws.amazon.com/waf/latest/developerguide/logging-using-cloudtrail.html) | 04/28/2016 | 

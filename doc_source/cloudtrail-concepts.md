@@ -6,6 +6,7 @@ This section summarizes basic concepts related to CloudTrail\.
 + [What Are CloudTrail Events?](#cloudtrail-concepts-events)
   + [What Are Management Events?](#cloudtrail-concepts-management-events)
   + [What Are Data Events?](#cloudtrail-concepts-data-events)
+  + [What Are Insights Events?](#cloudtrail-concepts-insights-events)
 + [What Is CloudTrail Event History?](#cloudtrail-concepts-event-history)
 + [What Are Trails?](#cloudtrail-concepts-trails)
 + [What Are Organization Trails?](#cloudtrail-concepts-trails-org)
@@ -17,6 +18,7 @@ This section summarizes basic concepts related to CloudTrail\.
   + [Why Use Tags For Trails?](#cloudtrail-concepts-tags)
 + [How Do You Control Access to CloudTrail?](#cloudtrail-concepts-iam)
 + [How Do You Log Management and Data Events?](#understanding-event-selectors)
++ [How Do You Log CloudTrail Insights Events?](#understanding-insight-selectors)
 + [How Do You Perform Monitoring with CloudTrail?](#cloudtrail-concepts-monitoring)
   + [CloudWatch Logs, CloudWatch Events, and CloudTrail](#cloudtrail-concepts-cloudwatch-logs)
 + [How Does CloudTrail Behave Regionally and Globally?](#cloudtrail-concepts-regional-and-global-services)
@@ -39,7 +41,7 @@ CloudTrail does not log all AWS services\. Some AWS services do not enable loggi
 
 ### What Are Management Events?<a name="cloudtrail-concepts-management-events"></a>
 
-Management events provide insight into management operations that are performed on resources in your AWS account\. These are also known as *control plane operations*\. Example management events include:
+Management events provide information about management operations that are performed on resources in your AWS account\. These are also known as *control plane operations*\. Example management events include:
 + Configuring security \(for example, IAM `AttachRolePolicy` API operations\)\.
 + Registering devices \(for example, Amazon EC2 `CreateDefaultVpc` API operations\)\.
 + Configuring rules for routing data \(for example, Amazon EC2 `CreateSubnet` API operations\)\.
@@ -49,13 +51,25 @@ Management events can also include non\-API events that occur in your account\. 
 
 ### What Are Data Events?<a name="cloudtrail-concepts-data-events"></a>
 
-Data events provide insight into the resource operations performed on or in a resource\. These are also known as *data plane operations*\. Data events are often high\-volume activities\. Example data events include:
+Data events provide information about the resource operations performed on or in a resource\. These are also known as *data plane operations*\. Data events are often high\-volume activities\. Example data events include:
 +  Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\)\.
 + AWS Lambda function execution activity \(the `Invoke` API\)\.
 
- Data events are disabled by default when you create a trail\. To record CloudTrail data events, you must explicitly add to a trail the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
+ Data events are disabled by default when you create a trail\. To record CloudTrail data events, you must explicitly add to a trail the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data Events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 
 Additional charges apply for logging data events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
+
+### What Are Insights Events?<a name="cloudtrail-concepts-insights-events"></a>
+
+CloudTrail Insights events capture unusual activity in your AWS account\. If you have Insights events enabled, and CloudTrail detects unusual activity, Insights events are logged to a different folder or prefix in the destination S3 bucket for your trail\. You can also see the type of insight and the incident time period when you view Insights events on the CloudTrail console\. Insights events provide relevant information such as the associated API, incident time, and statistics that help you understand and act on unusual activity\. Unlike other types of events captured in a CloudTrail trail, Insights events are logged only when CloudTrail detects changes in your account's API usage that differ significantly from the account's typical usage patterns\. Examples of activity that might generate Insights events include:
++ Your account typically logs no more than 20 Amazon S3 `deleteBucket` API calls per minute, but your account starts to log an average of 100 `deleteBucket` API calls per minute\. An Insights event is logged at the start of the unusual activity, and another Insights event is logged to mark the end of the unusual activity\.
++ Your account typically logs 20 calls per minute to the Amazon EC2 `AuthorizeSecurityGroupIngress` API, but your account starts to log zero calls to `AuthorizeSecurityGroupIngress`\. An Insights event is logged at the start of the unusual activity, and ten minutes later, when the unusual activity ends, another Insights event is logged to mark the end of the unusual activity\.
+
+These examples are provided for illustration purposes only\. Your results may vary depending on your use case\.
+
+Insights events are disabled by default when you create a trail\. To record CloudTrail Insights events, you must explicitly enable Insights event collection on a new or existing trail\. For more information, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\.
+
+Additional charges apply for logging Insights events events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
 ## What Is CloudTrail Event History?<a name="cloudtrail-concepts-event-history"></a>
 
@@ -113,7 +127,11 @@ AWS Identity and Access Management is a web service that enables Amazon Web Serv
 
 ## How Do You Log Management and Data Events?<a name="understanding-event-selectors"></a>
 
-By default, trails log all management events for your AWS account and don't include data events\. You can choose to create or update trails to log data events\. Only events that match your trail settings are delivered to your Amazon S3 bucket, and optionally to an Amazon CloudWatch Logs log group\. If the event doesn't match the settings for a trail, the trail doesn't log the event\. For more information, see [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)\. 
+By default, trails log all management events for your AWS account and don't include data events\. You can choose to create or update trails to log data events\. Only events that match your trail settings are delivered to your Amazon S3 bucket, and optionally to an Amazon CloudWatch Logs log group\. If the event doesn't match the settings for a trail, the trail doesn't log the event\. For more information, see [Working with CloudTrail Log Files](cloudtrail-working-with-log-files.md)\. 
+
+## How Do You Log CloudTrail Insights Events?<a name="understanding-insight-selectors"></a>
+
+AWS CloudTrail Insights helps AWS users identify and respond to unusual volumes of API calls by continuously analyzing CloudTrail management events\. An Insights event is a record of unusual levels of `write` management API activity\. The details page of an Insights event shows the event as a graph of unusual activity, and shows the start and end times of the unusual activity, along with the baseline that is used to determine whether the activity is unusual\. By default, trails don't log CloudTrail Insights events\. In the console, you can choose to log Insights events when you create or update a trail\. When you are using the CloudTrail API, you can log Insights events by editing the settings of an existing trail with the PutInsightSelectors API\. Additional charges apply for logging CloudTrail Insights events\. For more information, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md) and [AWS CloudTrail Pricing](http://aws.amazon.com/cloudtrail/pricing/)\.
 
 ## How Do You Perform Monitoring with CloudTrail?<a name="cloudtrail-concepts-monitoring"></a>
 
@@ -122,6 +140,10 @@ By default, trails log all management events for your AWS account and don't incl
 Amazon CloudWatch is a web service that collects and tracks metrics to monitor your Amazon Web Services \(AWS\) resources and the applications that you run on AWS\. Amazon CloudWatch Logs is a feature of CloudWatch that you can use specifically to monitor log data\. Integration with CloudWatch Logs enables CloudTrail to send events containing API activity in your AWS account to a CloudWatch Logs log group\. CloudTrail events that are sent to CloudWatch Logs can trigger alarms according to the metric filters you define\. You can optionally configure CloudWatch alarms to send notifications or make changes to the resources that you are monitoring based on log stream events that your metric filters extract\. Using CloudWatch Logs, you can also track CloudTrail events alongside events from the operating system, applications, or other AWS services that are sent to CloudWatch Logs\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 
 Amazon CloudWatch Events is an AWS service that delivers a near real\-time stream of system events that describe changes in AWS resources\. In CloudWatch Events, you can create rules that trigger on any event recorded by CloudTrail\. For more information, see [Creating a CloudWatch Events Rule That Triggers on an AWS API Call Using AWS CloudTrail](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/Create-CloudWatch-Events-CloudTrail-Rule.html)\.
+
+Insights events are integrated with CloudWatch\. You can deliver events that you are subscribed to on your trail, including Insights events, to CloudWatch Events and CloudWatch Logs\. To configure CloudWatch Events with the CloudWatch console or API, choose the `AWS Insight via CloudTrail` event type on the **Create rule** page in the CloudWatch console\.
+
+Sending data that is logged by CloudTrail to CloudWatch Logs or CloudWatch Events requires that you have at least one trail\. For more information about how to create a trail, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\.
 
 ## How Does CloudTrail Behave Regionally and Globally?<a name="cloudtrail-concepts-regional-and-global-services"></a>
 
@@ -171,7 +193,7 @@ For a complete list of AWS regional endpoints, see [AWS Regions and Endpoints](h
 
 ## About Global Service Events<a name="cloudtrail-concepts-global-service-events"></a>
 
-For most services, events are recorded in the region where the action occurred\. For global services such as AWS Identity and Access Management \(IAM\), AWS STS, Amazon CloudFront, and Route 53, events are delivered to any trail that includes global services, and are logged as occurring in US East \(N\. Virginia\) Region\. 
+For most services, events are recorded in the region where the action occurred\. For global services such as AWS Identity and Access Management \(IAM\), AWS STS, and Amazon CloudFront, events are delivered to any trail that includes global services, and are logged as occurring in US East \(N\. Virginia\) Region\.
 
 To avoid receiving duplicate global service events, remember the following:
 + Global service events are delivered by default to trails that are created using the CloudTrail console\. Events are delivered to the bucket for the trail\.

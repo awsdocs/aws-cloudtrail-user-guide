@@ -31,7 +31,15 @@ If you do not see **Get Started Now**, choose **Trails**, and then choose **Crea
 
 1. For **Apply trail to all regions**, choose **Yes** to receive log files from all Regions\. This is the default and recommended setting\. If you choose **No**, the trail logs files only from the Region in which you create the trail\.
 
-1. For **Management events**, for **Read/Write events**, choose if you want your trail to log **All**, **Read\-only**, **Write\-only**, or **None**, and then choose **Save**\. By default, trails log all management events\. For more information, see [Management Events](logging-management-and-data-events-with-cloudtrail.md#logging-management-events)\.
+1. For **Management events**, do the following\.
+
+   1. For **Read/Write events**, choose if you want your trail to log **All**, **Read\-only**, **Write\-only**, or **None**, and then choose **Save**\. By default, trails log all management events\. For more information, see [Management Events](logging-management-events-with-cloudtrail.md#logging-management-events)\.
+
+   1. For **Log AWS KMS events**, choose **Yes** to log AWS Key Management Service \(AWS KMS\) events in your trail\. Choose **No** to filter AWS KMS events out of your trail\. The default setting is **Yes**\.
+
+1. In **Insights events**, for **Log Insights events**, choose **Yes** if you want your trail to log Insights events\. By default, trails don't log Insights events\. For more information about Insights events, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\. Additional charges apply for logging Insights events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
+
+   Insights events are delivered to a different folder named `/CloudTrail-Insight`of the same S3 bucket that is specified in the **Storage location** area of the trail details page\. CloudTrail creates the new prefix for you\. For example, if your current destination S3 bucket is named `S3bucketName/AWSLogs/CloudTrail/`, the S3 bucket name with a new prefix is named `S3bucketName/AWSLogs/CloudTrail-Insight/`\.
 
 1. For **Data events**, you can specify logging data events for Amazon S3 buckets, for AWS Lambda functions, or both\. By default, trails don't log data events\. Additional charges apply for logging data events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
@@ -39,7 +47,7 @@ If you do not see **Get Started Now**, choose **Trails**, and then choose **Crea
 
    For Amazon S3 buckets:
    + Choose the **S3** tab\.
-   + To specify a bucket, choose **Add S3 bucket**\. Type the S3 bucket name and prefix \(optional\) for which you want to log data events\. For each bucket, specify whether you want to log **Read** events, such as `GetObject`, **Write** events, such as `PutObject`, or both\. For more information, see [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
+   + To specify a bucket, choose **Add S3 bucket**\. Type the S3 bucket name and prefix \(optional\) for which you want to log data events\. For each bucket, specify whether you want to log **Read** events, such as `GetObject`, **Write** events, such as `PutObject`, or both\. For more information, see [Data Events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
    + To log data events for all S3 buckets in your AWS account, select **Select all S3 buckets in your account**\. Then choose whether you want to log **Read** events, such as `GetObject`, **Write** events, such as `PutObject`, or both\. This setting takes precedence over individual settings you configure for individual buckets\. For example, if you specify logging **Read** events for all S3 buckets, and then choose to add a specific bucket for data event logging, **Read** is already selected for the bucket you added\. You cannot clear the selection\. You can only configure the option for **Write**\. 
 **Note**  
 Selecting the **Select all S3 buckets in your account** option enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
@@ -61,12 +69,14 @@ If you chose **No**, choose an existing S3 bucket\. The bucket policy must grant
 
 1. For **S3 bucket**, type a name for the bucket you want to designate for log file storage\. The name must be globally unique\. For more information, see [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)\.
 
+1. For **Tags**, add one or more custom tags \(key\-value pairs\) to your trail\. Tags can help you identify both your CloudTrail trails and the Amazon S3 buckets that contain CloudTrail log files\. You can then use resource groups for your CloudTrail resources\. For more information, see [AWS Resource Groups](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html) and [Why Use Tags For Trails?](cloudtrail-concepts.md#cloudtrail-concepts-tags)\.
+
 1. To configure advanced settings, see [Configuring Advanced Settings for Your Trail](#advanced-settings-for-your-trail)\. Otherwise, choose **Create**\.
 
-1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all Regions\. In about 15 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\.
+1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all Regions\. In about 15 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\. It can take up to 36 hours for CloudTrail to deliver the first Insights event, if you have enabled Insights event logging, and unusual activity is detected\.
 
 **Note**  
-You can't rename a trail after it has been created\. Instead, you can delete the trail and create a new one\. 
+You can't rename a trail after it has been created\. Instead, you can delete the trail and create a new one\.
 
 ## Configuring Advanced Settings for Your Trail<a name="advanced-settings-for-your-trail"></a>
 
@@ -84,11 +94,11 @@ You can configure the following settings for your trail:
 
 1. For **Encrypt log files with SSE\-KMS**, choose **Yes** if you want to encrypt your log files with SSE\-KMS instead of SSE\-S3\.
 
-1. For **Create a new KMS key**, choose **Yes** to create a key or **No** to use an existing one\.
+1. For **Create a new KMS key**, choose **Yes** to create an AWS KMS customer master key or **No** to use an existing one\.
 
-1. If you chose **Yes**, in the **KMS key** field, type an alias\. CloudTrail encrypts your log files with the key and adds the policy for you\.
+1. If you chose **Yes**, in the **KMS key** field, type an alias\. CloudTrail encrypts your log files with the field, type an alias\. CloudTrail encrypts your log files with the customer master key and adds the policy for you\.
 **Note**  
-If you chose **No**, choose an existing KMS key\. You can also type the ARN of a key from another account\. For more information, see [Updating a Trail to Use Your CMK](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [Configure AWS KMS Key Policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
+If you chose **No**, choose an existing AWS KMS customer master key\. You can also type the ARN of a key from another account\. For more information, see [Updating a Trail to Use Your CMK](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [Configure AWS KMS Key Policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
 
 1. For **Enable log file validation**, choose **Yes** to have log digests delivered to your S3 bucket\. You can use the digest files to verify that your log files did not change after CloudTrail delivered them\. For more information, see [Validating CloudTrail Log File Integrity](cloudtrail-log-file-validation-intro.md)\. 
 

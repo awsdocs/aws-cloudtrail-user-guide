@@ -6,12 +6,12 @@
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1. Navigate to the **Trails** page of the CloudTrail console for the region in which the trail was created\. 
+1. Navigate to the **Trails** page of the CloudTrail console for the region in which the trail was created\.
 
-1.  Choose the trail name\. 
+1. Choose the trail name\.
 
-1. At the top of the configuration page, click the trash icon\. 
+1. At the top of the configuration page, choose the trash icon\.
 
-1. Choose **Delete** to delete the trail permanently\. The trail will be removed from the list of trails for the region\. Log files that were already delivered to the Amazon S3 bucket will not be deleted\.
+1. Choose **Delete** to delete the trail permanently\. The trail is removed from the list of trails for the region\. Log files that were already delivered to the Amazon S3 bucket are not deleted\.
 **Note**  
 Content delivered to Amazon S3 buckets might contain customer content\. For more information about removing sensitive data, see [How Do I Empty an S3 Bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/empty-bucket.html) or [How Do I Delete an S3 Bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/delete-bucket.html)\.

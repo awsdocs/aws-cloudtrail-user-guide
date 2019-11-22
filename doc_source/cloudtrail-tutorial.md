@@ -63,7 +63,7 @@ The Home Region is the only AWS Region where you can view and update the trail a
 
 1. In **Trail name**, give your trail a name, such as *My\-Management\-Events\-Trail*\. As a best practice, use a name that quickly identifies the purpose of the trail\. In this case, you're creating a trail that logs management events\.
 
-1. In **Management Events**, make sure **Read/Write events** is set to **All**\. 
+1. In **Management Events**, make sure **Read/Write events** is set to **All**\. Leave the default value, **Yes**, for **Log AWS KMS events**\.
 
 1. In **Data Events**, do not make any changes\. This trail will not log any data events\.
 
@@ -71,7 +71,12 @@ The Home Region is the only AWS Region where you can view and update the trail a
 **Note**  
 The name of your Amazon S3 bucket must be globally unique\. For more information, see [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)\.
 
-1. Choose **Create**\.
+1. In **Tags**, add one or more custom tags \(key\-value pairs\) to your trail\. Tags can help you identify your CloudTrail trails and other resources, such as the Amazon S3 buckets that contain CloudTrail log files\. For example, you could attach a tag with the name Compliance and the value Auditing\.
+**Note**  
+Although you can add tags to trails when you create them in the CloudTrail console, and you can create an Amazon S3 bucket to store your log files in the CloudTrail console, you cannot add tags to the Amazon S3 bucket from the CloudTrail console\. For more information about viewing and changing the properties of an Amazon S3 bucket, including adding tags to a bucket, see the [Amazon S3 Console User Guide](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/view-bucket-properties.html)\.
+
+1. Choose **Create**\.  
+![\[The CloudTrail create trail page, part 1, demonstrating suggested values for a first trail\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cloudtrail-create-trail-1.png)
 
 ## Step 3: View Your Log Files<a name="tutorial-step3"></a>
 
@@ -134,7 +139,7 @@ Now that you have a trail, you have access to an ongoing record of events and ac
   + By default, the Amazon S3 bucket you created as part of creating a trail has a policy applied that allows CloudTrail to write log files to that bucket\. The bucket is not publicly accessible, but it might be accessible to other users in your AWS account if they have permissions to read and write to buckets in your AWS account\. Review the policy for your bucket and if necessary, make changes to restrict access to a specific set of IAM users\. For more information, see the [Amazon S3 security documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/security.html) and the [example walkthrough for securing a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/walkthrough1.html)\.
   + The log files delivered by CloudTrail to your bucket are encrypted by Amazon [server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\. To provide a security layer that is directly manageable, you can instead use [server\-side encryption with AWS KMS–managed keys \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) for your CloudTrail log files\. To use SSE\-KMS with CloudTrail, you create and manage a KMS key, also known as a [customer master key \(CMK\)](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)\. For more information, see [Encrypting CloudTrail Log Files with AWS KMS–Managed Keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)\.
   + For additional security planning, review the [security best practices for CloudTrail](best-practices-security.md)\.
-+ **Create a trail to log data events\.** If you are interested in logging when objects are added, retrieved, and deleted in one or more Amazon S3 buckets, or when one or more AWS Lambda functions are invoked, these are data events\. The management event trail you created earlier in this tutorial doesn't log these types of events\. You can create a separate trail specifically to log data events for some or all of your Amazon S3 and Lambda resources\. For more information, see [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
++ **Create a trail to log data events\.** If you are interested in logging when objects are added, retrieved, and deleted in one or more Amazon S3 buckets, or when one or more AWS Lambda functions are invoked, these are data events\. The management event trail you created earlier in this tutorial doesn't log these types of events\. You can create a separate trail specifically to log data events for some or all of your Amazon S3 and Lambda resources\. For more information, see [Data Events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 **Note**  
 Additional charges apply for logging data events\. For more information, see [ AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 + **Set up CloudWatch Logs alarms to alert you when certain events occur\.** CloudWatch Logs allows you to monitor and receive alerts for specific events captured by CloudTrail\. For example, you can monitor key security and network\-related management events, such as [failed AWS console sign\-in events](cloudwatch-alarms-for-cloudtrail.md#cloudwatch-alarms-for-cloudtrail-signin), [API calls that failed due to authorization failures](cloudwatch-alarms-for-cloudtrail.md#cloudwatch-alarms-for-cloudtrail-authorization-failures), or [changes to Amazon EC2 instances](cloudwatch-alarms-for-cloudtrail.md#cloudwatch-alarms-for-cloudtrail-ec2-instance-changes)\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.

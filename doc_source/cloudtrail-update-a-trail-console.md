@@ -10,9 +10,17 @@ To change trail settings, use the following procedure\.
 
 1. To make updates for **Trail settings**, choose the pencil icon, specify if you want your trail to apply to a single region or all regions, and then choose **Save**\.
 
-1. For **Management events**, choose the pencil icon, make your changes, and then choose **Save**\. Your trail can log **All**, **Read\-only**, **Write\-only**, or **None**\. By default, trails log **All** management events\. For more information, see [Management Events](logging-management-and-data-events-with-cloudtrail.md#logging-management-events)\.
+1. For **Management events**, do the following\.
 
-1. For **Data events**, choose the pencil icon or **Configure**, make your changes, and then choose **Save**\. By default, trails don't log data events\. For more information, see [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
+   1. For **Read/Write events**, choose if you want your trail to log **All**, **Read\-only**, **Write\-only**, or **None**, and then choose **Save**\. By default, trails log all management events\. For more information, see [Management Events](logging-management-events-with-cloudtrail.md#logging-management-events)\.
+
+   1. For **Log AWS KMS events**, choose **Yes** to log AWS Key Management Service \(AWS KMS\) events in your trail\. Choose **No** to filter AWS KMS events out of your trail\. The default setting is **Yes**\.
+
+1. In **Insights events**, for **Log Insights events**, choose **Yes** if you want your trail to log Insights events\. By default, trails don't log Insights events\. For more information about Insights events, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\. Additional charges apply for logging Insights events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
+
+   Insights events are delivered to a different folder named `/CloudTrail-Insight` of the same S3 bucket that is specified in the **Storage location** area of the trail details page\. CloudTrail creates the new prefix for you\. For example, if your current destination S3 bucket is named `S3bucketName/AWSLogs/CloudTrail/`, the S3 bucket name with a new prefix is named `S3bucketName/AWSLogs/CloudTrail-Insight/`\.
+
+1. For **Data events**, choose the pencil icon or **Configure**, make your changes, and then choose **Save**\. By default, trails don't log data events\. For more information, see [Data Events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 
 1. For **Storage location**, choose the pencil icon to update the settings for the following: 
    + The S3 bucket \(with optional prefix\) that is receiving your log files\.

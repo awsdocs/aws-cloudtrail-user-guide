@@ -4,7 +4,7 @@
 You can view and search the last 90 days of events recorded by CloudTrail in the CloudTrail console or by using the AWS CLI\. For more information, see [Viewing Events with CloudTrail Event History](view-cloudtrail-events.md)\.
 
 **Download events**  
-You can download a CSV or JSON file containing up to the past 90 days of CloudTrail events for your AWS account\. For more information, see [Downloading Events](view-cloudtrail-events-console.md#downloading-events)\.
+You can download a CSV or JSON file containing up to the past 90 days of CloudTrail events for your AWS account\. For more information, see [Downloading Events](view-cloudtrail-events-console.md#downloading-events) or [Downloading Insights Events](view-insights-events-console.md#downloading-insights-events)\.
 
 ** Create a trail **  
 A trail enables CloudTrail to deliver log files to your Amazon S3 bucket\. By default, when you create a trail in the console, the trail applies to all regions\. The trail logs events from all regions in the AWS partition and delivers the log files to the S3 bucket that you specify\. For more information, see [Creating a Trail For Your AWS Account](cloudtrail-create-and-update-a-trail.md)\.
@@ -24,7 +24,10 @@ You can configure your trail to send events to CloudWatch Logs\. You can then us
 If you configure a trail that applies to all regions to send events to a CloudWatch Logs log group, CloudTrail sends events from all regions to a single log group\.
 
 ** Log management and data events **  
-Configure your trails to log read\-only, write\-only, or all management and data events\. By default, trails log management events\. For more information, see [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)\.
+Configure your trails to log read\-only, write\-only, or all management and data events\. By default, trails log management events\. For more information, see [Working with CloudTrail Log Files](cloudtrail-working-with-log-files.md)\.
+
+**Log CloudTrail Insights events**  
+Configure your trails to log Insights events to help you identify and respond to unusual activity associated with `write` management API calls\. If your trail is configured to log read\-only or no management events, you cannot turn on CloudTrail Insights event logging\. For more information, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\.
 
 ** Enable log encryption **  
 Log file encryption provides an extra layer of security for your log files\. For more information, see [Encrypting CloudTrail Log Files with AWS KMS–Managed Keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)\.

@@ -6,7 +6,7 @@ You can choose to configure an organization trail in various ways\. For example,
 + Specify if you want the trail to apply to all regions or a single region\. The default is to create a trail for all regions\. For more information, see [How CloudTrail Works](how-cloudtrail-works.md)\.
 + Specify whether to apply the trail to your organization\. The default is not to do so; you must choose this option in order to create an organization trail\.
 + Specify which Amazon S3 bucket to use to receive log files for the organization trail\. You can choose an existing Amazon S3 bucket in the master account, or create one specifically for the organization trail\. 
-+ For management and data events, specify if you want to log read\-only, write\-only, or all events\. You can specify logging data events for specific Amazon S3 buckets and AWS Lambda functions in the master account by choosing them from the lists in the console, and in member accounts if you specify the ARNs of each resource for which you want to enable data event logging\. For more information, see [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
++ For management and data events, specify if you want to log read\-only, write\-only, or all events\. Insights events are based only on write events\. You can specify logging data events for specific Amazon S3 buckets and AWS Lambda functions in the master account by choosing them from the lists in the console, and in member accounts if you specify the ARNs of each resource for which you want to enable data event logging\. For more information, see [Data Events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 
 **To create an organization trail with the AWS Management Console**
 
@@ -14,7 +14,7 @@ You can choose to configure an organization trail in various ways\. For example,
 
    You must be signed in as a user, role, or root account in the master account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions) to create an organization trail\.
 
-1. In the region selector, choose the region where you want the trail to be created\. 
+1. In the region selector, choose the region where you want the trail to be created\.
 
 1. Choose **Trails**, and then choose **Create trail**\.
 **Tip**  
@@ -26,7 +26,9 @@ If you see **Get Started Now** instead of **Trails**, choose it\.
 
 1. For **Apply trail to my organization**, choose **Yes**\. You will only see this option if you are signed in to the console with an IAM user or role in the master account\. In order to successfully create an organization trail, make sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. 
 
-1. For **Management events**, for **Read/Write events**, choose if you want your trail to log **All**, **Read\-only**, **Write\-only**, or **None**\. By default, trails log all management events\. For more information, see [Management Events](logging-management-and-data-events-with-cloudtrail.md#logging-management-events)\.
+1. For **Management events**, for **Read/Write events**, choose if you want your trail to log **All**, **Read\-only**, **Write\-only**, or **None**\. By default, trails log all management events\. For more information, see [Management Events](logging-management-events-with-cloudtrail.md#logging-management-events)\.
+
+1. In **Insights events**, for **Log Insights events**, choose **Yes** if you want your trail to log Insights events\. By default, trails don't log Insights events\. For more information about Insights events, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\. This choice applies to all accounts in the organization\. Additional charges apply for logging Insights events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
 1. For **Data events**, you can specify logging data events for Amazon S3 buckets, for AWS Lambda functions\. You can choose from the lists of specific Amazon S3 buckets and Lambda functions in the master account, but these lists do not include any resource information for member accounts\. To add specific resources in member accounts, you must provide the ARNs of Amazon S3 buckets and Lambda functions\. Alternatively, you can select the option to log all Amazon S3 buckets and Lambda functions\. This choice applies to all accounts in the organization\. 
 
@@ -34,8 +36,8 @@ If you see **Get Started Now** instead of **Trails**, choose it\.
 
    For Amazon S3 buckets:
    + Choose the **S3** tab\.
-   + To specify a bucket in the master account, choose **Add S3 bucket**\. Either choose the bucket from the list that appears when you choose *Bucket name*, or type the S3 bucket name and prefix \(optional\) for which you want to log data events\. For each bucket, specify whether you want to log **Read** events, such as `GetObject`, **Write** events, such as `PutObject`, or both\. For more information, see [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
-   + To specify a bucket in a member account, choose **Add S3 bucket**\. Type or paste the ARN for that bucket into *Bucket name*\. For each bucket, specify whether you want to log **Read** events, such as `GetObject`, **Write** events, such as `PutObject`, or both\. For more information, see [Data Events](logging-management-and-data-events-with-cloudtrail.md#logging-data-events)\.
+   + To specify a bucket in the master account, choose **Add S3 bucket**\. Either choose the bucket from the list that appears when you choose *Bucket name*, or type the S3 bucket name and prefix \(optional\) for which you want to log data events\. For each bucket, specify whether you want to log **Read** events, such as `GetObject`, **Write** events, such as `PutObject`, or both\. For more information, see [Data Events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
+   + To specify a bucket in a member account, choose **Add S3 bucket**\. Type or paste the ARN for that bucket into *Bucket name*\. For each bucket, specify whether you want to log **Read** events, such as `GetObject`, **Write** events, such as `PutObject`, or both\. For more information, see [Data Events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
    + To log data events for all S3 buckets in all accounts in your organization, select **Select all S3 buckets in your account**\. Then choose whether you want to log **Read** events, such as `GetObject`, **Write** events, such as `PutObject`, or both\. This setting takes precedence over individual settings you configure for individual buckets in master and member accounts\. For example, if you specify logging **Read** events for all S3 buckets, and then choose to add a specific bucket for data event logging, **Read** is already selected for the bucket you added\. You cannot clear the selection\. You can only configure the option for **Write**\. 
 **Note**  
 Selecting the **Select all S3 buckets in your account** option enables data event logging for all buckets in all accounts currently in your organization and any buckets created in the master and member accounts after you finish creating the trail\. It also enables logging of data event activity performed by any user or role in your master account, even if that activity is performed on a bucket that belongs to another AWS account outside of your organization\.  

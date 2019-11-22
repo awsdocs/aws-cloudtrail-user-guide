@@ -2,10 +2,13 @@
 
 You can use the CloudTrail console to view the last 90 days of recorded API activity and events in an AWS Region\. You can also download a file with that information, or a subset of information based on the filter and time range you choose\. You can customize your view of **Event history** by selecting which columns are displayed in the console\. You can also look up and filter events by the resource types available for a particular service\.
 
+After 90 days, events are no longer shown in **Event history**\. You cannot manually delete events from **Event history**\. When you [create a trail](cloudtrail-create-a-trail-using-the-console-first-time.md), you can view events that are logged to your trail for as long as you store them in the S3 bucket that is configured in your trail settings\.
+
 CloudTrail logging varies between AWS services\. While most AWS services support CloudTrail logging of all events, some services only support logging a subset of APIs and events, and a few services are unsupported\. You can learn more about the specifics of how CloudTrail logs events for a specific service by consulting the documentation for that service\. For more information, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 **Note**  
 For an ongoing record of activity and events, [create a trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\. Creating a trail also enables you to take advantage of the following integrations:  
+A trail lets you log CloudTrail Insights events, which can help you identify and respond to unusual activity associated with `write` management API calls\. For more information, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\.
 Analyze your AWS service activity with queries in Amazon Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](https://docs.aws.amazon.com/athena/latest/ug/), or simply choose the option to create a table directly from **Event history** in the CloudTrail console\. 
 Monitor your trail logs and be notified when specific activity occurs with Amazon CloudWatch Logs\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 
@@ -35,7 +38,8 @@ You can customize the display of **Event history** by selecting which columns to
 + **Resource type**
 + **Resource name**
 
-You cannot change the order of the columns\.
+**Note**  
+You cannot change the order of the columns, or manually delete events from **Event history**\.
 
 **To customize the columns displayed in **Event history****
 

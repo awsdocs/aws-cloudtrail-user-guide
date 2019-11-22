@@ -7,6 +7,7 @@
 + [List tags for one or more trails](#cloudtrail-additional-cli-commands-list-tags)
 + [Remove one or more tags from a trail](#cloudtrail-additional-cli-commands-remove-tag)
 + [Retrieving trail settings and the status of a trail](#cloudtrail-additional-cli-commands-retrieve)
++ [Configuring Insights event selectors](#configuring-insights-selector)
 + [Configuring event selectors](#configuring-event-selector-examples)
 + [Stopping and starting logging for a trail](#cloudtrail-start-stop-logging-cli-commands)
 + [Deleting a trail](#cloudtrail-delete-trail-cli)
@@ -131,6 +132,32 @@ If the command succeeds, you see output similar to the following\.
 }
 ```
 
+Use the `get-trail` command to retrieve settings information about a specific trail\. The following example returns settings information for a trail named *my\-trail*\.
+
+```
+aws cloudtrail get-trail - -name my-trail
+```
+
+If successful, this command returns output similar to the following\.
+
+```
+{
+   "Trail": {
+      "Name": "my-trail",
+      "S3BucketName": "my-bucket",
+      "S3KeyPrefix": "my-prefix",
+      "IncludeGlobalServiceEvents": true,
+      "IsMultiRegionTrail": true,
+      "HomeRegion": "us-east-2"
+      "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/my-trail",
+      "LogFileValidationEnabled": false,
+      "HasCustomEventSelectors": false, 
+      "SnsTopicName": "my-topic",
+      "IsOrganizationTrail": false,
+   }
+}
+```
+
 Run the `get-trail-status` command to retrieve the status of a trail\. You must either run this command from the AWS Region where it was created \(the Home Region\), or you must specify that Region by using the \-\-region parameter\.
 
 **Note**  
@@ -161,6 +188,52 @@ In addition to the fields shown in the preceding JSON code, the status contains 
 + `LatestNotificationError`\. Contains the error emitted by Amazon SNS if a subscription to a topic fails\.
 + `LatestDeliveryError`\. Contains the error emitted by Amazon S3 if CloudTrail cannot deliver a log file to a bucket\.
 
+## Configuring Insights event selectors<a name="configuring-insights-selector"></a>
+
+Enable Insights events on a trail by running the put\-insight\-selectors, and specifying `ApiCallRateInsight` as the value of the `InsightType` attribute\. To view the Insights selector settings for a trail, run the `get-insight-selectors` command\. You must either run this command from the AWS Region where the trail was created \(the Home Region\), or you must specify that Region by adding the \-\-region parameter to the command\.
+
+### Example: A trail that logs Insights events<a name="configuring-insights-selector-example"></a>
+
+The following example uses put\-insight\-selectors to create an Insights event selector for a trail named *TrailName3*\. This enables Insights event collection for the *TrailName3* trail\.
+
+```
+aws cloudtrail put-insight-selectors --trail-name TrailName3 --insight-selectors '{"InsightType": "ApiCallRateInsight"}'
+```
+
+The example returns the Insights event selector that is configured for the trail\.
+
+```
+{
+   "InsightSelectors": [ 
+      { 
+         "InsightType": "ApiCallRateInsight"
+      }
+   ],
+   "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName3"
+}
+```
+
+### Example: Turn off Insights event collection for a trail<a name="configuring-insights-selector-example2"></a>
+
+The following example uses put\-insight\-selectors to remove the Insights event selector for a trail named *TrailName3*\. Clearing the JSON string of Insights selectors disables Insights event collection for the *TrailName3* trail\.
+
+```
+aws cloudtrail put-insight-selectors --trail-name TrailName3 --insight-selectors '[]'
+```
+
+The example returns the now\-empty Insights event selector that is configured for the trail\.
+
+```
+{
+   "InsightSelectors": [ 
+      { 
+         "InsightType": ""
+      }
+   ],
+   "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName3"
+}
+```
+
 ## Configuring event selectors<a name="configuring-event-selector-examples"></a>
 
 To view the event selector settings for a trail, run the `get-event-selectors` command\. You must either run this command from the AWS Region where it was created \(the Home Region\), or you must specify that Region by using the \-\-region parameter\. 
@@ -178,6 +251,7 @@ The following example returns the default settings for an event selector for a t
 {
     "EventSelectors": [
         {
+            "ExcludeManagementEventSources": [],
             "IncludeManagementEvents": true,
             "DataResources": [],
             "ReadWriteType": "All"
@@ -187,11 +261,12 @@ The following example returns the default settings for an event selector for a t
 }
 ```
 
-To create an event selector, run the `put-event-selectors` command\. When an event occurs in your account, CloudTrail evaluates the configuration for your trails\. If the event matches any event selector for a trail, the trail processes and logs the event\. You can configure up to 5 event selectors for a trail and up to 250 data resources for a trail\. For more information, see [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)\.
+To create an event selector, run the `put-event-selectors` command\. When an event occurs in your account, CloudTrail evaluates the configuration for your trails\. If the event matches any event selector for a trail, the trail processes and logs the event\. You can configure up to 5 event selectors for a trail and up to 250 data resources for a trail\. For more information, see [Logging Data Events for Trails](logging-data-events-with-cloudtrail.md)\.
 
 **Topics**
 + [Example: A trail with specific event selectors](#configuring-event-selector-example1)
-+ [Example: A trail that logs all events](#configuring-event-selector-example2)
++ [Example: A trail that logs all management and data events](#configuring-event-selector-example2)
++ [Example: A trail that does not log AWS Key Management Service events](#configuring-event-selector-example-kms)
 
 ### Example: A trail with specific event selectors<a name="configuring-event-selector-example1"></a>
 
@@ -207,6 +282,7 @@ The example returns the event selector configured for the trail\.
 {
     "EventSelectors": [
         {
+            "ExcludeManagementEventSources": [],
             "IncludeManagementEvents": true,
             "DataResources": [
                 {
@@ -230,7 +306,7 @@ The example returns the event selector configured for the trail\.
 }
 ```
 
-### Example: A trail that logs all events<a name="configuring-event-selector-example2"></a>
+### Example: A trail that logs all management and data events<a name="configuring-event-selector-example2"></a>
 
 The following example creates an event selector for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all Amazon S3 buckets and AWS Lambda functions in the AWS account\.
 
@@ -247,6 +323,7 @@ The example returns the event selectors configured for the trail\.
 {
     "EventSelectors": [
         {
+            "ExcludeManagementEventSources": [],
             "IncludeManagementEvents": true,
             "DataResources": [
                 {
@@ -269,6 +346,38 @@ The example returns the event selectors configured for the trail\.
 }
 ```
 
+### Example: A trail that does not log AWS Key Management Service events<a name="configuring-event-selector-example-kms"></a>
+
+The following example creates an event selector for a trail named *TrailName* to include read\-only and write\-only management events, but exclude AWS Key Management Service \(AWS KMS\) events\. Because AWS KMS events are treated as management events, and there can be a high volume of them, they can have a substantial impact on your CloudTrail bill if you have more than one trail that captures management events\. The user in this example has elected to exclude AWS KMS events from every trail except for one\. To exclude an event source, add `ExcludeManagementEventSources` to your event selectors, and specify an event source in the string value\. In this release, you can exclude events from `kms.amazonaws.com`\.
+
+To start logging AWS KMS events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": ["kms.amazonaws.com"],"IncludeManagementEvents": true]}]'
+```
+
+The example returns the event selector configured for the trail\.
+
+```
+{
+    "EventSelectors": [
+        {
+            "ExcludeManagementEventSources": [ "kms.amazonaws.com" ],
+            "IncludeManagementEvents": true,
+            "DataResources": [],
+            "ReadWriteType": "All"
+        }
+    ],
+    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+}
+```
+
+To start logging AWS KMS events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`, as shown in the following command\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
+```
+
 ## Stopping and starting logging for a trail<a name="cloudtrail-start-stop-logging-cli-commands"></a>
 
 The following commands start and stop CloudTrail logging\.
@@ -282,7 +391,8 @@ aws cloudtrail stop-logging --name awscloudtrail-example
 ```
 
 **Note**  
-Before deleting a bucket, run the `stop-logging` command to stop delivering events to the bucket\. If you don’t stop logging, CloudTrail attempts to deliver log files to a bucket with the same name for a limited period of time\.
+Before deleting a bucket, run the `stop-logging` command to stop delivering events to the bucket\. If you don’t stop logging, CloudTrail attempts to deliver log files to a bucket with the same name for a limited period of time\.  
+If you stop logging or delete a trail, CloudTrail Insights is disabled on that trail\.
 
 ## Deleting a trail<a name="cloudtrail-delete-trail-cli"></a>
 

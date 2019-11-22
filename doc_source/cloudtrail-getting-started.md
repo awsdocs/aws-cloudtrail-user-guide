@@ -8,6 +8,7 @@ If you have created an organization in AWS Organizations, you can create a trail
 
 **Topics**
 + [Viewing Events with CloudTrail Event History](view-cloudtrail-events.md)
++ [Viewing CloudTrail Insights Events](view-insights-events.md)
 + [Creating a Trail For Your AWS Account](cloudtrail-create-and-update-a-trail.md)
 + [Creating a Trail for an Organization](creating-trail-organization.md)
 + [Getting and Viewing Your CloudTrail Log Files](get-and-view-cloudtrail-log-files.md)

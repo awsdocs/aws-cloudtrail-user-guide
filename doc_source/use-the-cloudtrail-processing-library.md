@@ -20,7 +20,7 @@ The library source includes sample code that you can use as a base for your own 
 ## Minimum Requirements<a name="use-the-cloudtrail-processing-library-prerequisites"></a>
 
 To use the CloudTrail Processing Library, you must have the following:
-+ [AWS SDK for Java 1\.11\.135](https://github.com/aws/aws-sdk-java)
++ [AWS SDK for Java 1\.10\.27](https://github.com/aws/aws-sdk-java)
 + [Java 1\.7](http://docs.oracle.com/javase/7/docs/webnotes/install/)
 
 ## Processing CloudTrail Logs<a name="use-the-cloudtrail-processing-library-how-to"></a>
@@ -63,7 +63,7 @@ To use the CloudTrail Processing Library, add it to your Java project's classpat
    ```
    <classpath>
      <pathelement path="${classpath}"/>
-     <pathelement location="lib/aws-cloudtrail-processing-library-1.1.3.jar"/>
+     <pathelement location="lib/aws-cloudtrail-processing-library-1.2.0.jar"/>
    </classpath>
    ```
 
@@ -78,7 +78,7 @@ The CloudTrail Processing Library is available for [Apache Maven](http://maven.a
   <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-cloudtrail-processing-library</artifactId>
-      <version>1.1.3</version>
+      <version>1.2.0</version>
   </dependency>
   ```
 
@@ -95,13 +95,13 @@ The CloudTrail Processing Library is available for [Apache Maven](http://maven.a
    mvn clean install -Dgpg.skip=true
    ```
 
-1. Copy the built aws\-cloudtrail\-processing\-library\-1\.1\.3\.jar to a directory in your project \(typically `lib`\)\.
+1. Copy the built aws\-cloudtrail\-processing\-library\-1\.2\.0\.jar to a directory in your project \(typically `lib`\)\.
 
 1. Right\-click your project's name in the Eclipse **Project Explorer**, choose **Build Path**, and then choose **Configure**
 
 1. In the **Java Build Path** window, choose the **Libraries** tab\.
 
-1. Choose **Add JARs\.\.\.** and navigate to the path where you copied aws\-cloudtrail\-processing\-library\-1\.1\.3\.jar\.
+1. Choose **Add JARs\.\.\.** and navigate to the path where you copied aws\-cloudtrail\-processing\-library\-1\.2\.0\.jar\.
 
 1. Choose **OK** to complete adding the `.jar` to your project\.
 
@@ -122,7 +122,7 @@ The CloudTrail Processing Library is available for [Apache Maven](http://maven.a
 
 1. Choose **Modules** and then choose **Dependencies**\.
 
-1. Choose **\+ JARS or Directories** and then go to the path where you built the `aws-cloudtrail-processing-library-1.1.3.jar`\.
+1. Choose **\+ JARS or Directories** and then go to the path where you built the `aws-cloudtrail-processing-library-1.2.0.jar`\.
 
 1. Choose **Apply** and then choose **OK** to complete adding the `.jar` to your project\.
 

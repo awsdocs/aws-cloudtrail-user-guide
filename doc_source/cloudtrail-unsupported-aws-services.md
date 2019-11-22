@@ -7,6 +7,7 @@ For a list of supported AWS services, see [CloudTrail Supported Services and Int
 
 | AWS service | Launch date | 
 | --- | --- | 
+| Amazon Connect | March 28, 2017 | 
 | Amazon Macie | August 14, 2017 | 
 | AWS Trusted Advisor | April 30, 2013 | 
 

@@ -18,7 +18,7 @@ You can configure the following settings when you create or update a trail with 
 
 1. Create an Amazon S3 bucket or specify an existing bucket where you want the log files delivered\. By default, log files from all regions in your account are delivered to the bucket that you specify\.
 
-1. Configure your trail to log read\-only, write\-only, or all management events, and all or a subset of data events\. By default, trails log all management events and no data events\.
+1. Configure your trail to log read\-only, write\-only, or all management events, all Insights events, and all or a subset of data events\. By default, trails log all management events and no data or Insights events\.
 
 1. Create an Amazon SNS topic to receive notifications when log files are delivered\. Delivery notifications from all regions are sent to the topic that you specify\.
 

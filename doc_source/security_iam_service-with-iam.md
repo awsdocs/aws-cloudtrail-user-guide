@@ -114,6 +114,10 @@ Access control lists \(ACLs\) are lists of grantees that you can attach to resou
 
 Although you can attach tags to CloudTrail resources, CloudTrail does not support controlling access based on tags\.
 
+You can attach tags to CloudTrail resources or pass tags in a request to CloudTrail\. To control access based on tags, you provide tag information in the [condition element](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) of a policy using the `cloudtrail:ResourceTag/key-name`, `aws:RequestTag/key-name`, or `aws:TagKeys` condition keys\. For more information about tagging CloudTrail resources, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Creating, Updating, and Managing Trails with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)\.
+
+To view an example identity\-based policy for limiting access to a resource based on the tags on that resource, see [Viewing CloudTrail Trails Based on Tags](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-view-trails-tags)\.
+
 ## CloudTrail IAM Roles<a name="security_iam_service-with-iam-roles"></a>
 
 An [IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) is an entity within your AWS account that has specific permissions\.

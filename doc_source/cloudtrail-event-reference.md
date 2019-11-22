@@ -43,6 +43,68 @@ The following example shows a single log record of an event where an IAM user na
     ... additional entries ...
 ```
 
+The following example shows a single log record of an Insights event that occurred when the AWS Systems Manager API `UpdateInstanceAssociationStatus` was called an unusual number of times\. There are two events in an Insights event record: one event marking the start of the insight \(or the start of the unusual activity\), and one marking the end\. For Insights events, the value of `eventCategory` is `Insight`\. An `insightDetails` block identifies the event state, source, name, Insights type, and context, including statistics\.
+
+```
+{
+    "Records": [
+        {
+            "eventVersion": "1.07",
+            "eventTime": "2019-10-17T10:05:00Z",
+            "awsRegion": "us-east-1",
+            "eventID": "aab985f2-3a56-48cc-a8a5-e0af77606f5f",
+            "eventType": "AwsCloudTrailInsight",
+            "recipientAccountId": "123456789012",
+            "sharedEventID": "12edc982-3348-4794-83d3-a3db26525049",
+            "insightDetails": {
+                "state": "Start",
+                "eventSource": "ssm.amazonaws.com",
+                "eventName": "UpdateInstanceAssociationStatus",
+                "insightType": "ApiCallRateInsight",
+                "insightContext": {
+                    "statistics": {
+                        "baseline": {
+                            "average": 1.7561507937
+                        },
+                        "insight": {
+                            "average": 50.1
+                        }
+                    }
+                }
+            },
+            "eventCategory": "Insight"
+        },
+        {
+            "eventVersion": "1.07",
+            "eventTime": "2019-10-17T10:13:00Z",
+            "awsRegion": "us-east-1",
+            "eventID": "ce7b8ac1-3f89-4dae-8d2a-6560e32f591a",
+            "eventType": "AwsCloudTrailInsight",
+            "recipientAccountId": "123456789012",
+            "sharedEventID": "12edc982-3348-4794-83d3-a3db26525049",
+            "insightDetails": {
+                "state": "End",
+                "eventSource": "ssm.amazonaws.com",
+                "eventName": "UpdateInstanceAssociationStatus",
+                "insightType": "ApiCallRateInsight",
+                "insightContext": {
+                    "statistics": {
+                        "baseline": {
+                            "average": 1.7561507937
+                        },
+                        "insight": {
+                            "average": 50
+                        },
+                        "insightDuration": 8
+                    }
+                }
+            },
+            "eventCategory": "Insight"
+        }
+    ]
+}
+```
+
 The following topics list the data fields that CloudTrail captures for each AWS API call and sign\-in event\. 
 
 **Topics**

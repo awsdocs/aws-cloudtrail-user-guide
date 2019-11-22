@@ -10,6 +10,7 @@ To learn how to create an IAM identity\-based policy using these example JSON po
 + [Examples: Creating and Applying Policies for Actions on Specific Trails](#grant-custom-permissions-for-cloudtrail-users-resource-level)
 + [Granting Permissions for Using the CloudTrail Console](#security_iam_id-based-policy-examples-console)
 + [Allow Users to View Their Own Permissions](#security_iam_id-based-policy-examples-view-own-permissions)
++ [Viewing CloudTrail Trails Based on Tags](#security_iam_id-based-policy-examples-view-trails-tags)
 + [Granting Custom Permissions for CloudTrail Users](#grant-custom-permissions-for-cloudtrail-users)
 
 ## Policy Best Practices<a name="security_iam_service-with-iam-policy-best-practices"></a>
@@ -33,6 +34,7 @@ The following example demonstrates a policy that allows users with this policy t
           "Action": [
               "cloudtrail:StartLogging",
               "cloudtrail:StopLogging",
+              "cloudtrail:GetTrail",
               "cloudtrail:GetTrailStatus",
               "cloudtrail:GetEventSelectors"
           ],
@@ -103,6 +105,7 @@ In the second policy, the `DescribeTrails` and `GetTrailStatus` actions are allo
             "Effect": "Allow",
             "Action": [
                 "cloudtrail:DescribeTrails",
+                "cloudtrail:GetTrail",
                 "cloudtrail:GetTrailStatus"
             ],
             "Resource": [
@@ -282,6 +285,64 @@ This example shows how you might create a policy that allows IAM users to view t
    }
 ```
 
+## Viewing CloudTrail Trails Based on Tags<a name="security_iam_id-based-policy-examples-view-trails-tags"></a>
+
+You can use conditions in your identity\-based policy to control access to CloudTrail resources based on tags\. This example shows how you might create a policy that allows viewing information about a trail, including its status\. However, permission is granted only if the trail tag `Owner` has the value of that user's user name\. This policy also grants the permissions necessary to complete this action on the console\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ViewInformationForATrail",
+            "Effect": "Deny",
+            "Action": [
+                "cloudtrail:DescribeTrails",
+                "cloudtrail:GetTrail",
+                "cloudtrail:GetTrailStatus"
+            ]
+            "Resource": "*"
+        },
+        {
+            "Sid": "ViewTrailIfOwner",
+            "Effect": "Allow",
+            "Action": [
+                "cloudtrail:GetTrail",
+                "cloudtrail:GetTrailStatus"
+            ]
+            "Resource": "arn:aws:cloudtrail:*:*:widget/*",
+            "Condition": {
+                "StringEquals": {"cloudtrail:ResourceTag/Owner": "${aws:username}"}
+            }
+        }
+    ]
+}
+```
+
+You can attach this policy to the IAM users in your account\. If a user named `richard-roe` attempts to view an CloudTrail trail, the trail must be tagged `Owner=richard-roe` or `owner=richard-roe`\. Otherwise he is denied access\. The condition tag key `Owner` matches both `Owner` and `owner` because condition key names are not case\-sensitive\. 
+
+Alternatively, you can create tag\-based policies that deny all actions on trails tagged with a specific key, and then apply that policy to IAM users and groups to whom you do not want to grant access to those trails\. 
+
+The following example denies all CloudTrail actions on trails tagged with the key *Status* and the key value of *Secret*:
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement" : [
+    {
+      "Effect" : "Deny",
+      "Action" : "cloudtrail:*"
+      "Resource" : "*",
+      "Condition" : {
+         "StringEquals" : "cloudtrail:ResourceTag/Status": "Secret"
+        }
+    }
+  ]
+}
+```
+
+For more information, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
+
 ## Granting Custom Permissions for CloudTrail Users<a name="grant-custom-permissions-for-cloudtrail-users"></a>
 
 CloudTrail policies grant permissions to users who work with CloudTrail\. If you need to grant different permissions to users, you can attach a CloudTrail policy to an IAM group or to a user\. You can edit the policy to include or exclude specific permissions\. You can also create your own custom policy\. Policies are JSON documents that define the actions a user is allowed to perform and the resources that the user is allowed to perform those actions on\. For specific examples, see [Example: Allowing and Denying Actions For a Specified Trail](#security_iam_id-based-policy-examples-allow-deny-for-specific-trail) and [Examples: Creating and Applying Policies for Actions on Specific Trails](#grant-custom-permissions-for-cloudtrail-users-resource-level)\.
@@ -313,6 +374,7 @@ The following example shows a policy that grants read\-only access to CloudTrail
       "Effect": "Allow",
       "Action": [
         "cloudtrail:DescribeTrails",
+        "cloudtrail:GetTrail",
         "cloudtrail:GetTrailStatus",
         "cloudtrail:LookupEvents",
         "cloudtrail:ListPublicKeys",

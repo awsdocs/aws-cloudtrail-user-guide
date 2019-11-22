@@ -33,6 +33,7 @@ A log file contains one or more records\. The following examples are snippets of
 + [Amazon EC2 Log Examples](#cloudtrail-log-file-examples-ec2)
 + [IAM Log Examples](#cloudtrail-log-file-examples-iam)
 + [Error Code and Message Log Example](#error-code-and-error-message)
++ [CloudTrail Insights Event Log Example](#insights-event-example)
 
 ### Amazon EC2 Log Examples<a name="cloudtrail-log-file-examples-ec2"></a>
 
@@ -275,4 +276,68 @@ The following example shows that the IAM user Alice used the AWS CLI to call the
     "eventType": "AwsApiCall",
     "recipientAccountId": "123456789012"
 }]}
+```
+
+### CloudTrail Insights Event Log Example<a name="insights-event-example"></a>
+
+The following example shows a CloudTrail Insights event log\. An Insights event is actually a pair of events that mark the start and end of a period of unusual write management API activity\. The `state` field shows whether the event was logged at the start or end of the period of unusual activity\. The event name, `UpdateInstanceInformation`, is the same name as the AWS Systems Manager API for which CloudTrail analyzed management events to determine that unusual activity occurred\. Although the start and end events have unique `eventID` values, they also have a `sharedEventID` value that is used by the pair\. The Insights event shows the `baseline`, or the normal pattern of activity, the `insight`, or average unusual activity that triggered the start Insights event, and in the end event, the `insight` value for the average unusual activity over the duration of the Insights event\. For more information about CloudTrail Insights, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\.
+
+```
+{
+    "Records": [
+        {
+            "eventVersion": "1.07",
+            "eventTime": "2019-11-14T00:51:00Z",
+            "awsRegion": "us-east-1",
+            "eventID": "EXAMPLE8-9621-4d00-b913-beca2EXAMPLE",
+            "eventType": "AwsCloudTrailInsight",
+            "recipientAccountId": "123456789012",
+            "sharedEventID": "EXAMPLE2-1729-42f1-b735-5d8c0EXAMPLE",
+            "insightDetails": {
+                "state": "Start",
+                "eventSource": "ssm.amazonaws.com",
+                "eventName": "UpdateInstanceInformation",
+                "insightType": "ApiCallRateInsight",
+                "insightContext": {
+                    "statistics": {
+                        "baseline": {
+                            "average": 85.4202380952
+                        },
+                        "insight": {
+                            "average": 664
+                        }
+                    }
+                }
+            },
+            "eventCategory": "Insight"
+        },
+        {
+            "eventVersion": "1.07",
+            "eventTime": "2019-11-14T00:52:00Z",
+            "awsRegion": "us-east-1",
+            "eventID": "EXAMPLEc-28be-486c-8928-49ce6EXAMPLE",
+            "eventType": "AwsCloudTrailInsight",
+            "recipientAccountId": "123456789012",
+            "sharedEventID": "EXAMPLE2-1729-42f1-b735-5d8c0EXAMPLE",
+            "insightDetails": {
+                "state": "End",
+                "eventSource": "ssm.amazonaws.com",
+                "eventName": "UpdateInstanceInformation",
+                "insightType": "ApiCallRateInsight",
+                "insightContext": {
+                    "statistics": {
+                        "baseline": {
+                            "average": 85.4202380952
+                        },
+                        "insight": {
+                            "average": 664
+                        },
+                        "insightDuration": 1
+                    }
+                }
+            },
+            "eventCategory": "Insight"
+        }
+    ]
+}
 ```

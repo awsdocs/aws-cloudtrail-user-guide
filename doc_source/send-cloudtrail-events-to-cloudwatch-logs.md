@@ -1,6 +1,6 @@
 # Sending Events to CloudWatch Logs<a name="send-cloudtrail-events-to-cloudwatch-logs"></a>
 
-When you configure your trail to send events to CloudWatch Logs, CloudTrail sends only the events that match your trail settings\. For example, if you configure your trail to log data events only, your trail sends data events only to your CloudWatch Logs log group\. CloudTrail supports sending data and management events to CloudWatch Logs\. For more information, see [Logging Data and Management Events for Trails](logging-management-and-data-events-with-cloudtrail.md)\.
+When you configure your trail to send events to CloudWatch Logs, CloudTrail sends only the events that match your trail settings\. For example, if you configure your trail to log data events only, your trail sends data events only to your CloudWatch Logs log group\. CloudTrail supports sending data, Insights, and management events to CloudWatch Logs\. For more information, see [Working with CloudTrail Log Files](cloudtrail-working-with-log-files.md)\.
 
 To send events to a CloudWatch Logs log group:
 + Make sure you have sufficient permissions to create or specify an IAM role\. For more information, see [Granting Permission to View and Configure Amazon CloudWatch Logs Information on the CloudTrail Console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.

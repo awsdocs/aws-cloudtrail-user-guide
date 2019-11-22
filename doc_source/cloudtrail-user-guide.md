@@ -4,7 +4,7 @@ AWS CloudTrail is an AWS service that helps you enable governance, compliance, a
 
 CloudTrail is enabled on your AWS account when you create it\. When activity occurs in your AWS account, that activity is recorded in a CloudTrail event\. You can easily view recent events in the CloudTrail console by going to Event history\. For an ongoing record of activity and events in your AWS account, [create a trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\. For more information about CloudTrail pricing, see [AWS CloudTrail Pricing](http://aws.amazon.com/cloudtrail/pricing/)\.
 
-Visibility into your AWS account activity is a key aspect of security and operational best practices\. You can use CloudTrail to view, search, download, archive, analyze, and respond to account activity across your AWS infrastructure\. You can identify who or what took which action, what resources were acted upon, when the event occurred, and other details to help you analyze and respond to activity in your AWS account\.
+Visibility into your AWS account activity is a key aspect of security and operational best practices\. You can use CloudTrail to view, search, download, archive, analyze, and respond to account activity across your AWS infrastructure\. You can identify who or what took which action, what resources were acted upon, when the event occurred, and other details to help you analyze and respond to activity in your AWS account\. Optionally, you can enable AWS CloudTrail Insights on a trail to help you identify and respond to unusual activity\.
 
 You can integrate CloudTrail into applications using the API, automate trail creation for your organization, check the status of trails you create, and control how users view CloudTrail events\.
 
