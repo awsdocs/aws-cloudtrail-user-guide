@@ -4,7 +4,7 @@
 
 You can choose to configure an organization trail in various ways\. For example, you can: 
 + Specify if you want the trail to apply to all regions or a single region\. The default is to create a trail for all regions\. For more information, see [How CloudTrail Works](how-cloudtrail-works.md)\.
-+ Specify whether to apply the trail to your organization\. The default is not to do so; you must choose this option in order to create an organization trail\.
++ Specify whether to apply the trail to your organization\. The default is not to do so; you must choose this option to create an organization trail\.
 + Specify which Amazon S3 bucket to use to receive log files for the organization trail\. You can choose an existing Amazon S3 bucket in the master account, or create one specifically for the organization trail\. 
 + For management and data events, specify if you want to log read\-only, write\-only, or all events\. Insights events are based only on write events\. You can specify logging data events for specific Amazon S3 buckets and AWS Lambda functions in the master account by choosing them from the lists in the console, and in member accounts if you specify the ARNs of each resource for which you want to enable data event logging\. For more information, see [Data Events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 
@@ -24,7 +24,7 @@ If you see **Get Started Now** instead of **Trails**, choose it\.
 
 1. For **Apply trail to all regions**, choose **Yes** to receive log files from all regions\. This is the default and recommended setting\. If you choose **No**, the trail logs files only from the region in which you create the trail\.
 
-1. For **Apply trail to my organization**, choose **Yes**\. You will only see this option if you are signed in to the console with an IAM user or role in the master account\. In order to successfully create an organization trail, make sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. 
+1. For **Apply trail to my organization**, choose **Yes**\. You will only see this option if you are signed in to the console with an IAM user or role in the master account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\.
 
 1. For **Management events**, for **Read/Write events**, choose if you want your trail to log **All**, **Read\-only**, **Write\-only**, or **None**\. By default, trails log all management events\. For more information, see [Management Events](logging-management-events-with-cloudtrail.md#logging-management-events)\.
 

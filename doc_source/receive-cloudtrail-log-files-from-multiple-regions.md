@@ -1,6 +1,6 @@
 # Receiving CloudTrail Log Files from Multiple Regions<a name="receive-cloudtrail-log-files-from-multiple-regions"></a>
 
-You can configure CloudTrail to deliver log files from multiple regions to a single S3 bucket for a single account\. For example, you have a trail in the US West \(Oregon\) Region that is configured to deliver log files to a S3 bucket, and a CloudWatch Logs log group\. When you apply the trail to all regions, CloudTrail creates a new trail in all other regions\. This trail has the original trail configuration\. CloudTrail delivers log files to the same S3 bucket and CloudWatch Logs log group\.
+You can configure CloudTrail to deliver log files from multiple regions to a single S3 bucket for a single account\. For example, you have a trail in the US West \(Oregon\) Region that is configured to deliver log files to a S3 bucket, and a CloudWatch Logs log group\. When you apply the trail to all regions, CloudTrail creates a new trail in all other regions\. This trail has the original trail configuration\. CloudTrail delivers log files to the same S3 bucket and CloudWatch Logs log group\. As long as CloudTrail has permissions to write to an S3 bucket, the bucket for a multi\-region trail does not have to be in the trail's home region\.
 
 **To receive CloudTrail log files from multiple regions**
 

@@ -348,7 +348,7 @@ The example returns the event selectors configured for the trail\.
 
 ### Example: A trail that does not log AWS Key Management Service events<a name="configuring-event-selector-example-kms"></a>
 
-The following example creates an event selector for a trail named *TrailName* to include read\-only and write\-only management events, but exclude AWS Key Management Service \(AWS KMS\) events\. Because AWS KMS events are treated as management events, and there can be a high volume of them, they can have a substantial impact on your CloudTrail bill if you have more than one trail that captures management events\. The user in this example has elected to exclude AWS KMS events from every trail except for one\. To exclude an event source, add `ExcludeManagementEventSources` to your event selectors, and specify an event source in the string value\. In this release, you can exclude events from `kms.amazonaws.com`\.
+The following example creates an event selector for a trail named *TrailName* to include read\-only and write\-only management events, but to exclude AWS Key Management Service \(AWS KMS\) events\. Because AWS KMS events are treated as management events, and there can be a high volume of them, they can have a substantial impact on your CloudTrail bill if you have more than one trail that captures management events\. The user in this example has chosen to exclude AWS KMS events from every trail except for one\. To exclude an event source, add `ExcludeManagementEventSources` to your event selectors, and specify an event source in the string value\. In this release, you can exclude events from `kms.amazonaws.com`\.
 
 To start logging AWS KMS events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`\.
 
@@ -356,7 +356,7 @@ To start logging AWS KMS events to a trail again, pass an empty string as the va
 aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": ["kms.amazonaws.com"],"IncludeManagementEvents": true]}]'
 ```
 
-The example returns the event selector configured for the trail\.
+The example returns the event selector that is configured for the trail\.
 
 ```
 {

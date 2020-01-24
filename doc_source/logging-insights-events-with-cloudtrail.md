@@ -19,13 +19,13 @@ When an event occurs in your account, CloudTrail evaluates whether the event mat
 
 ## Understanding Insights<a name="insights-events-understanding"></a>
 
-CloudTrail Insights can help you detect unusual API activity in your AWS account by raising Insights events\. CloudTrail Insights tracks your normal patterns of APIs and generates Insights events when the API call volume is outside normal patterns\. Insights events are generated for `write` management APIs\.
+CloudTrail Insights can help you detect unusual API activity in your AWS account by raising Insights events\. CloudTrail Insights tracks your normal patterns of API call volume and generates Insights events when the volume is outside normal patterns\. Insights events are generated for `write` management APIs\.
 
 After you enable CloudTrail Insights for the first time on a trail, it can take up to 36 hours for CloudTrail to deliver the first Insights event, if unusual activity is detected\. CloudTrail Insights analyzes write management events that occur in a single Region, not globally\. A CloudTrail Insights event is generated in the same Region as its supporting management events are generated\.
 
-The following image shows an example of what Insights events look like\. You open details pages for an Insights event by choosing an Insights event name from the **Dashboard** or **Insights** pages\. The details page for an Insights event shows a graph of an API's call volume that occurred over a period of time before and after one or more Insights events are logged\. In the graph, Insights events are highlighted with vertical bars, with the width of the bar showing the start and end time of the Insights event\.
+The following image shows an example of Insights events\. You open details pages for an Insights event by choosing an Insights event name from the **Dashboard** or **Insights** pages\. The details page for an Insights event shows a graph of an API's call volume that occurred over a period of time before and after one or more Insights events are logged\. In the graph, Insights events are highlighted with vertical bars, with the width of the bar showing the start and end time of the Insights event\.
 
-In this example, vertical highlighting bands show unusual numbers of AWS Systems Manager `UpdateInstanceInformation` API calls in an account\. In the highlighted area, because the number of `UpdateInstanceInformation` calls rose above the account's normal range of 100\.4 calls per minute, CloudTrail logged an Insights event when it detected the unusual activity\. The Insights event recorded that as many as 875 `UpdateInstanceInformation` calls were made at about 1:37 p\.m\. This is about 775 more calls to that API per minute than is expected for the account\. In this example, the graph's time span is one hour: 1:10 p\.m\. PDT on November 1, 2019 to 2:10 p\.m\. PDT on November 1, 2019\. This event has a start time of 1:37 p\.m\. PDT on November 1, 2019, and an end time of 1:38 p\.m\. PDT\.
+In this example, a vertical highlighting band shows unusual numbers of AWS Systems Manager `UpdateInstanceInformation` API calls in an account\. In the highlighted area, because the number of `UpdateInstanceInformation` calls rose above the account's normal range of 100\.4 calls per minute, CloudTrail logged an Insights event when it detected the unusual activity\. The Insights event recorded that as many as 875 `UpdateInstanceInformation` calls were made at about 1:37 p\.m\. This is about 775 more calls to that API per minute than is expected for the account\. In this example, the graph's time span is one hour: 1:10 p\.m\. PDT on November 1, 2019 to 2:10 p\.m\. PDT on November 1, 2019\. This event has a start time of 1:37 p\.m\. PDT on November 1, 2019, and an end time of 1:38 p\.m\. PDT\.
 
 The left column lists Insights events that are related to the subject API, and that have the same Insights event type\.
 
@@ -77,7 +77,7 @@ To configure your trail to log Insights events, run the `put-insight-selectors` 
 aws cloudtrail put-insight-selectors --trail-name TrailName --insight-selectors '[{"InsightType": "ApiCallRateInsight"}]'
 ```
 
-The following result shows the Insights event selector configured for the trail\.
+The following result shows the Insights event selector that is configured for the trail\.
 
 ```
 {

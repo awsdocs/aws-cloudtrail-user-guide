@@ -23,10 +23,10 @@ CloudTrail currently supports VPC endpoints in the following AWS Regions:
 + Asia Pacific \(Sydney\)
 + Asia Pacific \(Tokyo\)
 + Canada \(Central\)
-+ EU \(Frankfurt\)
-+ EU \(Ireland\)
-+ EU \(London\)
-+ EU \(Paris\)
++ Europe \(Frankfurt\)
++ Europe \(Ireland\)
++ Europe \(London\)
++ Europe \(Paris\)
 + South America \(São Paulo\)
 
 ## Create a VPC Endpoint for CloudTrail<a name="create-VPC-endpoint-for-CloudTrail"></a>

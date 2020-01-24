@@ -7,7 +7,6 @@ For a list of supported AWS services, see [CloudTrail Supported Services and Int
 
 | AWS service | Launch date | 
 | --- | --- | 
-| Amazon Connect | March 28, 2017 | 
 | Amazon Macie | August 14, 2017 | 
 | AWS Trusted Advisor | April 30, 2013 | 
 
@@ -19,6 +18,7 @@ The following AWS services do not have public API operations\.
 | AWS Deep Learning AMI | November 15, 2017 | 
 | Amazon WorkSpaces Application Manager | April 9, 2015  | 
 | AWS Artifact | November 30, 2016 | 
+| AWS DeepComposer | December 2, 2019 | 
 | AWS DeepLens | November 29, 2017 | 
 | AWS DeepRacer | April 29, 2019 | 
 |  AWS Snowmobile | November 30, 2016 | 

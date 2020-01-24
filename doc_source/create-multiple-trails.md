@@ -6,10 +6,10 @@ You can use CloudTrail log files to troubleshoot operational or security issues 
 Creating multiple trails will incur additional costs\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\. 
 
 For example, you might have the following users:
-+ A security administrator creates a trail in the EU \(Ireland\) Region and configures KMS log file encryption\. The trail delivers the log files to an S3 bucket in the EU \(Ireland\) Region\.
-+ An IT auditor creates a trail in the EU \(Ireland\) Region and configures log file integrity validation to ensure the log files have not changed since CloudTrail delivered them\. The trail is configured to deliver log files to an S3 bucket in the EU \(Frankfurt\) Region
-+ A developer creates a trail in the EU \(Frankfurt\) Region and configures CloudWatch alarms to receive notifications for specific API activity\. The trail shares the same S3 bucket as the trail configured for log file integrity\.
-+ Another developer creates a trail in the EU \(Frankfurt\) Region and configures SNS\. The log files are delivered to a separate S3 bucket in the EU \(Frankfurt\) Region\.
++ A security administrator creates a trail in the Europe \(Ireland\) Region and configures KMS log file encryption\. The trail delivers the log files to an S3 bucket in the Europe \(Ireland\) Region\.
++ An IT auditor creates a trail in the Europe \(Ireland\) Region and configures log file integrity validation to ensure the log files have not changed since CloudTrail delivered them\. The trail is configured to deliver log files to an S3 bucket in the Europe \(Frankfurt\) Region
++ A developer creates a trail in the Europe \(Frankfurt\) Region and configures CloudWatch alarms to receive notifications for specific API activity\. The trail shares the same S3 bucket as the trail configured for log file integrity\.
++ Another developer creates a trail in the Europe \(Frankfurt\) Region and configures SNS\. The log files are delivered to a separate S3 bucket in the Europe \(Frankfurt\) Region\.
 
 The following image illustrates this example\.
 

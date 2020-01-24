@@ -25,7 +25,7 @@ CloudTrail Insights events must be enabled on your trail to see Insights events 
 
 ## Filtering Insights Events<a name="filtering-insights-events"></a>
 
-The default display of events in **Insights** shows events in reverse chronological order, with the newest Insights events, sorted by event start time, at the top\. The following list describes the available attributes\.
+The default display of events in **Insights** shows events in reverse chronological order\. The newest Insights events, sorted by event start time, are at the top\. The following list describes the available attributes\.
 
 **Event name**  
 The name of the event, typically the AWS API on which unusual levels of activity were recorded\.
@@ -71,7 +71,7 @@ The following steps describe how to filter by a start and end date and time\.
 
    The following information is shown when you hover over an Insights event in the graph:
    + Statistics
-     + **Baseline average** \- The typical rate of calls per minute to this API in a specific region in your account\.
+     + **Baseline average** \- The typical rate of calls per minute to this API in a specific Region in your account\.
      + **Insights average** \- The rate of calls per minute to this API that triggered the Insights event\. The CloudTrail Insights average for the start event is the rate of calls per minute to the API that triggered the Insights event\. Typically, this is the first minute of unusual activity\. The Insights average for the end event is the rate of API calls per minute over the duration of the unusual activity, between the start Insights event and the end Insights event\.
    + Details about the Insights event
      + **Event start time** \- The minute during which unusual activity was first recorded\.
@@ -81,11 +81,11 @@ The following steps describe how to filter by a start and end date and time\.
 
 1. On the **CloudTrail events** tab, view related events that CloudTrail analyzed to determine that unusual activity occurred\. Note that a filter is already applied for the Insights event name, which is also the name of the related API\. The **CloudTrail events** tab shows CloudTrail management events related to the subject API that occurred between the start time \(minus one minute\) and end time \(plus one minute\) of the Insights event\.
 
-   \. As you select other Insights events in the graph, the events shown in the **CloudTrail events** table change\. These events help you perform deeper analysis to determine the probable cause of an Insights event, and reasons for unusual API activity\.
+   As you select other Insights events in the graph, the events shown in the **CloudTrail events** table change\. These events help you perform deeper analysis to determine the probable cause of an Insights event and reasons for unusual API activity\.
 
 1. In the left pane of the details page, choosing the linked **Event source** returns you to the **Insights** page, filtered by that event source\.
 
-1. To remove the filter and view all CloudTrail events, not just the ones related to the Insights event subject API, choose **X** in the **Enter lookup value** box\.
+1. To remove the filter and view all CloudTrail events, not just the events related to the Insights event subject API, choose **X** in the **Enter lookup value** box\.
 
 ## Zoom, Pan, and Download Graph<a name="viewing-insight-details-zoom"></a>
 
@@ -112,7 +112,7 @@ You can change the time span—the selected duration of the events shown on the 
 |  Between 24 and 72 hours  |  **3d** \(three days\)  | 
 |  Longer than 72 hours  |  **1w** \(one week\)  | 
 
-You can choose one hour, 12 hours, one day, three days, one week, or **custom**\. The following screenshot shows **Relative** time periods you can choose in **custom** settings\. Relative time periods are approximate time periods surrounding the start and end of the selected Insights event that is displayed on an Insights event details page\.
+You can choose one hour, 12 hours, one day, three days, one week, or **custom**\. The following image shows **Relative** time periods you can choose in **custom** settings\. Relative time periods are approximate time periods surrounding the start and end of the selected Insights event that is displayed on an Insights event details page\.
 
 ![\[Insights graph time span custom configuration, Relative time\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/insights_graph_custom.png)
 

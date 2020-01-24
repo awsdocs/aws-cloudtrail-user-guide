@@ -25,7 +25,7 @@ To help limit the number of events that are logged to your trail, you can filter
 When you set up an Organizations trail with CloudTrail, CloudTrail replicates the trail to each member account within your organization\. The new trail is created *in addition to* any existing trails in member accounts\. Be sure that the configuration of your master trail matches how you want trails configured for all accounts within an organization, because the master trail configuration propagates to all accounts\.  
 Because Organizations creates a trail in each member account, an individual member account that creates an additional trail to collect the same management events as the Organizations trail is collecting a second copy of events\. The account is charged for the second copy\. Similarly, if an account has a multi\-region trail, and creates a second trail in a single region to collect the same management events as the multi\-region trail, the trail in the single region is delivering a second copy of events\. The second copy incurs charges\.
 
-## See Also<a name="w61aac10c30b7b9"></a>
+## See Also<a name="w64aac10c30b7b9"></a>
 + [AWS CloudTrail Pricing](http://aws.amazon.com/cloudtrail/pricing/)
 + [Managing Your Costs with Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html)
 + [Getting Started with Cost Explorer](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-getting-started.html)

@@ -25,7 +25,7 @@ In order to obtain a complete record of events taken by a user, role, or service
 The following are some steps you can take:
 + [Create a trail for your AWS account](cloudtrail-create-a-trail-using-the-console-first-time.md#creating-a-trail-in-the-console)
 + [Update an existing trail ](cloudtrail-update-a-trail-console.md)to log events in all AWS Regions
-+ Implement ongoing detective controls to help ensure all trails created are logging events in all AWS Regions by using the [multi\-region\-cloud\-trail\-enabled](https://docs.aws.amazon.com/config/latest/developerguide//multi-region-cloud-trail-enabled.html) rule in AWS Config\.
++ Implement ongoing detective controls to help ensure all trails created are logging events in all AWS Regions by using the [multi\-region\-cloud\-trail\-enabled](https://docs.aws.amazon.com/config/latest/developerguide/multi-region-cloud-trail-enabled.html) rule in AWS Config\.
 
 **Enable CloudTrail log file integrity**
 

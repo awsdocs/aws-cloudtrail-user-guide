@@ -1,12 +1,12 @@
 # Creating a Trail for an Organization with the AWS Command Line Interface<a name="cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli"></a>
 
-You can create an organization trail by using the AWS CLI\. The AWS CLI is regularly updated with additional functionality and commands\. To help ensure success, make sure that you have installed or updated to a recent AWS CLI version before you begin\.
+You can create an organization trail by using the AWS CLI\. The AWS CLI is regularly updated with additional functionality and commands\. To help ensure success, be sure that you have installed or updated to a recent AWS CLI version before you begin\.
 
 **Note**  
 The examples in this section are specific to creating and updating organization trails\. For examples of using the AWS CLI to manage trails, see [Managing Trails With the AWS CLI](cloudtrail-additional-cli-commands.md)\. When creating or updating an organization trail with the AWS CLI, you must use an AWS CLI profile in the master account with sufficient permissions\.  
 You must configure the Amazon S3 bucket used for an organization trail with sufficient permissions\. 
 
-## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="w61aac10c21c29b7"></a>
+## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="w64aac10c21c29b7"></a>
 
 You must specify an Amazon S3 bucket to receive the log files for an organization trail\. This bucket must have a policy that allows CloudTrail to put the log files for the organization into the bucket\.
 

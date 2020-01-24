@@ -28,14 +28,14 @@ These options are explained in this topic\. For general information about using 
 ## Prerequisites<a name="aws-cli-prerequisites-for-insights"></a>
 + To run AWS CLI commands, you must install the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 + Make sure your AWS CLI version is greater than 1\.6\.6\. To verify the CLI version, run aws \-\-version on the command line\.
-+ To set the account, region, and default output format for an AWS CLI session, use the aws configure command\. For more information, see [ Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
++ To set the account, Region, and default output format for an AWS CLI session, use the aws configure command\. For more information, see [ Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
 **Note**  
 The CloudTrail AWS CLI commands are case\-sensitive\.
 
 ## Getting Command Line Help<a name="getting-command-line-help-insights"></a>
 
-To see the command line help for `lookup-events`, type the following command:
+To see the command line help for `lookup-events`, type the following command\.
 
 ```
 aws cloudtrail lookup-events help
@@ -43,13 +43,13 @@ aws cloudtrail lookup-events help
 
 ## Looking Up Insights Events<a name="looking-up-insights-with-the-aws-cli"></a>
 
-To see the ten latest Insights events, type the following command:
+To see the ten latest Insights events, type the following command\.
 
 ```
 aws cloudtrail lookup-events --event-category insight
 ```
 
- A returned event looks similar to the following example, which has been formatted for readability:
+ A returned event looks similar to the following example, which has been formatted for readability\.
 
 ```
 {
@@ -116,7 +116,7 @@ For an explanation of the lookup\-related fields in the output, see the section 
 
 ## Specifying the Number of Insights Events to Return<a name="specify-the-number-of-insights-to-return"></a>
 
-To specify the number of events to return, type the following command:
+To specify the number of events to return, type the following command\.
 
 ```
 aws cloudtrail lookup-events --event-category insight --max-results <integer>
@@ -130,7 +130,7 @@ aws cloudtrail lookup-events --event-category insight --max-results 1
 
 ## Looking Up Insights Events by Time Range<a name="look-up-insights-by-time-range"></a>
 
-Insights events from the past 90 days are available for lookup\. To specify a time range, type the following command:
+Insights events from the past 90 days are available for lookup\. To specify a time range, type the following command\.
 
 ```
 aws cloudtrail lookup-events --event-category insight --start-time <timestamp> --end-time <timestamp>
@@ -161,13 +161,13 @@ The following are examples of valid formats\. Date, month, and year values can b
 
 ## Looking Up Insights Events by Attribute<a name="look-up-insights-by-attributes"></a>
 
-To filter by an attribute, type the following command:
+To filter by an attribute, type the following command\.
 
 ```
 aws cloudtrail lookup-events --event-category insight --lookup-attributes AttributeKey=<attribute>,AttributeValue=<string>
 ```
 
-You can specify only one attribute key/value pair for each lookup\-events command\. The following are valid Insights event values for `AttributeKey`\. Value names are case sensitive\.
+You can specify only one attribute key\-value pair for each lookup\-events command\. The following are valid Insights event values for `AttributeKey`\. Value names are case sensitive\.
 + EventId
 + EventName
 + EventSource
@@ -194,21 +194,21 @@ aws cloudtrail lookup-events --event-category insight --lookup-attributes Attrib
 
 ## Specifying the Next Page of Results<a name="specify-next-page-of-results"></a>
 
-To get the next page of results from a `lookup-events` command, type the following command:
+To get the next page of results from a `lookup-events` command, type the following command\.
 
 ```
 aws cloudtrail lookup-events --event-category insight <same parameters as previous command> --next-token=<token>
 ```
 
-where the value for *<token>* is taken from the first field of the output of the previous command\.
+In this command, the value for *<token>* is taken from the first field of the output of the previous command\.
 
-When you use `--next-token` in a command, you must use the same parameters as in the previous command\. For example, suppose you run the following command:
+When you use `--next-token` in a command, you must use the same parameters as in the previous command\. For example, suppose you run the following command\.
 
 ```
 aws cloudtrail lookup-events --event-category insight --lookup-attributes AttributeKey=EventName, AttributeValue=PutRule
 ```
 
-To get the next page of results, your next command would look like this:
+To get the next page of results, your next command would look like the following\.
 
 ```
 aws cloudtrail lookup-events --event-category insight --lookup-attributes AttributeKey=EventName,AttributeValue=PutRule --next-token=EXAMPLEZe++mErCebpy2TgaMgmDvF1kYGFcH64JSjIbZFjsuvrSqg66b5YGssKutDYIyII4lrP4IDbeQdiObkp9YAlju3oXd12juEXAMPLE=
@@ -216,7 +216,7 @@ aws cloudtrail lookup-events --event-category insight --lookup-attributes Attrib
 
 ## Getting JSON Input from a File<a name="json-input-from-file-insights"></a>
 
-The AWS CLI for some AWS services has two parameters, `--generate-cli-skeleton` and `--cli-input-json`, that you can use to generate a JSON template which you can modify and use as input to the `--cli-input-json` parameter\. This section describes how to use these parameters with `aws cloudtrail lookup-events`\. For more general information, see [ Generate CLI Skeleton and CLI Input JSON Parameters](https://docs.aws.amazon.com/cli/latest/userguide/generate-cli-skeleton.html)\.
+The AWS CLI for some AWS services has two parameters, `--generate-cli-skeleton` and `--cli-input-json`, that you can use to generate a JSON template, which you can modify and use as input to the `--cli-input-json` parameter\. This section describes how to use these parameters with `aws cloudtrail lookup-events`\. For more information, see [ Generate CLI Skeleton and CLI Input JSON Parameters](https://docs.aws.amazon.com/cli/latest/userguide/generate-cli-skeleton.html)\.
 
 **To look up Insights events by getting JSON input from a file**
 
@@ -226,7 +226,7 @@ The AWS CLI for some AWS services has two parameters, `--generate-cli-skeleton` 
    aws cloudtrail lookup-events --event-category insight --generate-cli-skeleton > LookupEvents.txt
    ```
 
-   The template file generated \(in this case, LookupEvents\.txt\) looks like this:
+   The template file generated \(in this case, LookupEvents\.txt\) looks like the following\.
 
    ```
    {
@@ -257,7 +257,7 @@ All empty or null values must be removed from the template before you can use it
    }
    ```
 
-1. To use the edited file as input, use the syntax `--cli-input-json file://`*<filename>*, as in the following example:
+1. To use the edited file as input, use the syntax `--cli-input-json file://`*<filename>*, as in the following example\.
 
    ```
    aws cloudtrail lookup-events --event-category insight --cli-input-json file://LookupEvents.txt
@@ -273,7 +273,7 @@ A list of lookup events based on the lookup attribute and time range that were s
  The following entries describe the fields in each lookup event\.
 
 **CloudTrailEvent**  
-A JSON string that contains an object representation of the event returned\. For information about each of the elements returned, see [ Record Body Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 
+A JSON string that contains an object representation of the event returned\. For information about each of the elements returned, see [ Record Body Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
 
 **EventId**  
 A string that contains the GUID of the event returned\.

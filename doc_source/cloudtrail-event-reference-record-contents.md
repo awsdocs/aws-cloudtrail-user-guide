@@ -207,11 +207,11 @@ Shows the typical average rate of calls to the subject API by an account within 
 **Optional:** True
 
 **`insight`**  
-Shows the unusual rate of calls to the subject API that triggers the logging of an Insights event\. The CloudTrail Insights average for the start event is the rate of calls per minute to the API that triggered the Insights event\. Typically, this is the first minute of unusual activity\. The Insights average for the end event is the rate of API calls per minute during the duration of the unusual activity, between the start Insights event and the end Insights event\.  
+Shows the unusual rate of calls to the subject API that triggers the logging of an Insights event\. The CloudTrail Insights average for the start event is the rate of calls per minute to the API that triggered the Insights event\. Typically, this is the first minute of unusual activity\. The Insights average for the end event is the rate of API calls per minute for the duration of the unusual activity, between the start Insights event and the end Insights event\.  
 **Since:** 1\.07  
 **Optional:** True
 
 **`insightDuration`**  
-The duration, in minutes, of an Insights event \(the time period from the start to end of unusual activity on the subject API\)\. `insightDuration` only occurs in end Insights events\.  
+The duration, in minutes, of an Insights event \(the time period from the start to the end of unusual activity on the subject API\)\. `insightDuration` only occurs in end Insights events\.  
 **Since:** 1\.07  
 **Optional:** True

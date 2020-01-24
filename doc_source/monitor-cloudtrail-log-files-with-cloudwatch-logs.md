@@ -31,9 +31,9 @@ You can configure your trails to send logs to CloudWatch Logs in the following r
 | Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
 | Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
 | Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
-| EU \(Frankfurt\) | eu\-central\-1 | 
-| EU \(Ireland\) | eu\-west\-1 | 
-| EU \(London\) | eu\-west\-2 | 
+| Europe \(Frankfurt\) | eu\-central\-1 | 
+| Europe \(Ireland\) | eu\-west\-1 | 
+| Europe \(London\) | eu\-west\-2 | 
 | South America \(São Paulo\) | sa\-east\-1 | 
 | AWS GovCloud \(US\)\* | us\-gov\-west\-1 | 
 

@@ -99,7 +99,7 @@ To avoid logging data events for the Amazon S3 bucket where you receive log file
 
 ### Logging Data Events for S3 Objects in Other AWS Accounts<a name="logging-data-events-for-s3-resources-in-other-accounts"></a>
 
-When you configure your trail to log data events, you can also specify S3 objects that belong to other AWS accounts\. When an event occurs on a specified object, CloudTrail evaluates whether the event matches any trails in each account\. If the event matches the settings for a trail, the trail processes and logs the event for that account\. 
+When you configure your trail to log data events, you can also specify S3 objects that belong to other AWS accounts\. When an event occurs on a specified object, CloudTrail evaluates whether the event matches any trails in each account\. If the event matches the settings for a trail, the trail processes and logs the event for that account\. Generally, both API callers and resource owners can receive events\.
 
 If you own an S3 object and you specify it in your trail, your trail logs events that occur on the object in your account\. Because you own the object, your trail also logs events when other accounts call the object\.
 
@@ -113,17 +113,39 @@ The following example shows how two AWS accounts configure CloudTrail to log eve
 
 1. Bob has a separate account that has been granted access to the S3 bucket\. Bob also wants to log data events for all objects in the same S3 bucket\. For his trail, he configures his trail and specifies the same S3 bucket with an empty object prefix\.
 
-1. Bob uploads an object to the S3 bucket with the `PutObject` API operation\. 
+1. Bob uploads an object to the S3 bucket with the `PutObject` API operation\.
 
 1. This event occurred in his account and it matches the settings for his trail\. Bob's trail processes and logs the event\.
 
-1. Because you own the S3 bucket and the event matches the settings for your trail, your trail also processes and logs the same event\.
+1. Because you own the S3 bucket and the event matches the settings for your trail, your trail also processes and logs the same event\. Because there are now two copies of the event \(one logged in Bob's trail, and one logged in yours\), CloudTrail charges for two copies of the data event\.
 
-1. You upload an object to the S3 bucket\. 
+1. You upload an object to the S3 bucket\.
 
 1. This event occurs in your account and it matches the settings for your trail\. Your trail processes and logs the event\.
 
-1. Because the event didn't occur in Bob's account, and he doesn't own the S3 bucket, Bob's trail doesn't log the event\.
+1. Because the event didn't occur in Bob's account, and he doesn't own the S3 bucket, Bob's trail doesn't log the event\. CloudTrail charges for only one copy of this data event\.
+
+**Example: Logging data events for all buckets, including an S3 bucket used by two AWS accounts**
+
+The following example shows the logging behavior when **Select all S3 buckets in your account** is enabled for trails that collect data events in an AWS account\.
+
+1. In your account, you want your trail to log data events for all S3 buckets\. You configure the trail by choosing **Select all S3 buckets in your account** in **Data events**\.
+
+1. Bob has a separate account that has been granted access to an S3 bucket in your account\. He wants to log data events for the bucket to which he has access\. He configures his trail to get data events for all S3 buckets\.
+
+1. Bob uploads an object to the S3 bucket with the `PutObject` API operation\.
+
+1. This event occurred in his account and it matches the settings for his trail\. Bob's trail processes and logs the event\.
+
+1. Because you own the S3 bucket and the event matches the settings for your trail, your trail also processes and logs the event\. Because there are now two copies of the event \(one logged in Bob's trail, and one logged in yours\), CloudTrail charges each account for a copy of the data event\.
+
+1. You upload an object to the S3 bucket\.
+
+1. This event occurs in your account and it matches the settings for your trail\. Your trail processes and logs the event\.
+
+1. Because the event didn't occur in Bob's account, and he doesn't own the S3 bucket, Bob's trail doesn't log the event\. CloudTrail charges for only one copy of this data event in your account\.
+
+1. A third user, Mary, has access to the S3 bucket, and runs a `GetObject` operation on the bucket\. She has a trail configured to log data events on all S3 buckets in her account\. Because she is the API caller, CloudTrail logs a data event in her trail\. Though Bob has access to the bucket, he is not the resource owner, so no event is logged in his trail this time\. As the resource owner, you receive an event in your trail about the `GetObject` operation that Mary called\. CloudTrail charges your account and Mary's account for each copy of the data event: one in Mary's trail, and one in yours\.
 
 ## Read\-only and Write\-only Events<a name="read-write-events-data"></a>
 
