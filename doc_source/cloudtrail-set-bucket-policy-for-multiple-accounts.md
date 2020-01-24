@@ -49,5 +49,3 @@ An AWS account ID is a twelve\-digit number, and leading zeros must not be omitt
      ]
    }
    ```
-
-1. \(Optional\) Restrict access to the S3 bucket to either a specific AWS Organization or account by using the global condition keys [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#principal-org-id](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#principal-org-id) or [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount)\. For more information about how to restrict access to S3 buckets by using global condition keys, see [Specifying Conditions in a Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html) in the *Amazon Simple Storage Service Developer Guide*\.
