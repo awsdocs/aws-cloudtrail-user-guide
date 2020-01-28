@@ -304,7 +304,7 @@ public class DigestFileValidator {
                     parameters      ANY DEFINED BY algorithm OPTIONAL
                 }                
             */
-            pkcs1PublicKeyBytes = getPublicKey(digestFile.getString("digestPublicKeyFingerprint")));
+            pkcs1PublicKeyBytes = getPublicKey(digestFile.getString("digestPublicKeyFingerprint"));
  
             // Transform the PKCS#1 formatted public key to x.509 format.
             RSAPublicKey rsaPublicKey = RSAPublicKey.getInstance(pkcs1PublicKeyBytes);
