@@ -524,10 +524,10 @@ You can view and configure delivery of events to CloudWatch Logs in the CloudTra
     "Statement": [{
         "Effect": "Allow",
         "Action": [
-            "iam:CreateRole"
-            "iam:PutRolePolicy"
-            "iam:ListRoles"
-            "iam:GetRolePolicy"
+            "iam:CreateRole",
+            "iam:PutRolePolicy",
+            "iam:ListRoles",
+            "iam:GetRolePolicy",
             "iam:GetUser"
         ],
         "Resource": "*"
