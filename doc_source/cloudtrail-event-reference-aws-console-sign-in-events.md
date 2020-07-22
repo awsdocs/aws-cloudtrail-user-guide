@@ -34,7 +34,7 @@ The following record shows that an IAM user named Anaya successfully signed into
             "MFAUsed":"No"
          },
          "eventID":"3fcfb182-98f8-4744-bd45-10a395ab61cb",
-         "eventType": "AwsConsoleSignin"
+         "eventType": "AwsConsoleSignIn"
       }
    ]
 }
