@@ -1,4 +1,4 @@
-# Creating, Updating, and Managing Trails with the AWS Command Line Interface<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli"></a>
+# Creating, updating, and managing trails with the AWS Command Line Interface<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli"></a>
 
 You can use the AWS CLI to create, update, and manage your trails\. When using the AWS CLI, remember that your commands run in the AWS Region configured for your profile\. If you want to run the commands in a different Region, either change the default Region for your profile, or use the \-\-region parameter with the command\.
 

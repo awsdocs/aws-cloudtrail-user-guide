@@ -35,7 +35,7 @@ Validated log files are especially valuable in security and forensic investigati
 
 CloudWatch Logs allows you to monitor and receive alerts for specific events captured by CloudTrail\. The events sent to CloudWatch Logs are those configured to be logged by your trail, so make sure you have configured your trail or trails to log the event types \(management events and/or data events\) that you are interested in monitoring\.
 
-For example, you can monitor key security and network\-related management events, such as [failed AWS console sign\-in events](cloudwatch-alarms-for-cloudtrail.md#cloudwatch-alarms-for-cloudtrail-signin)and [changes to Amazon EC2 instances](cloudwatch-alarms-for-cloudtrail.md#cloudwatch-alarms-for-cloudtrail-ec2-instance-changes) such as launching, deleting, and rebooting instances\. 
+For example, you can monitor key security and network\-related management events, such as [failed AWS console sign\-in events](cloudwatch-alarms-for-cloudtrail.md#cloudwatch-alarms-for-cloudtrail-signin)\.
 
 The following are some steps you can take:
 + Review example [CloudWatch Logs integrations for CloudTrail](cloudwatch-alarms-for-cloudtrail.md)\.
@@ -81,7 +81,7 @@ CloudTrail trails log events to an Amazon S3 bucket that you specify\. These log
 The following are some steps you can take:
 + Review the [Amazon S3 bucket policy](create-s3-bucket-policy-for-cloudtrail.md) for any and all buckets where you store log files and adjust it if necessary to remove any unnecessary access\. This bucket policy will be generated for you if you create a trail using the CloudTrail console, but can also be created and managed manually\.
 + If you are using the same Amazon S3 bucket to store log files for multiple AWS accounts, follow the guidance for [receiving log files for multiple accounts](cloudtrail-receive-logs-from-multiple-accounts.md)\.
-+ If you are using an organization trail, make sure you follow the guidance for [organization trails](creating-trail-organization.md), and review the example policy for an Amazon S3 bucket for an organization trail in [Creating a Trail for an Organization with the AWS Command Line Interface](cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli.md)\.
++ If you are using an organization trail, make sure you follow the guidance for [organization trails](creating-trail-organization.md), and review the example policy for an Amazon S3 bucket for an organization trail in [Creating a trail for an organization with the AWS Command Line Interface](cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli.md)\.
 + Review the [Amazon S3 security documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/security.html) and the [example walkthrough for securing a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/walkthrough1.html)\.
 
 **Enable MFA Delete on the Amazon S3 bucket where you store log files**
@@ -96,6 +96,6 @@ The following are some steps you can take:
 
 The CloudTrail trail default is to store log files indefinitely in the Amazon S3 bucket configured for the trail\. You can use the [Amazon S3 object lifecycle management rules](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html) to define your own retention policy to better meet your business and auditing needs\. For example, you might want to archive log files that are more than a year old to Amazon Glacier, or delete log files after a certain amount of time has passed\.
 
-**Limit access to the AWSCloudTrailFullAccess policy**
+**Limit access to the AWSCloudTrail\_FullAccess policy**
 
-Users with the [AWSCloudTrailFullAccess](security_iam_id-based-policy-examples.md#grant-custom-permissions-for-cloudtrail-users-full-access) policy have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. This policy is not intended to be shared or applied broadly to users and roles in your AWS account\. Limit application of this policy to as few individuals as possible, those you expect to act as AWS account administrators\.
+Users with the [AWSCloudTrail\_FullAccess](security_iam_id-based-policy-examples.md#grant-custom-permissions-for-cloudtrail-users-full-access) policy have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. This policy is not intended to be shared or applied broadly to users and roles in your AWS account\. Limit application of this policy to as few individuals as possible, those you expect to act as AWS account administrators\.

@@ -4,7 +4,7 @@ You can have CloudTrail deliver log files from multiple AWS accounts into a sing
 
 1. Turn on CloudTrail in the account where the destination bucket will belong \(111111111111 in this example\)\. Do not turn on CloudTrail in any other accounts yet\.
 
-   For instructions, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\. 
+   For instructions, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\. 
 
 1. Update the bucket policy on your destination bucket to grant cross\-account permissions to CloudTrail\. 
 

@@ -4,4 +4,4 @@ In addition to logging AWS API calls, CloudTrail captures other related events t
 
 **Topics**
 + [AWS Service Events](non-api-aws-service-events.md)
-+ [AWS Console Sign\-in Events](cloudtrail-event-reference-aws-console-sign-in-events.md)
++ [AWS console sign\-in events](cloudtrail-event-reference-aws-console-sign-in-events.md)

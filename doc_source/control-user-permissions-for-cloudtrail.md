@@ -5,7 +5,7 @@ AWS CloudTrail integrates with AWS Identity and Access Management \(IAM\), which
 The following topics might also help you understand permissions, policies, and CloudTrail security:
 + [Amazon S3 Bucket Naming Requirements](cloudtrail-s3-bucket-naming-requirements.md)
 + [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
-+  An example of a bucket policy for an organization trail in [Creating a Trail for an Organization with the AWS Command Line Interface](cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli.md)\.
++  An example of a bucket policy for an organization trail in [Creating a trail for an organization with the AWS Command Line Interface](cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli.md)\.
 + [Amazon SNS Topic Policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)
 + [Encrypting CloudTrail Log Files with AWS KMS–Managed Keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)
 +  [Default Key Policy Created in CloudTrail Console](default-cmk-policy.md)

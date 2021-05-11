@@ -66,4 +66,4 @@ If you're creating a policy that might be used for organization trails as well, 
 }
 ```
 
-For more information about organization trails, see [Creating a Trail for an Organization](creating-trail-organization.md)\.
+For more information about organization trails, see [Creating a trail for an organization](creating-trail-organization.md)\.

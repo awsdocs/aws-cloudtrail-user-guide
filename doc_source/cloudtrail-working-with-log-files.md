@@ -24,8 +24,8 @@ Not all AWS services support CloudTrail events\. For more information about supp
 
 **Topics**
 + [Create Multiple Trails](create-multiple-trails.md)
-+ [Logging Management Events for Trails](logging-management-events-with-cloudtrail.md)
-+ [Logging Data Events for Trails](logging-data-events-with-cloudtrail.md)
++ [Logging management events for trails](logging-management-events-with-cloudtrail.md)
++ [Logging data events for trails](logging-data-events-with-cloudtrail.md)
 + [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)
 + [Receiving CloudTrail Log Files from Multiple Regions](receive-cloudtrail-log-files-from-multiple-regions.md)
 + [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)

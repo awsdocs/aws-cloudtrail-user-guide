@@ -13,7 +13,7 @@ CloudTrail uses the service\-linked role named **AWSServiceRoleForCloudTrail** â
 The AWSServiceRoleForCloudTrail service\-linked role trusts the following services to assume the role:
 + `cloudtrail.amazonaws.com`
 
-This role is used to support the creation and management of organization trails in CloudTrail\. For more information, see [Creating a Trail for an Organization](creating-trail-organization.md)\.
+This role is used to support the creation and management of organization trails in CloudTrail\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
 The role permissions policy allows CloudTrail to complete the following actions on the specified resources:
 + Action: `All` on all CloudTrail resources\.
@@ -36,19 +36,19 @@ CloudTrail does not allow you to edit the AWSServiceRoleForCloudTrail service\-l
 
 ## Deleting a Service\-Linked Role for CloudTrail<a name="delete-slr"></a>
 
-You don't need to manually delete the AWSServiceRoleForCloudTrail role\. When you change a trail from being an organization trail to being a trail for a single AWS account in the AWS Management Console, the AWS CLI, or the AWS API, CloudTrail cleans up the resources and deletes the service\-linked role for you\. Similarly, if an AWS account is removed from an Organizations organization, the AWSServiceRoleForCloudTrail role is automatically removed from that AWS account\.
+You don't need to manually delete the AWSServiceRoleForCloudTrail role\. If an AWS account is removed from an Organizations organization, the AWSServiceRoleForCloudTrail role is automatically removed from that AWS account\. You cannot detach or remove policies from the AWSServiceRoleForCloudTrail service\-linked role in an organization management account without removing the account from the organization\.
 
-You can also use the IAM console, the AWS CLI or the AWS API to manually delete the service\-linked role\. To do this, you must first manually clean up the resources for your service\-linked role and then you can manually delete it\.
+You can also use the IAM console, the AWS CLI or the AWS API to manually delete the service\-linked role\. To do this, you must first manually clean up the resources for your service\-linked role, and then you can manually delete it\. 
 
 **Note**  
-If the CloudTrail service is using the role when you try to delete the resources, then the deletion might fail\. If that happens, wait for a few minutes and try the operation again\.
+If the CloudTrail service is using the role when you try to delete the resources, then deletion might fail\. If that happens, wait for a few minutes and try the operation again\.
 
 To remove a resource being used by the AWSServiceRoleForCloudTrail role, you can do one of the following:
 + Remove the AWS account from the organization in Organizations\.
 + Update the trail so that it is no longer an organization trail\.
 + Delete the trail\.
 
-For more information, see [Creating a Trail for an Organization](creating-trail-organization.md), [Updating a Trail](cloudtrail-update-a-trail-console.md), and [Deleting a Trail](cloudtrail-delete-trails-console.md)\.
+For more information, see [Creating a trail for an organization](creating-trail-organization.md), [Updating a trail](cloudtrail-update-a-trail-console.md), and [Deleting a Trail](cloudtrail-delete-trails-console.md)\.
 
 **To manually delete the service\-linked role using IAM**
 

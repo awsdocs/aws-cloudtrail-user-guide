@@ -2,6 +2,9 @@
 
  For a bucket to receive log files from multiple accounts, its bucket policy must grant CloudTrail permission to write log files from all the accounts you specify\. This means that you must modify the bucket policy on your destination bucket to grant CloudTrail permission to write log files from each specified account\.
 
+**Note**  
+For security reasons, unauthorized users cannot create a trail that includes `AWSLogs/` as the `S3KeyPrefix` parameter\.
+
 **To modify bucket permissions so that files can be received from multiple accounts**
 
 1.  Sign in to the AWS Management Console using the account that owns the bucket \(111111111111 in this example\) and open the Amazon S3 console\. 

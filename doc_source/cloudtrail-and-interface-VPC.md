@@ -2,7 +2,7 @@
 
 If you use Amazon Virtual Private Cloud \(Amazon VPC\) to host your AWS resources, you can establish a private connection between your VPC and AWS CloudTrail\. You can use this connection to enable CloudTrail to communicate with your resources on your VPC without going through the public internet\.
 
-Amazon VPC is an AWS service that you can use to launch AWS resources in a virtual network that you define\. With a VPC, you have control over your network settings, such the IP address range, subnets, route tables, and network gateways\. With VPC endpoints, the routing between the VPC and AWS Services is handled by the AWS network, and you can use IAM policies to control access to service resources\.
+Amazon VPC is an AWS service that you can use to launch AWS resources in a virtual network that you define\. With a VPC, you have control over your network settings, such the IP address range, subnets, route tables, and network gateways\. With VPC endpoints, the routing between the VPC and AWS services is handled by the AWS network, and you can use IAM policies to control access to service resources\.
 
 To connect your VPC to CloudTrail, you define an *interface VPC endpoint* for CloudTrail\. An interface endpoint is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported AWS service\. The endpoint provides reliable, scalable connectivity to CloudTrail without requiring an internet gateway, network address translation \(NAT\) instance, or VPN connection\. For more information, see [What is Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/) in the *Amazon VPC User Guide*\.
 
@@ -17,17 +17,24 @@ CloudTrail currently supports VPC endpoints in the following AWS Regions:
 + US East \(N\. Virginia\)
 + US West \(N\. California\)
 + US West \(Oregon\)
++ Africa \(Cape Town\)
 + Asia Pacific \(Mumbai\)
 + Asia Pacific \(Seoul\)
 + Asia Pacific \(Singapore\)
 + Asia Pacific \(Sydney\)
 + Asia Pacific \(Tokyo\)
++ Asia Pacific \(Osaka\)
 + Canada \(Central\)
 + Europe \(Frankfurt\)
 + Europe \(Ireland\)
 + Europe \(London\)
++ Europe \(Milan\)
 + Europe \(Paris\)
++ Europe \(Stockholm\)
++ Middle East \(Bahrain\)
 + South America \(São Paulo\)
++ AWS GovCloud \(US\-East\)
++ AWS GovCloud \(US\-West\)
 
 ## Create a VPC Endpoint for CloudTrail<a name="create-VPC-endpoint-for-CloudTrail"></a>
 

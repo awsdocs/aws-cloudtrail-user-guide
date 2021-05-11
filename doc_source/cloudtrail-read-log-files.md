@@ -24,6 +24,8 @@ Some browsers, such as Chrome, automatically extract the log file for you\. If y
 
 1. Open the log file in a text editor such as Notepad\+\+\.
 
+
+
 For more information about the event fields that can appear in a log file entry, see [CloudTrail Log Event Reference](cloudtrail-event-reference.md)\. 
 
 AWS partners with third\-party specialists in logging and analysis to provide solutions that use CloudTrail output\. For more information, see [AWS Partner Network \- AWS CloudTrail Partners](https://aws.amazon.com/cloudtrail/partners)\. 

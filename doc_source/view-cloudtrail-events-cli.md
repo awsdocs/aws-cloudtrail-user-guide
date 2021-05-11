@@ -26,7 +26,7 @@ These options are explained in this topic\. For general information on using the
 ## Prerequisites<a name="aws-cli-prerequisites-for-aws-cloudtrail"></a>
 + To run AWS CLI commands, you must install the AWS CLI\. For information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 + Make sure your AWS CLI version is greater than 1\.6\.6\. To verify the CLI version, run aws \-\-version on the command line\.
-+ To set the account, region, and default output format for an AWS CLI session, use the aws configure command\. For more information, see [ Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
++ To set the account, region, and default output format for an AWS CLI session, use the aws configure command\. For more information, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
 **Note**  
 The CloudTrail AWS CLI commands are case\-sensitive\.

@@ -1,13 +1,13 @@
 # Using create\-trail<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail"></a>
 
-You can use the `create-trail` command to create trails that are specifically configured to meet your business needs\. When using the AWS CLI, remember that your commands run in the AWS Region configured for your profile\. If you want to run the commands in a different Region, either change the default Region for your profile, or use the \-\-region parameter with the command\.
+You can run the `create-trail` command to create trails that are specifically configured to meet your business needs\. When using the AWS CLI, remember that your commands run in the AWS Region configured for your profile\. If you want to run the commands in a different Region, either change the default Region for your profile, or use the \-\-region parameter with the command\.
 
 ## Creating a trail that applies to all Regions<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-mrt"></a>
 
 To create a trail that applies to all Regions, use the `--is-multi-region-trail` option\. By default, the `create-trail` command creates a trail that logs events only in the AWS Region where the trail was created\. To ensure that you log global service events and capture all management event activity in your AWS account, you should create trails that log events in all AWS Regions\.
 
 **Note**  
-When creating a trail, if you specify an Amazon S3 bucket that was not created with CloudTrail, you need to attach the appropriate policy\. See [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
+When you create a trail, if you specify an Amazon S3 bucket that was not created with CloudTrail, you need to attach the appropriate policy\. See [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
 
 The following example creates a trail with the name *my\-trail* and a tag with a key named *Group* with a value of *Marketing* that delivers logs from all Regions to an existing bucket named `my-bucket`\.
 

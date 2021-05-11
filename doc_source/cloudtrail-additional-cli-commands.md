@@ -1,4 +1,4 @@
-# Managing Trails With the AWS CLI<a name="cloudtrail-additional-cli-commands"></a>
+# Managing trails with the AWS CLI<a name="cloudtrail-additional-cli-commands"></a>
 
  The AWS CLI includes several other commands that help you manage your trails\. These commands add tags to trails, get trail status, start and stop logging for trails, and delete a trail\. You must run these commands from the same AWS Region where the trail was created \(its Home Region\)\. When using the AWS CLI, remember that your commands run in the AWS Region configured for your profile\. If you want to run the commands in a different Region, either change the default Region for your profile, or use the \-\-region parameter with the command\.
 
@@ -9,12 +9,13 @@
 + [Retrieving trail settings and the status of a trail](#cloudtrail-additional-cli-commands-retrieve)
 + [Configuring Insights event selectors](#configuring-insights-selector)
 + [Configuring event selectors](#configuring-event-selector-examples)
++ [Configuring advanced event selectors](#configuring-adv-event-selector-examples)
 + [Stopping and starting logging for a trail](#cloudtrail-start-stop-logging-cli-commands)
 + [Deleting a trail](#cloudtrail-delete-trail-cli)
 
 ## Add one or more tags to a trail<a name="cloudtrail-additional-cli-commands-add-tag"></a>
 
-To add one or more tags to an existing trail, use the add\-tags command\.
+To add one or more tags to an existing trail, run the add\-tags command\.
 
 The following example adds a tag with the name *Owner* and the value of *Mary* to a trail with the ARN of *arn:aws:cloudtrail:*us\-east\-2*:*123456789012*:trail/*my\-trail** in the US East \(Ohio\) Region\. 
 
@@ -67,7 +68,7 @@ If successful, this command returns output similar to the following\.
 
 ## Remove one or more tags from a trail<a name="cloudtrail-additional-cli-commands-remove-tag"></a>
 
-To remove one or more tags from an existing trail, use the remove\-tags command\.
+To remove one or more tags from an existing trail, run the remove\-tags command\.
 
 The following example removes tags with the names *Location* and *Name* from a trail with the ARN of *arn:aws:cloudtrail:*us\-east\-2*:*123456789012*:trail/*Trail1** in the US East \(Ohio\) Region\. 
 
@@ -79,7 +80,7 @@ If successful, this command returns nothing\.
 
 ## Retrieving trail settings and the status of a trail<a name="cloudtrail-additional-cli-commands-retrieve"></a>
 
-Use the `describe-trails` command to retrieve information about trails in an AWS Region\. The following example returns information about trails configured in the US East \(Ohio\) Region\.
+Run the `describe-trails` command to retrieve information about trails in an AWS Region\. The following example returns information about trails configured in the US East \(Ohio\) Region\.
 
 ```
 aws cloudtrail describe-trails --region us-east-2
@@ -132,7 +133,7 @@ If the command succeeds, you see output similar to the following\.
 }
 ```
 
-Use the `get-trail` command to retrieve settings information about a specific trail\. The following example returns settings information for a trail named *my\-trail*\.
+Run the `get-trail` command to retrieve settings information about a specific trail\. The following example returns settings information for a trail named *my\-trail*\.
 
 ```
 aws cloudtrail get-trail - -name my-trail
@@ -158,7 +159,7 @@ If successful, this command returns output similar to the following\.
 }
 ```
 
-Run the `get-trail-status` command to retrieve the status of a trail\. You must either run this command from the AWS Region where it was created \(the Home Region\), or you must specify that Region by using the \-\-region parameter\.
+Run the `get-trail-status` command to retrieve the status of a trail\. You must either run this command from the AWS Region where it was created \(the Home Region\), or you must specify that Region by adding the \-\-region parameter\.
 
 **Note**  
 If the trail is an organization trail and you are a member account in the organization in AWS Organizations, you must provide the full ARN of that trail, and not just the name\.
@@ -261,12 +262,13 @@ The following example returns the default settings for an event selector for a t
 }
 ```
 
-To create an event selector, run the `put-event-selectors` command\. When an event occurs in your account, CloudTrail evaluates the configuration for your trails\. If the event matches any event selector for a trail, the trail processes and logs the event\. You can configure up to 5 event selectors for a trail and up to 250 data resources for a trail\. For more information, see [Logging Data Events for Trails](logging-data-events-with-cloudtrail.md)\.
+To create an event selector, run the `put-event-selectors` command\. When an event occurs in your account, CloudTrail evaluates the configuration for your trails\. If the event matches any event selector for a trail, the trail processes and logs the event\. You can configure up to 5 event selectors for a trail and up to 250 data resources for a trail\. For more information, see [Logging data events for trails](logging-data-events-with-cloudtrail.md)\.
 
 **Topics**
 + [Example: A trail with specific event selectors](#configuring-event-selector-example1)
 + [Example: A trail that logs all management and data events](#configuring-event-selector-example2)
 + [Example: A trail that does not log AWS Key Management Service events](#configuring-event-selector-example-kms)
++ [Example: A trail that logs relevant low\-volume AWS Key Management Service events](#configuring-event-selector-log-kms)
 
 ### Example: A trail with specific event selectors<a name="configuring-event-selector-example1"></a>
 
@@ -308,13 +310,13 @@ The example returns the event selector configured for the trail\.
 
 ### Example: A trail that logs all management and data events<a name="configuring-event-selector-example2"></a>
 
-The following example creates an event selector for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all Amazon S3 buckets and AWS Lambda functions in the AWS account\.
+The following example creates an event selector for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all Amazon S3 buckets, AWS Lambda functions, and Amazon DynamoDB tables in the AWS account\. Because this example uses basic event selectors, it cannot configure logging for S3 events on AWS Outposts or Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes\. You must use advanced event selectors to log data events for those resources\. For more information, see [Configuring advanced event selectors](#configuring-adv-event-selector-examples)\.
 
 **Note**  
 If the trail applies only to one Region, only events in that Region are logged, even though the event selector parameters specify all Amazon S3 buckets and Lambda functions\. Event selectors apply only to the Regions where the trail is created\.
 
 ```
-aws cloudtrail put-event-selectors --trail-name TrailName2 --event-selectors '[{"ReadWriteType": "All","IncludeManagementEvents": true,"DataResources": [{"Type":"AWS::S3::Object", "Values": ["arn:aws:s3:::"]},{"Type": "AWS::Lambda::Function","Values": ["arn:aws:lambda"]}]}]'
+aws cloudtrail put-event-selectors --trail-name TrailName2 --event-selectors '[{"ReadWriteType": "All","IncludeManagementEvents": true,"DataResources": [{"Type":"AWS::S3::Object", "Values": ["arn:aws:s3:::"]},{"Type": "AWS::Lambda::Function","Values": ["arn:aws:lambda"]},{"Type": "AWS::DynamoDB::Table","Values": ["arn:aws:dynamodb"]}]}]'
 ```
 
 The example returns the event selectors configured for the trail\.
@@ -338,6 +340,12 @@ The example returns the event selectors configured for the trail\.
                     ],
                     "Type": "AWS::Lambda::Function"
                 },
+{
+                    "Values": [
+                        "arn:aws:dynamodb"
+                    ],
+                    "Type": "AWS::DynamoDB::Table"
+                }
             ],
             "ReadWriteType": "All"
         }
@@ -349,6 +357,8 @@ The example returns the event selectors configured for the trail\.
 ### Example: A trail that does not log AWS Key Management Service events<a name="configuring-event-selector-example-kms"></a>
 
 The following example creates an event selector for a trail named *TrailName* to include read\-only and write\-only management events, but to exclude AWS Key Management Service \(AWS KMS\) events\. Because AWS KMS events are treated as management events, and there can be a high volume of them, they can have a substantial impact on your CloudTrail bill if you have more than one trail that captures management events\. The user in this example has chosen to exclude AWS KMS events from every trail except for one\. To exclude an event source, add `ExcludeManagementEventSources` to your event selectors, and specify an event source in the string value\. In this release, you can exclude events from `kms.amazonaws.com`\.
+
+If you choose not to log management events, AWS KMS events are not logged, and you cannot change AWS KMS event logging settings\.
 
 To start logging AWS KMS events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`\.
 
@@ -376,6 +386,527 @@ To start logging AWS KMS events to a trail again, pass an empty string as the va
 
 ```
 aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
+```
+
+### Example: A trail that logs relevant low\-volume AWS Key Management Service events<a name="configuring-event-selector-log-kms"></a>
+
+The following example creates an event selector for a trail named *TrailName* to include write\-only management events and AWS KMS events\. Because AWS KMS events are treated as management events, and there can be a high volume of them, they can have a substantial impact on your CloudTrail bill if you have more than one trail that captures management events\. The user in this example has chosen to include AWS KMS **Write** events, which will include `Disable`, `Delete` and `ScheduleKey`, but no longer include high\-volume actions such as `Encrypt`, `Decrypt`, and `GenerateDataKey` \(these are now treated as **Read** events\)\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "WriteOnly","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
+```
+
+The example returns the event selector that is configured for the trail\. This logs write\-only management events, including AWS KMS events\.
+
+```
+{
+    "EventSelectors": [
+        {
+            "ExcludeManagementEventSources": [],
+            "IncludeManagementEvents": true,
+            "DataResources": [],
+            "ReadWriteType": "WriteOnly"
+        }
+    ],
+    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+}
+```
+
+## Configuring advanced event selectors<a name="configuring-adv-event-selector-examples"></a>
+
+To use advanced event selectors to include or exclude data events instead of basic event selectors, opt in to use advanced event selectors on a trail's details page\. Advanced event selectors let you log data events on more resource types than basic event selectors \(S3 object\-level API activity on AWS Outposts, API calls on S3 Object on Lambda access points, and Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, in addition to S3 objects and AWS Lambda function execution activity\)\. To view the advanced event selector settings for a trail, run the `get-event-selectors` command\. You must either run this command from the AWS Region where the trail was created \(the Home Region\), or you must specify that Region by adding the \-\-region parameter\.
+
+```
+aws cloudtrail get-event-selectors --trail-name TrailName
+```
+
+**Note**  
+If the trail is an organization trail, and you are signed in with a member account in the organization in AWS Organizations, you must provide the full ARN of the trail, and not just the name\.
+
+The following example returns the default settings for advanced event selectors for a trail\. By default, no advanced event selectors are configured for a trail\.
+
+```
+{
+    "AdvancedEventSelectors": [],
+    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+}
+```
+
+To create an advanced event selector, run the `put-event-selectors` command\. When a data event occurs in your account, CloudTrail evaluates the configuration for your trails\. If the event matches any advanced event selector for a trail, the trail processes and logs the event\. You can configure up to 500 conditions on a trail, including all values specified for all advanced event selectors on your trail\. For more information, see [Logging data events for trails](logging-data-events-with-cloudtrail.md)\.
+
+**Topics**
++ [Example: A trail with specific advanced event selectors](#configuring-adv-event-selector-specific)
++ [Example: A trail that uses custom advanced event selectors to log all management and data events](#configuring-adv-event-selector-logall)
++ [Example: A trail that uses custom advanced event selectors to log Amazon S3 on AWS Outposts data events\.](#configuring-adv-event-selector-outposts)
++ [Example: A trail that uses advanced event selectors to exclude AWS Key Management Service events](#configuring-adv-event-selector-exclude)
+
+### Example: A trail with specific advanced event selectors<a name="configuring-adv-event-selector-specific"></a>
+
+The following example creates custom advanced event selectors for a trail named *TrailName* to include read and write management events \(by omitting the `readOnly` selector\), `PutObject` and `DeleteObject` data events for all Amazon S3 bucket/prefix combinations except for a bucket named `sample_bucket_name` and data events for an AWS Lambda function named `MyLambdaFunction`\. Because these are custom advanced event selectors, each set of selectors has a descriptive name\. Note that a trailing slash is part of the ARN value for S3 buckets\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName \
+--advanced-event-selectors 
+'[
+  {
+    "Name": "Log readOnly and writeOnly management events",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Management"] }
+    ]
+  },
+  {
+    "Name": "Log PutObject and DeleteObject events for all but one bucket",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::S3::Object"] },
+      { "Field": "eventName", "Equals": ["PutObject","DeleteObject"] },
+      { "Field": "resources.ARN", "NotEquals": ["arn:aws:s3:::sample_bucket_name/"] }
+    ]
+  },
+  {
+    "Name": "Log data plane actions on MyLambdaFunction",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::Lambda::Function"] },
+      { "Field": "resources.ARN", "Equals": ["arn:aws:lambda:us-east-2:111122223333:function/MyLambdaFunction"] }
+    ]
+  }
+]'
+```
+
+The example returns the advanced event selectors that are configured for the trail\.
+
+```
+{
+  "AdvancedEventSelectors": [
+    {
+      "Name": "Log readOnly and writeOnly management events",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Management" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    },
+    {
+      "Name": "Log PutObject and DeleteObject events for all but one bucket",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type", 
+          "Equals": [ "AWS::S3::Object" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.ARN", 
+          "Equals": [],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [ "arn:aws:s3:::sample_bucket_name/" ],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+      ]
+    },
+{
+      "Name": "Log data plane actions on MyLambdaFunction",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type", 
+          "Equals": [ "AWS::Lambda::Function" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "eventName", 
+          "Equals": [ "Invoke" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.ARN", 
+          "Equals": [ "arn:aws:lambda:us-east-2:111122223333:function/MyLambdaFunction" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    }
+  ],
+  "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+}
+```
+
+### Example: A trail that uses custom advanced event selectors to log all management and data events<a name="configuring-adv-event-selector-logall"></a>
+
+The following example creates advanced event selectors for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, and API activity on S3 Object Lambda access points in the AWS account\.
+
+**Note**  
+If the trail applies only to one Region, only events in that Region are logged, even though the event selector parameters specify all Amazon S3 buckets and Lambda functions\. In a single\-region trail, event selectors apply only to the Region where the trail is created\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName2 \
+--advanced event-selectors '
+[
+  {
+    "Name": "Log readOnly and writeOnly management events",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Management"] }
+    ]
+  },
+  {
+    "Name": "Log all events for all buckets",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::S3::Object"] }
+    ]
+  },
+  {
+    "Name": "Log all events for Lambda functions",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::Lambda::Function"] }
+    ]
+  },
+  {
+    "Name": "Log all events for DynamoDB tables",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::DynamoDB::Table"] }
+    ]
+  },
+  {
+    "Name": "Log all events for S3 on Outposts",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::S3Outposts::Object"] }
+    ]
+  },
+  {
+    "Name": "Log all JSON-RPC calls for Ethereum nodes in AWS Managed Blockchain",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::ManagedBlockchain::Node"] }
+  },
+  {
+    "Name": "Log all events for S3 Object Lambda access points",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::S3ObjectLambda::AccessPoint"] }
+    ]
+  }
+]'
+```
+
+The example returns the advanced event selectors configured for the trail\.
+
+```
+{
+  "AdvancedEventSelectors": [
+    {
+      "Name": "Log readOnly and writeOnly management events",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Management" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    },
+    {
+      "Name": "Log all events for all buckets",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type", 
+          "Equals": [ "AWS::S3::Object" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    },
+    {
+      "Name": "Log all events for Lambda functions",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type", 
+          "Equals": [ "AWS::Lambda::Function" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    },
+    {
+      "Name": "Log all events for DynamoDB tables",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type", 
+          "Equals": [ "AWS::DynamoDB::Table" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    },
+    {
+      "Name": "Log all events for S3 objects on Outposts",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type", 
+          "Equals": [ "AWS::S3Outposts::Object" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    },
+    {
+      "Name": "Log all JSON-RPC call events for Ethereum on Managed Blockchain nodes",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type", 
+          "Equals": [ "AWS::ManagedBlockchain::Node" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    },
+    {
+      "Name": "Log all events for S3 Object Lambda access points",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type", 
+          "Equals": [ "AWS::S3ObjectLambda::AccessPoint" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    }
+  ],
+  "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName2"
+}
+```
+
+### Example: A trail that uses custom advanced event selectors to log Amazon S3 on AWS Outposts data events\.<a name="configuring-adv-event-selector-outposts"></a>
+
+The following example shows how to configure your trail to include all data events for all Amazon S3 on AWS Outposts objects in your outpost\. In this release, the supported value for S3 on AWS Outposts events for the `resources.type` field is `AWS::S3Outposts::Object`\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName --region region \
+--advanced-event-selectors \
+'[
+    {
+            "Name": "OutpostsEventSelector",
+            "FieldSelectors": [
+                { "Field": "eventCategory", "Equals": ["Data"] },
+                { "Field": "resources.type", "Equals": ["AWS::S3Outposts::Object"] }
+            ]
+        }
+]'
+```
+
+The command returns the following example output\.
+
+```
+{
+    "AdvancedEventSelectors": [
+        {
+            "Name": "OutpostsEventSelector",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::S3Outposts::Object"
+                    ]
+                }
+            ]
+        }
+    ],
+  "TrailARN": "arn:aws:cloudtrail:region:123456789012:trail/TrailName"
+}
+```
+
+### Example: A trail that uses advanced event selectors to exclude AWS Key Management Service events<a name="configuring-adv-event-selector-exclude"></a>
+
+The following example creates an advanced event selector for a trail named *TrailName* to include read\-only and write\-only management events \(by omitting the `readOnly` selector\), but to exclude AWS Key Management Service \(AWS KMS\) events\. Because AWS KMS events are treated as management events, and there can be a high volume of them, they can have a substantial impact on your CloudTrail bill if you have more than one trail that captures management events\. In this release, you can exclude events from `kms.amazonaws.com`\.
+
+If you choose not to log management events, AWS KMS events are not logged, and you cannot change AWS KMS event logging settings\.
+
+To start logging AWS KMS events to a trail again, remove the `eventSource` selector, and run the command again\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName \
+--advanced event-selectors '
+[
+  {
+    "Name": "Log all management events except AWS KMS events",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Management"] },
+      { "Field": "eventSource", "NotEquals": ["kms.amazonaws.com"] }
+    ]
+  }
+]'
+```
+
+The example returns the advanced event selectors that are configured for the trail\.
+
+```
+{
+  "AdvancedEventSelectors": [
+    {
+      "Name": "Log all management events except AWS KMS events",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Management" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "eventSource", 
+          "Equals": [],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [ "kms.amazonaws.com" ],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    }
+  ],
+  "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+}
+```
+
+To start logging AWS KMS events to a trail again, remove the `eventSource` selector, as shown in the following command\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName \
+--advanced event-selectors '
+[
+  {
+    "Name": "Log all management events",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Management"] }
+    ]
+  }
+]'
 ```
 
 ## Stopping and starting logging for a trail<a name="cloudtrail-start-stop-logging-cli-commands"></a>

@@ -21,7 +21,7 @@ If you created a CMK with the IAM console or the AWS CLI, then you must, at mini
 
 1. Enable CloudTrail log encrypt permissions\. See [Granting encrypt permissions](#create-kms-key-policy-for-cloudtrail-encrypt)\.
 
-1. Enable CloudTrail log decrypt permissions\. See [Granting decrypt permissions](#create-kms-key-policy-for-cloudtrail-decrypt)\.
+1. Enable CloudTrail log decrypt permissions\. See [Granting decrypt permissions](#create-kms-key-policy-for-cloudtrail-decrypt)\. If you are using an existing S3 bucket with an [S3 Bucket Key](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html), `kms:Decrypt` permissions are required to create or update a trail with SSE\-KMS encryption enabled\.
 
 1. Enable CloudTrail to describe CMK properties\. See [Enable CloudTrail to describe CMK properties](#create-kms-key-policy-for-cloudtrail-describe)\.
 
@@ -90,7 +90,7 @@ For steps on editing a CMK policy for use with CloudTrail, see [Editing a Key Po
 
 ## Granting decrypt permissions<a name="create-kms-key-policy-for-cloudtrail-decrypt"></a>
 
-Before you add your CMK to your CloudTrail configuration, it is important to give decrypt permissions to all users who require them\. Users who have encrypt permissions but no decrypt permissions will not be able to read encrypted logs\.
+Before you add your CMK to your CloudTrail configuration, it is important to give decrypt permissions to all users who require them\. Users who have encrypt permissions but no decrypt permissions will not be able to read encrypted logs\. If you are using an existing S3 bucket with an [S3 Bucket Key](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html), `kms:Decrypt` permissions are required to create or update a trail with SSE\-KMS encryption enabled\.
 
 **Enable CloudTrail log decrypt permissions**  
 Users of your key must be given explicit permissions to read the log files that CloudTrail has encrypted\. To enable users to read encrypted logs, add the following required statement to your CMK policy, modifying the `Principal` section to add a line for every principal \(role or user\) that you want to be able decrypt by using your CMK\.

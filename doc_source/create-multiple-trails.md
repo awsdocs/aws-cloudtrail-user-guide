@@ -25,5 +25,5 @@ For example, you might grant one user permission to view trail activity, but res
 For more information about resource\-level permissions, see [Examples: Creating and Applying Policies for Actions on Specific Trails](security_iam_id-based-policy-examples.md#grant-custom-permissions-for-cloudtrail-users-resource-level)\. 
 
 For more information about multiple trails, see the following resources:
-+ [How Does CloudTrail Behave Regionally and Globally?](cloudtrail-concepts.md#cloudtrail-concepts-regional-and-global-services)
++ [How does CloudTrail behave regionally and globally?](cloudtrail-concepts.md#cloudtrail-concepts-regional-and-global-services)
 +  [CloudTrail FAQs](https://aws.amazon.com/cloudtrail/faqs/) 

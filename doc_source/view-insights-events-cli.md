@@ -49,7 +49,7 @@ To see the ten latest Insights events, type the following command\.
 aws cloudtrail lookup-events --event-category insight
 ```
 
- A returned event looks similar to the following example, which has been formatted for readability\.
+ A returned event looks similar to the following example,
 
 ```
 {
@@ -64,21 +64,78 @@ aws cloudtrail lookup-events --event-category insight
             "recipientAccountId": "123456789012",
             "sharedEventID": "EXAMPLE8-02b2-4e93-9aab-08ed47ea5fd3",
             "insightDetails": {
-                "state": "Start",
-                "eventSource": "autoscaling.amazonaws.com",
-                "eventName": "PutLifecycleHook",
-                "insightType": "ApiCallRateInsight",
-                "insightContext": {
-                    "statistics": {
-                        "baseline": {
-                            "average": 0.0017857143
-                        },
-                        "insight": {
-                            "average": 4
-                        }
+            "state": "Start",
+            "eventSource": "autoscaling.amazonaws.com",
+            "eventName": "CompleteLifecycleAction",
+            "insightType": "ApiCallRateInsight",
+            "insightContext": {
+              "statistics": {
+                "baseline": {
+                  "average": 0.0000882145
+                },
+                "insight": {
+                  "average": 0.6
+                },
+                "insightDuration": 5,
+                "baselineDuration": 11336
+              },
+              "attributions": [
+                {
+                  "attribute": "userIdentityArn",
+                  "insight": [
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole1",
+                      "average": 0.2
+                    },
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole2",
+                      "average": 0.2
+                    },
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole3",
+                      "average": 0.2
                     }
+                  ],
+                  "baseline": [
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole1",
+                      "average": 0.0000882145
+                    }
+                  ]
+                },
+                {
+                  "attribute": "userAgent",
+                  "insight": [
+                    {
+                      "value": "codedeploy.amazonaws.com",
+                      "average": 0.6
+                    }
+                  ],
+                  "baseline": [
+                    {
+                      "value": "codedeploy.amazonaws.com",
+                      "average": 0.0000882145
+                    }
+                  ]
+                },
+                {
+                  "attribute": "errorCode",
+                  "insight": [
+                    {
+                      "value": "null",
+                      "average": 0.6
+                    }
+                  ],
+                  "baseline": [
+                    {
+                      "value": "null",
+                      "average": 0.0000882145
+                    }
+                  ]
                 }
-            },
+              ]
+            }
+          },
             "eventCategory": "Insight"
         },
         {
@@ -90,22 +147,78 @@ aws cloudtrail lookup-events --event-category insight
             "recipientAccountId": "123456789012",
             "sharedEventID": "EXAMPLE8-02b2-4e93-9aab-08ed47ea5fd3",
             "insightDetails": {
-                "state": "End",
-                "eventSource": "autoscaling.amazonaws.com",
-                "eventName": "PutLifecycleHook",
-                "insightType": "ApiCallRateInsight",
-                "insightContext": {
-                    "statistics": {
-                        "baseline": {
-                            "average": 0.0017857143
-                        },
-                        "insight": {
-                            "average": 4
-                        },
-                        "insightDuration": 1
+            "state": "End",
+            "eventSource": "autoscaling.amazonaws.com",
+            "eventName": "CompleteLifecycleAction",
+            "insightType": "ApiCallRateInsight",
+            "insightContext": {
+              "statistics": {
+                "baseline": {
+                  "average": 0.0000882145
+                },
+                "insight": {
+                  "average": 0.6
+                },
+                "insightDuration": 5,
+                "baselineDuration": 11336
+              },
+              "attributions": [
+                {
+                  "attribute": "userIdentityArn",
+                  "insight": [
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole1",
+                      "average": 0.2
+                    },
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole2",
+                      "average": 0.2
+                    },
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole3",
+                      "average": 0.2
                     }
+                  ],
+                  "baseline": [
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole1",
+                      "average": 0.0000882145
+                    }
+                  ]
+                },
+                {
+                  "attribute": "userAgent",
+                  "insight": [
+                    {
+                      "value": "codedeploy.amazonaws.com",
+                      "average": 0.6
+                    }
+                  ],
+                  "baseline": [
+                    {
+                      "value": "codedeploy.amazonaws.com",
+                      "average": 0.0000882145
+                    }
+                  ]
+                },
+                {
+                  "attribute": "errorCode",
+                  "insight": [
+                    {
+                      "value": "null",
+                      "average": 0.6
+                    }
+                  ],
+                  "baseline": [
+                    {
+                      "value": "null",
+                      "average": 0.0000882145
+                    }
+                  ]
                 }
-            },
+              ]
+            }
+          },
             "eventCategory": "Insight"
         }
     ]

@@ -1,25 +1,29 @@
 # Stopping CloudTrail from Sending Events to CloudWatch Logs<a name="stop-cloudtrail-from-sending-events-to-cloudwatch-logs"></a>
 
-You can stop sending events to CloudWatch Logs by deleting the delivery endpoint\.
+You can stop sending AWS CloudTrail events to Amazon CloudWatch Logs by updating a trail to disable CloudWatch Logs settings\.
 
-## AWS Management Console<a name="stop-cloudtrail-from-sending-events-to-cloudwatch-logs-console"></a>
+## Stop sending events to CloudWatch Logs \(console\)<a name="stop-cloudtrail-from-sending-events-to-cloudwatch-logs-console"></a>
 
-**To remove the CloudWatch Logs delivery endpoint using the AWS Management Console**
 
-1. Sign in to the AWS Management Console\.
 
-1. Navigate to the CloudTrail console\.
+**To stop sending CloudTrail events to CloudWatch Logs**
 
-1. In the navigation pane, click **Configuration**\.
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1. In the **CloudWatch Logs \(optional\)** section, click the **Delete** \(trash can\) icon\.
+1. In the navigation pane, choose **Trails**\.
 
-1. Click **Continue** to confirm\.
+1. Choose the name of the trail for which you want to disable CloudWatch Logs integration\.
 
-## AWS Command Line Interface \(CLI\)<a name="stop-cloudtrail-from-sending-events-to-cloudwatch-logs-cli"></a>
+1. In **CloudWatch Logs**, choose **Edit**\.
 
-You can remove the CloudWatch Logs log group as a delivery endpoint using the `update-trail` command\. The following command clears the log group and role from the trail configuration\.
+1. On the **Update trail** page, in **CloudWatch Logs**, clear the **Enabled** check box\.
+
+1. Choose **Update trail** to save your changes\.
+
+## Stop sending events to CloudWatch Logs \(CLI\)<a name="stop-cloudtrail-from-sending-events-to-cloudwatch-logs-cli"></a>
+
+You can remove the CloudWatch Logs log group as a delivery endpoint by running the [update\-trail](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md) command\. The following command clears the log group and role from the trail configuration by replacing the values for the log group ARN and CloudWatch Logs role ARN with empty values\.
 
 ```
-aws cloudtrail update-trail --name trailname --cloud-watch-logs-log-group-arn="" --cloud-watch-logs-role-arn=""
+aws cloudtrail update-trail --name trail_name --cloud-watch-logs-log-group-arn="" --cloud-watch-logs-role-arn=""
 ```

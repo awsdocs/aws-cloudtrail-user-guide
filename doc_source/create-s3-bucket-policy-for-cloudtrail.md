@@ -2,7 +2,7 @@
 
 By default, Amazon S3 buckets and objects are private\. Only the resource owner \(the AWS account that created the bucket\) can access the bucket and objects it contains\. The resource owner can grant access permissions to other resources and users by writing an access policy\. 
 
-If you want to create or modify an Amazon S3 bucket to receive the log files for an organization trail, you must further modify the bucket policy\. For more information, see [Creating a Trail for an Organization with the AWS Command Line Interface](cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli.md)\.
+If you want to create or modify an Amazon S3 bucket to receive the log files for an organization trail, you must further modify the bucket policy\. For more information, see [Creating a trail for an organization with the AWS Command Line Interface](cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli.md)\.
 
 To deliver log files to an S3 bucket, CloudTrail must have the required permissions, and it cannot be configured as a [Requester Pays](https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) bucket\. CloudTrail automatically attaches the required permissions to a bucket when you create an Amazon S3 bucket as part of creating or updating a trail in the CloudTrail console\.
 
@@ -42,7 +42,7 @@ The following policy allows CloudTrail to write log files to the bucket from sup
 **Contents**
 + [Specifying an Existing Bucket for CloudTrail Log Delivery](#specify-an-existing-bucket-for-cloudtrail-log-delivery)
 + [Receiving Log Files from Other Accounts](#aggregration-option)
-+ [Create or update an Amazon S3 bucket to use to store the log files for an organization trail](#w64aac16c21c27c41)
++ [Create or update an Amazon S3 bucket to use to store the log files for an organization trail](#w215aac16c21c27c41)
 + [Troubleshooting the S3 Bucket Policy](#troubleshooting-s3-bucket-policy)
   + [Common S3 Policy Configuration Errors](#s3-bucket-policy-for-multiple-regions)
   + [Changing a Prefix for an Existing Bucket](#cloudtrail-add-change-or-remove-a-bucket-prefix)
@@ -73,11 +73,11 @@ If the existing bucket already has one or more policies attached, add the statem
 
 You can configure CloudTrail to deliver log files from multiple AWS accounts to a single S3 bucket\. For more information, see [Receiving CloudTrail Log Files from Multiple Accounts](cloudtrail-receive-logs-from-multiple-accounts.md)\.
 
-## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="w64aac16c21c27c41"></a>
+## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="w215aac16c21c27c41"></a>
 
 You must specify an Amazon S3 bucket to receive the log files for an organization trail\. This bucket must have a policy that allows CloudTrail to put the log files for the organization into the bucket\.
 
-The following is an example policy for an Amazon S3 bucket named *my\-organization\-bucket*\. This bucket is in an AWS account with the ID *111111111111*, which is the master account for an organization with the ID *o\-exampleorgid* that allows logging for an organization trail\. It also allows logging for the *111111111111* account in the event that the trail is changed from an organization trail to a trail for that account only\.
+The following is an example policy for an Amazon S3 bucket named *my\-organization\-bucket*\. This bucket is in an AWS account with the ID *111111111111*, which is the management account for an organization with the ID *o\-exampleorgid* that allows logging for an organization trail\. It also allows logging for the *111111111111* account in the event that the trail is changed from an organization trail to a trail for that account only\.
 
 ```
 {
@@ -130,7 +130,7 @@ The following is an example policy for an Amazon S3 bucket named *my\-organizati
 }
 ```
 
-This example policy does not allow any users from member accounts to access the log files created for the organization\. By default, organization log files are accessible only to the master account\. For information about how to allow read access to the Amazon S3 bucket for IAM users in member accounts, see [Sharing CloudTrail Log Files Between AWS Accounts](cloudtrail-sharing-logs.md)\.
+This example policy does not allow any users from member accounts to access the log files created for the organization\. By default, organization log files are accessible only to the management account\. For information about how to allow read access to the Amazon S3 bucket for IAM users in member accounts, see [Sharing CloudTrail Log Files Between AWS Accounts](cloudtrail-sharing-logs.md)\.
 
 ## Troubleshooting the S3 Bucket Policy<a name="troubleshooting-s3-bucket-policy"></a>
 
@@ -142,56 +142,7 @@ When you create a new bucket as part of creating or updating a trail, CloudTrail
 
 If CloudTrail is not delivering logs for a region, it's possible that your bucket has an older policy that specifies CloudTrail account IDs for each region\. This policy gives CloudTrail permission to deliver logs only for the regions specified\.
 
-The following bucket policy allows CloudTrail to deliver logs for the specified nine regions only:
-
-**Example bucket policy with account IDs**  
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "AWSCloudTrailAclCheck20131101",
-            "Effect": "Allow",
-            "Principal": {"AWS": [
-                "arn:aws:iam::903692715234:root",
-                "arn:aws:iam::035351147821:root",
-                "arn:aws:iam::859597730677:root",
-                "arn:aws:iam::814480443879:root",
-                "arn:aws:iam::216624486486:root",
-                "arn:aws:iam::086441151436:root",
-                "arn:aws:iam::388731089494:root",
-                "arn:aws:iam::284668455005:root",
-                "arn:aws:iam::113285607260:root"
-            ]},
-            "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::bucket-1"
-        },
-        {
-            "Sid": "AWSCloudTrailWrite20131101",
-            "Effect": "Allow",
-            "Principal": {"AWS": [
-                "arn:aws:iam::903692715234:root",
-                "arn:aws:iam::035351147821:root",
-                "arn:aws:iam::859597730677:root",
-                "arn:aws:iam::814480443879:root",
-                "arn:aws:iam::216624486486:root",
-                "arn:aws:iam::086441151436:root",
-                "arn:aws:iam::388731089494:root",
-                "arn:aws:iam::284668455005:root",
-                "arn:aws:iam::113285607260:root"
-            ]},
-            "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::bucket-1/my-prefix/AWSLogs/123456789012/*",
-            "Condition": {"StringEquals": {"s3:x-amz-acl": "bucket-owner-full-control"}}
-        }
-    ]
-}
-```
-
-This policy uses a permission based on individual CloudTrail account IDs\. To send notifications for a new region, you must manually update the policy to include the CloudTrail account ID for that region\. For example, because CloudTrail added support for the US East \(Ohio\) Region, you must update the policy to include the account ID ARN for that region: `"arn:aws:iam::475085895292:root`"\. 
-
-As a best practice, update the policy to use a permission with the CloudTrail service principal\. To do this, replace the account ID ARNs with the service principal name: `"cloudtrail.amazonaws.com"`\. This gives CloudTrail permission to deliver logs for current and new regions\. The following is an updated version of the previous policy:
+As a best practice, update the policy to use a permission with the CloudTrail service principal\. To do this, replace the account ID ARNs with the service principal name: `"cloudtrail.amazonaws.com"`\. This gives CloudTrail permission to deliver logs for current and new regions\. The following is an example of a recommended policy configuration:
 
 **Example bucket policy with service principal name**  
 

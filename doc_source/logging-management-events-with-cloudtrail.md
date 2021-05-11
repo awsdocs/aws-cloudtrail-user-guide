@@ -1,16 +1,16 @@
-# Logging Management Events for Trails<a name="logging-management-events-with-cloudtrail"></a>
+# Logging management events for trails<a name="logging-management-events-with-cloudtrail"></a>
 
 By default, trails log all management events and don't include data or Insights events\. Additional charges apply for data or Insights events\. For more information, see [ AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
 **Contents**
-+ [Management Events](#logging-management-events)
-  + [Logging Management Events with the AWS Management Console](#logging-management-events-with-the-cloudtrail-console)
-+ [Read\-only and Write\-only Events](#read-write-events-mgmt)
-+ [Logging Events with the AWS Command Line Interface](#creating-mgmt-event-selectors-with-the-AWS-CLI)
-+ [Logging Events with the AWS SDKs](#logging-management-events-with-the-AWS-SDKs)
-+ [Sending Events to Amazon CloudWatch Logs](#sending-management-events-to-cloudwatch-logs)
++ [Management events](#logging-management-events)
+  + [Logging management events with the AWS Management Console](#logging-management-events-with-the-cloudtrail-console)
++ [Read and write events](#read-write-events-mgmt)
++ [Logging events with the AWS Command Line Interface](#creating-mgmt-event-selectors-with-the-AWS-CLI)
++ [Logging events with the AWS SDKs](#logging-management-events-with-the-AWS-SDKs)
++ [Sending events to Amazon CloudWatch Logs](#sending-management-events-to-cloudwatch-logs)
 
-## Management Events<a name="logging-management-events"></a>
+## Management events<a name="logging-management-events"></a>
 
 Management events provide visibility into management operations that are performed on resources in your AWS account\. These are also known as control plane operations\. Example management events include:
 + Configuring security \(for example, IAM `AttachRolePolicy` API operations\)
@@ -23,41 +23,41 @@ Management events can also include non\-API events that occur in your account\. 
 By default, trails are configured to log management events\. For a list of supported management events that CloudTrail logs for AWS services, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 **Note**  
-The CloudTrail **Event history **feature supports only management events\. Not all management events are supported in event history\. For more information, see [Viewing Events with CloudTrail Event History](view-cloudtrail-events.md)\. 
+The CloudTrail **Event history **feature supports only management events\. Not all management events are supported in event history\. You cannot exclude AWS Key Management Service \(AWS KMS\) events from **Event history **; settings that you apply to a trail do not apply to **Event history **\. For more information, see [Viewing Events with CloudTrail Event History](view-cloudtrail-events.md)\. 
 
-### Logging Management Events with the AWS Management Console<a name="logging-management-events-with-the-cloudtrail-console"></a>
+### Logging management events with the AWS Management Console<a name="logging-management-events-with-the-cloudtrail-console"></a>
 
-1. Navigate to the **Trails** page of the CloudTrail console and choose the trail\.
+1. Open the **Trails** page of the CloudTrail console and choose the trail name\.
 
-1. For **Management events**, click the pencil icon\.
-   + For **Read/Write events**, choose if you want your trail to log **All**, **Read\-only**, **Write\-only**, or **None**, and then choose **Save**\.
-   + For **Log AWS KMS events**, choose **Yes** to log AWS Key Management Service \(AWS KMS\) events in your trail\. Choose **No** to filter AWS KMS events out of your trail\. The default setting is **Yes**\.
+1. For **Management events**, choose **Edit**\.
+   + Choose if you want your trail to log **Read** events, **Write** events, or both\.
+   + Choose **Exclude AWS KMS events** to filter AWS Key Management Service \(AWS KMS\) events out of your trail\. The default setting is to include all AWS KMS events\.
 
-   Choose **Save** when you are finished\.
+     The option to log or exclude AWS KMS events is available only if you log management events on your trail\. If you choose not to log management events, AWS KMS events are not logged, and you cannot change AWS KMS event logging settings\.
 
-## Read\-only and Write\-only Events<a name="read-write-events-mgmt"></a>
+     AWS KMS actions such as `Encrypt`, `Decrypt`, and `GenerateDataKey` typically generate a large volume \(more than 99%\) of events\. These actions are now logged as **Read** events\. Low\-volume, relevant AWS KMS actions such as `Disable`, `Delete`, and `ScheduleKey` \(which typically account for less than 0\.5% of AWS KMS event volume\) are logged as **Write** events\.
 
-When you configure your trail to log management events, you can specify whether you want read\-only events, write\-only events, both, or none\.
-+ **Read\-only**
+     To exclude high\-volume events like `Encrypt`, `Decrypt`, and `GenerateDataKey`, but still log relevant events such as `Disable`, `Delete` and `ScheduleKey`, choose to log **Write** management events, and clear the check box for **Exclude AWS KMS events**\.
 
-  Read\-only events include API operations that read your resources, but don't make changes\. For example, read\-only events include the Amazon EC2 `DescribeSecurityGroups` and `DescribeSubnets` API operations\. These operations return only information about your Amazon EC2 resources and don't change your configurations\. 
-+ **Write\-only**
+   Choose **Update trail** when you are finished\.
+
+## Read and write events<a name="read-write-events-mgmt"></a>
+
+When you configure your trail to log management events, you can specify whether you want read\-only events, write\-only events, or both\.
++ **Read**
+
+  Read\-only events include API operations that read your resources, but don't make changes\. For example, read\-only events include the Amazon EC2 `DescribeSecurityGroups` and `DescribeSubnets` API operations\. These operations return only information about your Amazon EC2 resources and don't change your configurations\.
++ **Write**
 
   Write\-only events include API operations that modify \(or might modify\) your resources\. For example, the Amazon EC2 `RunInstances` and `TerminateInstances` API operations modify your instances\.
-+ **All**
 
-  Your trail logs both\.
-+ **None**
-
-  Your trail logs neither read\-only nor write\-only management events\.
-
-**Example: Logging read\-only and write\-only events for separate trails**
+**Example: Logging read and write events for separate trails**
 
 The following example shows how you can configure trails to split log activity for an account into separate S3 buckets: one bucket receives read\-only events and a second bucket receives write\-only events\. 
 
-1. You create a trail and choose an S3 bucket named `read-only-bucket` to receive log files\. You then update the trail to specify that you want read\-only management events\.
+1. You create a trail and choose an S3 bucket named `read-only-bucket` to receive log files\. You then update the trail to specify that you want **Read** management events\.
 
-1. You create a second trail and choose an S3 bucket named `write-only-bucket` to receive log files\. You then update the trail to specify that you want write\-only management events\.
+1. You create a second trail and choose an S3 bucket named `write-only-bucket` to receive log files\. You then update the trail to specify that you want **Write** management events\.
 
 1. The Amazon EC2 `DescribeInstances` and `TerminateInstances` API operations occur in your account\.
 
@@ -65,7 +65,7 @@ The following example shows how you can configure trails to split log activity f
 
 1. The `TerminateInstances` API operation is a write\-only event and it matches the settings for the second trail\. The trail logs and delivers the event to the `write-only-bucket`\.
 
-## Logging Events with the AWS Command Line Interface<a name="creating-mgmt-event-selectors-with-the-AWS-CLI"></a>
+## Logging events with the AWS Command Line Interface<a name="creating-mgmt-event-selectors-with-the-AWS-CLI"></a>
 
 You can configure your trails to log management events using the AWS CLI\.
 
@@ -152,10 +152,16 @@ To start logging AWS KMS events to a trail again, pass an empty string as the va
 aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
 ```
 
-## Logging Events with the AWS SDKs<a name="logging-management-events-with-the-AWS-SDKs"></a>
+To log relevant AWS KMS events to a trail like `Disable`, `Delete` and `ScheduleKey`, but exclude high\-volume AWS KMS events like `Encrypt`, `Decrypt`, and `GenerateDataKey`, log write\-only management events, and keep the default setting to log AWS KMS events, as shown in the following example\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "WriteOnly","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
+```
+
+## Logging events with the AWS SDKs<a name="logging-management-events-with-the-AWS-SDKs"></a>
 
 Use the [GetEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_GetEventSelectors.html) operation to see whether your trail is logging management events for a trail\. You can configure your trails to log management events with the [PutEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html) operation\. For more information, see the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
 
-## Sending Events to Amazon CloudWatch Logs<a name="sending-management-events-to-cloudwatch-logs"></a>
+## Sending events to Amazon CloudWatch Logs<a name="sending-management-events-to-cloudwatch-logs"></a>
 
 CloudTrail supports sending data and management events to CloudWatch Logs\. When you configure your trail to send events to your CloudWatch Logs log group, CloudTrail sends only the events that you specify in your trail\. For example, if you configure your trail to log management events only, your trail delivers management events only to your CloudWatch Logs log group\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\. 

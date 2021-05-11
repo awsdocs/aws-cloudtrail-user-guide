@@ -1,565 +1,266 @@
-# Creating CloudWatch Alarms for CloudTrail Events: Examples<a name="cloudwatch-alarms-for-cloudtrail"></a>
+# Creating CloudWatch alarms for CloudTrail events: examples<a name="cloudwatch-alarms-for-cloudtrail"></a>
 
-This topic describes how to configure alarms for CloudTrail events using example scenarios\.
-
-**Prerequisites**  
-Before you can use the examples in this topic, you must:
-+ Create a trail with the console or CLI\.
-+ Create a log group\.
-+ Specify or create an IAM role that grants CloudTrail the permissions to create a CloudWatch Logs log stream in the log group that you specify and to deliver CloudTrail events to that log stream\. The default `CloudTrail_CloudWatchLogs_Role` does this for you\.
-
-For more information, see [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
-
-**Create a metric filter and create an alarm**  
-To create an alarm, you must first create a metric filter and then configure an alarm based on the filter\. The procedures are shown for all examples\. For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html) in the *Amazon CloudWatch Logs User Guide*\.
+This topic describes how to configure alarms for CloudTrail events, and includes examples\.
 
 **Note**  
-Instead of manually creating the following metric filters and alarms examples, you can use an AWS CloudFormation template to create them all at once\. For more information, see [Creating CloudWatch Alarms with an AWS CloudFormation Template](use-cloudformation-template-to-create-cloudwatch-alarms.md)\. 
+Instead of manually creating the following metric filters and alarms examples, you can use an AWS CloudFormation template to create them all at once\. For more information, see [Creating CloudWatch Alarms with an AWS CloudFormation Template](use-cloudformation-template-to-create-cloudwatch-alarms.md)\.
 
 **Topics**
-+ [Example: Amazon S3 Bucket Activity](#cloudwatch-alarms-for-cloudtrail-s3-bucket-activity)
-+ [Example: Security Group Configuration Changes](#cloudwatch-alarms-for-cloudtrail-security-group)
-+ [Example: Network Access Control List \(ACL\) Changes](#cloudwatch-alarms-for-cloudtrail-network-acl)
-+ [Example: Network Gateway Changes](#cloudwatch-alarms-for-cloudtrail-gateway-changes)
-+ [Example: Amazon Virtual Private Cloud \(VPC\) Changes](#cloudwatch-alarms-for-cloudtrail-vpc-changes)
-+ [Example: Amazon EC2 Instance Changes](#cloudwatch-alarms-for-cloudtrail-ec2-instance-changes)
-+ [Example: EC2 Large Instance Changes](#cloudwatch-alarms-for-cloudtrail-ec2-large-instance-changes)
-+ [Example: CloudTrail Changes](#cloudwatch-alarms-for-cloudtrail-cloudtrail-changes)
-+ [Example: Console Sign\-In Failures](#cloudwatch-alarms-for-cloudtrail-signin)
-+ [Example: Authorization Failures](#cloudwatch-alarms-for-cloudtrail-authorization-failures)
-+ [Example: IAM Policy Changes](#cloudwatch-alarms-for-cloudtrail-iam-policy-changes)
++ [Prerequisites](#cloudwatch-alarms-prerequisites)
++ [Create a metric filter and create an alarm](#cloudwatch-alarms-metric-filter-alarm)
++ [Example: Security group configuration changes](#cloudwatch-alarms-for-cloudtrail-security-group)
++ [Example: Console sign\-in failures](#cloudwatch-alarms-for-cloudtrail-signin)
++ [Example: IAM policy changes](#cloudwatch-alarms-for-cloudtrail-iam-policy-changes)
 
-## Example: Amazon S3 Bucket Activity<a name="cloudwatch-alarms-for-cloudtrail-s3-bucket-activity"></a>
+## Prerequisites<a name="cloudwatch-alarms-prerequisites"></a>
 
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when an Amazon S3 API call is made to `PUT` or `DELETE` bucket policy, bucket lifecycle, bucket replication, or to `PUT` a bucket ACL\. 
+Before you can use the examples in this topic, you must:
++ Create a trail with the console or CLI\.
++ Create a log group, which you can do as part of creating a trail\.
++ Specify or create an IAM role that grants CloudTrail the permissions to create a CloudWatch Logs log stream in the log group that you specify and to deliver CloudTrail events to that log stream\. The default `CloudTrail_CloudWatchLogs_Role` does this for you\.
 
-The alarm also is triggered for the CORS \(cross\-origin resource sharing\) `PUT` bucket and `DELETE` bucket events\. For more information, see [Cross\-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) in the *Amazon Simple Storage Service Developer Guide*\.
+For more information, see [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\. Examples in this section are performed in the Amazon CloudWatch Logs console\. For more information about how to create metric filters and alarms, see [Creating metrics from log events using filters](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html) and [Using Amazon CloudWatch alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
 
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-s3-bucket-activity-metric-filter"></a>
+## Create a metric filter and create an alarm<a name="cloudwatch-alarms-metric-filter-alarm"></a>
 
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+To create an alarm, you must first create a metric filter, and then configure an alarm based on the filter\. The procedures are shown for all examples\. For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and pattern syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html) in the *Amazon CloudWatch Logs User Guide*\.
 
-1. In the navigation pane, choose **Logs**\.
+## Example: Security group configuration changes<a name="cloudwatch-alarms-for-cloudtrail-security-group"></a>
 
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
+Follow this procedure to create an Amazon CloudWatch alarm that is triggered when configuration changes occur on security groups\.
 
-1. Choose **Create Metric Filter**\.
-
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
-
-   ```
-   { ($.eventSource = s3.amazonaws.com) && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
-   ```
-
-1. Choose **Assign Metric**\.
-
-1. For **Filter Name**, type **S3BucketActivity**\.
-
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
-
-1. For **Metric Name**, type **S3BucketActivityEventCount**\.
-
-1. Choose **Show advanced metric settings**\.
-
-1. For **Metric Value**, type **1**\.
-
-1. Choose **Create Filter**\.
-
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-s3-bucket-activity-create-alarm"></a>
-
-After you create the metric filter, follow this procedure to create an alarm\.
-
-1. On the **Filters for *Log\_Group\_Name*** page, next to the **S3BucketActivity** filter name, choose **Create Alarm**\.
-
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_s3bucket.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
-
-1. Choose **Create Alarm**\.
-
-### Testing the Alarm for S3 Bucket Activity<a name="testing-the-created-alarm"></a>
-
-You can test the alarm by changing the S3 bucket policy\.
-
-**To test the alarm**
-
-1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
-
-1. Choose an S3 bucket in a region that your trail is logging\. For example, if your trail is logging in the US East \(Ohio\) Region only, choose a bucket in the same region\. If your trail applies to all regions, choose an S3 bucket in any region\.
-
-1. Choose **Permissions** and then choose **Bucket Policy**\.
-
-1. Use the **Bucket policy editor** to change the policy and then choose **Save**\.
-
-1. Your trail logs the `PutBucketPolicy` operation, and delivers the event to your CloudWatch Logs logs group\. The event triggers your metric alarm and CloudWatch Logs sends you a notification about the change\.
-
-## Example: Security Group Configuration Changes<a name="cloudwatch-alarms-for-cloudtrail-security-group"></a>
-
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when configuration changes happen that involve security groups\.
-
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-security-group-metric-filter"></a>
+### Create a metric filter<a name="cloudwatch-alarms-for-cloudtrail-security-group-metric-filter"></a>
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Logs**\.
 
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
+1. In the list of log groups, choose the log group that you created for CloudTrail log events\.
 
-1. Choose **Create Metric Filter**\.
+1. Choose **Actions**, and then choose **Create metric filter**\.
 
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
+1. On the **Define pattern** page, in **Create filter pattern**, enter the following for **Filter pattern**\.
 
    ```
    { ($.eventName = AuthorizeSecurityGroupIngress) || ($.eventName = AuthorizeSecurityGroupEgress) || ($.eventName = RevokeSecurityGroupIngress) || ($.eventName = RevokeSecurityGroupEgress) || ($.eventName = CreateSecurityGroup) || ($.eventName = DeleteSecurityGroup) }
    ```
 
-1. Choose **Assign Metric**\.
+1. In **Test pattern**, leave defaults\. Choose **Next**\.
 
-1. For **Filter Name**, type **SecurityGroupEvents**\.
+1. On the **Assign metric** page, for **Filter name**, enter **SecurityGroupEvents**\.
 
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
+1. In **Metric details**, turn on **Create new**, and then enter **CloudTrailMetrics** for **Metric namespace**\.
 
-1. For **Metric Name**, type **SecurityGroupEventCount**\.
+1. For **Metric name**, type **SecurityGroupEventCount**\.
 
-1. Choose **Show advanced metric settings**\.
+1. For **Metric value**, type **1**\.
 
-1. For **Metric Value**, type **1**\.
+1. Leave **Default value** blank\.
 
-1. Choose **Create Filter**\.
+1. Choose **Next**\.
 
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-security-group-create-alarm"></a>
+1. On the **Review and create** page, review your choices\. Choose **Create metric filter** to create the filter, or choose **Edit** to go back and change values\.
 
-After you create the metric filter, follow this procedure to create an alarm\.
+### Create an alarm<a name="cloudwatch-alarms-for-cloudtrail-security-group-create-alarm"></a>
 
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
+After you create the metric filter, the CloudWatch Logs log group details page for your CloudTrail trail log group opens\. Follow this procedure to create an alarm\.
 
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_secgroup.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
+1. On the **Metric filters** tab, find the metric filter you created in [Create a metric filter](#cloudwatch-alarms-for-cloudtrail-security-group-metric-filter)\. Fill the check box for the metric filter\. In the **Metric filters** bar, choose **Create alarm**\.
 
-1. Choose **Create Alarm**\.
+1. On the **Create Alarm** page, in **Specify metric and conditions**, enter the following\.
 
-## Example: Network Access Control List \(ACL\) Changes<a name="cloudwatch-alarms-for-cloudtrail-network-acl"></a>
+   1. For **Graph**, the line is set at **1** based on other settings you make when you create your alarm\.
 
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when any configuration changes happen involving network ACLs\.
+   1. For **Metric name**, keep the current metric name, **SecurityGroupEventCount**\.
 
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-network-acl-metric-filter"></a>
+   1. For **Statistic**, keep the default, **Sum**\.
 
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+   1. For **Period**, keep the default, **5 minutes**\.
 
-1. In the navigation pane, choose **Logs**\.
+   1. In **Conditions**, for **Threshold type**, choose **Static**\.
 
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
+   1. For **Whenever *metric\_name* is**, choose **Greater/Equal**\.
 
-1. Choose **Create Metric Filter**\.
+   1. For **Threshold**, enter **1**\.
 
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
+   1. In **Additional configuration**, leave defaults\. Choose **Next**\.
 
-   ```
-   { ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }
-   ```
+1. On the **Configure actions** page, choose **In alarm**, which indicates that the action is taken when the threshold of 1 change event in 5 minutes is crossed, and **SecurityGroupEventCount** is in an alarm state\.
 
-1. Choose **Assign Metric**\.
+   1. For **Select an SNS topic**, choose **Create new**\.
 
-1. For **Filter Name**, type **NetworkACLEvents**\.
+   1. Enter **SecurityGroupChanges\_CloudWatch\_Alarms\_Topic** as the name for the new Amazon SNS topic\.
 
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
+   1. In **Email endpoints that will receive the notification**, enter email addresses of users whom you want to receive notifications if this alarm is raised\. Separate email addresses with commas\.
 
-1. For **Metric Name**, type **NetworkACLEventCount**\.
+      Email recipients specified here receive email asking them to confirm that they want to be subscribed to the Amazon SNS topic\.
 
-1. Choose **Show advanced metric settings**\.
+   1. Choose **Create topic**\.
 
-1. For **Metric Value**, type **1**\.
+1. For this example, skip the other action types\. Choose **Next**\.
 
-1. Choose **Create Filter**\.
+1. On the **Add name and description** page, enter a friendly name for the alarm, and a description\. For this example, enter **Security group configuration changes** for the name, and **Raises alarms if security group configuration changes occur** for the description\. Choose **Next**\.
 
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-network-acl-create-alarm"></a>
+1. On the **Preview and create** page, review your choices\. Choose **Edit** to make changes, or choose **Create alarm** to create the alarm\.
 
-After you create the metric filter, follow this procedure to create an alarm\.
+   After you create the alarm, CloudWatch opens the **Alarms** page\. The alarm's **Actions** column shows **Pending confirmation** until all email recipients on the SNS topic have confirmed that they want to subscribe to SNS notifications\.
 
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
+## Example: Console sign\-in failures<a name="cloudwatch-alarms-for-cloudtrail-signin"></a>
 
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_networkacl.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
+Follow this procedure to create an Amazon CloudWatch alarm that is triggered when there are three or more AWS Management Console sign\-in failures during a five minute period\.
 
-1. Choose **Create Alarm**\.
-
-## Example: Network Gateway Changes<a name="cloudwatch-alarms-for-cloudtrail-gateway-changes"></a>
-
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when an API call is made to create, update, or delete a customer or Internet gateway\. 
-
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-gateway-changes-metric-filter"></a>
+### Create a metric filter<a name="cloudwatch-alarms-for-cloudtrail-signin-metric-filter"></a>
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Logs**\.
 
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
+1. In the list of log groups, choose the log group that you created for CloudTrail log events\.
 
-1. Choose **Create Metric Filter**\.
+1. Choose **Actions**, and then choose **Create metric filter**\.
 
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
-
-   ```
-   { ($.eventName = CreateCustomerGateway) || ($.eventName = DeleteCustomerGateway) || ($.eventName = AttachInternetGateway) || ($.eventName = CreateInternetGateway) || ($.eventName = DeleteInternetGateway) || ($.eventName = DetachInternetGateway) }
-   ```
-
-1. Choose **Assign Metric**\.
-
-1. For **Filter Name**, type **GatewayChanges**\.
-
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
-
-1. For **Metric Name**, type **GatewayEventCount**\.
-
-1. Choose **Show advanced metric settings**\.
-
-1. For **Metric Value**, type **1**\.
-
-1. Choose **Create Filter**\.
-
-### Example: Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-gateway-changes-create-alarm"></a>
-
-After you create the metric filter, follow this procedure to create an alarm\.
-
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
-
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_gateway.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
-
-1. Choose **Create Alarm**\.
-
-## Example: Amazon Virtual Private Cloud \(VPC\) Changes<a name="cloudwatch-alarms-for-cloudtrail-vpc-changes"></a>
-
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when an API call is made to create, update, or delete an Amazon VPC, an Amazon VPC peering connection, or an Amazon VPC connection to classic Amazon EC2 instances\.
-
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-vpc-changes-metric-filter"></a>
-
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
-
-1. In the navigation pane, choose **Logs**\.
-
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
-
-1. Choose **Create Metric Filter**\.
-
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
-
-   ```
-   { ($.eventName = CreateVpc) || ($.eventName = DeleteVpc) || ($.eventName = ModifyVpcAttribute) || ($.eventName = AcceptVpcPeeringConnection) || ($.eventName = CreateVpcPeeringConnection) || ($.eventName = DeleteVpcPeeringConnection) || ($.eventName = RejectVpcPeeringConnection) || ($.eventName = AttachClassicLinkVpc) || ($.eventName = DetachClassicLinkVpc) || ($.eventName = DisableVpcClassicLink) || ($.eventName = EnableVpcClassicLink) }
-   ```
-
-1. Choose **Assign Metric**\.
-
-1. For **Filter Name**, type **VpcChanges**\.
-
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
-
-1. For **Metric Name**, type **VpcEventCount**\.
-
-1. Choose **Show advanced metric settings**\.
-
-1. For **Metric Value**, type **1**\.
-
-1. Choose **Create Filter**\.
-
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-vpc-changes-create-alarm"></a>
-
-After you create the metric filter, follow this procedure to create an alarm\.
-
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
-
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_vpc.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
-
-1. Choose **Create Alarm**\.
-
-## Example: Amazon EC2 Instance Changes<a name="cloudwatch-alarms-for-cloudtrail-ec2-instance-changes"></a>
-
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when an API call is made to create, terminate, start, stop, or reboot an Amazon EC2 instance\.
-
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-ec2-instance-changes-metric-filter"></a>
-
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
-
-1. In the navigation pane, choose **Logs**\.
-
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
-
-1. Choose **Create Metric Filter**\.
-
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
-
-   ```
-   { ($.eventName = RunInstances) || ($.eventName = RebootInstances) || ($.eventName = StartInstances) || ($.eventName = StopInstances) || ($.eventName = TerminateInstances) }
-   ```
-
-1. Choose **Assign Metric**\.
-
-1. For **Filter Name**, type **EC2InstanceChanges**\.
-
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
-
-1. For **Metric Name**, type **EC2InstanceEventCount**\.
-
-1. Choose **Show advanced metric settings**\.
-
-1. For **Metric Value**, type **1**\.
-
-1. Choose **Create Filter**\.
-
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-ec2-instance-changes-create-alarm"></a>
-
-After you create the metric filter, follow this procedure to create an alarm\.
-
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
-
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ec2instance.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
-
-1. Choose **Create Alarm**\.
-
-## Example: EC2 Large Instance Changes<a name="cloudwatch-alarms-for-cloudtrail-ec2-large-instance-changes"></a>
-
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when an API call is made to create a 4x or 8x\-large Amazon EC2 instance\.
-
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-ec2-large-instance-changes-metric-filter"></a>
-
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
-
-1. In the navigation pane, choose **Logs**\.
-
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
-
-1. Choose **Create Metric Filter**\.
-
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
-
-   ```
-   { ($.eventName = RunInstances) && (($.requestParameters.instanceType = *.8xlarge) || ($.requestParameters.instanceType = *.4xlarge)) }
-   ```
-
-1. Choose **Assign Metric**\.
-
-1. For **Filter Name**, type **EC2LargeInstanceChanges**\.
-
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
-
-1. For **Metric Name**, type **EC2LargeInstanceEventCount**\.
-
-1. Choose **Show advanced metric settings**\.
-
-1. For **Metric Value**, type **1**\.
-
-1. Choose **Create Filter**\.
-
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-ec2-large-instance-changes-create-alarm"></a>
-
-After you create the metric filter, follow this procedure to create an alarm\.
-
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
-
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ec2large.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
-
-1. Choose **Create Alarm**\.
-
-## Example: CloudTrail Changes<a name="cloudwatch-alarms-for-cloudtrail-cloudtrail-changes"></a>
-
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when an API call is made to create, update, or delete a CloudTrail trail, or to start or stop logging a trail\.
-
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-cloudtrail-changes-metric-filter"></a>
-
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
-
-1. In the navigation pane, choose **Logs**\.
-
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
-
-1. Choose **Create Metric Filter**\.
-
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
-
-   ```
-   { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) }
-   ```
-
-1. Choose **Assign Metric**\.
-
-1. For **Filter Name**, type **CloudTrailChanges**\.
-
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
-
-1. For **Metric Name**, type **CloudTrailEventCount**\.
-
-1. Choose **Show advanced metric settings**\.
-
-1. For **Metric Value**, type **1**\.
-
-1. Choose **Create Filter**\.
-
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-cloudtrail-changes-create-alarm"></a>
-
-After you create the metric filter, follow this procedure to create an alarm\.
-
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
-
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_cloudtrail.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
-
-1. Choose **Create Alarm**\.
-
-## Example: Console Sign\-In Failures<a name="cloudwatch-alarms-for-cloudtrail-signin"></a>
-
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when there are three or more sign\-in failures during a five minute period\.
-
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-signin-metric-filter"></a>
-
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
-
-1. In the navigation pane, choose **Logs**\.
-
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
-
-1. Choose **Create Metric Filter**\.
-
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
+1. On the **Define pattern** page, in **Create filter pattern**, enter the following for **Filter pattern**\.
 
    ```
    { ($.eventName = ConsoleLogin) && ($.errorMessage = "Failed authentication") }
    ```
 
-1. Choose **Assign Metric**\.
+1. In **Test pattern**, leave defaults\. Choose **Next**\.
 
-1. For **Filter Name**, type **ConsoleSignInFailures**\.
+1. On the **Assign metric** page, for **Filter name**, enter **ConsoleSignInFailures**\.
 
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
+1. In **Metric details**, turn on **Create new**, and then enter **CloudTrailMetrics** for **Metric namespace**\.
 
-1. For **Metric Name**, type **ConsoleSigninFailureCount**\.
+1. For **Metric name**, type **ConsoleSigninFailureCount**\.
 
-1. Choose **Show advanced metric settings**\.
+1. For **Metric value**, type **1**\.
 
-1. For **Metric Value**, type **1**\.
+1. Leave **Default value** blank\.
 
-1. Choose **Create Filter**\.
+1. Choose **Next**\.
 
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-signin-create-alarm"></a>
+1. On the **Review and create** page, review your choices\. Choose **Create metric filter** to create the filter, or choose **Edit** to go back and change values\.
 
-After you create the metric filter, follow this procedure to create an alarm\.
+### Create an alarm<a name="cloudwatch-alarms-for-cloudtrail-signin-create-alarm"></a>
 
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
+After you create the metric filter, the CloudWatch Logs log group details page for your CloudTrail trail log group opens\. Follow this procedure to create an alarm\.
 
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_consolesignin.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
+1. On the **Metric filters** tab, find the metric filter you created in [Create a metric filter](#cloudwatch-alarms-for-cloudtrail-signin-metric-filter)\. Fill the check box for the metric filter\. In the **Metric filters** bar, choose **Create alarm**\.
 
-1. Choose **Create Alarm**\.
+1. On the **Create Alarm** page, in **Specify metric and conditions**, enter the following\.
 
-## Example: Authorization Failures<a name="cloudwatch-alarms-for-cloudtrail-authorization-failures"></a>
+   1. For **Graph**, the line is set at **3** based on other settings you make when you create your alarm\.
 
-Follow this procedure to create an Amazon CloudWatch alarm that is triggered when an unauthorized API call is made\.
+   1. For **Metric name**, keep the current metric name, **ConsoleSigninFailureCount**\.
 
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-authorization-failures-metric-filter"></a>
+   1. For **Statistic**, keep the default, **Sum**\.
 
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+   1. For **Period**, keep the default, **5 minutes**\.
 
-1. In the navigation pane, choose **Logs**\.
+   1. In **Conditions**, for **Threshold type**, choose **Static**\.
 
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
+   1. For **Whenever *metric\_name* is**, choose **Greater/Equal**\.
 
-1. Choose **Create Metric Filter**\.
+   1. For **Threshold**, enter **3**\.
 
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
+   1. In **Additional configuration**, leave defaults\. Choose **Next**\.
 
-   ```
-   { ($.errorCode = "*UnauthorizedOperation") || ($.errorCode = "AccessDenied*") }
-   ```
+1. On the **Configure actions** page, choose **In alarm**, which indicates that the action is taken when the threshold of 3 change events in 5 minutes is crossed, and **ConsoleSigninFailureCount** is in an alarm state\.
 
-1. Choose **Assign Metric**\.
+   1. For **Select an SNS topic**, choose **Create new**\.
 
-1. For **Filter Name**, type **AuthorizationFailures**\.
+   1. Enter **ConsoleSignInFailures\_CloudWatch\_Alarms\_Topic** as the name for the new Amazon SNS topic\.
 
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
+   1. In **Email endpoints that will receive the notification**, enter email addresses of users whom you want to receive notifications if this alarm is raised\. Separate email addresses with commas\.
 
-1. For **Metric Name**, type **AuthorizationFailureCount**\.
+      Email recipients specified here receive email asking them to confirm that they want to be subscribed to the Amazon SNS topic\.
 
-1. Choose **Show advanced metric settings**\.
+   1. Choose **Create topic**\.
 
-1. For **Metric Value**, type **1**\.
+1. For this example, skip the other action types\. Choose **Next**\.
 
-1. Choose **Create Filter**\.
+1. On the **Add name and description** page, enter a friendly name for the alarm, and a description\. For this example, enter **Console sign\-in failures** for the name, and **Raises alarms if more than 3 console sign\-in failures occur in 5 minutes** for the description\. Choose **Next**\.
 
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-authorization-failures-create-alarm"></a>
+1. On the **Preview and create** page, review your choices\. Choose **Edit** to make changes, or choose **Create alarm** to create the alarm\.
 
-After you create the metric filter, follow this procedure to create an alarm\.
+   After you create the alarm, CloudWatch opens the **Alarms** page\. The alarm's **Actions** column shows **Pending confirmation** until all email recipients on the SNS topic have confirmed that they want to subscribe to SNS notifications\.
 
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
-
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ authorizationfailures.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
-
-1. Choose **Create Alarm**\.
-
-## Example: IAM Policy Changes<a name="cloudwatch-alarms-for-cloudtrail-iam-policy-changes"></a>
+## Example: IAM policy changes<a name="cloudwatch-alarms-for-cloudtrail-iam-policy-changes"></a>
 
 Follow this procedure to create an Amazon CloudWatch alarm that is triggered when an API call is made to change an IAM policy\.
 
-### Create a Metric Filter<a name="cloudwatch-alarms-for-cloudtrail-iam-policy-changes-metric-filter"></a>
+### Create a metric filter<a name="cloudwatch-alarms-for-cloudtrail-iam-policy-changes-metric-filter"></a>
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Logs**\.
 
-1. In the list of log groups, select the check box next to the log group that you created for CloudTrail log events\.
+1. In the list of log groups, choose the log group that you created for CloudTrail log events\.
 
-1. Choose **Create Metric Filter**\.
+1. Choose **Actions**, and then choose **Create metric filter**\.
 
-1. On the **Define Logs Metric Filter** screen, choose **Filter Pattern** and then type the following:
+1. On the **Define pattern** page, in **Create filter pattern**, enter the following for **Filter pattern**\.
 
    ```
    {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}
    ```
 
-1. Choose **Assign Metric**\.
+1. In **Test pattern**, leave defaults\. Choose **Next**\.
 
-1. For **Filter Name**, type **IAMPolicyChanges**\.
+1. On the **Assign metric** page, for **Filter name**, enter **IAMPolicyChanges**\.
 
-1. For **Metric Namespace**, type **CloudTrailMetrics**\.
+1. In **Metric details**, turn on **Create new**, and then enter **CloudTrailMetrics** for **Metric namespace**\.
 
-1. For **Metric Name**, type **IAMPolicyEventCount**\.
+1. For **Metric name**, type **IAMPolicyEventCount**\.
 
-1. Choose **Show advanced metric settings**\.
+1. For **Metric value**, type **1**\.
 
-1. For **Metric Value**, type **1**\.
+1. Leave **Default value** blank\.
 
-1. Choose **Create Filter**\.
+1. Choose **Next**\.
 
-### Create an Alarm<a name="cloudwatch-alarms-for-cloudtrail-iam-policy-changes-create-alarm"></a>
+1. On the **Review and create** page, review your choices\. Choose **Create metric filter** to create the filter, or choose **Edit** to go back and change values\.
 
-After you create the metric filter, follow this procedure to create an alarm\.
+### Create an alarm<a name="cloudwatch-alarms-for-cloudtrail-iam-policy-changes-create-alarm"></a>
 
-1. On the **Filters for *Log\_Group\_Name*** page, next to the filter name, choose **Create Alarm**\.
+After you create the metric filter, the CloudWatch Logs log group details page for your CloudTrail trail log group opens\. Follow this procedure to create an alarm\.
 
-1. On the **Create Alarm** page, provide the following values\.  
-![\[CloudWatch Logs Create Alarm Wizard\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_alarm_wizard_ iampolicychanges.png)  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html)
+1. On the **Metric filters** tab, find the metric filter you created in [Create a metric filter](#cloudwatch-alarms-for-cloudtrail-iam-policy-changes-metric-filter)\. Fill the check box for the metric filter\. In the **Metric filters** bar, choose **Create alarm**\.
 
-1. Choose **Create Alarm**\.
+1. On the **Create Alarm** page, in **Specify metric and conditions**, enter the following\.
+
+   1. For **Graph**, the line is set at **1** based on other settings you make when you create your alarm\.
+
+   1. For **Metric name**, keep the current metric name, **IAMPolicyEventCount**\.
+
+   1. For **Statistic**, keep the default, **Sum**\.
+
+   1. For **Period**, keep the default, **5 minutes**\.
+
+   1. In **Conditions**, for **Threshold type**, choose **Static**\.
+
+   1. For **Whenever *metric\_name* is**, choose **Greater/Equal**\.
+
+   1. For **Threshold**, enter **1**\.
+
+   1. In **Additional configuration**, leave defaults\. Choose **Next**\.
+
+1. On the **Configure actions** page, choose **In alarm**, which indicates that the action is taken when the threshold of 1 change event in 5 minutes is crossed, and **IAMPolicyEventCount** is in an alarm state\.
+
+   1. For **Select an SNS topic**, choose **Create new**\.
+
+   1. Enter **IAM\_Policy\_Changes\_CloudWatch\_Alarms\_Topic** as the name for the new Amazon SNS topic\.
+
+   1. In **Email endpoints that will receive the notification**, enter email addresses of users whom you want to receive notifications if this alarm is raised\. Separate email addresses with commas\.
+
+      Email recipients specified here receive email asking them to confirm that they want to be subscribed to the Amazon SNS topic\.
+
+   1. Choose **Create topic**\.
+
+1. For this example, skip the other action types\. Choose **Next**\.
+
+1. On the **Add name and description** page, enter a friendly name for the alarm, and a description\. For this example, enter **IAM Policy Changes** for the name, and **Raises alarms if IAM policy changes occur** for the description\. Choose **Next**\.
+
+1. On the **Preview and create** page, review your choices\. Choose **Edit** to make changes, or choose **Create alarm** to create the alarm\.
+
+   After you create the alarm, CloudWatch opens the **Alarms** page\. The alarm's **Actions** column shows **Pending confirmation** until all email recipients on the SNS topic have confirmed that they want to subscribe to SNS notifications\.

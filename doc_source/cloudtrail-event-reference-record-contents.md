@@ -1,14 +1,18 @@
 # CloudTrail Record Contents<a name="cloudtrail-event-reference-record-contents"></a>
 
-The body of the record contains fields that help you determine the requested action as well as when and where the request was made\. When the value of **Optional** is **True**, the field is only present when it applies to the service, API, or event type\.
+The body of the record contains fields that help you determine the requested action as well as when and where the request was made\. When the value of **Optional** is **True**, the field is only present when it applies to the service, API, or event type\. An **Optional** value of **False** means that the field is either always present, or that its presence does not depend on the service, API, or event type\. An example is `responseElements`, which is present in events for actions that make changes \(create, update, or delete actions\)\.
 
 **`eventTime`**  
-The date and time the request was made, in coordinated universal time \(UTC\)\.  
+The date and time the request was made, in coordinated universal time \(UTC\)\. An event's time stamp comes from the local host that provides the service API endpoint on which the API call was made\. For example, a CreateBucket API event that is run in the US West \(Oregon\) Region would get its time stamp from the time on an AWS host running the Amazon S3 endpoint, `s3.us-west-2.amazonaws.com`\. In general, AWS services use Network Time Protocol \(NTP\) to synchronize their system clocks\.  
 **Since:** 1\.0  
 **Optional:** False
 
 **`eventVersion`**  
-The version of the log event format\. The current version is 1\.05\.  
+The version of the log event format\. The current version is 1\.08\.  
+The `eventVersion` value is a major and minor version in the form *major\_version*\.*minor\_version*\. For example, you can have an `eventVersion` value of `1.07`, where `1` is the major version, and `07` is the minor version\.  
+CloudTrail increments the major version if a change is made to the event structure that is not backward\-compatible\. This includes removing a JSON field that already exists, or changing how the contents of a field are represented \(for example, a date format\)\. CloudTrail increments the minor version if a change adds new fields to the event structure\. This can occur if new information is available for some or all existing events, or if new information is available only for new event types\. Applications can ignore new fields to stay compatible with new minor versions of the event structure\.  
+If CloudTrail introduces new event types, but the structure of the event is otherwise unchanged, the event version does not change\.  
+To be sure that your applications can parse the event structure, we recommend that you perform an equal\-to comparison on the major version number\. To be sure that fields that are expected by your application exist, we also recommend performing a greater\-than\-or\-equal\-to comparison on the minor version\. There are no leading zeroes in the minor version\. You can interpret both *major\_version* and *minor\_version* as numbers, and perform comparison operations\.  
 **Since:** 1\.0  
 **Optional:** False
 
@@ -27,7 +31,7 @@ This convention has some exceptions\. For example, the `eventSource` for Amazon 
 **Optional:** False
 
 **`eventName`**  
-The requested action, which is one of the actions in the API for that service\.   
+The requested action, which is one of the actions in the API for that service\.  
 **Since:** 1\.0  
 **Optional:** False
 
@@ -42,7 +46,7 @@ The IP address that the request was made from\. For actions that originate from 
 **Optional:** False
 
 **`userAgent`**  
-The agent through which the request was made, such as the AWS Management Console, an AWS service, the AWS SDKs or the AWS CLI\. The following are example values:  
+The agent through which the request was made, such as the AWS Management Console, an AWS service, the AWS SDKs or the AWS CLI\. This field has a maximum size of 1 KB; content exceeding that limit is truncated\. The following are example values:  
 + `signin.amazonaws.com` – The request was made by an IAM user with the AWS Management Console\.
 + `console.amazonaws.com `– The request was made by a root user with the AWS Management Console\.
 + `lambda.amazonaws.com` – The request was made with AWS Lambda\.
@@ -54,34 +58,35 @@ For events originated by AWS, this field is usually `AWS Internal/#`, where `#` 
 **Optional:** False
 
 **`errorCode`**  
-The AWS service error if the request returns an error\.   
+The AWS service error if the request returns an error\. For an example that shows this field, see [Error Code and Message Log Example](cloudtrail-log-file-examples.md#error-code-and-error-message)\. This field has a maximum size of 1 KB; content exceeding that limit is truncated\.  
 **Since:** 1\.0  
 **Optional:** True
 
 **`errorMessage`**  
-If the request returns an error, the description of the error\. This message includes messages for authorization failures\. CloudTrail captures the message logged by the service in its exception handling\. For an example, see [Error Code and Message Log Example](cloudtrail-log-file-examples.md#error-code-and-error-message)\.   
+If the request returns an error, the description of the error\. This message includes messages for authorization failures\. CloudTrail captures the message logged by the service in its exception handling\. For an example, see [Error Code and Message Log Example](cloudtrail-log-file-examples.md#error-code-and-error-message)\. This field has a maximum size of 1 KB; content exceeding that limit is truncated\.  
 Some AWS services provide the `errorCode` and `errorMessage` as top\-level fields in the event\. Other AWS services provide error information as part of `responseElements`\.
 **Since:** 1\.0  
 **Optional:** True
 
 **`requestParameters`**  
-The parameters, if any, that were sent with the request\. These parameters are documented in the API reference documentation for the appropriate AWS service\.   
+The parameters, if any, that were sent with the request\. These parameters are documented in the API reference documentation for the appropriate AWS service\. This field has a maximum size of 100 KB; content exceeding that limit is truncated\.  
 **Since:** 1\.0  
 **Optional:** False
 
 **`responseElements`**  
-The response element for actions that make changes \(create, update, or delete actions\)\. If an action does not change state \(for example, a request to get or list objects\), this element is omitted\. These actions are documented in the API reference documentation for the appropriate AWS service\.   
+The response element for actions that make changes \(create, update, or delete actions\)\. If an action does not change state \(for example, a request to get or list objects\), this element is omitted\. These actions are documented in the API reference documentation for the appropriate AWS service\. This field has a maximum size of 100 KB; content exceeding that limit is truncated\.  
+The `responseElements` value is useful to help you trace a request with AWS Support\. Both `x-amz-request-id` and `x-amz-id-2` contain information that helps you trace a request with AWS Support\. These values are the same as those that the service returns in the response to the request that initiates the events, so you can use them to match the event to the request\.  
 **Since:** 1\.0  
 **Optional:** False
 
  **`additionalEventData`**   
-Additional data about the event that was not part of the request or response\.  
+Additional data about the event that was not part of the request or response\. This field has a maximum size of 28 KB; content exceeding that limit is truncated\.  
 Support for this field begins with `eventVersion` `1.00`\.  
 **Since:** 1\.0  
 **Optional:** True
 
 **`requestID`**  
-The value that identifies the request\. The service being called generates this value\.  
+The value that identifies the request\. The service being called generates this value\. This field has a maximum size of 1 KB; content exceeding that limit is truncated\.  
 Support for this field begins with `eventVersion` `1.01`\.  
 **Since:** 1\.01  
 **Optional:** False
@@ -94,8 +99,8 @@ GUID generated by CloudTrail to uniquely identify each event\. You can use this 
 **`eventType`**  
 Identifies the type of event that generated the event record\. This can be the one of the following values:   
 + `AwsApiCall` – An API was called\. 
-+ `[AwsServiceEvent](non-api-aws-service-events.md)` – The service generated an event related to your trail\. For example, this can occur when another account made a call with a resource that you own\. 
-+ `[AwsConsoleSignin](cloudtrail-event-reference-aws-console-sign-in-events.md)` – A user in your account \(root, IAM, federated, SAML, or SwitchRole\) signed in to the AWS Management Console\.
++ `AwsServiceEvent` – The service generated an event related to your trail\. For example, this can occur when another account made a call with a resource that you own\. 
++ `AwsConsoleSignin` – A user in your account \(root, IAM, federated, SAML, or SwitchRole\) signed in to the AWS Management Console\.
 **Since:** 1\.02  
 **Optional:** False
 
@@ -140,7 +145,7 @@ Represents the account ID that received this event\. The `recipientAccountID` ma
 **Optional:** True
 
 **`serviceEventDetails`**  
-Identifies the service event, including what triggered the event and the result\. For more information, see [AWS Service Events](non-api-aws-service-events.md)\.  
+Identifies the service event, including what triggered the event and the result\. For more information, see [AWS Service Events](non-api-aws-service-events.md)\. This field has a maximum size of 100 KB; content exceeding that limit is truncated\.  
 **Since:** 1\.05  
 **Optional:** True
 
@@ -157,14 +162,48 @@ Identifies the VPC endpoint in which requests were made from a VPC to another AW
 **Since:** 1\.04  
 **Optional:** True
 
+**`eventCategory`**  
+Shows the event category that is used in [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_LookupEvents.html](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_LookupEvents.html) calls\.  
++ For management events, the value is `Management`\.
++ For data events, the value is `Data`\.
++ For Insights events, the value is `Insight`\.
+**Since:** 1\.07  
+**Optional:** False
+
+**`addendum`**  
+If an event delivery was delayed, or additional information about an existing event becomes available after the event is logged, an addendum field shows information about why the event was delayed\. If information was missing from an existing event, the addendum field includes the missing information and a reason for why it was missing\. Contents include the following\.  
++ **`reason`** \- The reason that the event or some of its contents were missing\. Values can be any of the following\.
+  + **`DELIVERY_DELAY`** – There was a delay delivering events\. This could be caused by high network traffic, connectivity issues, or a CloudTrail service issue\.
+  + **`UPDATED_DATA`** – A field in the event record was missing or had an incorrect value\.
+  + **`SERVICE_OUTAGE`** – A service that logs events to CloudTrail had an outage, and couldn’t log events to CloudTrail\. This is exceptionally rare\.
++ **`updatedFields`** \- The event record fields that are updated by the addendum\. This is only provided if the reason is `UPDATED_DATA`\.
++ **`originalRequestID`** \- The original unique ID of the request\. This is only provided if the reason is `UPDATED_DATA`\.
++ **`originalEventID`** \- The original event ID\. This is only provided if the reason is `UPDATED_DATA`\.
+**Since:** 1\.08  
+**Optional:** True
+
+**`sessionCredentialFromConsole`**  
+Shows whether or not an event originated from a AWS Management Console session\. This field is not shown unless the value is `true`, meaning that the client that was used to make the API call was either a proxy or an external client\. If a proxy client was used, the `tlsDetails` event field is not shown\.  
+**Since:** 1\.08  
+**Optional:** True
+
+**`edgeDeviceDetails`**  
+Shows information about edge devices that are targets of a request\. Currently, [http://aws.amazon.com/s3/outposts/](http://aws.amazon.com/s3/outposts/) device events include this field\. This field has a maximum size of 28 KB; content exceeding that limit is truncated\.  
+**Since:** 1\.08  
+**Optional:** True
+
+**`tlsDetails`**  
+Shows information about the Transport Layer Security \(TLS\) version, cipher suites, and the FQDN of the client\-provided host name of a service API call\. Contents include the following\. CloudTrail still logs partial TLS details if expected information is missing or empty\. For example, if the TLS version and cipher suite are present, but the `HOST` header is empty, available TLS details are still logged in the CloudTrail event\.  
+If `sessionCredentialFromConsole` is present with a value of `true`, `tlsDetails` is present in an event record only if an external client was used to make the API call\.  
++ **`tlsVersion`** \- The TLS version of a request\.
++ **`cipherSuite`** \- The cipher suite \(combination of security algorithms used\) of a request\.
++ **`clientProvidedHostHeader`** \- The FQDN of the client that made the request\.
+**Since:** 1\.08  
+**Optional:** True
+
 ## Insights Event Record Fields<a name="eventrecord-insight"></a>
 
 The following are attributes shown in the JSON structure of an Insights event that differ from those in a management or data event\.
-
-**`eventCategory`**  
-Shows the event category that is used in [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_LookupEvents.html](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_LookupEvents.html) calls\. In Insights events, the value is `insight`\.  
-**Since:** 1\.07  
-**Optional:** False
 
 **`sharedEventId`**  
 A `sharedEventID` for CloudTrail Insights events differs from the `sharedEventID` for the management and data types of CloudTrail events\. In Insights events, a `sharedEventID` is a GUID that is generated by CloudTrail Insights to uniquely identify an Insights event\. `sharedEventID` is common between the start and the end Insights events, and helps to connect both events to uniquely identify unusual activity\. You can think of the `sharedEventID` as the overall Insights event ID\.  
@@ -172,46 +211,6 @@ A `sharedEventID` for CloudTrail Insights events differs from the `sharedEventID
 **Optional:** False
 
 **`insightDetails`**  
-Insights events only\. Shows information about the underlying triggers of an Insights event, such as event source, statistics, API name, and whether the event is the start or end of the Insights event\.  
+Insights events only\. Shows information about the underlying triggers of an Insights event, such as event source, user agent, statistics, API name, and whether the event is the start or end of the Insights event\. For more information about the contents of the `insightDetails` block, see [CloudTrail Insights `insightDetails` element](cloudtrail-event-reference-insight-details.md)\.  
 **Since:** 1\.07  
 **Optional:** False
-
-**`state`**  
-Insights events only\. Shows whether the event represents the start or end of the insight \(the start or end of unusual activity\)\. Values are `Start` or `End`\.  
-**Since:** 1\.07  
-**Optional:** False
-
-**`eventName`**  
-The AWS API for which unusual activity was detected\.  
-**Since:** 1\.07  
-**Optional:** False
-
-**`insightType`**  
-The type of Insights event\. Value is `ApiCallRateInsight`\.  
-**Since:** 1\.07  
-**Optional:** False
-
-**`insightContext`**  
-Data about the rate of calls that triggered the Insights event compared to the normal rate of calls to the subject API per minute\.  
-**Since:** 1\.07  
-**Optional:** True
-
-**`statistics`**  
-A container for data about the typical average rate of calls to the subject API by an account, the rate of calls that triggered the Insights event, and the duration, in minutes, of the Insights event\.  
-**Since:** 1\.07  
-**Optional:** True
-
-**`baseline`**  
-Shows the typical average rate of calls to the subject API by an account within a specific AWS Region\.  
-**Since:** 1\.07  
-**Optional:** True
-
-**`insight`**  
-Shows the unusual rate of calls to the subject API that triggers the logging of an Insights event\. The CloudTrail Insights average for the start event is the rate of calls per minute to the API that triggered the Insights event\. Typically, this is the first minute of unusual activity\. The Insights average for the end event is the rate of API calls per minute for the duration of the unusual activity, between the start Insights event and the end Insights event\.  
-**Since:** 1\.07  
-**Optional:** True
-
-**`insightDuration`**  
-The duration, in minutes, of an Insights event \(the time period from the start to the end of unusual activity on the subject API\)\. `insightDuration` only occurs in end Insights events\.  
-**Since:** 1\.07  
-**Optional:** True

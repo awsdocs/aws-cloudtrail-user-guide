@@ -4,9 +4,9 @@ When you configure your trail to send events to CloudWatch Logs, CloudTrail send
 
 To send events to a CloudWatch Logs log group:
 + Make sure you have sufficient permissions to create or specify an IAM role\. For more information, see [Granting Permission to View and Configure Amazon CloudWatch Logs Information on the CloudTrail Console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
-+ Create a new trail or specify an existing one\. For more information, see [Creating and Updating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)\.
++ Create a new trail or specify an existing one\. For more information, see [Creating and updating a trail with the console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)\.
 + Create a log group or specify an existing one\.
-+ Specify an IAM role\. If you are modifying an existing IAM role for an organization trail, you must manually update the policy to allow logging for the organization trail\. For more information, see [this policy example](#policy-cwl-org) and [Creating a Trail for an Organization](creating-trail-organization.md)\.
++ Specify an IAM role\. If you are modifying an existing IAM role for an organization trail, you must manually update the policy to allow logging for the organization trail\. For more information, see [this policy example](#policy-cwl-org) and [Creating a trail for an organization](creating-trail-organization.md)\.
 + Attach a role policy or use the default\.
 
 **Contents**
@@ -55,7 +55,7 @@ You can specify a role for CloudTrail to assume to deliver events to the log str
 
 1. By default, the `CloudTrail_CloudWatchLogs_Role` is specified for you\. The default role policy has the required permissions to create a CloudWatch Logs log stream in a log group that you specify, and to deliver CloudTrail events to that log stream\. 
 **Note**  
-If you want to use this role for a log group for an organization trail, you must manually modify the policy after you create the role\. For more information, see [this policy example](#policy-cwl-org) and [Creating a Trail for an Organization](creating-trail-organization.md)\.
+If you want to use this role for a log group for an organization trail, you must manually modify the policy after you create the role\. For more information, see [this policy example](#policy-cwl-org) and [Creating a trail for an organization](creating-trail-organization.md)\.
 
    1. To verify the role, go to the AWS Identity and Access Management console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -65,9 +65,11 @@ If you want to use this role for a log group for an organization trail, you must
 
 1. You can specify another role, but you must attach the required role policy to the existing role if you want to use it to send events to CloudWatch Logs\. For more information, see [Role Policy Document for CloudTrail to Use CloudWatch Logs for Monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)\.
 
+
+
 ### Viewing Events in the CloudWatch Console<a name="viewing-events-in-cloudwatch"></a>
 
-After you configure your trail to send events to your CloudWatch Logs log group, you can view the events in the CloudWatch console\. CloudTrail typically delivers events to your log group within a few minutes of an API call\. 
+After you configure your trail to send events to your CloudWatch Logs log group, you can view the events in the CloudWatch console\. CloudTrail typically delivers events to your log group within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
 **To view events in the CloudWatch console**
 
@@ -206,7 +208,7 @@ If you're creating a policy that might be used for organization trails as well, 
 }
 ```
 
-For more information about organization trails, see [Creating a Trail for an Organization](creating-trail-organization.md)\.
+For more information about organization trails, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
 Run the following command to apply the policy to the role\.
 
@@ -226,4 +228,6 @@ For more information about the AWS CLI commands, see the [AWS CloudTrail Command
 
 ## Limitation<a name="send-cloudtrail-events-to-cloudwatch-logs-limitations"></a>
 
-Because CloudWatch Logs has an [event size limitation of 256 KB](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html), CloudTrail does not send events larger than 256 KB to CloudWatch Logs\. For example, a call to the EC2 `RunInstances` API to launch 500 instances will exceed the 256 KB limit\. CloudTrail does not send the event to CloudWatch Logs\. To ensure that CloudTrail sends events to CloudWatch Logs, break large requests into smaller batches\.
+CloudWatch Logs and CloudWatch Events each [allow a maximum event size of 256 KB](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html)\. Although most service events have a maximum size of 256 KB, some services still have events that are larger\. CloudTrail does not send these events to CloudWatch Logs or CloudWatch Events\.
+
+Starting with CloudTrail event version 1\.05, events have a maximum size of 256 KB\. This is to help prevent exploitation by malicious actors, and allow events to be consumed by other AWS services, such as CloudWatch Logs and CloudWatch Events\.

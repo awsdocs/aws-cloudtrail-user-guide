@@ -13,9 +13,7 @@ You can use the example CloudFormation template as is, or as a reference to crea
 
 The CloudFormation template has predefined CloudWatch metric filters and alarms, so that you receive email notifications when specific security\-related API calls are made in your AWS account\. 
 
-You can download the template with the following link:
-
-[https://s3\-us\-west\-2\.amazonaws\.com/awscloudtrail/cloudwatch\-alarms\-for\-cloudtrail\-api\-activity/CloudWatch\_Alarms\_for\_CloudTrail\_API\_Activity\.json](https://s3-us-west-2.amazonaws.com/awscloudtrail/cloudwatch-alarms-for-cloudtrail-api-activity/CloudWatch_Alarms_for_CloudTrail_API_Activity.json)\. 
+The template is available in a zip file at the following location: [CloudWatch\_Alarms\_for\_CloudTrail\_API\_Activity\.zip](samples/CloudWatch_Alarms_for_CloudTrail_API_Activity.zip)\.
 
 The template defines metric filters that monitor create, delete, and update operations for the following resource types:
 + Amazon EC2 instances
@@ -41,7 +39,7 @@ A CloudFormation stack is a collection of related resources that you provision a
 
 1. Configure your trail to deliver log files to your CloudWatch Logs log group\. See [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
 
-1. Download the CloudFormation template: [https://s3\-us\-west\-2\.amazonaws\.com/awscloudtrail/cloudwatch\-alarms\-for\-cloudtrail\-api\-activity/CloudWatch\_Alarms\_for\_CloudTrail\_API\_Activity\.json](https://s3-us-west-2.amazonaws.com/awscloudtrail/cloudwatch-alarms-for-cloudtrail-api-activity/CloudWatch_Alarms_for_CloudTrail_API_Activity.json)\.
+1. Download the CloudFormation template: [CloudWatch\_Alarms\_for\_CloudTrail\_API\_Activity\.zip](samples/CloudWatch_Alarms_for_CloudTrail_API_Activity.zip)\.
 
 1. Open the AWS CloudFormation console at [https://console\.aws\.amazon\.com/cloudformation](https://console.aws.amazon.com/cloudformation/)\.
 
@@ -59,6 +57,8 @@ A CloudFormation stack is a collection of related resources that you provision a
 1. Choose **Next**\.
 
 1. On the **Specify Parameters** page, for **Email**, type the email address to receive notifications\.
+
+   
 
 1. For **LogGroupName**, type the name of the log group that you specified when you configured your trail to deliver log files to CloudWatch Logs\.  
 ![\[Specify the email address and log group name for the AWS CloudFormation stack.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cw_cfntemplate_parameters.png)

@@ -4,10 +4,10 @@
 You can view and search the last 90 days of events recorded by CloudTrail in the CloudTrail console or by using the AWS CLI\. For more information, see [Viewing Events with CloudTrail Event History](view-cloudtrail-events.md)\.
 
 **Download events**  
-You can download a CSV or JSON file containing up to the past 90 days of CloudTrail events for your AWS account\. For more information, see [Downloading Events](view-cloudtrail-events-console.md#downloading-events) or [Downloading Insights Events](view-insights-events-console.md#downloading-insights-events)\.
+You can download a CSV or JSON file containing up to the past 90 days of CloudTrail events for your AWS account\. For more information, see [Downloading events](view-cloudtrail-events-console.md#downloading-events) or [Downloading Insights Events](view-insights-events-console.md#downloading-insights-events)\.
 
 ** Create a trail **  
-A trail enables CloudTrail to deliver log files to your Amazon S3 bucket\. By default, when you create a trail in the console, the trail applies to all regions\. The trail logs events from all regions in the AWS partition and delivers the log files to the S3 bucket that you specify\. For more information, see [Creating a Trail For Your AWS Account](cloudtrail-create-and-update-a-trail.md)\.
+A trail enables CloudTrail to deliver log files to your Amazon S3 bucket\. By default, when you create a trail in the console, the trail applies to all regions\. The trail logs events from all regions in the AWS partition and delivers the log files to the S3 bucket that you specify\. For more information, see [Creating a trail for your AWS account](cloudtrail-create-and-update-a-trail.md)\.
 
 ** Create and subscribe to an Amazon SNS topic**  
 Subscribe to a topic to receive notifications about log file delivery to your bucket\. Amazon SNS can notify you in multiple ways, including programmatically with Amazon Simple Queue Service\. For information, see [Configuring Amazon SNS Notifications for CloudTrail](configure-sns-notifications-for-cloudtrail.md)\.  

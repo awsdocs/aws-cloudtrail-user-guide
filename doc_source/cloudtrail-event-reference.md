@@ -1,8 +1,8 @@
 # CloudTrail Log Event Reference<a name="cloudtrail-event-reference"></a>
 
-A CloudTrail log is a record in JSON format\. The log contains information about requests for resources in your account, such as who made the request, the services used, the actions performed, and parameters for the action\. The event data is enclosed in a `Records` array\. 
+A CloudTrail log is a record in JSON format\. The log contains information about requests for resources in your account, such as who made the request, the services used, the actions performed, and parameters for the action\. The event data is enclosed in a `Records` array\.
 
-The following example shows a single log record of an event where an IAM user named Mary\_Major called the CloudTrail `StartLogging` API from the CloudTrail console to start the logging process\. 
+The following example shows a single log record of an event where an IAM user named Mary\_Major called the CloudTrail `StartLogging` API from the CloudTrail console to start the logging process\.
 
 ```
 {
@@ -43,65 +43,91 @@ The following example shows a single log record of an event where an IAM user na
     ... additional entries ...
 ```
 
-The following example shows a single log record of an Insights event that occurred when the AWS Systems Manager API `UpdateInstanceAssociationStatus` was called an unusual number of times\. There are two events in an Insights event record: one event marking the start of the insight \(or the start of the unusual activity\), and one marking the end\. For Insights events, the value of `eventCategory` is `Insight`\. An `insightDetails` block identifies the event state, source, name, Insights type, and context, including statistics\.
+There are two events logged to show unusual activity in CloudTrail Insights: a start event and an end event\. The following example shows a single log record of a starting Insights event that occurred when the Application Auto Scaling API `CompleteLifecycleAction` was called an unusual number of times\. For Insights events, the value of `eventCategory` is `Insight`\. An `insightDetails` block identifies the event state, source, name, Insights type, and context, including statistics and attributions\. For more information about the `insightDetails` block, see [CloudTrail Insights `insightDetails` element](cloudtrail-event-reference-insight-details.md)\.
 
 ```
 {
-    "Records": [
-        {
-            "eventVersion": "1.07",
-            "eventTime": "2019-10-17T10:05:00Z",
-            "awsRegion": "us-east-1",
-            "eventID": "aab985f2-3a56-48cc-a8a5-e0af77606f5f",
-            "eventType": "AwsCloudTrailInsight",
-            "recipientAccountId": "123456789012",
-            "sharedEventID": "12edc982-3348-4794-83d3-a3db26525049",
-            "insightDetails": {
-                "state": "Start",
-                "eventSource": "ssm.amazonaws.com",
-                "eventName": "UpdateInstanceAssociationStatus",
-                "insightType": "ApiCallRateInsight",
-                "insightContext": {
-                    "statistics": {
-                        "baseline": {
-                            "average": 1.7561507937
-                        },
-                        "insight": {
-                            "average": 50.1
-                        }
+          "eventVersion": "1.07",
+          "eventTime": "2020-07-21T20:56:00Z",
+          "awsRegion": "us-east-1",
+          "eventID": "abcd00b0-ccfe-422d-961c-98a2198a408x",
+          "eventType": "AwsCloudTrailInsight",
+          "recipientAccountId": "838185438692",
+          "sharedEventID": "7bb000gg-22b3-4c03-94af-c74tj0c8m7c0",
+          "insightDetails": {
+            "state": "Start",
+            "eventSource": "autoscaling.amazonaws.com",
+            "eventName": "CompleteLifecycleAction",
+            "insightType": "ApiCallRateInsight",
+            "insightContext": {
+              "statistics": {
+                "baseline": {
+                  "average": 0.0000882145
+                },
+                "insight": {
+                  "average": 0.6
+                },
+                "insightDuration": 5,
+                "baselineDuration": 11336
+              },
+              "attributions": [
+                {
+                  "attribute": "userIdentityArn",
+                  "insight": [
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole1",
+                      "average": 0.2
+                    },
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole2",
+                      "average": 0.2
+                    },
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole3",
+                      "average": 0.2
                     }
-                }
-            },
-            "eventCategory": "Insight"
-        },
-        {
-            "eventVersion": "1.07",
-            "eventTime": "2019-10-17T10:13:00Z",
-            "awsRegion": "us-east-1",
-            "eventID": "ce7b8ac1-3f89-4dae-8d2a-6560e32f591a",
-            "eventType": "AwsCloudTrailInsight",
-            "recipientAccountId": "123456789012",
-            "sharedEventID": "12edc982-3348-4794-83d3-a3db26525049",
-            "insightDetails": {
-                "state": "End",
-                "eventSource": "ssm.amazonaws.com",
-                "eventName": "UpdateInstanceAssociationStatus",
-                "insightType": "ApiCallRateInsight",
-                "insightContext": {
-                    "statistics": {
-                        "baseline": {
-                            "average": 1.7561507937
-                        },
-                        "insight": {
-                            "average": 50
-                        },
-                        "insightDuration": 8
+                  ],
+                  "baseline": [
+                    {
+                      "value": "arn:aws:sts::012345678901:assumed-role/CodeDeployRole1",
+                      "average": 0.0000882145
                     }
+                  ]
+                },
+                {
+                  "attribute": "userAgent",
+                  "insight": [
+                    {
+                      "value": "codedeploy.amazonaws.com",
+                      "average": 0.6
+                    }
+                  ],
+                  "baseline": [
+                    {
+                      "value": "codedeploy.amazonaws.com",
+                      "average": 0.0000882145
+                    }
+                  ]
+                },
+                {
+                  "attribute": "errorCode",
+                  "insight": [
+                    {
+                      "value": "null",
+                      "average": 0.6
+                    }
+                  ],
+                  "baseline": [
+                    {
+                      "value": "null",
+                      "average": 0.0000882145
+                    }
+                  ]
                 }
-            },
-            "eventCategory": "Insight"
-        }
-    ]
+              ]
+            }
+          },
+          "eventCategory": "Insight"
 }
 ```
 
@@ -110,4 +136,5 @@ The following topics list the data fields that CloudTrail captures for each AWS 
 **Topics**
 + [CloudTrail Record Contents](cloudtrail-event-reference-record-contents.md)
 + [CloudTrail userIdentity Element](cloudtrail-event-reference-user-identity.md)
++ [CloudTrail Insights `insightDetails` element](cloudtrail-event-reference-insight-details.md)
 + [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)

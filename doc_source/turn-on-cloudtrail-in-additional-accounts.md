@@ -24,7 +24,7 @@ Amazon SNS is a regional service, so if you choose to create a topic, that topic
 
 1. Choose **Turn On**\.
 
-In about 15 minutes, CloudTrail starts publishing log files that show the AWS calls made in your accounts in this region since you completed the preceding steps\. 
+CloudTrail starts publishing log files that show the AWS calls made in your accounts in this region\. CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
 ## Using the CLI to Turn on CloudTrail in Additional AWS Accounts<a name="turn-on-cloudtrail-in-additional-accounts-cli"></a>
 

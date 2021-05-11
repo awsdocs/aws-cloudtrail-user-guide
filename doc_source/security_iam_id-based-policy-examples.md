@@ -10,16 +10,17 @@ To learn how to create an IAM identity\-based policy using these example JSON po
 + [Examples: Creating and Applying Policies for Actions on Specific Trails](#grant-custom-permissions-for-cloudtrail-users-resource-level)
 + [Granting Permissions for Using the CloudTrail Console](#security_iam_id-based-policy-examples-console)
 + [Allow Users to View Their Own Permissions](#security_iam_id-based-policy-examples-view-own-permissions)
-+ [Viewing CloudTrail Trails Based on Tags](#security_iam_id-based-policy-examples-view-trails-tags)
 + [Granting Custom Permissions for CloudTrail Users](#grant-custom-permissions-for-cloudtrail-users)
 
 ## Policy Best Practices<a name="security_iam_service-with-iam-policy-best-practices"></a>
 
 Identity\-based policies are very powerful\. They determine whether someone can create, access, or delete CloudTrail resources in your account\. These actions can incur costs for your AWS account\. When you create or edit identity\-based policies, follow these guidelines and recommendations:
-+ **Get Started Using AWS Managed Policies** – To start using CloudTrail quickly, use AWS managed policies to give your employees the permissions they need\. These policies are already available in your account and are maintained and updated by AWS\. For more information, see [Get Started Using Permissions With AWS Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-use-aws-defined-policies) in the *IAM User Guide*\.
-+ **Grant Least Privilege** – When you create custom policies, grant only the permissions required to perform a task\. Start with a minimum set of permissions and grant additional permissions as necessary\. Doing so is more secure than starting with permissions that are too lenient and then trying to tighten them later\. For more information, see [Grant Least Privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) in the *IAM User Guide*\.
-+ **Enable MFA for Sensitive Operations** – For extra security, require IAM users to use multi\-factor authentication \(MFA\) to access sensitive resources or API operations\. For more information, see [Using Multi\-Factor Authentication \(MFA\) in AWS](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html) in the *IAM User Guide*\.
-+ **Use Policy Conditions for Extra Security** – To the extent that it's practical, define the conditions under which your identity\-based policies allow access to a resource\. For example, you can write conditions to specify a range of allowable IP addresses that a request must come from\. You can also write conditions to allow requests only within a specified date or time range, or to require the use of SSL or MFA\. For more information, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
++ **Get started using AWS managed policies** – To start using CloudTrail quickly, use AWS managed policies to give your employees the permissions they need\. These policies are already available in your account and are maintained and updated by AWS\. For more information, see [Get started using permissions with AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-use-aws-defined-policies) in the *IAM User Guide*\.
++ **Grant least privilege** – When you create custom policies, grant only the permissions required to perform a task\. Start with a minimum set of permissions and grant additional permissions as necessary\. Doing so is more secure than starting with permissions that are too lenient and then trying to tighten them later\. For more information, see [Grant least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) in the *IAM User Guide*\.
++ **Enable MFA for sensitive operations** – For extra security, require IAM users to use multi\-factor authentication \(MFA\) to access sensitive resources or API operations\. For more information, see [Using multi\-factor authentication \(MFA\) in AWS](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html) in the *IAM User Guide*\.
++ **Use policy conditions for extra security** – To the extent that it's practical, define the conditions under which your identity\-based policies allow access to a resource\. For example, you can write conditions to specify a range of allowable IP addresses that a request must come from\. You can also write conditions to allow requests only within a specified date or time range, or to require the use of SSL or MFA\. For more information, see [IAM JSON policy elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
+
+CloudTrail does not have service\-specific context keys that can be used in the `Condition` element of policy statements\.
 
 ## Example: Allowing and Denying Actions For a Specified Trail<a name="security_iam_id-based-policy-examples-allow-deny-for-specific-trail"></a>
 
@@ -209,34 +210,34 @@ A typical approach is to create an IAM group that has the appropriate permission
 1. Type a name, and then choose **Next Step**\. 
 
 1. On the **Attach Policy** page, find and select one of the following policies for CloudTrail:
-   +  **AWSCloudTrailFullAccess**\. This policy gives users in the group full access to CloudTrail actions\. These users have permissions to manage the Amazon S3 bucket, the log group for CloudWatch Logs, and an Amazon SNS topic for a trail\.
+   +  **AWSCloudTrail\_FullAccess**\. This policy gives users in the group full access to CloudTrail actions\. These users have permissions to manage \(but not delete\) the Amazon S3 bucket, the log group for CloudWatch Logs, and an Amazon SNS topic for a trail\.
 **Note**  
-The **AWSCloudTrailFullAccess** policy is not intended to be shared broadly across your AWS account\. Users with this role have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. For this reason, this policy should be applied only to account administrators, and use of this policy should be closely controlled and monitored\.
+The **AWSCloudTrail\_FullAccess** policy is not intended to be shared broadly across your AWS account\. Users with this role have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. For this reason, this policy should be applied only to account administrators, and use of this policy should be closely controlled and monitored\.
    +  **AWSCloudTrailReadOnlyAccess**\. This policy lets users in the group view the CloudTrail console, including recent events and event history\. These users can also view existing trails and their buckets\. Users can download a file of event history, but they cannot create or update trails\.
 **Note**  
 You can also create a custom policy that grants permissions to individual actions\. For more information, see [Granting Custom Permissions for CloudTrail Users](#grant-custom-permissions-for-cloudtrail-users)\.
 
-1. Choose **Next Step**\.
+1. Choose **Next step**\.
 
 1. Review the information for the group you are about to create\.
 **Note**  
 You can edit the group name, but you will need to choose the policy again\.
 
-1. Choose **Create Group**\. The group that you created appears in the list of groups\.
+1. Choose **Create group**\. The group that you created appears in the list of groups\.
 
-1. Choose the group name that you created, choose **Group Actions**, and then choose **Add Users to Group**\. 
+1. Choose the group name that you created, choose **Group actions**, and then choose **Add users to group**\. 
 
-1. On the **Add Users to Group** page, choose the existing IAM users, and then choose **Add Users**\. If you don't already have IAM users, choose **Create New Users**, enter user names, and then choose **Create**\. 
+1. On the **Add users to group** page, choose the existing IAM users, and then choose **Add users**\. If you don't already have IAM users, choose **Create new users**, enter user names, and then choose **Create**\.
 
 1. If you created new users, choose **Users** in the navigation pane and complete the following for each user: 
 
    1. Choose the user\.
 
-   1. If the user will use the console to manage CloudTrail, in the **Security Credentials** tab, choose **Manage Password**, and then create a password for the user\. 
+   1. If the user will use the console to manage CloudTrail, in the **Security credentials** tab, choose **Manage password**, and then create a password for the user\. 
 
-   1. If the user will use the CLI or API to manage CloudTrail, and if you didn't already create access keys, in the **Security Credentials** tab, choose **Manage Access Keys** and then create access keys\. Store the keys in a secure location\.
+   1. If the user will use the CLI or API to manage CloudTrail, and if you didn't already create access keys, in the **Security credentials** tab, choose **Manage access keys** and then create access keys\. Store the keys in a secure location\.
 
-   1. Give each user his or her credentials \(access keys or password\)\.
+   1. Give each user their credentials \(access keys or password\)\.
 
 #### Additional Resources<a name="cloudtrail-notifications-more-info-3"></a>
 
@@ -250,98 +251,38 @@ This example shows how you might create a policy that allows IAM users to view t
 
 ```
 {
-       "Version": "2012-10-17",
-       "Statement": [
-           {
-               "Sid": "ViewOwnUserInfo",
-               "Effect": "Allow",
-               "Action": [
-                   "iam:GetUserPolicy",
-                   "iam:ListGroupsForUser",
-                   "iam:ListAttachedUserPolicies",
-                   "iam:ListUserPolicies",
-                   "iam:GetUser"
-               ],
-               "Resource": [
-                   "arn:aws:iam::*:user/${aws:username}"
-               ]
-           },
-           {
-               "Sid": "NavigateInConsole",
-               "Effect": "Allow",
-               "Action": [
-                   "iam:GetGroupPolicy",
-                   "iam:GetPolicyVersion",
-                   "iam:GetPolicy",
-                   "iam:ListAttachedGroupPolicies",
-                   "iam:ListGroupPolicies",
-                   "iam:ListPolicyVersions",
-                   "iam:ListPolicies",
-                   "iam:ListUsers"
-               ],
-               "Resource": "*"
-           }
-       ]
-   }
-```
-
-## Viewing CloudTrail Trails Based on Tags<a name="security_iam_id-based-policy-examples-view-trails-tags"></a>
-
-You can use conditions in your identity\-based policy to control access to CloudTrail resources based on tags\. This example shows how you might create a policy that allows viewing information about a trail, including its status\. However, permission is granted only if the trail tag `Owner` has the value of that user's user name\. This policy also grants the permissions necessary to complete this action on the console\.
-
-```
-{
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "ViewInformationForATrail",
-            "Effect": "Deny",
-            "Action": [
-                "cloudtrail:DescribeTrails",
-                "cloudtrail:GetTrail",
-                "cloudtrail:GetTrailStatus"
-            ]
-            "Resource": "*"
-        },
-        {
-            "Sid": "ViewTrailIfOwner",
+            "Sid": "ViewOwnUserInfo",
             "Effect": "Allow",
             "Action": [
-                "cloudtrail:GetTrail",
-                "cloudtrail:GetTrailStatus"
-            ]
-            "Resource": "arn:aws:cloudtrail:*:*:widget/*",
-            "Condition": {
-                "StringEquals": {"cloudtrail:ResourceTag/Owner": "${aws:username}"}
-            }
+                "iam:GetUserPolicy",
+                "iam:ListGroupsForUser",
+                "iam:ListAttachedUserPolicies",
+                "iam:ListUserPolicies",
+                "iam:GetUser"
+            ],
+            "Resource": ["arn:aws:iam::*:user/${aws:username}"]
+        },
+        {
+            "Sid": "NavigateInConsole",
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetGroupPolicy",
+                "iam:GetPolicyVersion",
+                "iam:GetPolicy",
+                "iam:ListAttachedGroupPolicies",
+                "iam:ListGroupPolicies",
+                "iam:ListPolicyVersions",
+                "iam:ListPolicies",
+                "iam:ListUsers"
+            ],
+            "Resource": "*"
         }
     ]
 }
 ```
-
-You can attach this policy to the IAM users in your account\. If a user named `richard-roe` attempts to view an CloudTrail trail, the trail must be tagged `Owner=richard-roe` or `owner=richard-roe`\. Otherwise he is denied access\. The condition tag key `Owner` matches both `Owner` and `owner` because condition key names are not case\-sensitive\. 
-
-Alternatively, you can create tag\-based policies that deny all actions on trails tagged with a specific key, and then apply that policy to IAM users and groups to whom you do not want to grant access to those trails\. 
-
-The following example denies all CloudTrail actions on trails tagged with the key *Status* and the key value of *Secret*:
-
-```
-{
-  "Version": "2012-10-17",
-  "Statement" : [
-    {
-      "Effect" : "Deny",
-      "Action" : "cloudtrail:*"
-      "Resource" : "*",
-      "Condition" : {
-         "StringEquals" : "cloudtrail:ResourceTag/Status": "Secret"
-        }
-    }
-  ]
-}
-```
-
-For more information, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
 
 ## Granting Custom Permissions for CloudTrail Users<a name="grant-custom-permissions-for-cloudtrail-users"></a>
 
@@ -406,90 +347,114 @@ The read\-only policy doesn't grant user permission for the `CreateTrail`, `Upda
 
 ### Full access<a name="grant-custom-permissions-for-cloudtrail-users-full-access"></a>
 
-The following example shows a policy that grants full access to CloudTrail\. This is equivalent to the managed policy **AWSCloudTrailFullAccess**\. It grants users the permission to perform all CloudTrail actions\. It also lets users log data events in Amazon S3 and AWS Lambda, manage files in Amazon S3 buckets, manage how CloudWatch Logs monitors CloudTrail log events, and manage Amazon SNS topics in the account that the user is associated with\. 
+The following example shows a policy that grants full access to CloudTrail\. This is equivalent to the managed policy **AWSCloudTrail\_FullAccess**\. It grants users the permission to perform all CloudTrail actions\. It also lets users log data events in Amazon S3 and AWS Lambda, manage files in Amazon S3 buckets, manage how CloudWatch Logs monitors CloudTrail log events, and manage Amazon SNS topics in the account that the user is associated with\. 
 
 **Important**  
-The **AWSCloudTrailFullAccess** policy or equivalent permissions are not intended to be shared broadly across your AWS account\. Users with this role or equivalent access have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. For this reason, this policy should be applied only to account administrators, and use of this policy should be closely controlled and monitored\.
+The **AWSCloudTrail\_FullAccess** policy or equivalent permissions are not intended to be shared broadly across your AWS account\. Users with this role or equivalent access have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. For this reason, this policy should be applied only to account administrators, and use of this policy should be closely controlled and monitored\.
 
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "sns:AddPermission",
-        "sns:CreateTopic",
-        "sns:DeleteTopic",
-        "sns:ListTopics",
-        "sns:SetTopicAttributes",
-        "sns:GetTopicAttributes"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:CreateBucket",
-        "s3:DeleteBucket",
-        "s3:ListAllMyBuckets",
-        "s3:PutBucketPolicy",
-        "s3:ListBucket",
-        "s3:GetObject",
-        "s3:GetBucketLocation",
-        "s3:GetBucketPolicy"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": "cloudtrail:*",
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "logs:CreateLogGroup"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iam:ListRoles",
-        "iam:GetRolePolicy",
-        "iam:GetUser"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iam:PassRole"
-      ],
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "iam:PassedToService": "cloudtrail.amazonaws.com"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sns:AddPermission",
+                "sns:CreateTopic",
+                "sns:SetTopicAttributes",
+                "sns:GetTopicAttributes"
+            ],
+            "Resource": [
+                "arn:aws:sns:*:*:aws-cloudtrail-logs*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sns:ListTopics"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:CreateBucket",
+                "s3:PutBucketPolicy"
+            ],
+            "Resource": [
+                "arn:aws:s3:::aws-cloudtrail-logs*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketLocation",
+                "s3:GetBucketPolicy"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "cloudtrail:*",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup"
+            ],
+            "Resource": [
+                "arn:aws:logs:*:*:log-group:aws-cloudtrail-logs*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListRoles",
+                "iam:GetRolePolicy",
+                "iam:GetUser"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": "cloudtrail.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:CreateKey",
+                "kms:CreateAlias",
+                "kms:ListKeys",
+                "kms:ListAliases"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:ListFunctions"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:ListGlobalTables",
+                "dynamodb:ListTables"
+            ],
+            "Resource": "*"
         }
-      }
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "kms:ListKeys",
-        "kms:ListAliases"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "lambda:ListFunctions"
-      ],
-      "Resource": "*"
-    }
-  ]
+    ]
 }
 ```
 
@@ -512,7 +477,7 @@ You can view event information on the CloudTrail console, including resources th
 }
 ```
 
-For more information, see [Viewing Resources Referenced with AWS Config](view-cloudtrail-events-console.md#viewing-resources-config)\.
+For more information, see [Viewing resources referenced with AWS Config](view-cloudtrail-events-console.md#viewing-resources-config)\.
 
 ### Granting Permission to View and Configure Amazon CloudWatch Logs Information on the CloudTrail Console<a name="grant-cloudwatch-permissions-for-cloudtrail-users"></a>
 
@@ -524,10 +489,11 @@ You can view and configure delivery of events to CloudWatch Logs in the CloudTra
     "Statement": [{
         "Effect": "Allow",
         "Action": [
-            "iam:CreateRole"
-            "iam:PutRolePolicy"
-            "iam:ListRoles"
-            "iam:GetRolePolicy"
+            "iam:CreateRole",
+            "iam:PutRolePolicy",
+            "iam:AttachRolePolicy",
+            "iam:ListRoles",
+            "iam:GetRolePolicy",
             "iam:GetUser"
         ],
         "Resource": "*"

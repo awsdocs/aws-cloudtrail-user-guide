@@ -7,8 +7,9 @@ For a list of supported AWS services, see [CloudTrail Supported Services and Int
 
 | AWS service | Launch date | 
 | --- | --- | 
-| Amazon Macie | August 14, 2017 | 
-| AWS Trusted Advisor | April 30, 2013 | 
+| AWS Import/Export | June 17, 2020 | 
+| Amazon Macie Classic | August 14, 2017 | 
+| AWS Price List Service | December 17, 2018 | 
 
 The following AWS services do not have public API operations\.
 
@@ -23,4 +24,3 @@ The following AWS services do not have public API operations\.
 | AWS DeepRacer | April 29, 2019 | 
 |  AWS Snowmobile | November 30, 2016 | 
 | Amazon Sumerian | May 15, 2018 | 
-| AWS Well\-Architected Tool | November 29, 2018 | 

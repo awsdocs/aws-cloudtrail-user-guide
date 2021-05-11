@@ -14,36 +14,14 @@ You can configure CloudTrail with CloudWatch Logs to monitor your trail logs and
 
 Standard pricing for Amazon CloudWatch and Amazon CloudWatch Logs applies\. For more information, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
 
-You can configure your trails to send logs to CloudWatch Logs in the following regions:
+For more information about the regions in which you can configure your trails to send logs to CloudWatch Logs, see [Amazon CloudWatch Logs Regions and Quotas](https://docs.aws.amazon.com/general/latest/gr/cwl_region.html) in the *AWS General Reference*\.
 
-
-****  
-
-| Region Name | Region | 
-| --- | --- | 
-| US East \(Ohio\) | us\-east\-2 | 
-| US East \(N\. Virginia\) | us\-east\-1 | 
-| US West \(N\. California\) | us\-west\-1 | 
-| US West \(Oregon\) | us\-west\-2 | 
-| Canada \(Central\) | ca\-central\-1 | 
-| Asia Pacific \(Mumbai\) | ap\-south\-1 | 
-| Asia Pacific \(Seoul\) | ap\-northeast\-2 | 
-| Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
-| Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
-| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
-| Europe \(Frankfurt\) | eu\-central\-1 | 
-| Europe \(Ireland\) | eu\-west\-1 | 
-| Europe \(London\) | eu\-west\-2 | 
-| South America \(São Paulo\) | sa\-east\-1 | 
-| AWS GovCloud \(US\)\* | us\-gov\-west\-1 | 
-
-\* This region requires a separate account\. For more information, see [AWS GovCloud \(US\-West\)](https://aws.amazon.com/govcloud-us/)\.
+The AWS GovCloud \(US\-West\) region requires a separate account\. For more information, see [AWS GovCloud \(US\-West\)](https://aws.amazon.com/govcloud-us/)\.
 
 **Topics**
 + [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)
 + [Creating CloudWatch Alarms with an AWS CloudFormation Template](use-cloudformation-template-to-create-cloudwatch-alarms.md)
-+ [Creating CloudWatch Alarms for CloudTrail Events: Examples](cloudwatch-alarms-for-cloudtrail.md)
-+ [Creating CloudWatch Alarms for CloudTrail Events: Additional Examples](cloudwatch-alarms-for-cloudtrail-additional-examples.md)
++ [Creating CloudWatch alarms for CloudTrail events: examples](cloudwatch-alarms-for-cloudtrail.md)
 + [Configuring Notifications for CloudWatch Logs Alarms](cloudtrail-configure-notifications-for-cloudwatch-logs-alarms.md)
 + [Stopping CloudTrail from Sending Events to CloudWatch Logs](stop-cloudtrail-from-sending-events-to-cloudwatch-logs.md)
 + [CloudWatch Log Group and Log Stream Naming for CloudTrail](cloudwatch-log-group-log-stream-naming-for-cloudtrail.md)

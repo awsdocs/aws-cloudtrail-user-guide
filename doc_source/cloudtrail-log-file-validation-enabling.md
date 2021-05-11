@@ -1,10 +1,10 @@
 # Enabling Log File Integrity Validation for CloudTrail<a name="cloudtrail-log-file-validation-enabling"></a>
 
-You can enable log file integrity validation by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), or CloudTrail API\. CloudTrail starts delivering digest files in about an hour\. 
+You can enable log file integrity validation by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), or CloudTrail API\. CloudTrail starts delivering digest files in about an hour\.
 
 ## AWS Management Console<a name="cloudtrail-log-file-validation-enabling-console"></a>
 
-To enable log file integrity validation with the CloudTrail console, choose **Yes** for the **Enable log file validation** option when you create or update a trail\. By default, this feature is enabled for new trails\. For more information, see [Creating and Updating a Trail with the Console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)\. 
+To enable log file integrity validation with the CloudTrail console, choose **Yes** for the **Enable log file validation** option when you create or update a trail\. By default, this feature is enabled for new trails\. For more information, see [Creating and updating a trail with the console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)\. 
 
 ## AWS CLI<a name="cloudtrail-log-file-validation-enabling-cli"></a>
 
