@@ -363,7 +363,7 @@ If you choose not to log management events, AWS KMS events are not logged, and y
 To start logging AWS KMS events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`\.
 
 ```
-aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": ["kms.amazonaws.com"],"IncludeManagementEvents": true]}]'
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": ["kms.amazonaws.com"],"IncludeManagementEvents": true}]'
 ```
 
 The example returns the event selector that is configured for the trail\.
@@ -385,7 +385,7 @@ The example returns the event selector that is configured for the trail\.
 To start logging AWS KMS events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`, as shown in the following command\.
 
 ```
-aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": [],"IncludeManagementEvents": true}]'
 ```
 
 ### Example: A trail that logs relevant low\-volume AWS Key Management Service events<a name="configuring-event-selector-log-kms"></a>
@@ -393,7 +393,7 @@ aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"
 The following example creates an event selector for a trail named *TrailName* to include write\-only management events and AWS KMS events\. Because AWS KMS events are treated as management events, and there can be a high volume of them, they can have a substantial impact on your CloudTrail bill if you have more than one trail that captures management events\. The user in this example has chosen to include AWS KMS **Write** events, which will include `Disable`, `Delete` and `ScheduleKey`, but no longer include high\-volume actions such as `Encrypt`, `Decrypt`, and `GenerateDataKey` \(these are now treated as **Read** events\)\.
 
 ```
-aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "WriteOnly","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "WriteOnly","ExcludeManagementEventSources": [],"IncludeManagementEvents": true}]'
 ```
 
 The example returns the event selector that is configured for the trail\. This logs write\-only management events, including AWS KMS events\.
@@ -621,6 +621,7 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::ManagedBlockchain::Node"] }
+    ]
   },
   {
     "Name": "Log all events for S3 Object Lambda access points",
