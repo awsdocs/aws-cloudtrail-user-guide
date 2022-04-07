@@ -44,7 +44,11 @@ An AWS account ID is a twelve\-digit number, and leading zeros must not be omitt
            "arn:aws:s3:::myBucketName/[optional] myLogFilePrefix/AWSLogs/222222222222/*"
          ],
          "Condition": { 
-           "StringEquals": { 
+           "StringEquals": {
+             "AWS:SourceArn": [
+                  "arn:aws:cloudtrail:region:111111111111:trail/trailName",
+                  "arn:aws:cloudtrail:region:222222222222:trail/trailName"
+              ],
              "s3:x-amz-acl": "bucket-owner-full-control" 
            }
          }
