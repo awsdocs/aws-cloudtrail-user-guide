@@ -1,6 +1,8 @@
-# Receiving CloudTrail Log Files from Multiple Regions<a name="receive-cloudtrail-log-files-from-multiple-regions"></a>
+# Receiving CloudTrail log files from multiple regions<a name="receive-cloudtrail-log-files-from-multiple-regions"></a>
 
-You can configure CloudTrail to deliver log files from multiple regions to a single S3 bucket for a single account\. For example, you have a trail in the US West \(Oregon\) Region that is configured to deliver log files to a S3 bucket, and a CloudWatch Logs log group\. When you change an existing single\-region trail to log all regions, CloudTrail logs events from all regions in your account\. CloudTrail delivers log files to the same S3 bucket and CloudWatch Logs log group\. As long as CloudTrail has permissions to write to an S3 bucket, the bucket for a multi\-region trail does not have to be in the trail's home region\.
+You can configure CloudTrail to deliver log files from multiple regions to a single S3 bucket for a single account\. For example, you have a trail in the US West \(Oregon\) Region that is configured to deliver log files to a S3 bucket, and a CloudWatch Logs log group\. When you change an existing single\-region trail to log all regions, CloudTrail logs events from all regions that are in a single AWS partition in your account\. CloudTrail delivers log files to the same S3 bucket and CloudWatch Logs log group\. As long as CloudTrail has permissions to write to an S3 bucket, the bucket for a multi\-region trail does not have to be in the trail's home region\.
+
+To log events across all regions in all AWS partitions in your account, create a multi\-region trail in each partition\.
 
 In the console, by default, you create a trail that logs events in all AWS Regions\. This is a recommended best practice\. To log events in a single region \(not recommended\), [use the AWS CLI](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single)\. To configure an existing single\-region trail to log in all regions, you must use the AWS CLI\.
 

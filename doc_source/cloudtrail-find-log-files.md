@@ -1,4 +1,4 @@
-# Finding Your CloudTrail Log Files<a name="cloudtrail-find-log-files"></a>
+# Finding your CloudTrail log files<a name="cloudtrail-find-log-files"></a>
 
 CloudTrail publishes log files to your S3 bucket in a gzip archive\. In the S3 bucket, the log file has a formatted name that includes the following elements: 
 + The bucket name that you specified when you created trail \(found on the Trails page of the CloudTrail console\)
@@ -51,11 +51,11 @@ All Buckets
                                 20
 ```
 
- A log file for the preceding object hierarchy will look like the following: 
+A log file for the preceding object hierarchy will look like the following: 
 
 ```
 123456789012_CloudTrail_us-west-1_20140620T1255ZHdkvFTXOA3Vnhbc.json.gz
 ```
 
 **Note**  
-Although uncommon, you may receive log files that contain one or more duplicate events\. Duplicate events will have the same **eventID**\. For more information about the **eventID** field, see [CloudTrail Record Contents](cloudtrail-event-reference-record-contents.md)\.
+Although uncommon, you may receive log files that contain one or more duplicate events\. Duplicate events will have the same **eventID**\. For more information about the **eventID** field, see [CloudTrail record contents](cloudtrail-event-reference-record-contents.md)\.

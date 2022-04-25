@@ -1,6 +1,10 @@
-# Viewing CloudTrail Events with the AWS CLI<a name="view-cloudtrail-events-cli"></a>
+# Viewing CloudTrail events with the AWS CLI<a name="view-cloudtrail-events-cli"></a>
 
-You can look up CloudTrail events for the last 90 days using the aws cloudtrail lookup\-events command\. `lookup-events` has the following options:
+**Important**  
+As of November 22, 2021, AWS CloudTrail will change how trails can be used to capture global service events\. After the change, events created by CloudFront, IAM, and AWS STS will be recorded in the region in which they were created, the US East \(N\. Virginia\) region, us\-east\-1\. This makes CloudTrail's treatment of these services consistent with that of other AWS global services\.  
+To continue receiving global service events outside of US East \(N\. Virginia\), be sure to convert *single\-region trails* using global service events outside of US East \(N\. Virginia\) into *multi\-region trails*\. Also update the region of your `lookup-events` API calls\. For more information about updating lookup events, including an example CLI command, see [Looking up events by attribute](#look-up-events-by-attributes) later in this section\.
+
+You can look up CloudTrail events for the last 90 days using the aws cloudtrail lookup\-events command\. The `lookup-events` command has the following options:
 + `--max-results`
 + `--start-time`
 + `--lookup-attributes`
@@ -21,7 +25,7 @@ These options are explained in this topic\. For general information on using the
   + [Attribute lookup examples](#attribute-lookup-example)
 + [Specifying the next page of results](#specify-next-page-of-lookup-results)
 + [Getting JSON input from a file](#json-input-from-file)
-+ [Lookup Output Fields](#view-cloudtrail-events-cli-output-fields)
++ [Lookup output fields](#view-cloudtrail-events-cli-output-fields)
 
 ## Prerequisites<a name="aws-cli-prerequisites-for-aws-cloudtrail"></a>
 + To run AWS CLI commands, you must install the AWS CLI\. For information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
@@ -47,7 +51,7 @@ To see the ten latest events, type the following command:
 aws cloudtrail lookup-events
 ```
 
- A returned event looks similar to the following fictitious example, which has been formatted for readability:
+A returned event looks similar to the following fictitious example, which has been formatted for readability:
 
 ```
 {
@@ -86,7 +90,7 @@ aws cloudtrail lookup-events
 }
 ```
 
-For an explanation of the lookup\-related fields in the output, see the section [Lookup Output Fields](#view-cloudtrail-events-cli-output-fields) later in this document\. For an explanation of the fields in the CloudTrail event, see [CloudTrail Record Contents](cloudtrail-event-reference-record-contents.md)\.
+For an explanation of the lookup\-related fields in the output, see the section [Lookup output fields](#view-cloudtrail-events-cli-output-fields) later in this document\. For an explanation of the fields in the CloudTrail event, see [CloudTrail record contents](cloudtrail-event-reference-record-contents.md)\.
 
 ## Specifying the number of events to return<a name="specify-the-number-of-events-to-return"></a>
 
@@ -114,7 +118,7 @@ aws cloudtrail lookup-events --start-time <timestamp> --end-time <timestamp>
 
 `--end-time <timestamp>` specifies that only events that occur before or at the specified time are returned\. If the specified end time is before the specified start time, an error is returned\.
 
-The default start time is the earliest date that data is available within the last 90 days\.The default end time is the time of the event that occurred closest to the current time\.
+The default start time is the earliest date that data is available within the last 90 days\. The default end time is the time of the event that occurred closest to the current time\.
 
 ### Valid *<timestamp>* formats<a name="look-up-events-by-time-range-formats"></a>
 
@@ -152,6 +156,12 @@ You can specify only one attribute key/value pair for each lookup\-events comman
 + Username
 
 ### Attribute lookup examples<a name="attribute-lookup-example"></a>
+
+The following example command returns events in region US East \(N\. Virginia\) region, us\-east\-1 which allows you to view global service events\. Replace *ConsoleLogin*, and *gseService* with appropriate values for your configuration\.
+
+```
+aws cloudtrail --region us-east-1  lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin AttributeKey=EventSource,AttributeValue=gseService
+```
 
 The following example command returns events in which the value of `AccessKeyId` is `AKIAIOSFODNN7EXAMPLE`\.
 
@@ -275,11 +285,11 @@ All empty or null values must be removed from the template before you can use it
 **Note**  
 You can use other arguments on the same command line as `--cli-input-json` \. 
 
-## Lookup Output Fields<a name="view-cloudtrail-events-cli-output-fields"></a>
+## Lookup output fields<a name="view-cloudtrail-events-cli-output-fields"></a>
 
 **Events**  
 A list of lookup events based on the lookup attribute and time range that were specified\. The events list is sorted by time, with the latest event listed first\. Each entry contains information about the lookup request and includes a string representation of the CloudTrail event that was retrieved\.   
- The following entries describe the fields in each lookup event\. 
+The following entries describe the fields in each lookup event\. 
 
 **CloudTrailEvent**  
 A JSON string that contains an object representation of the event returned\. For information about each of the elements returned, see [ Record Body Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 

@@ -1,6 +1,6 @@
-# Setting Bucket Policy for Multiple Accounts<a name="cloudtrail-set-bucket-policy-for-multiple-accounts"></a>
+# Setting bucket policy for multiple accounts<a name="cloudtrail-set-bucket-policy-for-multiple-accounts"></a>
 
- For a bucket to receive log files from multiple accounts, its bucket policy must grant CloudTrail permission to write log files from all the accounts you specify\. This means that you must modify the bucket policy on your destination bucket to grant CloudTrail permission to write log files from each specified account\.
+For a bucket to receive log files from multiple accounts, its bucket policy must grant CloudTrail permission to write log files from all the accounts you specify\. This means that you must modify the bucket policy on your destination bucket to grant CloudTrail permission to write log files from each specified account\.
 
 **Note**  
 For security reasons, unauthorized users cannot create a trail that includes `AWSLogs/` as the `S3KeyPrefix` parameter\.
@@ -15,9 +15,9 @@ For security reasons, unauthorized users cannot create a trail that includes `AW
 
 1. Choose **Edit Bucket Policy**\.
 
-1.  Modify the existing policy to add a line for each additional account whose log files you want delivered to this bucket\. See the following example policy and note the underlined `Resource` line specifying a second account ID\.
+1. Modify the existing policy to add a line for each additional account whose log files you want delivered to this bucket\. See the following example policy and note the underlined `Resource` line specifying a second account ID\. As a security best practice, add an `aws:SourceArn` condition key to the Amazon S3 bucket policy\. This helps prevent unauthorized access to your S3 bucket\. If you have existing trails, be sure to add one or more condition keys\.
 **Note**  
-An AWS account ID is a twelve\-digit number, and leading zeros must not be omitted\. 
+An AWS account ID is a twelve\-digit number, including leading zeros\. 
 
    ```
    {
@@ -40,12 +40,13 @@ An AWS account ID is a twelve\-digit number, and leading zeros must not be omitt
          },
          "Action": "s3:PutObject",
          "Resource": [
-           "arn:aws:s3:::myBucketName/[optional] myLogFilePrefix/AWSLogs/111111111111/*",
-           "arn:aws:s3:::myBucketName/[optional] myLogFilePrefix/AWSLogs/222222222222/*"
+           "arn:aws:s3:::myBucketName/optionalLogFilePrefix/AWSLogs/111111111111/*",
+           "arn:aws:s3:::myBucketName/optionalLogFilePrefix/AWSLogs/222222222222/*"
          ],
          "Condition": { 
            "StringEquals": { 
-             "s3:x-amz-acl": "bucket-owner-full-control" 
+             "aws:SourceArn": "arn:aws:cloudtrail:region:myAccountID:trail/trailName",
+             "s3:x-amz-acl": "bucket-owner-full-control"
            }
          }
        }

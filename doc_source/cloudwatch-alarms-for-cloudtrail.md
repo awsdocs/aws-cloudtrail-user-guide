@@ -3,13 +3,13 @@
 This topic describes how to configure alarms for CloudTrail events, and includes examples\.
 
 **Note**  
-Instead of manually creating the following metric filters and alarms examples, you can use an AWS CloudFormation template to create them all at once\. For more information, see [Creating CloudWatch Alarms with an AWS CloudFormation Template](use-cloudformation-template-to-create-cloudwatch-alarms.md)\.
+Instead of manually creating the following metric filters and alarms examples, you can use an AWS CloudFormation template to create them all at once\. For more information, see [Creating CloudWatch alarms with an AWS CloudFormation template](use-cloudformation-template-to-create-cloudwatch-alarms.md)\.
 
 **Topics**
 + [Prerequisites](#cloudwatch-alarms-prerequisites)
 + [Create a metric filter and create an alarm](#cloudwatch-alarms-metric-filter-alarm)
-+ [Example: Security group configuration changes](#cloudwatch-alarms-for-cloudtrail-security-group)
-+ [Example: Console sign\-in failures](#cloudwatch-alarms-for-cloudtrail-signin)
++ [Example security group configuration changes](#cloudwatch-alarms-for-cloudtrail-security-group)
++ [Example AWS Management Console sign\-in failures](#cloudwatch-alarms-for-cloudtrail-signin)
 + [Example: IAM policy changes](#cloudwatch-alarms-for-cloudtrail-iam-policy-changes)
 
 ## Prerequisites<a name="cloudwatch-alarms-prerequisites"></a>
@@ -19,13 +19,13 @@ Before you can use the examples in this topic, you must:
 + Create a log group, which you can do as part of creating a trail\.
 + Specify or create an IAM role that grants CloudTrail the permissions to create a CloudWatch Logs log stream in the log group that you specify and to deliver CloudTrail events to that log stream\. The default `CloudTrail_CloudWatchLogs_Role` does this for you\.
 
-For more information, see [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\. Examples in this section are performed in the Amazon CloudWatch Logs console\. For more information about how to create metric filters and alarms, see [Creating metrics from log events using filters](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html) and [Using Amazon CloudWatch alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
+For more information, see [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\. Examples in this section are performed in the Amazon CloudWatch Logs console\. For more information about how to create metric filters and alarms, see [Creating metrics from log events using filters](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html) and [Using Amazon CloudWatch alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
 
 ## Create a metric filter and create an alarm<a name="cloudwatch-alarms-metric-filter-alarm"></a>
 
 To create an alarm, you must first create a metric filter, and then configure an alarm based on the filter\. The procedures are shown for all examples\. For more information about syntax for metric filters and patterns for CloudTrail log events, see the JSON\-related sections of [Filter and pattern syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html) in the *Amazon CloudWatch Logs User Guide*\.
 
-## Example: Security group configuration changes<a name="cloudwatch-alarms-for-cloudtrail-security-group"></a>
+## Example security group configuration changes<a name="cloudwatch-alarms-for-cloudtrail-security-group"></a>
 
 Follow this procedure to create an Amazon CloudWatch alarm that is triggered when configuration changes occur on security groups\.
 
@@ -105,7 +105,7 @@ After you create the metric filter, the CloudWatch Logs log group details page f
 
    After you create the alarm, CloudWatch opens the **Alarms** page\. The alarm's **Actions** column shows **Pending confirmation** until all email recipients on the SNS topic have confirmed that they want to subscribe to SNS notifications\.
 
-## Example: Console sign\-in failures<a name="cloudwatch-alarms-for-cloudtrail-signin"></a>
+## Example AWS Management Console sign\-in failures<a name="cloudwatch-alarms-for-cloudtrail-signin"></a>
 
 Follow this procedure to create an Amazon CloudWatch alarm that is triggered when there are three or more AWS Management Console sign\-in failures during a five minute period\.
 

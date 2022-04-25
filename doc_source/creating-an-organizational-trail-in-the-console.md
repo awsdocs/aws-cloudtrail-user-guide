@@ -1,12 +1,12 @@
 # Creating a trail for your organization in the console<a name="creating-an-organizational-trail-in-the-console"></a>
 
- To create an organization trail in the CloudTrail console, you must sign in to the console using an IAM user or role in the management account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. If you are not signed in with the management account, you will not see the option to apply a trail to an organization when you create or edit a trail in the CloudTrail console\. 
+To create an organization trail in the CloudTrail console, you must sign in to the console using an IAM user or role in the management account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. If you are not signed in with the management account, you will not see the option to apply a trail to an organization when you create or edit a trail in the CloudTrail console\.
 
 You can choose to configure an organization trail in various ways\. For example, you can: 
-+ By default, when you create a trail in the console, the trail logs all regions\. Logging all regions in your account is a recommended best practice\. To create a single\-region trail, [use the AWS CLI](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single)\. For more information, see [How CloudTrail Works](how-cloudtrail-works.md)\.
++ By default, when you create a trail in the console, the trail logs all regions\. Logging all regions in your account is a recommended best practice\. To create a single\-region trail, [use the AWS CLI](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single)\. For more information, see [How CloudTrail works](how-cloudtrail-works.md)\.
 + Specify whether to apply the trail to your organization\. The default is not to do so; you must choose this option to create an organization trail\.
 + Specify which Amazon S3 bucket to use to receive log files for the organization trail\. You can choose an existing Amazon S3 bucket in the management account, or create one specifically for the organization trail\. 
-+ For management and data events, specify if you want to log **Read** events, **Write** events, or both\. [CloudTrail Insights](logging-insights-events-with-cloudtrail.md) events are logged only on management **Write** events\. You can specify logging data events for resources in the management account by choosing them from the lists in the console, and in member accounts if you specify the ARNs of each resource for which you want to enable data event logging\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
++ For management and data events, specify if you want to log **Read** events, **Write** events, or both\. [CloudTrail Insights](logging-insights-events-with-cloudtrail.md) events are logged only on management events, and you must be logging **Write** management events\. You can specify logging data events for resources in the management account by choosing them from the lists in the console, and in member accounts if you specify the ARNs of each resource for which you want to enable data event logging\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 
 **To create an organization trail with the AWS Management Console**
 
@@ -16,41 +16,41 @@ You can choose to configure an organization trail in various ways\. For example,
 
 1. Choose **Trails**, and then choose **Create trail**\.
 
-1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)\.
+1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
 1. Select **Enable for all accounts in my organization**\. You only see this option if you are signed in to the console with an IAM user or role in the management account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\.
 
 1. For **Storage location**, choose **Create new S3 bucket** to create a bucket\. When you create a bucket, CloudTrail creates and applies the required bucket policies\.
 **Note**  
-If you chose **Use existing S3 bucket**, specify a bucket in **Trail log bucket name**, or choose **Browse** to choose a bucket\. The bucket policy must grant CloudTrail permission to write to it\. For information about manually editing the bucket policy, see [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
+If you chose **Use existing S3 bucket**, specify a bucket in **Trail log bucket name**, or choose **Browse** to choose a bucket\. The bucket policy must grant CloudTrail permission to write to it\. For information about manually editing the bucket policy, see [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
 
    To make it easier to find your logs, create a new folder \(also known as a *prefix*\) in an existing bucket to store your CloudTrail logs\. Enter the prefix in **Prefix**\.
 
 1. For **Log file SSE\-KMS encryption**, choose **Enabled** if you want to encrypt your log files with SSE\-KMS instead of SSE\-S3\. The default is **Enabled**\. For more information about this encryption type, see [Protecting Data Using Server\-Side Encryption with Amazon S3\-Managed Encryption Keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\.
 
-   If you enable SSE\-KMS encryption, choose a **New** or **Existing** AWS KMS customer master key\. In **AWS KMS Alias**, specify an alias, in the format `alias/`*MyAliasName*\. For more information, see [Updating a Trail to Use Your CMK](create-kms-key-policy-for-cloudtrail-update-trail.md)\.
+   If you enable SSE\-KMS encryption, choose a **New** or **Existing** AWS KMS key\. In **AWS KMS Alias**, specify an alias, in the format `alias/`*MyAliasName*\. For more information, see [Updating a trail to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\.
 **Note**  
-You can also type the ARN of a key from another account\. For more information, see [Updating a Trail to Use Your CMK](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [Configure AWS KMS Key Policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
+You can also type the ARN of a key from another account\. For more information, see [Updating a trail to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [Configure AWS KMS key policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
 
 1. In **Additional settings**, configure the following\.
 
-   1. For **Log file validation**, choose **Enabled** to have log digests delivered to your S3 bucket\. You can use the digest files to verify that your log files did not change after CloudTrail delivered them\. For more information, see [Validating CloudTrail Log File Integrity](cloudtrail-log-file-validation-intro.md)\.
+   1. For **Log file validation**, choose **Enabled** to have log digests delivered to your S3 bucket\. You can use the digest files to verify that your log files did not change after CloudTrail delivered them\. For more information, see [Validating CloudTrail log file integrity](cloudtrail-log-file-validation-intro.md)\.
 
-   1. For **SNS notification delivery**, choose **Enabled** to be notified each time a log is delivered to your bucket\. CloudTrail stores multiple events in a log file\. SNS notifications are sent for every log file, not for every event\. For more information, see [Configuring Amazon SNS Notifications for CloudTrail](configure-sns-notifications-for-cloudtrail.md)\.
+   1. For **SNS notification delivery**, choose **Enabled** to be notified each time a log is delivered to your bucket\. CloudTrail stores multiple events in a log file\. SNS notifications are sent for every log file, not for every event\. For more information, see [Configuring Amazon SNS notifications for CloudTrail](configure-sns-notifications-for-cloudtrail.md)\.
 
       If you enable SNS notifications, for **Create a new SNS topic**, choose **New** to create a topic, or choose **Existing** to use an existing topic\. If you are creating a trail that applies to all Regions, SNS notifications for log file deliveries from all Regions are sent to the single SNS topic that you create\.
 
-      If you choose **New**, CloudTrail specifies a name for the new topic for you, or you can type a name\. If you choose **Existing**, choose an SNS topic from the drop\-down list\. You can also enter the ARN of a topic from another Region or from an account with appropriate permissions\. For more information, see [Amazon SNS Topic Policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\.
+      If you choose **New**, CloudTrail specifies a name for the new topic for you, or you can type a name\. If you choose **Existing**, choose an SNS topic from the drop\-down list\. You can also enter the ARN of a topic from another Region or from an account with appropriate permissions\. For more information, see [Amazon SNS topic policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\.
 
       If you create a topic, you must subscribe to the topic to be notified of log file delivery\. You can subscribe from the Amazon SNS console\. Due to the frequency of notifications, we recommend that you configure the subscription to use an Amazon SQS queue to handle notifications programmatically\. For more information, see the [Amazon Simple Notification Service Getting Started Guide](https://docs.aws.amazon.com/sns/latest/gsg/)\.
 
-1. Optionally, configure CloudTrail to send log files to CloudWatch Logs by choosing **Enabled** in **CloudWatch Logs**\. For more information, see [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
+1. Optionally, configure CloudTrail to send log files to CloudWatch Logs by choosing **Enabled** in **CloudWatch Logs**\. For more information, see [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
 
    1. If you enable integration with CloudWatch Logs, choose **New** to create a new log group, or **Existing** to use an existing one\. If you choose **New**, CloudTrail specifies a name for the new log group for you, or you can type a name\.
 
    1. If you choose **Existing**, choose a log group from the drop\-down list\.
 
-   1. Choose **New** to create a new IAM role for permissions to send logs to CloudWatch Logs\. Choose **Existing** to choose an existing IAM role from the drop\-down list\. The policy statement for the new or existing role is displayed when you expand **Policy document**\. For more information about this role, see [Role Policy Document for CloudTrail to Use CloudWatch Logs for Monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)\.
+   1. Choose **New** to create a new IAM role for permissions to send logs to CloudWatch Logs\. Choose **Existing** to choose an existing IAM role from the drop\-down list\. The policy statement for the new or existing role is displayed when you expand **Policy document**\. For more information about this role, see [Role policy document for CloudTrail to use CloudWatch Logs for monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)\.
 **Note**  
 When you configure a trail, you can choose an S3 bucket and SNS topic that belong to another account\. However, if you want CloudTrail to deliver events to a CloudWatch Logs log group, you must choose a log group that exists in your current account\.
 
@@ -68,7 +68,9 @@ When you configure a trail, you can choose an S3 bucket and SNS topic that belon
 
       To exclude high\-volume events like `Encrypt`, `Decrypt`, and `GenerateDataKey`, but still log relevant events such as `Disable`, `Delete` and `ScheduleKey`, choose to log **Write** management events, and clear the check box for **Exclude AWS KMS events**\.
 
-1. For **Data events**, you can specify logging data events for Amazon S3 buckets, AWS Lambda functions, Amazon DynamoDB tables, or a combination of these resource types\. By default, trails don't log data events\. Additional charges apply for logging data events\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
+   1. Choose **Exclude Amazon RDS Data API events** to filter Amazon Relational Database Service Data API events out of your trail\. The default setting is to include all Amazon RDS Data API events\. For more information about Amazon RDS Data API events, see [Logging Data API calls with AWS CloudTrail](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/logging-using-cloudtrail-data-api.html) in the *Amazon RDS User Guide for Aurora*\.
+
+1. For **Data events**, you can specify logging data events for Amazon S3 buckets, AWS Lambda functions, Amazon DynamoDB tables, or multiple other resource types\. By default, trails don't log data events\. Additional charges apply for logging data events\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 **Note**  
 More data event types are available if you use advanced event selectors\. If you have opted in to use advanced event selectors, follow steps in [Creating a trail in the console \(advanced event selectors\)](cloudtrail-create-a-trail-using-the-console-first-time.md#creating-a-trail-in-the-console-adv) to configure data event logging on your trail\.
 
@@ -131,11 +133,11 @@ You can't rename a trail after it has been created\. Instead, you can delete the
 
 After you create your trail, you can return to the trail to make changes:
 + Change the configuration of your trail by editing it\. For more information, see [Updating a trail](cloudtrail-update-a-trail-console.md)\.
-+ Configure the Amazon S3 bucket to allow specific IAM users in member accounts to read the log files for the organization, if desired\. For more information, see [Sharing CloudTrail Log Files Between AWS Accounts](cloudtrail-sharing-logs.md)\.
-+ Configure CloudTrail to send log files to CloudWatch Logs\. For more information, see [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md) and [the CloudWatch Logs item](creating-an-organizational-trail-prepare.md#cwl-org-pb) in [Prepare for creating a trail for your organization](creating-an-organizational-trail-prepare.md)\.
++ Configure the Amazon S3 bucket to allow specific IAM users in member accounts to read the log files for the organization, if desired\. For more information, see [Sharing CloudTrail log files between AWS accounts](cloudtrail-sharing-logs.md)\.
++ Configure CloudTrail to send log files to CloudWatch Logs\. For more information, see [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md) and [the CloudWatch Logs item](creating-an-organizational-trail-prepare.md#cwl-org-pb) in [Prepare for creating a trail for your organization](creating-an-organizational-trail-prepare.md)\.
 + Create a table and use it to run a query in Amazon Athena to analyze your AWS service activity\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](https://docs.aws.amazon.com/athena/latest/ug/)\.
 + Add custom tags \(key\-value pairs\) to the trail\.
 + To create another organization trail, return to the **Trails** page and choose **Create trail**\.
 
 **Note**  
-When configuring a trail, you can choose an Amazon S3 bucket and SNS topic that belong to another account\. However, if you want CloudTrail to deliver events to a CloudWatch Logs log group, you must choose a log group that exists in your current account\.
+When you configure a trail, you can choose an Amazon S3 bucket and SNS topic that belong to another account\. However, if you want CloudTrail to deliver events to a CloudWatch Logs log group, you must choose a log group that exists in your current account\.

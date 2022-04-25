@@ -6,14 +6,14 @@ You can use the CloudTrail console to view the last 90 days of recorded API acti
 
 After 90 days, events are no longer shown in **Event history**\. You cannot manually delete events from **Event history**\. When you [create a trail](cloudtrail-create-a-trail-using-the-console-first-time.md), you can view events that are logged to your trail for as long as you store them in the S3 bucket that is configured in your trail settings\.
 
-CloudTrail logging varies between AWS services\. While most AWS services support CloudTrail logging of all events, some services only support logging a subset of APIs and events, and a few services are unsupported\. You can learn more about the specifics of how CloudTrail logs events for a specific service by consulting the documentation for that service\. For more information, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
+CloudTrail logging varies between AWS services\. While most AWS services support CloudTrail logging of all events, some services only support logging a subset of APIs and events, and a few services are unsupported\. You can learn more about the specifics of how CloudTrail logs events for a specific service by consulting the documentation for that service\. For more information, see [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 **Note**  
 For an ongoing record of activity and events, [create a trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\. Creating a trail also enables you to take advantage of the following integrations:  
-A trail lets you log CloudTrail Insights events, which can help you identify and respond to unusual activity associated with `write` management API calls\. For more information, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\.
+A trail lets you log CloudTrail Insights events, which can help you identify and respond to unusual activity associated with `write` management API calls\. For more information, see [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md)\.
 Analyze your AWS service activity with queries in Amazon Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](https://docs.aws.amazon.com/athena/latest/ug/), or choose the option to create a table directly from **Event history** in the CloudTrail console\.
 Monitor your trail logs and be notified when specific activity occurs with Amazon CloudWatch Logs\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
-A trail lets you exclude AWS Key Management Service \(AWS KMS\) events\. AWS KMS actions such as `Encrypt`, `Decrypt`, and `GenerateDataKey` typically generate a large volume \(more than 99%\) of events\. AWS KMS events cannot be excluded from **Event history**; you can only exclude AWS KMS events if you create or update a trail to log management events\.
+A trail lets you exclude AWS Key Management Service \(AWS KMS\) or Amazon Relational Database Service Data API events\. AWS KMS actions such as `Encrypt`, `Decrypt`, and `GenerateDataKey` typically generate a large volume \(more than 99%\) of events\. Events cannot be excluded from **Event history**; you can only exclude events if you create or update a trail to log management events\.
 
 **To view CloudTrail events**
 
@@ -149,7 +149,7 @@ On the **Resources Referenced** pane, choose the ![\[AWS Config timeline icon\]]
 If the ![\[AWS Config timeline\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/config-timeline-gray.png) icon is gray, AWS Config is not turned on, or it's not recording the resource type\. Choose the icon to go to the AWS Config console to turn on the service or start recording that resource type\. For more information, see [Set Up AWS Config Using the Console](https://docs.aws.amazon.com/config/latest/developerguide/gs-console.html) in the *AWS Config Developer Guide*\.
 
 If **Link not available** appears in the column, the resource can't be viewed for one of the following reasons:
-+  AWS Config doesn't support the resource type\. For more information, see [Supported Resources, Configuration Items, and Relationships](https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html) in the *AWS Config Developer Guide*\.
++ AWS Config doesn't support the resource type\. For more information, see [Supported Resources, Configuration Items, and Relationships](https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html) in the *AWS Config Developer Guide*\.
 + AWS Config recently added support for the resource type, but it's not yet available from the CloudTrail console\. You can look up the resource in the AWS Config console to see the timeline for the resource\.
 + The resource is owned by another AWS account\.
 + The resource is owned by another AWS service, such as a managed IAM policy\.
@@ -162,12 +162,12 @@ If **Link not available** appears in the column, the resource can't be viewed fo
 
 1. You create an IAM user, **Bob\-user**\. The **Event history** page shows the `CreateUser` event and **Bob\-user** as an IAM resource\. You can choose the AWS Config icon to view this IAM resource in the AWS Config timeline\.
 
-1.  You update the user name to **Bob\-admin**\.
+1. You update the user name to **Bob\-admin**\.
 
 1. The **Event history** page shows the `UpdateUser` event and **Bob\-admin** as the updated IAM resource\.
 
 1. You can choose the icon to view the **Bob\-admin** IAM resource in the timeline\. However, you can't choose the icon for **Bob\-user**, because the resource name changed\. AWS Config is now recording the updated resource\.
 
-To grant users read\-only permission to view resources in the AWS Config console, see [Granting Permission to View AWS Config Information on the CloudTrail Console](security_iam_id-based-policy-examples.md#grant-aws-config-permissions-for-cloudtrail-users)\.
+To grant users read\-only permission to view resources in the AWS Config console, see [Granting permission to view AWS Config information on the CloudTrail console](security_iam_id-based-policy-examples.md#grant-aws-config-permissions-for-cloudtrail-users)\.
 
 For more information about AWS Config, see the [AWS Config Developer Guide](https://docs.aws.amazon.com/config/latest/developerguide/)\.

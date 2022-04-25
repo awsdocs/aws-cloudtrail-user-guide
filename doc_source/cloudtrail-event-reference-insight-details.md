@@ -16,7 +16,7 @@ AWS CloudTrail Insights event records include fields that are different from oth
   **Since:** 1\.07
 
   **Optional:** False
-+ **`insightType`** \- The type of Insights event\. Currently, this value is `ApiCallRateInsight`\.
++ **`insightType`** \- The type of Insights event\. This value can be `ApiCallRateInsight`, `ApiErrorRateInsight`, or both\.
 
   **Since:** 1\.07
 
@@ -28,19 +28,19 @@ AWS CloudTrail Insights event records include fields that are different from oth
   **Since:** 1\.07
 
   **Optional:** False
-  + **`statistics`** \- Includes data about the *baseline*, or typical average rate of calls to the subject API by an account as measured during the baseline period, the average rate of calls that triggered the Insights event over the first minute of the Insights event, the duration, in minutes, of the Insights event, and the duration, in minutes, of the baseline measuring period\.
+  + **`statistics`** \- Includes data about the *baseline*, or typical average rate of calls to or errors on the subject API by an account as measured during the baseline period, the average rate of calls or errors that triggered the Insights event over the first minute of the Insights event, the duration, in minutes, of the Insights event, and the duration, in minutes, of the baseline measuring period\.
 
     **Since:** 1\.07
 
     **Optional:** False
-    + **`baseline`** \- The average number of API calls per minute during the baseline duration on the Insights event's subject API for the account, calculated over the seven days preceding the start of the Insights event\. 
+    + **`baseline`** \- The average number of API calls or errors per minute during the baseline duration on the Insights event's subject API for the account, calculated over the seven days preceding the start of the Insights event\.
 
       **Since:** 1\.07
 
       **Optional:** False
     + **`insight`** \- 
 
-      For a starting Insights event, this value is the average number of API calls per minute during the start of the unusual activity\. For an ending Insights event, this value is the average number of API calls per minute over the duration of the unusual activity\.
+      For a starting Insights event, this value is the average number of API calls or errors per minute during the start of the unusual activity\. For an ending Insights event, this value is the average number of API calls or errors per minute over the duration of the unusual activity\.
 
       **Since:** 1\.07
 
@@ -61,7 +61,7 @@ AWS CloudTrail Insights event records include fields that are different from oth
 
     **Optional:** True
     + **`attribute`** \- Contains the attribute type\. Value can be `userIdentityArn`, `userAgent`, or `errorCode`\.
-      + **`userIdentityArn`** \- A block that shows up to the top five AWS users or IAM roles that contributed to API calls during the unusual activity and baseline periods\. See also `userIdentity` in [CloudTrail Record Contents](cloudtrail-event-reference-record-contents.md)\.
+      + **`userIdentityArn`** \- A block that shows up to the top five AWS users or IAM roles that contributed to API calls or errors during the unusual activity and baseline periods\. See also `userIdentity` in [CloudTrail record contents](cloudtrail-event-reference-record-contents.md)\.
 
         **Since:** 1\.07
 
@@ -76,32 +76,32 @@ AWS CloudTrail Insights event records include fields that are different from oth
             **Since:** 1\.07
 
             **Optional:** False
-          + **`average`** \- The number of API calls per minute during the unusual activity period for the user identity in the `value` field\.
+          + **`average`** \- The number of API calls or errors per minute during the unusual activity period for the user identity in the `value` field\.
 
             **Since:** 1\.07
 
             **Optional:** False
-        + **`baseline`** \- A block that shows up to the top five user identity ARNs that contributed the most to the API calls made during the normal activity period\. It also shows the average number of API calls made by the user identities during the normal activity period\.
+        + **`baseline`** \- A block that shows up to the top five user identity ARNs that contributed the most to the API calls or errors during the normal activity period\. It also shows the average number of API calls or errors logged by the user identities during the normal activity period\.
 
           **Since:** 1\.07
 
           **Optional:** False
-          + **`value`** \- The ARN of one of the top five user identities that contributed to the API calls made during the normal activity period\.
+          + **`value`** \- The ARN of one of the top five user identities that contributed to the API calls or errors during the normal activity period\.
 
             **Since:** 1\.07
 
             **Optional:** False
-          + **`average`** \- The historic average of API calls per minute during the seven days preceding the Insights activity start time for the user identity in the `value` field\.
+          + **`average`** \- The historic average of API calls or errors per minute during the seven days preceding the Insights activity start time for the user identity in the `value` field\.
 
             **Since:** 1\.07
 
             **Optional:** False
-      + **`userAgent`** \- A block that shows up to the top ﬁve AWS tools by which the user identity contributed to API calls during the unusual activity and baseline periods\. These tools include the AWS Management Console, AWS CLI, or the AWS SDKs\. See also `userAgent` in [CloudTrail Record Contents](cloudtrail-event-reference-record-contents.md)\.
+      + **`userAgent`** \- A block that shows up to the top ﬁve AWS tools by which the user identity contributed to API calls during the unusual activity and baseline periods\. These tools include the AWS Management Console, AWS CLI, or the AWS SDKs\. See also `userAgent` in [CloudTrail record contents](cloudtrail-event-reference-record-contents.md)\.
 
         **Since:** 1\.07
 
         **Optional:** False
-        + **`insight`** \- A block that shows up to the top five user agents that contributed to the API calls made during the unusual activity period, in descending order from largest number of API calls to smallest\. It also shows the average number of API calls made by the user agents during the unusual activity period\.
+        + **`insight`** \- A block that shows up to the top five user agents that contributed to the API calls made during the unusual activity period, in descending order from largest number of API calls to smallest\. It also shows the average number of API calls or errors logged by the user agents during the unusual activity period\.
 
           **Since:** 1\.07
 
@@ -111,27 +111,27 @@ AWS CloudTrail Insights event records include fields that are different from oth
             **Since:** 1\.07
 
             **Optional:** False
-          + **`average`** \- The number of API calls per minute during the unusual activity period for the user agent in the `value` field\.
+          + **`average`** \- The number of API calls or errors logged per minute during the unusual activity period for the user agent in the `value` field\.
 
             **Since:** 1\.07
 
             **Optional:** False
-        + **`baseline`** \- A block that shows up to the top five user agents that contributed the most to the API calls made during the normal activity period\. It also shows the average number of API calls made by the user agents during the normal activity period\.
+        + **`baseline`** \- A block that shows up to the top five user agents that contributed the most to the API calls made during the normal activity period\. It also shows the average number of API calls or errors logged by the user agents during the normal activity period\.
 
           **Since:** 1\.07
 
           **Optional:** False
-          + **`value`** \- One of the top five user agents that contributed to the API calls made during the normal activity period\.
+          + **`value`** \- One of the top five user agents that contributed to the API calls or errors logged during the normal activity period\.
 
             **Since:** 1\.07
 
             **Optional:** False
-          + **`average`** \- The historic average of API calls per minute during the seven days preceding the Insights activity start time for the user agent in the `value` field\.
+          + **`average`** \- The historic average of API calls or errors per minute during the seven days preceding the Insights activity start time for the user agent in the `value` field\.
 
             **Since:** 1\.07
 
             **Optional:** False
-      + **`errorCode`** \- A block that shows up to the top five error codes that occurred on API calls during the unusual activity and baseline periods, in descending order from largest number of API calls to smallest\. See also `errorCode` in [CloudTrail Record Contents](cloudtrail-event-reference-record-contents.md)\.
+      + **`errorCode`** \- A block that shows up to the top five error codes that occurred on API calls during the unusual activity and baseline periods, in descending order from largest number of API calls to smallest\. See also `errorCode` in [CloudTrail record contents](cloudtrail-event-reference-record-contents.md)\.
 
         **Since:** 1\.07
 
@@ -165,7 +165,7 @@ AWS CloudTrail Insights event records include fields that are different from oth
             **Since:** 1\.07
 
             **Optional:** False
-          + **`average`** \- The historic average of API calls per minute during the seven days preceding the Insights activity start time for the error code in the `value` field\.
+          + **`average`** \- The historic average of API calls or errors per minute during the seven days preceding the Insights activity start time for the error code in the `value` field\.
 
             **Since:** 1\.07
 
@@ -173,7 +173,7 @@ AWS CloudTrail Insights event records include fields that are different from oth
 
 ## Example `insightDetails` block<a name="event-reference-insight-details-example"></a>
 
-The following is an example of an Insights event `insightDetails` block for an Insights event that occurred when the Application Auto Scaling API `CompleteLifecycleAction` was called an unusual number of times\. For an example of a full Insights event, see [CloudTrail Log Event Reference](cloudtrail-event-reference.md)\. 
+The following is an example of an Insights event `insightDetails` block for an Insights event that occurred when the Application Auto Scaling API `CompleteLifecycleAction` was called an unusual number of times\. For an example of a full Insights event, see [CloudTrail log event reference](cloudtrail-event-reference.md)\.
 
 This example is from a starting Insights event, indicated by `"state": "Start"`\. The top user identities that called the APIs associated with the Insights event, `CodeDeployRole1`, `CodeDeployRole2`, and `CodeDeployRole3`, are shown in the `attributions` block, along with their average API call rates for this Insights event, and the baseline for the `CodeDeployRole1` role\. The `attributions` block also shows that the user agent is `codedeploy.amazonaws.com`, meaning the top user identities used the AWS CodeDeploy console to run the API calls\.
 

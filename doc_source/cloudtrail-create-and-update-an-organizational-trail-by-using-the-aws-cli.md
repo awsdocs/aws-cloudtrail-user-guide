@@ -6,11 +6,13 @@ You can create an organization trail by using the AWS CLI\. The AWS CLI is regul
 The examples in this section are specific to creating and updating organization trails\. For examples of using the AWS CLI to manage trails, see [Managing trails with the AWS CLI](cloudtrail-additional-cli-commands.md)\. When creating or updating an organization trail with the AWS CLI, you must use an AWS CLI profile in the management account with sufficient permissions\.  
 You must configure the Amazon S3 bucket used for an organization trail with sufficient permissions\. 
 
-## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="w215aac10c21c31b7"></a>
+## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="org-trail-bucket-policy"></a>
 
 You must specify an Amazon S3 bucket to receive the log files for an organization trail\. This bucket must have a policy that allows CloudTrail to put the log files for the organization into the bucket\.
 
-The following is an example policy for an Amazon S3 bucket named *my\-organization\-bucket*\. This bucket is in an AWS account with the ID *111111111111*, which is the management account for an organization with the ID *o\-exampleorgid* that allows logging for an organization trail\. It also allows logging for the *111111111111* account in the event that the trail is changed from an organization trail to a trail for that account only\.
+The following is an example policy for an Amazon S3 bucket named *myOrganizationBucket*\. This bucket is in an AWS account with the ID *111111111111*, which is the management account for an organization with the ID *o\-exampleorgid* that allows logging for an organization trail\. It also allows logging for the *111111111111* account in the event that the trail is changed from an organization trail to a trail for that account only\. Replace *myOrganizationBucket*, *111111111111*, *region*, and *trailName* with the appropriate values for your configuration\.
+
+The example policy includes an `aws:SourceArn` condition key to the Amazon S3 bucket policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail writes to the S3 bucket only for a specific trail or trails\. In an organization trail, the value of `aws:SourceArn` must be a trail ARN that is owned by the management account and uses the management account ID\.
 
 ```
 {
@@ -25,7 +27,7 @@ The following is an example policy for an Amazon S3 bucket named *my\-organizati
                 ]
             },
             "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::my-organization-bucket"
+            "Resource": "arn:aws:s3:::myOrganizationBucket"
         },
         {
             "Sid": "AWSCloudTrailWrite20150319",
@@ -36,10 +38,11 @@ The following is an example policy for an Amazon S3 bucket named *my\-organizati
                 ]
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::my-organization-bucket/AWSLogs/111111111111/*",
+            "Resource": "arn:aws:s3:::myOrganizationBucket/AWSLogs/111111111111/*",
             "Condition": {
                 "StringEquals": {
-                    "s3:x-amz-acl": "bucket-owner-full-control"
+                    "s3:x-amz-acl": "bucket-owner-full-control",
+                    "aws:SourceArn": "arn:aws:cloudtrail:region:111111111111:trail/trailName"
                 }
             }
         },
@@ -52,10 +55,11 @@ The following is an example policy for an Amazon S3 bucket named *my\-organizati
                 ]
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::my-organization-bucket/AWSLogs/o-exampleorgid/*",
+            "Resource": "arn:aws:s3:::myOrganizationBucket/AWSLogs/o-exampleorgid/*",
             "Condition": {
                 "StringEquals": {
-                    "s3:x-amz-acl": "bucket-owner-full-control"
+                    "s3:x-amz-acl": "bucket-owner-full-control",
+                    "aws:SourceArn": "arn:aws:cloudtrail:region:111111111111:trail/trailName"
                 }
             }
         }
@@ -63,7 +67,7 @@ The following is an example policy for an Amazon S3 bucket named *my\-organizati
 }
 ```
 
-This example policy does not allow any users from member accounts to access the log files created for the organization\. By default, organization log files are accessible only to the management account\. For information about how to allow read access to the Amazon S3 bucket for IAM users in member accounts, see [Sharing CloudTrail Log Files Between AWS Accounts](cloudtrail-sharing-logs.md)\.
+This example policy does not allow any users from member accounts to access the log files created for the organization\. By default, organization log files are accessible only to the management account\. For information about how to allow read access to the Amazon S3 bucket for IAM users in member accounts, see [Sharing CloudTrail log files between AWS accounts](cloudtrail-sharing-logs.md)\.
 
 ## Enabling CloudTrail as a trusted service in AWS Organizations<a name="cloudtrail-create-organization-trail-by-using-the-cli-enable-trusted-service"></a>
 
@@ -121,7 +125,7 @@ The following command creates an organization trail that only logs events in a s
 aws cloudtrail create-trail --name my-trail --s3-bucket-name my-bucket --is-organization-trail
 ```
 
-For more information, see [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)\.
+For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
 Sample output:
 

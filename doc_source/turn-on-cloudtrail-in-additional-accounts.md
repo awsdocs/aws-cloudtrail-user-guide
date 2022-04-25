@@ -1,8 +1,8 @@
-# Turning on CloudTrail in Additional Accounts<a name="turn-on-cloudtrail-in-additional-accounts"></a>
+# Turning on CloudTrail in additional accounts<a name="turn-on-cloudtrail-in-additional-accounts"></a>
 
 You can use the console or the command line interface to turn on CloudTrail in additional AWS accounts\.
 
-## Using the Console to Turn on CloudTrail in Additional AWS Accounts<a name="turn-on-cloudtrail-in-additional-accounts-console"></a>
+## Using the console to turn on CloudTrail in additional AWS accounts<a name="turn-on-cloudtrail-in-additional-accounts-console"></a>
 
 You can use the CloudTrail console to turn on CloudTrail in additional accounts\.
 
@@ -20,13 +20,13 @@ You can use the CloudTrail console to turn on CloudTrail in additional accounts\
 
 1. \(Optional\) Choose **Yes** or **No** for **SNS notification for every log file delivery?**\. If you chose **Yes**, type a name for your Amazon SNS topic in the **SNS topic \(new\) field**\. 
 **Note**  
-Amazon SNS is a regional service, so if you choose to create a topic, that topic will exist in the same region in which you turn on CloudTrail\. If you have a trail that applies to all regions, you can pick an Amazon SNS topic in any region as long as you have the correct policy applied to the topic\. For more information, see [Amazon SNS Topic Policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\.
+Amazon SNS is a regional service, so if you choose to create a topic, that topic will exist in the same region in which you turn on CloudTrail\. If you have a trail that applies to all regions, you can pick an Amazon SNS topic in any region as long as you have the correct policy applied to the topic\. For more information, see [Amazon SNS topic policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\.
 
 1. Choose **Turn On**\.
 
 CloudTrail starts publishing log files that show the AWS calls made in your accounts in this region\. CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
-## Using the CLI to Turn on CloudTrail in Additional AWS Accounts<a name="turn-on-cloudtrail-in-additional-accounts-cli"></a>
+## Using the CLI to turn on CloudTrail in additional AWS accounts<a name="turn-on-cloudtrail-in-additional-accounts-cli"></a>
 
 You can use the AWS command line tools to turn on CloudTrail in additional accounts and aggregate their log files to one Amazon S3 bucket\. For more information about these tools, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\. 
 

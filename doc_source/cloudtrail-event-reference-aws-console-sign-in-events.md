@@ -1,6 +1,6 @@
-# AWS console sign\-in events<a name="cloudtrail-event-reference-aws-console-sign-in-events"></a>
+# AWS Management Console sign\-in events<a name="cloudtrail-event-reference-aws-console-sign-in-events"></a>
 
-CloudTrail logs attempts to sign into the AWS Management Console, the AWS Discussion Forums, and the AWS Support Center\. All IAM user and root user sign\-in events, as well as all federated user sign\-in events, generate records in CloudTrail log files\. AWS console sign\-in events are global service events\.
+CloudTrail logs attempts to sign into the AWS Management Console, the AWS Discussion Forums, and the AWS Support Center\. All IAM user and root user sign\-in events, as well as all federated user sign\-in events, generate records in CloudTrail log files\. AWS Management Console sign\-in events are global service events\.
 
 **Topics**
 + [Example records for IAM users](#cloudtrail-event-reference-aws-console-sign-in-events-iam-user)

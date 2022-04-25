@@ -1,4 +1,4 @@
-# CloudTrail Supported Services and Integrations<a name="cloudtrail-aws-service-specific-topics"></a>
+# CloudTrail supported services and integrations<a name="cloudtrail-aws-service-specific-topics"></a>
 
 CloudTrail supports logging events for many AWS services\. You can find the specifics for each supported service in that service's guide\. Links to those service\-specific topics are provided below\. In addition, some AWS services can be used to analyze and act upon data collected in CloudTrail logs\. You can browse an overview of those service integrations here\.
 
@@ -6,12 +6,12 @@ CloudTrail supports logging events for many AWS services\. You can find the spec
 To see the list of supported regions for each service, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
 
 **Topics**
-+ [AWS Service Integrations With CloudTrail Logs](#cloudtrail-aws-service-specific-topics-integrations)
-+ [CloudTrail Integration with AWS Organizations](#cloudtrail-aws-service-specific-topics-organizations)
-+ [AWS Service Topics for CloudTrail](#cloudtrail-aws-service-specific-topics-list)
-+ [CloudTrail Unsupported Services](cloudtrail-unsupported-aws-services.md)
++ [AWS service integrations with CloudTrail Logs](#cloudtrail-aws-service-specific-topics-integrations)
++ [CloudTrail integration with AWS Organizations](#cloudtrail-aws-service-specific-topics-organizations)
++ [AWS service topics for CloudTrail](#cloudtrail-aws-service-specific-topics-list)
++ [CloudTrail unsupported services](cloudtrail-unsupported-aws-services.md)
 
-## AWS Service Integrations With CloudTrail Logs<a name="cloudtrail-aws-service-specific-topics-integrations"></a>
+## AWS service integrations with CloudTrail Logs<a name="cloudtrail-aws-service-specific-topics-integrations"></a>
 
 You can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see the following topics\.
 
@@ -23,11 +23,11 @@ You can configure other AWS services to further analyze and act upon the event d
 | Amazon Athena | [Querying AWS CloudTrail Logs](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html) | Using Athena with CloudTrail logs is a powerful way to enhance your analysis of AWS service activity\. For example, you can use queries to identify trends and further isolate activity by attribute, such as source IP address or user\. You can automatically create tables for querying logs directly from the CloudTrail console, and use those tables to run queries in Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](https://docs.aws.amazon.com/athena/latest/ug/)\. Running queries in Amazon Athena incurs additional costs\. For more information, see [Amazon Athena Pricing\.](https://aws.amazon.com/athena/pricing/) | 
 | Amazon CloudWatch Logs | [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md) | You can configure CloudTrail with CloudWatch Logs to monitor your trail logs and be notified when specific activity occurs\. For example, you can define CloudWatch Logs metric filters that will trigger CloudWatch alarms and send notifications to you when those alarms are triggered\.   Standard pricing for Amazon CloudWatch and Amazon CloudWatch Logs applies\. For more information, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.   | 
 
-## CloudTrail Integration with AWS Organizations<a name="cloudtrail-aws-service-specific-topics-organizations"></a>
+## CloudTrail integration with AWS Organizations<a name="cloudtrail-aws-service-specific-topics-organizations"></a>
 
 You can create a trail in the management account for an organization that collects all event data for all AWS accounts in an organization in AWS Organizations\. This is called an organization trail\. Creating an organization trail helps you define a uniform event logging strategy for your organization\. An organization trail is applied automatically to each AWS account in your organization\. Users in member accounts can see these trails but cannot modify them, and by default cannot see the log files created for the organization trail\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\. 
 
-## AWS Service Topics for CloudTrail<a name="cloudtrail-aws-service-specific-topics-list"></a>
+## AWS service topics for CloudTrail<a name="cloudtrail-aws-service-specific-topics-list"></a>
 
 You can learn more about how the events for individual AWS services are recorded in CloudTrail logs, including example events for that service in log files\. For more information about how specific AWS services integrate with CloudTrail, see the topic about integration in the individual guide for that service\.
 
@@ -42,7 +42,8 @@ You can learn more about how the events for individual AWS services are recorded
 | Application Auto Scaling | [Logging Application Auto Scaling API calls with AWS CloudTrail](https://docs.aws.amazon.com/autoscaling/application/APIReference/logging-using-cloudtrail.html) | 10/31/2016 | 
 | AWS Application Discovery Service | [Logging Application Discovery Service API Calls with AWS CloudTrail](https://docs.aws.amazon.com/application-discovery/latest/userguide/logging-using-cloudtrail.html) | 05/12/2016 | 
 | Amazon AppFlow | [Logging Amazon AppFlow API calls with AWS CloudTrail](https://docs.aws.amazon.com/appflow/latest/userguide/appflow-cloudtrail-logs.html) | 04/22/2020 | 
-| AWS App Mesh | [Logging App Mesh API Calls with AWS CloudTrail](https://docs.aws.amazon.com/app-mesh/latest/userguide/logging-using-cloudtrail.html) |  | 
+| AWS App Mesh | [Logging App Mesh API Calls with AWS CloudTrail](https://docs.aws.amazon.com/app-mesh/latest/userguide/logging-using-cloudtrail.html) |  AWS App Mesh 10/30/2019 App Mesh Envoy Management Service 03/18/2022  | 
+| AWS App Runner | [Logging App Runner API calls with AWS CloudTrail](https://docs.aws.amazon.com/apprunner/latest/dg/monitor-ct.html) | 05/18/2021 | 
 | Amazon AppStream 2\.0 | [Logging Amazon AppStream 2\.0 API Calls with AWS CloudTrail](https://docs.aws.amazon.com/appstream2/latest/developerguide/logging-using-cloudtrail.html) | 04/25/2019 | 
 | AWS AppSync | [Logging AWS AppSync API Calls with AWS CloudTrail](https://docs.aws.amazon.com/appsync/latest/devguide/cloudtrail-logging.html) | 02/13/2018 | 
 | Amazon Athena | [Logging Amazon Athena API Calls with AWS CloudTrail](https://docs.aws.amazon.com/athena/latest/ug/monitor-with-cloudtrail.html) | 05/19/2017 | 
@@ -50,6 +51,7 @@ You can learn more about how the events for individual AWS services are recorded
 | AWS Backup | [Logging AWS Backup API Calls with AWS CloudTrail](https://docs.aws.amazon.com/aws-backup/latest/devguide/cloudtrail-logging.html) | 02/04/2019 | 
 | AWS Batch | [Logging AWS Batch API Calls with AWS CloudTrail](https://docs.aws.amazon.com/batch/latest/userguide/logging-using-cloudtrail.html) | 1/10/2018 | 
 | AWS Billing and Cost Management | [Logging AWS Billing and Cost Management API Calls with AWS CloudTrail](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/logging-using-cloudtrail.html) | 06/07/2018 | 
+| AWS BugBust | [Logging BugBust API calls using CloudTrail](https://docs.aws.amazon.com/codeguru/latest/bugbust-ug/logging-using-cloudtrail.html) | 06/24/2021 | 
 | AWS Certificate Manager | [Using AWS CloudTrail](https://docs.aws.amazon.com/acm/latest/userguide/cloudtrail.html) | 03/25/2016 | 
 | AWS Certificate Manager Private Certificate Authority | [Using CloudTrail](https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCtIntro.html) | 06/06/2019 | 
 | Amazon Chime | [Log Amazon Chime Administration Calls Using AWS CloudTrail](https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html) | 09/27/2017 | 
@@ -92,13 +94,15 @@ You can learn more about how the events for individual AWS services are recorded
 |  Amazon Elastic Block Store \(Amazon EBS\) EBS direct APIs  |  [Logging API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/using-cloudtrail.html) [Log API Calls for the EBS direct APIs with AWS CloudTrail](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html)  |  Amazon EBS: 11/13/2013 EBS direct APIs: 06/30/2020  | 
 | Amazon Elastic Compute Cloud \(Amazon EC2\) | [Logging API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/using-cloudtrail.html) | 11/13/2013 | 
 | Amazon EC2 Auto Scaling | [Logging Auto Scaling API Calls By Using CloudTrail](https://docs.aws.amazon.com/autoscaling/latest/userguide/logging-using-cloudtrail.html) | 07/16/2014 | 
+| Amazon EC2 Image Builder | [Logging EC2 Image Builder API calls using CloudTrail](imagebuilder/latest/userguide/log-cloudtrail.html) | 12/02/2019 | 
 | Amazon Elastic File System \(Amazon EFS\) | [Logging Amazon EFS API Calls with AWS CloudTrail](https://docs.aws.amazon.com/efs/latest/ug/logging-using-cloudtrail.html) | 06/28/2016 | 
 | Amazon Fraud Detector | [Logging Amazon Fraud Detector API Calls with AWS CloudTrail](https://docs.aws.amazon.com/frauddetector/latest/ug/logging-using-cloudtrail.html) | 01/09/2020 | 
+| Amazon GameSparks | [Log GameSparks API calls with AWS CloudTrail](https://docs.aws.amazon.com/gamesparks/latest/dg/logging-cloudtrail.html) | 03/23/2022 | 
 | Amazon Elastic Kubernetes Service \(Amazon EKS\) | [Logging Amazon EKS API Calls with AWS CloudTrail](https://docs.aws.amazon.com/eks/latest/userguide/logging-using-cloudtrail.html) | 06/05/2018 | 
 | Elastic Load Balancing | [AWS CloudTrail Logging for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ELB-API-Logs.html) and [AWS CloudTrail Logging for Your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-cloudtrail-logs.html) | 04/04/2014 | 
 | Amazon Elastic Transcoder | [Logging Amazon Elastic Transcoder API Calls with AWS CloudTrail](https://docs.aws.amazon.com/elastictranscoder/latest/developerguide/logging-using-cloudtrail.html) | 10/27/2014 | 
 | Amazon ElastiCache | [Logging Amazon ElastiCache API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/logging-using-cloudtrail.html) | 09/15/2014 | 
-| Amazon Elasticsearch Service | [Auditing Amazon Elasticsearch Service Domains with AWS CloudTrail](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-cloudtrailauditing.html) | 10/01/2015 | 
+| Amazon OpenSearch Service | [Auditing Amazon OpenSearch Service Domains with AWS CloudTrail](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-cloudtrailauditing.html) | 10/01/2015 | 
 | AWS Elemental MediaConnect | [Logging AWS Elemental MediaConnect API Calls with AWS CloudTrail](https://docs.aws.amazon.com/mediaconnect/latest/ug/logging-using-cloudtrail.html) | 11/27/2018 | 
 | AWS Elemental MediaConvert | [Logging AWS Elemental MediaConvert API Calls with CloudTrail](http://docs.aws.amazon.com/mediaconvert/latest/ug/logging-using-cloudtrail.html) | 11/27/2017 | 
 | AWS Elemental MediaLive | [Logging MediaLive API Calls with AWS CloudTrail](https://docs.aws.amazon.com/medialive/latest/ug/logging-using-cloudtrail.html) | 01/19/2019 | 
@@ -151,6 +155,8 @@ You can learn more about how the events for individual AWS services are recorded
 | Amazon Machine Learning |  [Logging Amazon ML API Calls By Using AWS CloudTrail](https://docs.aws.amazon.com/machine-learning/latest/dg/logging-using-cloudtrail.html)  | 12/10/2015 | 
 | Amazon Macie | [Log Amazon Macie API calls using AWS CloudTrail](https://docs.aws.amazon.com/macie/latest/user/macie-cloudtrail.html) | 05/13/2020 | 
 | Amazon Managed Blockchain |  [Logging Amazon Managed Blockchain API calls using AWS CloudTrail](https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/logging-using-cloudtrail.html) [Logging Ethereum for Managed Blockchain API calls using AWS CloudTrail](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html) \(Preview\)  | 04/01/2019 | 
+| Amazon Managed Grafana | [Logging Amazon Managed Grafana API calls using AWS CloudTrail](https://docs.aws.amazon.com/grafana/latest/userguide/logging-using-cloudtrail.html) | 12/15/2020 | 
+| Amazon Managed Service for Prometheus | [Logging Amazon Managed Service for Prometheus API calls using AWS CloudTrail](https://docs.aws.amazon.com/prometheus/latest/userguide/logging-using-cloudtrail.html) | 12/15/2020 | 
 | Amazon Keyspaces \(for Apache Cassandra\) | [Logging Amazon Keyspaces API calls with AWS CloudTrail](https://docs.aws.amazon.com/keyspaces/latest/devguide/logging-using-cloudtrail.html) | 01/13/2020 | 
 | AWS Managed Services | [AWS Managed Services](https://aws.amazon.com/managed-services) | 12/21/2016 | 
 | Amazon Managed Streaming for Apache Kafka | [Logging Amazon MSK API Calls with AWS CloudTrail](https://docs.aws.amazon.com/msk/latest/developerguide/logging-using-cloudtrail.html) | 12/11/2018 | 
@@ -167,7 +173,7 @@ You can learn more about how the events for individual AWS services are recorded
 | AWS OpsWorks Stacks | [Logging AWS OpsWorks Stacks API Calls with AWS CloudTrail](https://docs.aws.amazon.com/opsworks/latest/userguide/monitoring-cloudtrail.html) | 06/04/2014 | 
 | AWS Organizations | [Logging AWS Organizations Events with AWS CloudTrail](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_incident-response.html#orgs_cloudtrail-integration) | 02/27/2017 | 
 | AWS Outposts | [Logging AWS Outposts API calls with AWS CloudTrail](https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html) | 02/04/2020 | 
-| AWS Personal Health Dashboard | [Logging AWS Health API Calls with AWS CloudTrail](https://docs.aws.amazon.com/health/latest/ug/logging-using-cloudtrail.html) | 12/01/2016 | 
+| AWS Health Dashboard | [Logging AWS Health API Calls with AWS CloudTrail](https://docs.aws.amazon.com/health/latest/ug/logging-using-cloudtrail.html) | 12/01/2016 | 
 | Amazon Personalize | [Logging Amazon Personalize API Calls with AWS CloudTrail](https://docs.aws.amazon.com/personalize/latest/dg/logging-using-cloudtrail.html) | 11/28/2018 | 
 | Amazon Pinpoint | [Logging Amazon Pinpoint API Calls with AWS CloudTrail](https://docs.aws.amazon.com/pinpoint/latest/developerguide/logging-using-cloudtrail.html) | 02/06/2018 | 
 | Amazon Pinpoint SMS and Voice API | [Logging Amazon Pinpoint API Calls with AWS CloudTrail](https://docs.aws.amazon.com/pinpoint/latest/developerguide/logging-using-cloudtrail.html) | 11/16/2018 | 
@@ -179,10 +185,12 @@ You can learn more about how the events for individual AWS services are recorded
 | Amazon Rekognition | [Logging Amazon Rekognition API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/rekognition/latest/dg/logging-using-cloudtrail.html) | 04/6/2018 | 
 | Amazon Relational Database Service \(Amazon RDS\) | [Logging Amazon RDS API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/logging-using-cloudtrail.html) | 11/13/2013 | 
 | Amazon RDS Performance Insights | [Logging Amazon RDS API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/logging-using-cloudtrail.html)The Amazon RDS Performance Insights API is a subset of the Amazon RDS API\. | 06/21/2018 | 
+| AWS Resilience Hub | [AWS CloudTrail](https://docs.aws.amazon.com/resilience-hub/latest/userguide/integrate-cloudtrail.html) | 11/10/2021 | 
 | AWS Resource Access Manager \(AWS RAM\) | [Logging AWS RAM API Calls with AWS CloudTrail](https://docs.aws.amazon.com/ram/latest/userguide/logging-using-cloudtrail.html) | 11/20/2018 | 
 | AWS Resource Groups | [Logging AWS Resource Groups API Calls with AWS CloudTrail](https://docs.aws.amazon.com/ARG/latest/userguide/logging-using-cloudtrail.html) | 06/29/2018 | 
 | AWS RoboMaker | [Logging AWS RoboMaker API Calls with AWS CloudTrail](https://docs.aws.amazon.com/robomaker/latest/dg/logging-using-cloudtrail.html) | 01/16/2019 | 
 | Amazon Route 53 | [Using AWS CloudTrail to Capture Requests Sent to the Route 53 API](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/logging-using-cloudtrail.html) | 02/11/2015 | 
+| Amazon Route 53 Application Recovery Controller | [Logging Amazon Route 53 Application Recovery Controller API calls using AWS CloudTrail](https://docs.aws.amazon.com/r53recovery/latest/dg/cloudtrail.html) | 07/27/2021 | 
 | Amazon SageMaker |  [Logging Amazon SageMaker API Calls with AWS CloudTrail](https://docs.aws.amazon.com/sagemaker/latest/dg/logging-using-cloudtrail.html)  | 01/11/2018 | 
 | AWS Secrets Manager | [Monitor the Use of Your AWS Secrets Manager Secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/monitoring.html#monitoring_cloudtrail) | 04/05/2018 | 
 | AWS Security Hub | [Logging AWS Security Hub API Calls with AWS CloudTrail](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-ct.html) | 11/27/2018 | 
@@ -201,7 +209,7 @@ You can learn more about how the events for individual AWS services are recorded
 | AWS Snowball | [Logging AWS Snowball API Calls with AWS CloudTrail](https://docs.aws.amazon.com/snowball/latest/ug/logging-using-cloudtrail.html) | 01/25/2019 | 
 | AWS Snowball Edge | [Logging AWS Snowball Edge API Calls with AWS CloudTrail](https://docs.aws.amazon.com/snowball/latest/developer-guide/logging-using-cloudtrail.html) | 01/25/2019 | 
 | AWS Step Functions | [Logging AWS Step Functions API Calls with AWS CloudTrail](https://docs.aws.amazon.com/step-functions/latest/dg/cloud-trail.html) | 12/01/2016 | 
-| AWS Storage Gateway |  [Logging AWS Storage Gateway API Calls by Using AWS CloudTrail](https://docs.aws.amazon.com/storagegateway/latest/userguide/logging-using-cloudtrail.html)  | 12/16/2014 | 
+| Storage Gateway |  [Logging Storage Gateway API Calls by Using AWS CloudTrail](https://docs.aws.amazon.com/storagegateway/latest/userguide/logging-using-cloudtrail.html)  | 12/16/2014 | 
 | AWS Support |  [Logging AWS Support API Calls with AWS CloudTrail](https://docs.aws.amazon.com/awssupport/latest/user/logging-using-cloudtrail.html)  | 04/21/2016 | 
 | AWS Systems Manager | [Logging AWS Systems Manager API Calls with AWS CloudTrail](https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-cloudtrail-logs.html) | 11/13/2013 | 
 | AWS Systems Manager Incident Manager | [Logging AWS Systems Manager Incident Manager API calls using AWS CloudTrail](https://docs.aws.amazon.com/incident-manager/latest/userguide/logging-using-cloudtrail.html) | 05/10/2021 | 
@@ -218,4 +226,5 @@ You can learn more about how the events for individual AWS services are recorded
 | Amazon WorkLink | [Logging Amazon WorkLink API Calls with AWS CloudTrail](https://docs.aws.amazon.com/worklink/latest/ag/logging-using-cloudtrail.html) | 01/23/2019 | 
 | Amazon WorkMail | [Logging Amazon WorkMail API Calls Using AWS CloudTrail](https://docs.aws.amazon.com/workmail/latest/adminguide/logging-using-cloudtrail.html) | 12/12/2017 | 
 | Amazon WorkSpaces | [Logging Amazon WorkSpaces API Calls by Using CloudTrail](https://docs.aws.amazon.com/workspaces/latest/devguide/cloudtrail_logging.html) | 04/09/2015 | 
+| Amazon WorkSpaces Web | [Logging Amazon WorkSpaces Web API calls using AWS CloudTrail](https://docs.aws.amazon.com/workspaces-web/latest/adminguide/logging-using-cloudtrail.html) | 11/30/2021 | 
 | AWS X\-Ray | [Logging AWS X\-Ray API Calls With CloudTrail](https://docs.aws.amazon.com/xray/latest/devguide/xray-api-cloudtrail.html) | 04/25/2018 | 

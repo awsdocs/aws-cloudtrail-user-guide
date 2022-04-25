@@ -1,13 +1,13 @@
-# Configuring Amazon SNS Notifications for CloudTrail<a name="configure-sns-notifications-for-cloudtrail"></a>
+# Configuring Amazon SNS notifications for CloudTrail<a name="configure-sns-notifications-for-cloudtrail"></a>
 
  You can be notified when CloudTrail publishes new log files to your Amazon S3 bucket\. You manage notifications using Amazon Simple Notification Service \(Amazon SNS\)\.
 
 Notifications are optional\. If you want notifications, you configure CloudTrail to send update information to an Amazon SNS topic whenever a new log file has been sent\. To receive these notifications, you can use Amazon SNS to subscribe to the topic\. As a subscriber you can get updates sent to a Amazon Simple Queue Service \(Amazon SQS\) queue, which enables you to handle these notifications programmatically\. 
 
 **Topics**
-+ [Configuring CloudTrail to Send Notifications](#configure-cloudtrail-to-send-notifications)
++ [Configuring CloudTrail to send notifications](#configure-cloudtrail-to-send-notifications)
 
-## Configuring CloudTrail to Send Notifications<a name="configure-cloudtrail-to-send-notifications"></a>
+## Configuring CloudTrail to send notifications<a name="configure-cloudtrail-to-send-notifications"></a>
 
 You can configure a trail to use an Amazon SNS topic\. You can use the CloudTrail console or the [https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/create-trail.html](https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/create-trail.html) CLI command to create the topic\. CloudTrail creates the Amazon SNS topic for you and attaches an appropriate policy, so that CloudTrail has permission to publish to that topic\. 
 
@@ -17,7 +17,7 @@ When you create an SNS topic name, the name must meet the following requirements
 
 When you configure notifications for a trail that applies to all regions, notifications from all regions are sent to the Amazon SNS topic that you specify\. If you have one or more region\-specific trails, you must create a separate topic for each region and subscribe to each individually\. 
 
-To receive notifications, subscribe to the Amazon SNS topic or topics that CloudTrail uses\. You do this with the Amazon SNS console or Amazon SNS CLI commands\. For more information, see [Subscribe to a Topic](https://docs.aws.amazon.com/sns/latest/dg/SubscribeTopic.html) in the *Amazon Simple Notification Service Developer Guide*\. 
+To receive notifications, subscribe to the Amazon SNS topic or topics that CloudTrail uses\. You do this with the Amazon SNS console or Amazon SNS CLI commands\. For more information, see [Subscribe to a topic](https://docs.aws.amazon.com/sns/latest/dg/SubscribeTopic.html) in the *Amazon Simple Notification Service Developer Guide*\. 
 
 **Note**  
 CloudTrail sends a notification when log files are written to the Amazon S3 bucket\. An active account can generate a large number of notifications\. If you subscribe with email or SMS, you can receive a large volume of messages\. We recommend that you subscribe using Amazon Simple Queue Service \(Amazon SQS\), which lets you handle notifications programmatically\. For more information, see [Subscribing a Queue to an Amazon SNS Topic](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqssubscribe.html) in the *Amazon Simple Queue Service Developer Guide*\. 
@@ -45,8 +45,8 @@ If multiple log files are delivered to your Amazon S3 bucket, a notification may
 
 If you choose to receive notifications by email, the body of the email consists of the content of the `Message` field\. For a complete description of the JSON structure, see [Sending Amazon SNS Messages to Amazon SQS Queues](https://docs.aws.amazon.com/sns/latest/dg/SendMessageToSQS.html) in the *Amazon Simple Notification Service Developer Guide*\. Only the `Message` field shows CloudTrail information\. The other fields contain information from the Amazon SNS service\. 
 
-If you create a trail with the CloudTrail API, you can specify an existing Amazon SNS topic that you want CloudTrail to send notifications to with the [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html) or [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_UpdateTrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_UpdateTrail.html) operations\. You must make sure that the topic exists and that it has permissions that allow CloudTrail to send notifications to it\. See [Amazon SNS Topic Policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\. 
+If you create a trail with the CloudTrail API, you can specify an existing Amazon SNS topic that you want CloudTrail to send notifications to with the [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html) or [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_UpdateTrail.html](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_UpdateTrail.html) operations\. You must make sure that the topic exists and that it has permissions that allow CloudTrail to send notifications to it\. See [Amazon SNS topic policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\. 
 
-### Additional Resources<a name="cloudtrail-notifications-more-info-4"></a>
+### Additional resources<a name="cloudtrail-notifications-more-info-4"></a>
 
-For more information about Amazon SNS topics and about subscribing to them, see the [Amazon Simple Notification Service Developer Guide](https://docs.aws.amazon.com/sns/latest/dg/)\.
+For more information about Amazon SNS topics and about subscribing to them, see the [https://docs.aws.amazon.com/sns/latest/dg/](https://docs.aws.amazon.com/sns/latest/dg/)\.

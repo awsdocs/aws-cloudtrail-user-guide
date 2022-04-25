@@ -1,6 +1,6 @@
-# Stop Sharing CloudTrail Log Files Between AWS Accounts<a name="cloudtrail-sharing-logs-stop-sharing"></a>
+# Stop sharing CloudTrail log files between AWS accounts<a name="cloudtrail-sharing-logs-stop-sharing"></a>
 
-To stop sharing log files to another AWS account, simply delete the role that you created for that account in [Creating a Role](cloudtrail-sharing-logs-create-role.md)\. 
+To stop sharing log files to another AWS account, simply delete the role that you created for that account in [Creating a role](cloudtrail-sharing-logs-create-role.md)\. 
 
 1. Sign in to the AWS Management Console as an IAM user with administrative\-level permissions for Account A\. 
 

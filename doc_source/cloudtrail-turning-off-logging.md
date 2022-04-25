@@ -1,4 +1,4 @@
-# Turning off Logging for a Trail<a name="cloudtrail-turning-off-logging"></a>
+# Turning off logging for a trail<a name="cloudtrail-turning-off-logging"></a>
 
 When you create a trail, logging is turned on automatically\. You can turn off logging for a trail\. Existing logs are still stored in the trail's Amazon S3 bucket\.
 

@@ -1,4 +1,4 @@
-# Create Multiple Trails<a name="create-multiple-trails"></a>
+# Create multiple trails<a name="create-multiple-trails"></a>
 
 You can use CloudTrail log files to troubleshoot operational or security issues in your AWS account\. You can create trails for different users, who can create and manage their own trails\. You can configure trails to deliver log files to separate S3 buckets or shared S3 buckets\. 
 
@@ -22,7 +22,7 @@ You can use resource\-level permissions to manage a user's ability to perform sp
 
 For example, you might grant one user permission to view trail activity, but restrict the user from starting or stopping logging for a trail\. You might grant another user full permission to create and delete trails\. This gives you granular control over your trails and user access\.
 
-For more information about resource\-level permissions, see [Examples: Creating and Applying Policies for Actions on Specific Trails](security_iam_id-based-policy-examples.md#grant-custom-permissions-for-cloudtrail-users-resource-level)\. 
+For more information about resource\-level permissions, see [Examples: Creating and applying policies for actions on specific trails](security_iam_id-based-policy-examples.md#grant-custom-permissions-for-cloudtrail-users-resource-level)\. 
 
 For more information about multiple trails, see the following resources:
 + [How does CloudTrail behave regionally and globally?](cloudtrail-concepts.md#cloudtrail-concepts-regional-and-global-services)

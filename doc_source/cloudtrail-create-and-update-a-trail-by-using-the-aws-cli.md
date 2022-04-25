@@ -20,7 +20,7 @@ Some of the more commonly used commands for creating and updating trails in Clou
 + [delete\-trail](cloudtrail-additional-cli-commands.md#cloudtrail-delete-trail-cli) to delete a trail\. This command does not delete the Amazon S3 bucket that contains the log files for that trail, if any\.
 + [describe\-trails](cloudtrail-additional-cli-commands.md#cloudtrail-additional-cli-commands-retrieve) to return information about trails in an AWS Region\.
 + [get\-trail](cloudtrail-additional-cli-commands.md#cloudtrail-additional-cli-commands-retrieve) to return settings information for a trail\.
-+  [get\-trail\-status](cloudtrail-additional-cli-commands.md#cloudtrail-additional-cli-commands-retrieve) to return information about the current status of a trail\.
++ [get\-trail\-status](cloudtrail-additional-cli-commands.md#cloudtrail-additional-cli-commands-retrieve) to return information about the current status of a trail\.
 + [get\-event\-selectors](cloudtrail-additional-cli-commands.md#configuring-event-selector-examples) to return information about event selectors configured for a trail\.
 + [get\-insight\-selectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_GetInsightSelectors.html) to return information about Insights event selectors configured for a trail\.
 
@@ -31,7 +31,7 @@ The `create-trail` and `update-trail` commands offer a variety of functionality 
 + Creating a trail that receives logs for all AWS accounts in an organization with the \-\-is\-organization\-trail option\.
 + Converting a multi\-region trail to single\-region trail with the `--no-is-multi-region-trail` option\.
 + Enabling or disabling log file encryption with the `--kms-key-id` option\. The option specifies an AWS KMS key that you already created and to which you have attached a policy that allows CloudTrail to encrypt your logs\. For more information, see [Enabling and disabling CloudTrail log file encryption with the AWS CLI](cloudtrail-log-file-encryption-cli.md)\.
-+ Enabling or disabling log file validation with the `--enable-log-file-validation` and `--no-enable-log-file-validation` options\. For more information, see [Validating CloudTrail Log File Integrity](cloudtrail-log-file-validation-intro.md)\.
++ Enabling or disabling log file validation with the `--enable-log-file-validation` and `--no-enable-log-file-validation` options\. For more information, see [Validating CloudTrail log file integrity](cloudtrail-log-file-validation-intro.md)\.
 + Specifying a CloudWatch Logs log group and role so that CloudTrail can deliver events to a CloudWatch Logs log group\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 
 ### Deprecated commands: create\-subscription and update\-subscription<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-subs"></a>

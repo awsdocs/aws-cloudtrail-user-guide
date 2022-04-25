@@ -1,12 +1,12 @@
-# CloudTrail Log File Examples<a name="cloudtrail-log-file-examples"></a>
+# CloudTrail log file examples<a name="cloudtrail-log-file-examples"></a>
 
 CloudTrail monitors events for your account\. If you create a trail, it delivers those events as log files to your Amazon S3 bucket\. See the following to learn more about log files\.
 
 **Topics**
-+ [CloudTrail Log File Name Format](#cloudtrail-log-filename-format)
-+ [Log File Examples](#cloudtrail-log-file-examples-section)
++ [CloudTrail log file name format](#cloudtrail-log-filename-format)
++ [Log file examples](#cloudtrail-log-file-examples-section)
 
-## CloudTrail Log File Name Format<a name="cloudtrail-log-filename-format"></a>
+## CloudTrail log file name format<a name="cloudtrail-log-filename-format"></a>
 
 CloudTrail uses the following file name format for the log file objects that it delivers to your Amazon S3 bucket:
 
@@ -25,17 +25,17 @@ A log file delivered at a specific time can contain records written at any point
 111122223333_CloudTrail_us-east-2_20150801T0210Z_Mu0KsOhtH1ar15ZZ.json.gz 
 ```
 
-## Log File Examples<a name="cloudtrail-log-file-examples-section"></a>
+## Log file examples<a name="cloudtrail-log-file-examples-section"></a>
 
 A log file contains one or more records\. The following examples are snippets of logs that show the records for an action that started the creation of a log file\. 
 
 **Contents**
-+ [Amazon EC2 Log Examples](#cloudtrail-log-file-examples-ec2)
-+ [IAM Log Examples](#cloudtrail-log-file-examples-iam)
-+ [Error Code and Message Log Example](#error-code-and-error-message)
-+ [CloudTrail Insights Event Log Example](#insights-event-example)
++ [Amazon EC2 log examples](#cloudtrail-log-file-examples-ec2)
++ [IAM log examples](#cloudtrail-log-file-examples-iam)
++ [Error code and message log example](#error-code-and-error-message)
++ [CloudTrail Insights event log example](#insights-event-example)
 
-### Amazon EC2 Log Examples<a name="cloudtrail-log-file-examples-ec2"></a>
+### Amazon EC2 log examples<a name="cloudtrail-log-file-examples-ec2"></a>
 
 Amazon Elastic Compute Cloud \(Amazon EC2\) provides resizeable computing capacity in the AWS Cloud\. You can launch virtual servers, configure security and networking, and manage storage\. Amazon EC2 can also scale up or down quickly to handle changes in requirements or spikes in popularity, thereby reducing your need to forecast server traffic\. For more information, see the [Amazon EC2 User Guide for Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/)\.
 
@@ -142,7 +142,7 @@ The following example shows that the Amazon EC2 console backend called the `Crea
 }]}
 ```
 
-### IAM Log Examples<a name="cloudtrail-log-file-examples-iam"></a>
+### IAM log examples<a name="cloudtrail-log-file-examples-iam"></a>
 
 AWS Identity and Access Management \(IAM\) is a web service that enables AWS customers to manage users and user permissions\. With IAM, you can manage users, security credentials such as access keys, and permissions that control which AWS resources users can access\. For more information, see the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
@@ -246,7 +246,7 @@ The following example shows that the IAM user Alice used the AWS CLI to call the
 }
 ```
 
-### Error Code and Message Log Example<a name="error-code-and-error-message"></a>
+### Error code and message log example<a name="error-code-and-error-message"></a>
 
 The following example shows that the IAM user Alice used the AWS CLI to call the `UpdateTrail` action to update a trail named `myTrail2`, but the trail name was not found\. The log shows this error in the `errorCode` and `errorMessage` elements\. 
 
@@ -278,9 +278,9 @@ The following example shows that the IAM user Alice used the AWS CLI to call the
 }]}
 ```
 
-### CloudTrail Insights Event Log Example<a name="insights-event-example"></a>
+### CloudTrail Insights event log example<a name="insights-event-example"></a>
 
-The following example shows a CloudTrail Insights event log\. An Insights event is actually a pair of events that mark the start and end of a period of unusual write management API activity\. The `state` field shows whether the event was logged at the start or end of the period of unusual activity\. The event name, `UpdateInstanceInformation`, is the same name as the AWS Systems Manager API for which CloudTrail analyzed management events to determine that unusual activity occurred\. Although the start and end events have unique `eventID` values, they also have a `sharedEventID` value that is used by the pair\. The Insights event shows the `baseline`, or the normal pattern of activity, the `insight`, or average unusual activity that triggered the start Insights event, and in the end event, the `insight` value for the average unusual activity over the duration of the Insights event\. For more information about CloudTrail Insights, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\.
+The following example shows a CloudTrail Insights event log\. An Insights event is actually a pair of events that mark the start and end of a period of unusual write management API activity or error response activity\. The `state` field shows whether the event was logged at the start or end of the period of unusual activity\. The event name, `UpdateInstanceInformation`, is the same name as the AWS Systems Manager API for which CloudTrail analyzed management events to determine that unusual activity occurred\. Although the start and end events have unique `eventID` values, they also have a `sharedEventID` value that is used by the pair\. The Insights event shows the `baseline`, or the normal pattern of activity, the `insight`, or average unusual activity that triggered the start Insights event, and in the end event, the `insight` value for the average unusual activity over the duration of the Insights event\. For more information about CloudTrail Insights, see [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md)\.
 
 ```
 {

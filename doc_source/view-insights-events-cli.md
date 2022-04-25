@@ -1,6 +1,6 @@
-# Viewing CloudTrail Insights Events with the AWS CLI<a name="view-insights-events-cli"></a>
+# Viewing CloudTrail Insights events with the AWS CLI<a name="view-insights-events-cli"></a>
 
-You can look up CloudTrail Insights events for the last 90 days by running the aws cloudtrail lookup\-events command\. `lookup-events` has the following options:
+You can look up CloudTrail Insights events for the last 90 days by running the aws cloudtrail lookup\-events command\. The `lookup-events` command has the following options:
 + `--end-time`
 + `--event-category`
 + `--max-results`
@@ -10,20 +10,20 @@ You can look up CloudTrail Insights events for the last 90 days by running the a
 + `--generate-cli-skeleton`
 + `--cli-input-json`
 
-These options are explained in this topic\. For general information about using the AWS Command Line Interface, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\. 
+For general information about using the AWS Command Line Interface, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\. 
 
 **Contents**
 + [Prerequisites](#aws-cli-prerequisites-for-insights)
-+ [Getting Command Line Help](#getting-command-line-help-insights)
-+ [Looking Up Insights Events](#looking-up-insights-with-the-aws-cli)
-+ [Specifying the Number of Insights Events to Return](#specify-the-number-of-insights-to-return)
-+ [Looking Up Insights Events by Time Range](#look-up-insights-by-time-range)
-  + [Valid *<timestamp>* Formats](#look-up-insights-by-time-range-formats)
-+ [Looking Up Insights Events by Attribute](#look-up-insights-by-attributes)
-  + [Attribute Lookup Examples](#attribute-lookup-example-insights)
-+ [Specifying the Next Page of Results](#specify-next-page-of-results)
-+ [Getting JSON Input from a File](#json-input-from-file-insights)
-+ [Lookup Output Fields](#view-insights-events-cli-output-fields)
++ [Getting command line help](#getting-command-line-help-insights)
++ [Looking up Insights events](#looking-up-insights-with-the-aws-cli)
++ [Specifying the number of Insights events to return](#specify-the-number-of-insights-to-return)
++ [Looking up Insights events by time range](#look-up-insights-by-time-range)
+  + [Valid *<timestamp>* formats](#look-up-insights-by-time-range-formats)
++ [Looking up Insights events by attribute](#look-up-insights-by-attributes)
+  + [Attribute lookup examples](#attribute-lookup-example-insights)
++ [Specifying the next page of results](#specify-next-page-of-results)
++ [Getting JSON input from a file](#json-input-from-file-insights)
++ [Lookup output fields](#view-insights-events-cli-output-fields)
 
 ## Prerequisites<a name="aws-cli-prerequisites-for-insights"></a>
 + To run AWS CLI commands, you must install the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
@@ -33,7 +33,7 @@ These options are explained in this topic\. For general information about using 
 **Note**  
 The CloudTrail AWS CLI commands are case\-sensitive\.
 
-## Getting Command Line Help<a name="getting-command-line-help-insights"></a>
+## Getting command line help<a name="getting-command-line-help-insights"></a>
 
 To see the command line help for `lookup-events`, type the following command\.
 
@@ -41,7 +41,7 @@ To see the command line help for `lookup-events`, type the following command\.
 aws cloudtrail lookup-events help
 ```
 
-## Looking Up Insights Events<a name="looking-up-insights-with-the-aws-cli"></a>
+## Looking up Insights events<a name="looking-up-insights-with-the-aws-cli"></a>
 
 To see the ten latest Insights events, type the following command\.
 
@@ -49,7 +49,7 @@ To see the ten latest Insights events, type the following command\.
 aws cloudtrail lookup-events --event-category insight
 ```
 
- A returned event looks similar to the following example,
+A returned event looks similar to the following example,
 
 ```
 {
@@ -225,9 +225,9 @@ aws cloudtrail lookup-events --event-category insight
 }
 ```
 
-For an explanation of the lookup\-related fields in the output, see the section [Lookup Output Fields](#view-insights-events-cli-output-fields) later in this document\. For an explanation of the fields in the Insights event, see [CloudTrail Record Contents](cloudtrail-event-reference-record-contents.md)\.
+For an explanation of the lookup\-related fields in the output, see [Lookup output fields](#view-insights-events-cli-output-fields) in this topic\. For an explanation of fields in the Insights event, see [CloudTrail record contents](cloudtrail-event-reference-record-contents.md)\.
 
-## Specifying the Number of Insights Events to Return<a name="specify-the-number-of-insights-to-return"></a>
+## Specifying the number of Insights events to return<a name="specify-the-number-of-insights-to-return"></a>
 
 To specify the number of events to return, type the following command\.
 
@@ -241,7 +241,7 @@ The default value for *<integer>*, if it is not specified, is 10\. Possible valu
 aws cloudtrail lookup-events --event-category insight --max-results 1
 ```
 
-## Looking Up Insights Events by Time Range<a name="look-up-insights-by-time-range"></a>
+## Looking up Insights events by time range<a name="look-up-insights-by-time-range"></a>
 
 Insights events from the past 90 days are available for lookup\. To specify a time range, type the following command\.
 
@@ -255,7 +255,7 @@ aws cloudtrail lookup-events --event-category insight --start-time <timestamp> -
 
 The default start time is the earliest date that data is available within the last 90 days\.The default end time is the time of the event that occurred closest to the current time\.
 
-### Valid *<timestamp>* Formats<a name="look-up-insights-by-time-range-formats"></a>
+### Valid *<timestamp>* formats<a name="look-up-insights-by-time-range-formats"></a>
 
 The `--start-time` and `--end-time` attributes take UNIX time values or valid equivalents\.
 
@@ -272,7 +272,7 @@ The following are examples of valid formats\. Date, month, and year values can b
 "2015-01-27, 01:16 PM"
 ```
 
-## Looking Up Insights Events by Attribute<a name="look-up-insights-by-attributes"></a>
+## Looking up Insights events by attribute<a name="look-up-insights-by-attributes"></a>
 
 To filter by an attribute, type the following command\.
 
@@ -281,11 +281,11 @@ aws cloudtrail lookup-events --event-category insight --lookup-attributes Attrib
 ```
 
 You can specify only one attribute key\-value pair for each lookup\-events command\. The following are valid Insights event values for `AttributeKey`\. Value names are case sensitive\.
-+ EventId
-+ EventName
-+ EventSource
++ `EventId`
++ `EventName`
++ `EventSource`
 
-### Attribute Lookup Examples<a name="attribute-lookup-example-insights"></a>
+### Attribute lookup examples<a name="attribute-lookup-example-insights"></a>
 
 The following example command returns Insights events in which the value of `EventName` is `PutRule`\.
 
@@ -305,7 +305,7 @@ The following example command returns Insights events in which the value of `Eve
 aws cloudtrail lookup-events --event-category insight --lookup-attributes AttributeKey=EventSource, AttributeValue=iam.amazonaws.com
 ```
 
-## Specifying the Next Page of Results<a name="specify-next-page-of-results"></a>
+## Specifying the next page of results<a name="specify-next-page-of-results"></a>
 
 To get the next page of results from a `lookup-events` command, type the following command\.
 
@@ -327,7 +327,7 @@ To get the next page of results, your next command would look like the following
 aws cloudtrail lookup-events --event-category insight --lookup-attributes AttributeKey=EventName,AttributeValue=PutRule --next-token=EXAMPLEZe++mErCebpy2TgaMgmDvF1kYGFcH64JSjIbZFjsuvrSqg66b5YGssKutDYIyII4lrP4IDbeQdiObkp9YAlju3oXd12juEXAMPLE=
 ```
 
-## Getting JSON Input from a File<a name="json-input-from-file-insights"></a>
+## Getting JSON input from a file<a name="json-input-from-file-insights"></a>
 
 The AWS CLI for some AWS services has two parameters, `--generate-cli-skeleton` and `--cli-input-json`, that you can use to generate a JSON template, which you can modify and use as input to the `--cli-input-json` parameter\. This section describes how to use these parameters with `aws cloudtrail lookup-events`\. For more information, see [ Generate CLI Skeleton and CLI Input JSON Parameters](https://docs.aws.amazon.com/cli/latest/userguide/generate-cli-skeleton.html)\.
 
@@ -379,11 +379,11 @@ All empty or null values must be removed from the template before you can use it
 **Note**  
 You can use other arguments on the same command line as `--cli-input-json`\.
 
-## Lookup Output Fields<a name="view-insights-events-cli-output-fields"></a>
+## Lookup output fields<a name="view-insights-events-cli-output-fields"></a>
 
 **Events**  
 A list of lookup events based on the lookup attribute and time range that were specified\. The events list is sorted by time, with the latest event listed first\. Each entry contains information about the lookup request and includes a string representation of the CloudTrail event that was retrieved\.   
- The following entries describe the fields in each lookup event\.
+The following entries describe the fields in each lookup event\.
 
 **CloudTrailEvent**  
 A JSON string that contains an object representation of the event returned\. For information about each of the elements returned, see [ Record Body Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
@@ -415,4 +415,4 @@ A string that contains the user name of the account for the event returned\.
 **NextToken**  
 A string to get the next page of results from a previous `lookup-events` command\. To use the token, the parameters must be the same as those in the original command\. If no `NextToken` entry appears in the output, there are no more results to return\.
 
-For more information about CloudTrail Insights events, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md) in this guide\.
+For more information about CloudTrail Insights events, see [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md) in this guide\.

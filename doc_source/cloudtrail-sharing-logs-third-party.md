@@ -1,6 +1,6 @@
-# Creating an Access Policy to Grant Access to a Third Party<a name="cloudtrail-sharing-logs-third-party"></a>
+# Creating an access policy to grant access to a third party<a name="cloudtrail-sharing-logs-third-party"></a>
 
-Account A must create a separate IAM role for Account Z, the third\-party analyzer in Scenario 2\. When you create the role, AWS automatically creates the trust relationship, which specifies that Account Z will be trusted to assume the role\. The access policy for the role specifies what actions Account Z can take\. For more information about creating roles and role policies, see [Creating a Role](cloudtrail-sharing-logs-create-role.md)\.
+Account A must create a separate IAM role for Account Z, the third\-party analyzer in Scenario 2\. When you create the role, AWS automatically creates the trust relationship, which specifies that Account Z will be trusted to assume the role\. The access policy for the role specifies what actions Account Z can take\. For more information about creating roles and role policies, see [Creating a role](cloudtrail-sharing-logs-create-role.md)\.
 
 For example, the trust relationship created by AWS specifies that Account Z is trusted to assume the role created by Account A\. The following is an example trust policy:
 
@@ -59,4 +59,4 @@ You must also create an access policy for the Account A role to specify that Acc
 }
 ```
 
-After you have created a role for Account Z and specified the appropriate trust relationship and access policy, an IAM user in Account Z must programmatically assume the role to be able to read log files from the bucket\. For more information, see [Assuming a Role](cloudtrail-sharing-logs-assume-role.md)\. 
+After you have created a role for Account Z and specified the appropriate trust relationship and access policy, an IAM user in Account Z must programmatically assume the role to be able to read log files from the bucket\. For more information, see [Assuming a role](cloudtrail-sharing-logs-assume-role.md)\. 

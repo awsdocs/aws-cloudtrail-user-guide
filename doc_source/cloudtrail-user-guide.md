@@ -9,10 +9,10 @@ Visibility into your AWS account activity is a key aspect of security and operat
 You can integrate CloudTrail into applications using the API, automate trail creation for your organization, check the status of trails you create, and control how users view CloudTrail events\.
 
 **Topics**
-+ [How CloudTrail Works](how-cloudtrail-works.md)
-+ [CloudTrail Workflow](cloudtrail-workflow.md)
++ [How CloudTrail works](how-cloudtrail-works.md)
++ [CloudTrail workflow](cloudtrail-workflow.md)
 + [CloudTrail concepts](cloudtrail-concepts.md)
-+ [CloudTrail Supported Regions](cloudtrail-supported-regions.md)
-+ [CloudTrail Log File Examples](cloudtrail-log-file-examples.md)
-+ [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)
++ [CloudTrail supported regions](cloudtrail-supported-regions.md)
++ [CloudTrail log file examples](cloudtrail-log-file-examples.md)
++ [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)
 + [Quotas in AWS CloudTrail](WhatIsCloudTrail-Limits.md)

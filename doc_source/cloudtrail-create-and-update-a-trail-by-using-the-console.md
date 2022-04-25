@@ -11,5 +11,5 @@ For information specific to creating a trail for an organization in AWS Organiza
 **Topics**
 + [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md)
 + [Updating a trail](cloudtrail-update-a-trail-console.md)
-+ [Deleting a Trail](cloudtrail-delete-trails-console.md)
-+ [Turning off Logging for a Trail](cloudtrail-turning-off-logging.md)
++ [Deleting a trail](cloudtrail-delete-trails-console.md)
++ [Turning off logging for a trail](cloudtrail-turning-off-logging.md)

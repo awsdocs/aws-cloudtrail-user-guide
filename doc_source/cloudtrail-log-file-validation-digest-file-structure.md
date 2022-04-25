@@ -1,10 +1,10 @@
-# CloudTrail Digest File Structure<a name="cloudtrail-log-file-validation-digest-file-structure"></a>
+# CloudTrail digest file structure<a name="cloudtrail-log-file-validation-digest-file-structure"></a>
 
 Each digest file contains the names of the log files that were delivered to your Amazon S3 bucket during the last hour, the hash values for those log files, and the digital signature of the previous digest file\. The signature for the current digest file is stored in the metadata properties of the digest file object\. The digital signatures and hashes are used for validating the integrity of the log files and of the digest file itself\. 
 
-## Digest File Location<a name="cloudtrail-log-file-validation-digest-file-location"></a>
+## Digest file location<a name="cloudtrail-log-file-validation-digest-file-location"></a>
 
- Digest files are delivered to an Amazon S3 bucket location that follows this syntax\.
+Digest files are delivered to an Amazon S3 bucket location that follows this syntax\.
 
 ```
 s3://s3-bucket-name/optional-prefix/AWSLogs/aws-account-id/CloudTrail-Digest/
@@ -21,7 +21,7 @@ s3://s3-bucket-name/optional-prefix/AWSLogs/OU-ID/aws-account-id/CloudTrail-Dige
     aws-account-id_CloudTrail-Digest_region_trail-name_region_digest_end_timestamp.json.gz
 ```
 
-## Sample Digest File Contents<a name="cloudtrail-log-file-validation-digest-file-contents"></a>
+## Sample digest file contents<a name="cloudtrail-log-file-validation-digest-file-contents"></a>
 
 The following example digest file contains information for a CloudTrail log\.
 
@@ -54,9 +54,9 @@ The following example digest file contains information for a CloudTrail log\.
 }
 ```
 
-## Digest File Field Descriptions<a name="cloudtrail-log-file-validation-digest-file-descriptions"></a>
+## Digest file field descriptions<a name="cloudtrail-log-file-validation-digest-file-descriptions"></a>
 
- The following are descriptions for each field in the digest file: 
+The following are descriptions for each field in the digest file: 
 
 `awsAccountId`  
 The AWS account ID for which the digest file has been delivered\. 
@@ -78,7 +78,7 @@ The UTC time of the most recent event among all of the events in the log files i
 
 `oldestEventTime`  
 The UTC time of the oldest event among all of the events in the log files in the digest\.   
- If the digest file is delivered late, the value of `oldestEventTime` will be earlier than the value of `digestStartTime`\. 
+If the digest file is delivered late, the value of `oldestEventTime` will be earlier than the value of `digestStartTime`\. 
 
 `previousDigestS3Bucket`  
 The Amazon S3 bucket to which the previous digest file was delivered\. 
@@ -94,7 +94,7 @@ The name of the hash algorithm that was used to hash the previous digest file\.
 
 `publicKeyFingerprint`  
 The hexadecimal encoded fingerprint of the public key that matches the private key used to sign this digest file\. You can retrieve the public keys for the time range corresponding to the digest file by using the AWS CLI or the CloudTrail API\. Of the public keys returned, the one whose fingerprint matches this value can be used for validating the digest file\. For information about retrieving public keys for digest files, see the AWS CLI [https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/list-public-keys.html](https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/list-public-keys.html) command or the CloudTrail [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_ListPublicKeys.html](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_ListPublicKeys.html) API\.   
- CloudTrail uses different private/public key pairs per region\. Each digest file is signed with a private key unique to its region\. Therefore, when you validate a digest file from a particular region, you must look in the same region for its corresponding public key\. 
+CloudTrail uses different private/public key pairs per region\. Each digest file is signed with a private key unique to its region\. Therefore, when you validate a digest file from a particular region, you must look in the same region for its corresponding public key\. 
 
 `digestSignatureAlgorithm`  
 The algorithm used to sign the digest file\. 
@@ -117,20 +117,20 @@ The hexadecimal encoded hash value of the uncompressed log file content\.
 `logFiles.hashAlgorithm`  
 The hash algorithm used to hash the log file\. 
 
-## Starting Digest File<a name="cloudtrail-log-file-validation-digest-file-starting"></a>
+## Starting digest file<a name="cloudtrail-log-file-validation-digest-file-starting"></a>
 
- When log file integrity validation is started, a starting digest file will be generated\. A starting digest file will also be generated when log file integrity validation is restarted \(by either disabling and then reenabling log file integrity validation, or by stopping logging and then restarting logging with validation enabled\)\. In a starting digest file, the following fields relating to the previous digest file will be null:
+When log file integrity validation is started, a starting digest file will be generated\. A starting digest file will also be generated when log file integrity validation is restarted \(by either disabling and then reenabling log file integrity validation, or by stopping logging and then restarting logging with validation enabled\)\. In a starting digest file, the following fields relating to the previous digest file will be null:
 + `previousDigestS3Bucket`
 + `previousDigestS3Object`
 + `previousDigestHashValue`
 + `previousDigestHashAlgorithm`
 + `previousDigestSignature`
 
-## 'Empty' Digest Files<a name="cloudtrail-log-file-validation-digest-file-empty"></a>
+## 'Empty' digest files<a name="cloudtrail-log-file-validation-digest-file-empty"></a>
 
- CloudTrail will deliver a digest file even when there has been no API activity in your account during the one hour period that the digest file represents\. This can be useful when you need to assert that no log files were delivered during the hour reported by the digest file\. 
+CloudTrail will deliver a digest file even when there has been no API activity in your account during the one hour period that the digest file represents\. This can be useful when you need to assert that no log files were delivered during the hour reported by the digest file\. 
 
- The following example shows the contents of a digest file that recorded an hour when no API activity occurred\. Note that the `logFiles:[ ]` field at the end of the digest file contents is empty\. 
+The following example shows the contents of a digest file that recorded an hour when no API activity occurred\. Note that the `logFiles:[ ]` field at the end of the digest file contents is empty\. 
 
 ```
 {
@@ -152,9 +152,9 @@ The hash algorithm used to hash the log file\.
 }
 ```
 
-## Signature of the Digest File<a name="cloudtrail-log-file-validation-digest-file-signature"></a>
+## Signature of the digest file<a name="cloudtrail-log-file-validation-digest-file-signature"></a>
 
- The signature information for a digest file is located in two object metadata properties of the Amazon S3 digest file object\. Each digest file has the following metadata entries: 
+The signature information for a digest file is located in two object metadata properties of the Amazon S3 digest file object\. Each digest file has the following metadata entries: 
 + `x-amz-meta-signature`
 
   The hexadecimal encoded value of the digest file signature\. The following is an example signature:
@@ -170,11 +170,11 @@ The hash algorithm used to hash the log file\.
 
   `SHA256withRSA`
 
-## Digest File Chaining<a name="cloudtrail-log-file-validation-digest-file-chaining"></a>
+## Digest file chaining<a name="cloudtrail-log-file-validation-digest-file-chaining"></a>
 
- The fact that each digest file contains a reference to its previous digest file enables a "chaining" that permits validation tools like the AWS CLI to detect if a digest file has been deleted\. It also allows the digest files in a specified time range to be successively inspected, starting with the most recent first\. 
+The fact that each digest file contains a reference to its previous digest file enables a "chaining" that permits validation tools like the AWS CLI to detect if a digest file has been deleted\. It also allows the digest files in a specified time range to be successively inspected, starting with the most recent first\. 
 
 **Note**  
 When you disable log file integrity validation, the chain of digest files is broken after one hour\. CloudTrail will not create digest files for log files that were delivered during a period in which log file integrity validation was disabled\. For example, if you enable log file integrity validation at noon on January 1, disable it at noon on January 2, and re\-enable it at noon on January 10, digest files will not be created for the log files delivered from noon on January 2 to noon on January 10\. The same applies whenever you stop CloudTrail logging or delete a trail\. 
 
- If logging is stopped or the trail is deleted, CloudTrail will deliver a final digest file\. This digest file can contain information for any remaining log files that cover events up to and including the `StopLogging` event\. 
+If logging is stopped or the trail is deleted, CloudTrail will deliver a final digest file\. This digest file can contain information for any remaining log files that cover events up to and including the `StopLogging` event\. 

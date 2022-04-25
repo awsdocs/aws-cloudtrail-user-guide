@@ -1,4 +1,4 @@
-# Using AWS CloudTrail with Interface VPC Endpoints<a name="cloudtrail-and-interface-VPC"></a>
+# Using AWS CloudTrail with interface VPC endpoints<a name="cloudtrail-and-interface-VPC"></a>
 
 If you use Amazon Virtual Private Cloud \(Amazon VPC\) to host your AWS resources, you can establish a private connection between your VPC and AWS CloudTrail\. You can use this connection to enable CloudTrail to communicate with your resources on your VPC without going through the public internet\.
 
@@ -6,7 +6,7 @@ Amazon VPC is an AWS service that you can use to launch AWS resources in a virtu
 
 To connect your VPC to CloudTrail, you define an *interface VPC endpoint* for CloudTrail\. An interface endpoint is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported AWS service\. The endpoint provides reliable, scalable connectivity to CloudTrail without requiring an internet gateway, network address translation \(NAT\) instance, or VPN connection\. For more information, see [What is Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/) in the *Amazon VPC User Guide*\.
 
- Interface VPC endpoints are powered by AWS PrivateLink, an AWS technology that enables private communication between AWS services using an elastic network interface with private IP addresses\. For more information, see [AWS PrivateLink](https://aws.amazon.com/privatelink/)\.
+Interface VPC endpoints are powered by AWS PrivateLink, an AWS technology that enables private communication between AWS services using an elastic network interface with private IP addresses\. For more information, see [AWS PrivateLink](https://aws.amazon.com/privatelink/)\.
 
 The following steps are for users of Amazon VPC\. For more information, see [Getting Started](https://docs.aws.amazon.com/vpc/latest/userguide/GetStarted.html) in the *Amazon VPC User Guide*\.
 
@@ -36,7 +36,7 @@ CloudTrail currently supports VPC endpoints in the following AWS Regions:
 + AWS GovCloud \(US\-East\)
 + AWS GovCloud \(US\-West\)
 
-## Create a VPC Endpoint for CloudTrail<a name="create-VPC-endpoint-for-CloudTrail"></a>
+## Create a VPC endpoint for CloudTrail<a name="create-VPC-endpoint-for-CloudTrail"></a>
 
 To start using CloudTrail with your VPC, create an interface VPC endpoint for CloudTrail\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint.html) in the *Amazon VPC User Guide*\.
 

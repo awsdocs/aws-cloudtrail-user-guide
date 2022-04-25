@@ -21,33 +21,33 @@ To update a single\-region trail to log events in all regions, or update an all\
 
    1. To change the specified bucket in **Storage location**, choose **Create new S3 bucket** to create a bucket\. When you create a bucket, CloudTrail creates and applies the required bucket policies\.
 **Note**  
-If you chose **Use existing S3 bucket**, specify a bucket in **Trail log bucket name**, or choose **Browse** to choose a bucket\. The bucket policy must grant CloudTrail permission to write to it\. For information about manually editing the bucket policy, see [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
+If you chose **Use existing S3 bucket**, specify a bucket in **Trail log bucket name**, or choose **Browse** to choose a bucket\. The bucket policy must grant CloudTrail permission to write to it\. For information about manually editing the bucket policy, see [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
 
       To make it easier to find your logs, create a new folder \(also known as a *prefix*\) in an existing bucket to store your CloudTrail logs\. Enter the prefix in **Prefix**\.
 
    1. For **Log file SSE\-KMS encryption**, choose **Enabled** to encrypt your log files with SSE\-KMS instead of SSE\-S3\. The default is **Enabled**\. For more information about this encryption type, see [Protecting Data Using Server\-Side Encryption with Amazon S3\-Managed Encryption Keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\.
 
-      If you enable SSE\-KMS encryption, choose a **New** or **Existing** AWS KMS customer master key\. In **AWS KMS Alias**, specify an alias, in the format `alias/`*MyAliasName*\. For more information, see [Updating a Trail to Use Your CMK](create-kms-key-policy-for-cloudtrail-update-trail.md)\.
+      If you enable SSE\-KMS encryption, choose a **New** or **Existing** AWS KMS key\. In **AWS KMS Alias**, specify an alias, in the format `alias/`*MyAliasName*\. For more information, see [Updating a trail to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\. CloudTrail also supports AWS KMS multi\-Region keys\. For more information about multi\-Region keys, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in the *AWS Key Management Service Developer Guide*\.
 **Note**  
-You can also type the ARN of a key from another account\. For more information, see [Updating a Trail to Use Your CMK](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [Configure AWS KMS Key Policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
+You can also type the ARN of a key from another account\. For more information, see [Updating a trail to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [Configure AWS KMS key policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
 
-   1. For **Log file validation**, choose **Enabled** to have log digests delivered to your S3 bucket\. You can use the digest files to verify that your log files did not change after CloudTrail delivered them\. For more information, see [Validating CloudTrail Log File Integrity](cloudtrail-log-file-validation-intro.md)\.
+   1. For **Log file validation**, choose **Enabled** to have log digests delivered to your S3 bucket\. You can use the digest files to verify that your log files did not change after CloudTrail delivered them\. For more information, see [Validating CloudTrail log file integrity](cloudtrail-log-file-validation-intro.md)\.
 
-   1. For **SNS notification delivery**, choose **Enabled** to be notified each time a log is delivered to your bucket\. CloudTrail stores multiple events in a log file\. SNS notifications are sent for every log file, not for every event\. For more information, see [Configuring Amazon SNS Notifications for CloudTrail](configure-sns-notifications-for-cloudtrail.md)\.
+   1. For **SNS notification delivery**, choose **Enabled** to be notified each time a log is delivered to your bucket\. CloudTrail stores multiple events in a log file\. SNS notifications are sent for every log file, not for every event\. For more information, see [Configuring Amazon SNS notifications for CloudTrail](configure-sns-notifications-for-cloudtrail.md)\.
 
       If you enable SNS notifications, for **Create a new SNS topic**, choose **New** to create a topic, or choose **Existing** to use an existing topic\. If you are creating a trail that applies to all Regions, SNS notifications for log file deliveries from all Regions are sent to the single SNS topic that you create\.
 
-      If you choose **New**, CloudTrail specifies a name for the new topic for you, or you can type a name\. If you choose **Existing**, choose an SNS topic from the drop\-down list\. You can also enter the ARN of a topic from another Region or from an account with appropriate permissions\. For more information, see [Amazon SNS Topic Policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\.
+      If you choose **New**, CloudTrail specifies a name for the new topic for you, or you can type a name\. If you choose **Existing**, choose an SNS topic from the drop\-down list\. You can also enter the ARN of a topic from another Region or from an account with appropriate permissions\. For more information, see [Amazon SNS topic policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)\.
 
       If you create a topic, you must subscribe to the topic to be notified of log file delivery\. You can subscribe from the Amazon SNS console\. Due to the frequency of notifications, we recommend that you configure the subscription to use an Amazon SQS queue to handle notifications programmatically\. For more information, see the [Amazon Simple Notification Service Getting Started Guide](https://docs.aws.amazon.com/sns/latest/gsg/)\.
 
-1. In **CloudWatch Logs**, choose **Edit** to change settings for sending CloudTrail log files to CloudWatch Logs\. Choose **Enabled** in **CloudWatch Logs** to enable sending log files\. For more information, see [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
+1. In **CloudWatch Logs**, choose **Edit** to change settings for sending CloudTrail log files to CloudWatch Logs\. Choose **Enabled** in **CloudWatch Logs** to enable sending log files\. For more information, see [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
 
    1. If you enable integration with CloudWatch Logs, choose **New** to create a new log group, or **Existing** to use an existing one\. If you choose **New**, CloudTrail specifies a name for the new log group for you, or you can type a name\.
 
    1. If you choose **Existing**, choose a log group from the drop\-down list\.
 
-   1. Choose **New** to create a new IAM role for permissions to send logs to CloudWatch Logs\. Choose **Existing** to choose an existing IAM role from the drop\-down list\. The policy statement for the new or existing role is displayed when you expand **Policy document**\. For more information about this role, see [Role Policy Document for CloudTrail to Use CloudWatch Logs for Monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)\.
+   1. Choose **New** to create a new IAM role for permissions to send logs to CloudWatch Logs\. Choose **Existing** to choose an existing IAM role from the drop\-down list\. The policy statement for the new or existing role is displayed when you expand **Policy document**\. For more information about this role, see [Role policy document for CloudTrail to use CloudWatch Logs for monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)\.
 **Note**  
 When you configure a trail, you can choose an S3 bucket and SNS topic that belong to another account\. However, if you want CloudTrail to deliver events to a CloudWatch Logs log group, you must choose a log group that exists in your current account\.
 
@@ -64,6 +64,8 @@ When you configure a trail, you can choose an S3 bucket and SNS topic that belon
       AWS KMS actions such as `Encrypt`, `Decrypt`, and `GenerateDataKey` typically generate a large volume \(more than 99%\) of events\. These actions are now logged as **Read** events\. Low\-volume, relevant AWS KMS actions such as `Disable`, `Delete`, and `ScheduleKey` \(which typically account for less than 0\.5% of AWS KMS event volume\) are logged as **Write** events\.
 
       To exclude high\-volume events like `Encrypt`, `Decrypt`, and `GenerateDataKey`, but still log relevant events such as `Disable`, `Delete` and `ScheduleKey`, choose to log **Write** management events, and clear the check box for **Exclude AWS KMS events**\.
+
+   1. Choose **Exclude Amazon RDS Data API events** to filter Amazon Relational Database Service Data API events out of your trail\. The default setting is to include all Amazon RDS Data API events\. For more information about Amazon RDS Data API events, see [Logging Data API calls with AWS CloudTrail](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/logging-using-cloudtrail-data-api.html) in the *Amazon RDS User Guide for Aurora*\.
 
 1. 
 **Important**  
@@ -121,9 +123,9 @@ If you have more than 15,000 Lambda functions in your account, you cannot view o
 
 1. In **Insights events** choose **Edit** if you want your trail to log CloudTrail Insights events\.
 
-   In **Event type**, select **Insights events**\. You must be logging **Write** management events to log Insights events\.
+   In **Event type**, select **Insights events**\. You must be logging **Write** management events to log Insights events\. In **Insights events**, choose **API call rate**, **API error rate**, or both\. You must be logging **Write** management events to log Insights events\.
 
-   CloudTrail Insights analyzes management **Write** events for unusual activity, and logs events when anomalies are detected\. By default, trails don't log Insights events\. For more information about Insights events, see [Logging Insights Events for Trails](logging-insights-events-with-cloudtrail.md)\. Additional charges apply for logging Insights events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
+   CloudTrail Insights analyzes management events for unusual activity, and logs events when anomalies are detected\. By default, trails don't log Insights events\. For more information about Insights events, see [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md)\. Additional charges apply for logging Insights events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
    Insights events are delivered to a different folder named `/CloudTrail-Insight`of the same S3 bucket that is specified in the **Storage location** area of the trail details page\. CloudTrail creates the new prefix for you\. For example, if your current destination S3 bucket is named `S3bucketName/AWSLogs/CloudTrail/`, the S3 bucket name with a new prefix is named `S3bucketName/AWSLogs/CloudTrail-Insight/`\.
 
@@ -135,7 +137,7 @@ If you have more than 15,000 Lambda functions in your account, you cannot view o
 
 1. If you are not already logging data events, choose **Data events**\.
 
-1. For **Data event type**, choose the data event resource type \(S3 buckets, S3 objects on AWS Outposts, Lambda functions, DynamoDBtables, Managed Blockchain nodes, or S3 Object Lambda access points\) that you want to log\.
+1. For **Data event type**, choose the resource type on which you want to log data events\.
 
 1. Choose a log selector template\. CloudTrail includes predefined templates that log all data events for the resource type\. To build a custom log selector template, choose **Custom**\.
 **Note**  
@@ -150,25 +152,29 @@ Logging data events for all functions also enables logging of data event activit
 
 1. Optionally, enter a name for your custom log selector template\.
 
-1. In **Advanced event selectors**, build an expression for the specific S3 buckets, S3 objects on AWS Outposts, Lambda functions, or DynamoDB tables on which you want to collect data events\.
+1. In **Advanced event selectors**, build an expression for the specific resources on which you want to collect data events\.
 
    1. Choose from the following fields\. For fields that accept an array \(more than one value\), CloudTrail adds an OR between values\.
       + **`readOnly`** \- `readOnly` can be set to **Equals** a value of `true` or `false`\. To log both `read` and `write` events, don't add a `readOnly` selector\.
-      + **`eventName`** \- `eventName` can use any operator\. You can use it to include or exclude any data event logged to CloudTrail, such as `PutBucket`\. You can have multiple values for this field, separated by commas\.
-      + **`resources.type`** \- This field is required\. `resources.type` can only use the **Equals** operator, and the value can be one of the following: `AWS::S3::Object`, `AWS::S3Outposts::Object`, `AWS::Lambda::Function`, `AWS::DynamoDB::Table`, `AWS::ManagedBlockchain::Node`, or `AWS::S3ObjectLambda::AccessPoint`\.
-      + **`resources.ARN`** \- You can use any operator with `resources.ARN`, but if you use **Equals** or **NotEquals**, the value must exactly match the ARN of a valid resource of the type you've specified in the template as the value of `resources.type`\. For example, if `resources.type` equals **AWS::S3::Object**, the ARN must be in one of the following formats\. To log all data events for all objects in a specific S3 bucket, use the `StartsWith` operator, and include only the bucket ARN as the matching value\.
+      + **`eventName`** \- `eventName` can use any operator\. You can use it to include or exclude any data event logged to CloudTrail, such as `PutBucket` or `GetSnapshotBlock`\. You can have multiple values for this field, separated by commas\.
+      + **`resources.type`** \- In the AWS Management Console, this field doesn't occur, because it's already populated by your choice of data event type from the **Data event type** drop\-down list\. In the AWS CLI and SDKs, `resources.type` can only use the **Equals** operator, and the value can be one of the following: 
+        + `AWS::S3::Object`
+        + `AWS::Lambda::Function`
+        + `AWS::DynamoDB::Table`
+        + `AWS::S3Outposts::Object`
+        + `AWS::ManagedBlockchain::Node`
+        + `AWS::S3ObjectLambda::AccessPoint`
+        + `AWS::EC2::Snapshot`
+        + `AWS::S3::AccessPoint`
+        + `AWS::DynamoDB::Stream`
+        + `AWS::Glue::Table`
+      + **`resources.ARN`** \- You can use any operator with `resources.ARN`, but if you use **Equals** or **NotEquals**, the value must exactly match the ARN of a valid resource of the type you've specified in the template as the value of `resources.type`\. 
 
-        The trailing slash is intentional; do not exclude it\.
+        For example, when `resources.type` equals **AWS::S3::Object**, the ARN must be in one of the following formats\. To log all data events for all objects in a specific S3 bucket, use the `StartsWith` operator, and include only the bucket ARN as the matching value\. The trailing slash is intentional; do not exclude it\.
 
         ```
         arn:partition:s3:::bucket_name/
         arn:partition:s3:::bucket_name/object_or_file_name/
-        ```
-
-        When `resources.type` equals **AWS::S3Outposts::Object**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:s3-outposts:region:account_ID:object_path
         ```
 
         When `resources.type` equals **AWS::Lambda::Function**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
@@ -183,6 +189,12 @@ Logging data events for all functions also enables logging of data event activit
         arn:partition:dynamodb:region:account_ID:table/table_name
         ```
 
+        When `resources.type` equals **AWS::S3Outposts::Object**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
+
+        ```
+        arn:partition:s3-outposts:region:account_ID:object_path
+        ```
+
         When `resources.type` equals **AWS::ManagedBlockchain::Node**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
 
         ```
@@ -195,7 +207,32 @@ Logging data events for all functions also enables logging of data event activit
         arn:partition:s3-object-lambda:region:account_ID:accesspoint/access_point_name
         ```
 
-      For more information about the ARN formats of data event resources, see [Resource types defined by Amazon S3](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazons3.html#amazons3-resources-for-iam-policies), [Resource types defined by AWS Lambda](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html#awslambda-resources-for-iam-policies), and [Resource types defined by Amazon DynamoDB](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazondynamodb.html#amazondynamodb-resources-for-iam-policies) in the *AWS Identity and Access Management User Guide*\.
+        When `resources.type` equals **AWS::EC2::Snapshot**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
+
+        ```
+        arn:partition:ec2:region::snapshot/snapshot_ID
+        ```
+
+        When `resources.type` equals **AWS::S3::AccessPoint**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in one of the following formats\. To log events on all objects in an S3 access point, we recommend that you use only the access point ARN, don’t include the object path, and use the `StartsWith` or `NotStartsWith` operators\.
+
+        ```
+        arn:partition:s3:region:account_ID:accesspoint/access_point_name
+        arn:partition:s3:region:account_ID:accesspoint/access_point_name/object/object_path
+        ```
+
+        When `resources.type` equals **AWS::DynamoDB::Stream**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
+
+        ```
+        arn:partition:dynamodb:region:account_ID:table/table_name/stream/date_time
+        ```
+
+        When `resources.type` equals **AWS::Glue::Table**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
+
+        ```
+        arn:partition:glue:region:account_ID:table/database_name/table_name
+        ```
+
+      For more information about the ARN formats of data event resources, see [Actions, resources, and condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html) in the *AWS Identity and Access Management User Guide*\.
 
    1. For each field, choose **\+ Conditions** to add as many conditions as you need, up to a maximum of 500 specified values for all conditions\. For example, to exclude data events for two S3 buckets from data events that are logged on your trail, you can set the field to **resources\.ARN**, set the operator for **NotEquals**, and then either paste in an S3 bucket ARN, or browse for the S3 buckets for which you do not want to log events\.
 

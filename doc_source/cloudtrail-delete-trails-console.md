@@ -1,6 +1,6 @@
-# Deleting a Trail<a name="cloudtrail-delete-trails-console"></a>
+# Deleting a trail<a name="cloudtrail-delete-trails-console"></a>
 
- You can delete trails with the CloudTrail console\.
+You can delete trails with the CloudTrail console\.
 
 **To delete a trail with the CloudTrail console**
 

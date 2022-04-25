@@ -1,6 +1,6 @@
-# Validating CloudTrail Log File Integrity with the AWS CLI<a name="cloudtrail-log-file-validation-cli"></a>
+# Validating CloudTrail log file integrity with the AWS CLI<a name="cloudtrail-log-file-validation-cli"></a>
 
-To validate logs with the AWS Command Line Interface, use the CloudTrail `validate-logs` command\. The command uses the digest files delivered to your Amazon S3 bucket to perform the validation\. For information about digest files, see [CloudTrail Digest File Structure](cloudtrail-log-file-validation-digest-file-structure.md)\. 
+To validate logs with the AWS Command Line Interface, use the CloudTrail `validate-logs` command\. The command uses the digest files delivered to your Amazon S3 bucket to perform the validation\. For information about digest files, see [CloudTrail digest file structure](cloudtrail-log-file-validation-digest-file-structure.md)\. 
 
 The AWS CLI allows you to detect the following types of changes:
 + Modification or deletion of CloudTrail log files
@@ -8,7 +8,7 @@ The AWS CLI allows you to detect the following types of changes:
 + Modification or deletion of both of the above
 
 **Note**  
-The AWS CLI validates only log files that are referenced by digest files\. For more information, see [Checking Whether a Particular File was Delivered by CloudTrail ](#cloudtrail-log-file-validation-cli-validate-logs-check-file)\.
+The AWS CLI validates only log files that are referenced by digest files\. For more information, see [Checking whether a particular file was delivered by CloudTrail](#cloudtrail-log-file-validation-cli-validate-logs-check-file)\.
 
 ## Prerequisites<a name="cloudtrail-log-file-validation-cli-prerequisites"></a>
 
@@ -18,7 +18,7 @@ To validate log file integrity with the AWS CLI, the following conditions must b
 + The digest and log files must not have been moved from the original Amazon S3 location where CloudTrail delivered them\.
 
 **Note**  
-Log files that have been downloaded to local disk cannot be validated with the AWS CLI\. For guidance on creating your own tools for validation, see [Custom Implementations of CloudTrail Log File Integrity Validation ](cloudtrail-log-file-custom-validation.md)\.
+Log files that have been downloaded to local disk cannot be validated with the AWS CLI\. For guidance on creating your own tools for validation, see [Custom implementations of CloudTrail log file integrity validation](cloudtrail-log-file-custom-validation.md)\.
 
 ## validate\-logs<a name="cloudtrail-log-file-validation-cli-validate-logs"></a>
 
@@ -37,7 +37,7 @@ Specifies that log files delivered on or after the specified UTC timestamp value
 
 `--end-time`  
 Optionally specifies that log files delivered on or before the specified UTC timestamp value will be validated\. The default value is the current UTC time \(`Date.now()`\)\. Example: `2015-01-08T12:31:41Z`\.   
-For the time range specified, the `validate-logs` command checks only the log files that are referenced in their corresponding digest files\. No other log files in the Amazon S3 bucket are checked\. For more information, see [Checking Whether a Particular File was Delivered by CloudTrail ](#cloudtrail-log-file-validation-cli-validate-logs-check-file)\. 
+For the time range specified, the `validate-logs` command checks only the log files that are referenced in their corresponding digest files\. No other log files in the Amazon S3 bucket are checked\. For more information, see [Checking whether a particular file was delivered by CloudTrail](#cloudtrail-log-file-validation-cli-validate-logs-check-file)\. 
 
 `--s3-bucket`  
 Optionally specifies the Amazon S3 bucket where the digest files are stored\. If a bucket name is not specified, the AWS CLI will retrieve it by calling `DescribeTrails()`\. 
@@ -66,13 +66,13 @@ The following example validates log files from the specified start time to the p
 aws cloudtrail validate-logs --start-time 2015-08-27T00:00:00Z --end-time 2015-08-28T00:00:00Z --trail-arn arn:aws:cloudtrail:us-east-2:111111111111:trail/my-trail-name --verbose
 ```
 
-### How `validate-logs` Works<a name="cloudtrail-log-file-validation-cli-validate-logs-how-it-works"></a>
+### How `validate-logs` works<a name="cloudtrail-log-file-validation-cli-validate-logs-how-it-works"></a>
 
- The `validate-logs` command starts by validating the most recent digest file in the specified time range\. First, it verifies that the digest file has been downloaded from the location to which it claims to belong\. In other words, if the CLI downloads digest file `df1` from the S3 location `p1`, validate\-logs will verify that `p1 == df1.digestS3Bucket + '/' + df1.digestS3Object`\.
+The `validate-logs` command starts by validating the most recent digest file in the specified time range\. First, it verifies that the digest file has been downloaded from the location to which it claims to belong\. In other words, if the CLI downloads digest file `df1` from the S3 location `p1`, validate\-logs will verify that `p1 == df1.digestS3Bucket + '/' + df1.digestS3Object`\.
 
- If the signature of the digest file is valid, it checks the hash value of each of the logs referenced in the digest file\. The command then goes back in time, validating the previous digest files and their referenced log files in succession\. It continues until the specified value for `start-time` is reached, or until the digest chain ends\. If a digest file is missing or not valid, the time range that cannot be validated is indicated in the output\. 
+If the signature of the digest file is valid, it checks the hash value of each of the logs referenced in the digest file\. The command then goes back in time, validating the previous digest files and their referenced log files in succession\. It continues until the specified value for `start-time` is reached, or until the digest chain ends\. If a digest file is missing or not valid, the time range that cannot be validated is indicated in the output\. 
 
-## Validation Results<a name="cloudtrail-log-file-validation-cli-results"></a>
+## Validation results<a name="cloudtrail-log-file-validation-cli-results"></a>
 
 Validation results begin with a summary header in the following format:
 
@@ -107,7 +107,7 @@ The following table describes the possible validation messages for log and diges
 
 The output includes summary information about the results returned\.
 
-## Example Outputs<a name="cloudtrail-log-file-validation-cli-results-examples"></a>
+## Example outputs<a name="cloudtrail-log-file-validation-cli-results-examples"></a>
 
 ### Verbose<a name="cloudtrail-log-file-validation-cli-results-verbose"></a>
 
@@ -174,6 +174,6 @@ Results found for 2015-08-31T22:17:28Z to 2015-09-01T20:17:28Z:
 63/63 log files valid
 ```
 
-## Checking Whether a Particular File was Delivered by CloudTrail<a name="cloudtrail-log-file-validation-cli-validate-logs-check-file"></a>
+## Checking whether a particular file was delivered by CloudTrail<a name="cloudtrail-log-file-validation-cli-validate-logs-check-file"></a>
 
 To check if a particular file in your bucket was delivered by CloudTrail, run `validate-logs` in verbose mode for the time period that includes the file\. If the file appears in the output of `validate-logs`, then the file was delivered by CloudTrail\.

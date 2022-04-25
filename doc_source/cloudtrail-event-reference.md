@@ -1,4 +1,4 @@
-# CloudTrail Log Event Reference<a name="cloudtrail-event-reference"></a>
+# CloudTrail log event reference<a name="cloudtrail-event-reference"></a>
 
 A CloudTrail log is a record in JSON format\. The log contains information about requests for resources in your account, such as who made the request, the services used, the actions performed, and parameters for the action\. The event data is enclosed in a `Records` array\.
 
@@ -134,7 +134,7 @@ There are two events logged to show unusual activity in CloudTrail Insights: a s
 The following topics list the data fields that CloudTrail captures for each AWS API call and sign\-in event\. 
 
 **Topics**
-+ [CloudTrail Record Contents](cloudtrail-event-reference-record-contents.md)
-+ [CloudTrail userIdentity Element](cloudtrail-event-reference-user-identity.md)
++ [CloudTrail record contents](cloudtrail-event-reference-record-contents.md)
++ [CloudTrail userIdentity element](cloudtrail-event-reference-user-identity.md)
 + [CloudTrail Insights `insightDetails` element](cloudtrail-event-reference-insight-details.md)
-+ [Non\-API Events Captured by CloudTrail](cloudtrail-non-api-events.md)
++ [Non\-API events captured by CloudTrail](cloudtrail-non-api-events.md)

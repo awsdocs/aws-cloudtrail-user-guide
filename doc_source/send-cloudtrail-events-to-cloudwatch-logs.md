@@ -1,53 +1,53 @@
-# Sending Events to CloudWatch Logs<a name="send-cloudtrail-events-to-cloudwatch-logs"></a>
+# Sending events to CloudWatch Logs<a name="send-cloudtrail-events-to-cloudwatch-logs"></a>
 
-When you configure your trail to send events to CloudWatch Logs, CloudTrail sends only the events that match your trail settings\. For example, if you configure your trail to log data events only, your trail sends data events only to your CloudWatch Logs log group\. CloudTrail supports sending data, Insights, and management events to CloudWatch Logs\. For more information, see [Working with CloudTrail Log Files](cloudtrail-working-with-log-files.md)\.
+When you configure your trail to send events to CloudWatch Logs, CloudTrail sends only the events that match your trail settings\. For example, if you configure your trail to log data events only, your trail sends data events only to your CloudWatch Logs log group\. CloudTrail supports sending data, Insights, and management events to CloudWatch Logs\. For more information, see [Working with CloudTrail log files](cloudtrail-working-with-log-files.md)\.
 
 To send events to a CloudWatch Logs log group:
-+ Make sure you have sufficient permissions to create or specify an IAM role\. For more information, see [Granting Permission to View and Configure Amazon CloudWatch Logs Information on the CloudTrail Console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
++ Make sure you have sufficient permissions to create or specify an IAM role\. For more information, see [Granting permission to view and configure Amazon CloudWatch Logs information on the CloudTrail console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
 + Create a new trail or specify an existing one\. For more information, see [Creating and updating a trail with the console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)\.
 + Create a log group or specify an existing one\.
 + Specify an IAM role\. If you are modifying an existing IAM role for an organization trail, you must manually update the policy to allow logging for the organization trail\. For more information, see [this policy example](#policy-cwl-org) and [Creating a trail for an organization](creating-trail-organization.md)\.
 + Attach a role policy or use the default\.
 
 **Contents**
-+ [Configuring CloudWatch Logs Monitoring with the Console](#send-cloudtrail-events-to-cloudwatch-logs-console)
-  + [Creating a Log Group or Specifying an Existing Log Group](#send-cloudtrail-events-to-cloudwatch-logs-console-create-log-group)
-  + [Specifying an IAM Role](#send-cloudtrail-events-to-cloudwatch-logs-console-create-role)
-  + [Viewing Events in the CloudWatch Console](#viewing-events-in-cloudwatch)
-+ [Configuring CloudWatch Logs Monitoring with the AWS CLI](#send-cloudtrail-events-to-cloudwatch-logs-cli)
-  + [Creating a Log Group](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-log-group)
-  + [Creating a Role](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-role)
-  + [Creating a Policy Document](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-policy-document)
-  + [Updating the Trail](#send-cloudtrail-events-to-cloudwatch-logs-cli-update-trail)
++ [Configuring CloudWatch Logs monitoring with the console](#send-cloudtrail-events-to-cloudwatch-logs-console)
+  + [Creating a log group or specifying an existing log group](#send-cloudtrail-events-to-cloudwatch-logs-console-create-log-group)
+  + [Specifying an IAM role](#send-cloudtrail-events-to-cloudwatch-logs-console-create-role)
+  + [Viewing events in the CloudWatch console](#viewing-events-in-cloudwatch)
++ [Configuring CloudWatch Logs monitoring with the AWS CLI](#send-cloudtrail-events-to-cloudwatch-logs-cli)
+  + [Creating a log group](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-log-group)
+  + [Creating a role](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-role)
+  + [Creating a policy document](#send-cloudtrail-events-to-cloudwatch-logs-cli-create-policy-document)
+  + [Updating the trail](#send-cloudtrail-events-to-cloudwatch-logs-cli-update-trail)
 + [Limitation](#send-cloudtrail-events-to-cloudwatch-logs-limitations)
 
-## Configuring CloudWatch Logs Monitoring with the Console<a name="send-cloudtrail-events-to-cloudwatch-logs-console"></a>
+## Configuring CloudWatch Logs monitoring with the console<a name="send-cloudtrail-events-to-cloudwatch-logs-console"></a>
 
 You can use the AWS Management Console to configure your trail to send events to CloudWatch Logs for monitoring\.
 
-### Creating a Log Group or Specifying an Existing Log Group<a name="send-cloudtrail-events-to-cloudwatch-logs-console-create-log-group"></a>
+### Creating a log group or specifying an existing log group<a name="send-cloudtrail-events-to-cloudwatch-logs-console-create-log-group"></a>
 
 CloudTrail uses a CloudWatch Logs log group as a delivery endpoint for log events\. You can create a log group or specify an existing one\.
 
 **To create or specify a log group**
 
-1. Make sure you are logged in with an administrative IAM user or role with sufficient permissions to configure CloudWatch Logs integration\. For more information, see [Granting Permission to View and Configure Amazon CloudWatch Logs Information on the CloudTrail Console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
+1. Make sure you are logged in with an administrative IAM user or role with sufficient permissions to configure CloudWatch Logs integration\. For more information, see [Granting permission to view and configure Amazon CloudWatch Logs information on the CloudTrail console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
 
 1. Open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1.  Choose the trail name\. If you choose a trail that applies to all regions, you will be redirected to the region in which the trail was created\. You can create a log group or choose an existing log group in the same region as the trail\.
+1. Choose the trail name\. If you choose a trail that applies to all regions, you will be redirected to the region in which the trail was created\. You can create a log group or choose an existing log group in the same region as the trail\.
 **Note**  
 A trail that applies to all regions sends log files from all regions to the CloudWatch Logs log group that you specify\.
 
 1. For **CloudWatch Logs**, choose **Configure**\.
 
-1. For **New or existing log group**, type the log group name , and then choose **Continue**\. For more information, see [CloudWatch Log Group and Log Stream Naming for CloudTrail](cloudwatch-log-group-log-stream-naming-for-cloudtrail.md)\.
+1. For **New or existing log group**, type the log group name , and then choose **Continue**\. For more information, see [CloudWatch log group and log stream naming for CloudTrail](cloudwatch-log-group-log-stream-naming-for-cloudtrail.md)\.
 
 1. For the IAM role, choose an existing role or create one\. If you create an IAM role, type a role name\.
 
 1. Choose **Allow** to grant CloudTrail permissions to create a CloudWatch Logs log stream and deliver events\. 
 
-### Specifying an IAM Role<a name="send-cloudtrail-events-to-cloudwatch-logs-console-create-role"></a>
+### Specifying an IAM role<a name="send-cloudtrail-events-to-cloudwatch-logs-console-create-role"></a>
 
 You can specify a role for CloudTrail to assume to deliver events to the log stream\.
 
@@ -63,11 +63,11 @@ If you want to use this role for a log group for an organization trail, you must
 
    1. To see the contents of the role policy, choose **View Policy Document**\.
 
-1. You can specify another role, but you must attach the required role policy to the existing role if you want to use it to send events to CloudWatch Logs\. For more information, see [Role Policy Document for CloudTrail to Use CloudWatch Logs for Monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)\.
+1. You can specify another role, but you must attach the required role policy to the existing role if you want to use it to send events to CloudWatch Logs\. For more information, see [Role policy document for CloudTrail to use CloudWatch Logs for monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)\.
 
 
 
-### Viewing Events in the CloudWatch Console<a name="viewing-events-in-cloudwatch"></a>
+### Viewing events in the CloudWatch console<a name="viewing-events-in-cloudwatch"></a>
 
 After you configure your trail to send events to your CloudWatch Logs log group, you can view the events in the CloudWatch console\. CloudTrail typically delivers events to your log group within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
@@ -86,11 +86,11 @@ After you configure your trail to send events to your CloudWatch Logs log group,
 **Note**  
 The **Time \(UTC\) **column in the CloudWatch console shows when the event was delivered to your log group\. To see the actual time that the event was logged by CloudTrail, see the `eventTime` field\.
 
-## Configuring CloudWatch Logs Monitoring with the AWS CLI<a name="send-cloudtrail-events-to-cloudwatch-logs-cli"></a>
+## Configuring CloudWatch Logs monitoring with the AWS CLI<a name="send-cloudtrail-events-to-cloudwatch-logs-cli"></a>
 
 You can use the AWS CLI to configure CloudTrail to send events to CloudWatch Logs for monitoring\.
 
-### Creating a Log Group<a name="send-cloudtrail-events-to-cloudwatch-logs-cli-create-log-group"></a>
+### Creating a log group<a name="send-cloudtrail-events-to-cloudwatch-logs-cli-create-log-group"></a>
 
 1. If you don't have an existing log group, create a CloudWatch Logs log group as a delivery endpoint for log events using the CloudWatch Logs `create-log-group` command\.
 
@@ -110,7 +110,7 @@ You can use the AWS CLI to configure CloudTrail to send events to CloudWatch Log
    aws logs describe-log-groups
    ```
 
-### Creating a Role<a name="send-cloudtrail-events-to-cloudwatch-logs-cli-create-role"></a>
+### Creating a role<a name="send-cloudtrail-events-to-cloudwatch-logs-cli-create-role"></a>
 
 Create a role for CloudTrail that enables it to send events to the CloudWatch Logs log group\. The IAM `create-role` command takes two parameters: a role name and a file path to an assume role policy document in JSON format\. The policy document that you use gives `AssumeRole` permissions to CloudTrail\. The `create-role` command creates the role with the required permissions\. 
 
@@ -140,7 +140,7 @@ aws iam create-role --role-name role_name --assume-role-policy-document file://<
 
 When the command completes, take a note of the role ARN in the output\.
 
-### Creating a Policy Document<a name="send-cloudtrail-events-to-cloudwatch-logs-cli-create-policy-document"></a>
+### Creating a policy document<a name="send-cloudtrail-events-to-cloudwatch-logs-cli-create-policy-document"></a>
 
 Create the following role policy document for CloudTrail\. This document grants CloudTrail the permissions required to create a CloudWatch Logs log stream in the log group you specify and to deliver CloudTrail events to that log stream\.
 
@@ -216,7 +216,7 @@ Run the following command to apply the policy to the role\.
 aws iam put-role-policy --role-name role_name --policy-name cloudtrail-policy --policy-document file://<path to role-policy-document>.json
 ```
 
-### Updating the Trail<a name="send-cloudtrail-events-to-cloudwatch-logs-cli-update-trail"></a>
+### Updating the trail<a name="send-cloudtrail-events-to-cloudwatch-logs-cli-update-trail"></a>
 
 Update the trail with the log group and role information using the CloudTrail `update-trail` command\.
 

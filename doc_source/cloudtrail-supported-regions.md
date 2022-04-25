@@ -1,23 +1,24 @@
-# CloudTrail Supported Regions<a name="cloudtrail-supported-regions"></a>
+# CloudTrail supported regions<a name="cloudtrail-supported-regions"></a>
 
 
 ****  
 
 | Region Name | Region | Endpoint | Protocol | AWS Account ID | Support Date | 
 | --- | --- | --- | --- | --- | --- | 
-| US East \(Ohio\) | us\-east\-2 | cloudtrail\.us\-east\-2\.amazonaws\.com | HTTPS | 475085895292 | 10/17/2016 | 
 | US East \(N\. Virginia\) | us\-east\-1 | cloudtrail\.us\-east\-1\.amazonaws\.com | HTTPS | 086441151436 | 11/13/2013 | 
+| US East \(Ohio\) | us\-east\-2 | cloudtrail\.us\-east\-2\.amazonaws\.com | HTTPS | 475085895292 | 10/17/2016 | 
 | US West \(N\. California\) | us\-west\-1 | cloudtrail\.us\-west\-1\.amazonaws\.com | HTTPS | 388731089494 | 05/13/2014 | 
 | US West \(Oregon\) | us\-west\-2 | cloudtrail\.us\-west\-2\.amazonaws\.com | HTTPS | 113285607260 | 11/13/2013 | 
 | Canada \(Central\) | ca\-central\-1 | cloudtrail\.ca\-central\-1\.amazonaws\.com | HTTPS | 819402241893 | 12/08/2016 | 
 | Africa \(Cape Town\) | af\-south\-1 | cloudtrail\.af\-south\-1\.amazonaws\.com | HTTPS | 525921808201 | 04/22/2020 | 
 | Asia Pacific \(Hong Kong\) | ap\-east\-1 | cloudtrail\.ap\-east\-1\.amazonaws\.com | HTTPS | 119688915426 | 04/24/2019 | 
 | Asia Pacific \(Mumbai\) | ap\-south\-1 | cloudtrail\.ap\-south\-1\.amazonaws\.com | HTTPS | 977081816279 | 06/27/2016 | 
-| Asia Pacific \(Osaka\) | ap\-northeast\-3 | cloudtrail\.ap\-northeast\-3\.amazonaws\.com | HTTPS | 765225791966 | 02/12/2018 | 
+| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | cloudtrail\.ap\-northeast\-1\.amazonaws\.com | HTTPS | 216624486486 | 06/30/2014 | 
 | Asia Pacific \(Seoul\) | ap\-northeast\-2 | cloudtrail\.ap\-northeast\-2\.amazonaws\.com | HTTPS | 492519147666 | 01/06/2016 | 
+| Asia Pacific \(Osaka\) | ap\-northeast\-3 | cloudtrail\.ap\-northeast\-3\.amazonaws\.com | HTTPS | 765225791966 | 02/12/2018 | 
 | Asia Pacific \(Singapore\) | ap\-southeast\-1 | cloudtrail\.ap\-southeast\-1\.amazonaws\.com | HTTPS | 903692715234  | 06/30/2014 | 
 | Asia Pacific \(Sydney\) | ap\-southeast\-2 | cloudtrail\.ap\-southeast\-2\.amazonaws\.com | HTTPS | 284668455005 | 05/13/2014 | 
-| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | cloudtrail\.ap\-northeast\-1\.amazonaws\.com | HTTPS | 216624486486 | 06/30/2014 | 
+| Asia Pacific \(Jakarta\) | ap\-southeast\-3 | cloudtrail\.ap\-southeast\-3\.amazonaws\.com | HTTPS | 069019280451 | 12/13/2021 | 
 | China \(Beijing\) | cn\-north\-1 | cloudtrail\.cn\-north\-1\.amazonaws\.com\.cn | HTTPS | 193415116832 | 03/01/2014 | 
 | China \(Ningxia\) | cn\-northwest\-1 | cloudtrail\.cn\-northwest\-1\.amazonaws\.com\.cn | HTTPS | 681348832753  | 12/11/2017 | 
 | Europe \(Frankfurt\) | eu\-central\-1 | cloudtrail\.eu\-central\-1\.amazonaws\.com | HTTPS | 035351147821 | 10/23/2014 | 

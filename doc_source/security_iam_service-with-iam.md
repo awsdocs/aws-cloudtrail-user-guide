@@ -1,17 +1,17 @@
-# How AWS CloudTrail Works with IAM<a name="security_iam_service-with-iam"></a>
+# How AWS CloudTrail works with IAM<a name="security_iam_service-with-iam"></a>
 
 Before you use IAM to manage access to CloudTrail, you should understand what IAM features are available to use with CloudTrail\. To get a high\-level view of how CloudTrail and other AWS services work with IAM, see [AWS Services That Work with IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html) in the *IAM User Guide*\.
 
 CloudTrail works with IAM identity\-based policies, but does not work with resource\-based policies\. For more information on the differences between identity\-based policies and resource\-based policies, see [Identity\-Based Policies and Resource\-Based Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) in the *IAM User Guide*\.
 
 **Topics**
-+ [CloudTrail Identity\-Based Policies](#security_iam_service-with-iam-id-based-policies)
-+ [CloudTrail Resource\-Based Policies](#security_iam_service-with-iam-resource-based-policies)
-+ [Access Control Lists \(ACLs\)](#security_iam_service-with-iam-acls)
-+ [Authorization Based on CloudTrail Tags](#security_iam_service-with-iam-tags)
-+ [CloudTrail IAM Roles](#security_iam_service-with-iam-roles)
++ [CloudTrail identity\-based policies](#security_iam_service-with-iam-id-based-policies)
++ [CloudTrail resource\-based policies](#security_iam_service-with-iam-resource-based-policies)
++ [Access control lists](#security_iam_service-with-iam-acls)
++ [Authorization based on CloudTrail tags](#security_iam_service-with-iam-tags)
++ [CloudTrail IAM roles](#security_iam_service-with-iam-roles)
 
-## CloudTrail Identity\-Based Policies<a name="security_iam_service-with-iam-id-based-policies"></a>
+## CloudTrail identity\-based policies<a name="security_iam_service-with-iam-id-based-policies"></a>
 
 With IAM identity\-based policies, you can specify allowed or denied actions and resources as well as the conditions under which actions are allowed or denied\. CloudTrail supports specific actions and resources\. There are no CloudTrail service\-specific condition keys that can be used in the `Condition` element of policy statements\. To learn about all of the elements that you use in a JSON policy, see [IAM JSON Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html) in the *IAM User Guide*\.
 
@@ -96,7 +96,7 @@ Many CloudTrail API actions involve multiple resources\. For example, `CreateTra
 
 To see a list of CloudTrail resource types and their ARNs, see [Resources Defined by AWS CloudTrail](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awscloudtrail.html#awscloudtrail-resources-for-iam-policies) in the *IAM User Guide*\. To learn with which actions you can specify the ARN of each resource, see [Actions Defined by AWS CloudTrail](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awscloudtrail.html#awscloudtrail-actions-as-permissions)\.
 
-### Condition Keys<a name="security_iam_service-with-iam-id-based-policies-conditionkeys"></a>
+### Condition keys<a name="security_iam_service-with-iam-id-based-policies-conditionkeys"></a>
 
 Administrators can use AWS JSON policies to specify who has access to what\. That is, which **principal** can perform **actions** on what **resources**, and under what **conditions**\.
 
@@ -116,39 +116,39 @@ To see a list of condition keys supported for CloudTrail, see [Condition Keys fo
 
 
 
-To view examples of CloudTrail identity\-based policies, see [AWS CloudTrail Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
+To view examples of CloudTrail identity\-based policies, see [AWS CloudTrail identity\-based policy examples](security_iam_id-based-policy-examples.md)\.
 
-## CloudTrail Resource\-Based Policies<a name="security_iam_service-with-iam-resource-based-policies"></a>
+## CloudTrail resource\-based policies<a name="security_iam_service-with-iam-resource-based-policies"></a>
 
 CloudTrail does not support resource\-based policies\. 
 
-## Access Control Lists \(ACLs\)<a name="security_iam_service-with-iam-acls"></a>
+## Access control lists<a name="security_iam_service-with-iam-acls"></a>
 
-Access control lists \(ACLs\) are lists of grantees that you can attach to resources\. They grant accounts permissions to access the resource to which they are attached\. While CloudTrail does not support ACLs, Amazon S3 does\. For example, you can attach ACLs to an Amazon S3 bucket resource where you store log files for one or more trails\. For more information about attaching ACLs to buckets, see [https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html) in the Amazon Simple Storage Service Developer Guide\.
+Access control lists \(ACLs\) are lists of grantees that you can attach to resources\. They grant accounts permissions to access the resource to which they are attached\. While CloudTrail does not support ACLs, Amazon S3 does\. For example, you can attach ACLs to an Amazon S3 bucket resource where you store log files for one or more trails\. For more information about attaching ACLs to buckets, see [https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html) in the Amazon Simple Storage Service User Guide\.
 
-## Authorization Based on CloudTrail Tags<a name="security_iam_service-with-iam-tags"></a>
+## Authorization based on CloudTrail tags<a name="security_iam_service-with-iam-tags"></a>
 
-Although you can attach tags to CloudTrail resources, CloudTrail does not support controlling access based on tags\.
+Although you can attach tags to CloudTrail resources, CloudTrail only supports controlling access to [CloudTrail Lake](cloudtrail-lake.md) event data stores based on tags\. You cannot control access to trails based on tags\.
 
 You can attach tags to CloudTrail resources or pass tags in a request to CloudTrail\. For more information about tagging CloudTrail resources, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Creating, updating, and managing trails with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)\.
 
-## CloudTrail IAM Roles<a name="security_iam_service-with-iam-roles"></a>
+## CloudTrail IAM roles<a name="security_iam_service-with-iam-roles"></a>
 
 An [IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) is an entity within your AWS account that has specific permissions\.
 
-### Using Temporary Credentials with CloudTrail<a name="security_iam_service-with-iam-roles-tempcreds"></a>
+### Using temporary credentials with CloudTrail<a name="security_iam_service-with-iam-roles-tempcreds"></a>
 
 You can use temporary credentials to sign in with federation, assume an IAM role, or to assume a cross\-account role\. You obtain temporary security credentials by calling AWS STS API operations such as [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) or [GetFederationToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetFederationToken.html)\. 
 
 CloudTrail supports using temporary credentials\. 
 
-### Service\-Linked Roles<a name="security_iam_service-with-iam-roles-service-linked"></a>
+### Service\-linked roles<a name="security_iam_service-with-iam-roles-service-linked"></a>
 
 [Service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role) allow AWS services to access resources in other services to complete an action on your behalf\. Service\-linked roles appear in your IAM account and are owned by the service\. An IAM administrator can view but not edit the permissions for service\-linked roles\.
 
-CloudTrail supports a service\-linked role for integration with AWS Organizations\. This role is required for the creation of an organization trail, a trail that logs events for all AWS accounts in an organization\. For details about creating or managing CloudTrail service\-linked roles, see [Using Service\-Linked Roles for AWS CloudTrail](using-service-linked-roles.md)\.
+CloudTrail supports a service\-linked role for integration with AWS Organizations\. This role is required for the creation of an organization trail, a trail that logs events for all AWS accounts in an organization\. For details about creating or managing CloudTrail service\-linked roles, see [Using service\-linked roles for AWS CloudTrail](using-service-linked-roles.md)\.
 
-### Service Roles<a name="security_iam_service-with-iam-roles-service"></a>
+### Service roles<a name="security_iam_service-with-iam-roles-service"></a>
 
 This feature allows a service to assume a [service role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-role) on your behalf\. This role allows the service to access resources in other services to complete an action on your behalf\. Service roles appear in your IAM account and are owned by the account\. This means that an IAM administrator can change the permissions for this role\. However, doing so might break the functionality of the service\.
 

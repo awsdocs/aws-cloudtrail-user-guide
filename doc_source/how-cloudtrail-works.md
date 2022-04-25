@@ -1,4 +1,4 @@
-# How CloudTrail Works<a name="how-cloudtrail-works"></a>
+# How CloudTrail works<a name="how-cloudtrail-works"></a>
 
 CloudTrail is enabled on your AWS account when you create it\. When activity occurs in your AWS account, that activity is recorded in a CloudTrail event\. You can easily view events in the CloudTrail console by going to **Event history**\. 
 
@@ -19,11 +19,11 @@ Beginning on April 12, 2019, trails will be viewable only in the AWS Regions whe
 
 If you have created an organization in AWS Organizations, you can also create a trail that will log all events for all AWS accounts in that organization\. This is referred to as an *organization trail*\. Organization trails can apply to all AWS Regions or one Region\. Organization trails must be created in the management account, and when specified as applying to an organization, are automatically applied to all member accounts in the organization\. Member accounts will be able to see the organization trail, but cannot modify or delete it\. By default, member accounts will not have access to the log files for the organization trail in the Amazon S3 bucket\.
 
-You can change the configuration of a trail after you create it, including whether it logs events in one region or all regions\. To change a single\-region trail to an all\-region trail, or vice\-versa, you must run the AWS CLI [update\-trail](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md) command\. You can also change whether it logs data or CloudTrail Insights events\. Changing whether a trail logs events in one region or in all regions affects which events are logged\. For more information, see [Managing trails with the AWS CLI](cloudtrail-additional-cli-commands.md) \(AWS CLI\), and [Working with CloudTrail Log Files](cloudtrail-working-with-log-files.md)\.
+You can change the configuration of a trail after you create it, including whether it logs events in one region or all regions\. To change a single\-region trail to an all\-region trail, or vice\-versa, you must run the AWS CLI [update\-trail](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md) command\. You can also change whether it logs data or CloudTrail Insights events\. Changing whether a trail logs events in one region or in all regions affects which events are logged\. For more information, see [Managing trails with the AWS CLI](cloudtrail-additional-cli-commands.md) \(AWS CLI\), and [Working with CloudTrail log files](cloudtrail-working-with-log-files.md)\.
 
 By default, CloudTrail event log files are encrypted using Amazon S3 server\-side encryption \(SSE\)\. You can also choose to encrypt your log files with an AWS Key Management Service \(AWS KMS\) key\. You can store your log files in your bucket for as long as you want\. You can also define Amazon S3 lifecycle rules to archive or delete log files automatically\. If you want notifications about log file delivery and validation, you can set up Amazon SNS notifications\.
 
-CloudTrail publishes log files multiple times an hour, about every five minutes\. These log files contain API calls from services in the account that support CloudTrail\. For more information, see [CloudTrail Supported Services and Integrations](cloudtrail-aws-service-specific-topics.md)\.
+CloudTrail publishes log files multiple times an hour, about every five minutes\. These log files contain API calls from services in the account that support CloudTrail\. For more information, see [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 **Note**  
 CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.  

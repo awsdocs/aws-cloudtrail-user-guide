@@ -1,4 +1,4 @@
-# CloudTrail Trail Naming Requirements<a name="cloudtrail-trail-naming-requirements"></a>
+# CloudTrail trail naming requirements<a name="cloudtrail-trail-naming-requirements"></a>
 
 CloudTrail trail names must meet the following requirements:
 + Contain only ASCII letters \(a\-z, A\-Z\), numbers \(0\-9\), periods \(\.\), underscores \(\_\), or dashes \(\-\)\.

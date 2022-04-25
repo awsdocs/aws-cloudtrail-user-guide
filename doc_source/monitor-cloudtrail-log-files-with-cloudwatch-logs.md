@@ -19,10 +19,10 @@ For more information about the regions in which you can configure your trails to
 The AWS GovCloud \(US\-West\) region requires a separate account\. For more information, see [AWS GovCloud \(US\-West\)](https://aws.amazon.com/govcloud-us/)\.
 
 **Topics**
-+ [Sending Events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)
-+ [Creating CloudWatch Alarms with an AWS CloudFormation Template](use-cloudformation-template-to-create-cloudwatch-alarms.md)
++ [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)
++ [Creating CloudWatch alarms with an AWS CloudFormation template](use-cloudformation-template-to-create-cloudwatch-alarms.md)
 + [Creating CloudWatch alarms for CloudTrail events: examples](cloudwatch-alarms-for-cloudtrail.md)
-+ [Configuring Notifications for CloudWatch Logs Alarms](cloudtrail-configure-notifications-for-cloudwatch-logs-alarms.md)
-+ [Stopping CloudTrail from Sending Events to CloudWatch Logs](stop-cloudtrail-from-sending-events-to-cloudwatch-logs.md)
-+ [CloudWatch Log Group and Log Stream Naming for CloudTrail](cloudwatch-log-group-log-stream-naming-for-cloudtrail.md)
-+ [Role Policy Document for CloudTrail to Use CloudWatch Logs for Monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)
++ [Configuring notifications for CloudWatch Logs alarms](cloudtrail-configure-notifications-for-cloudwatch-logs-alarms.md)
++ [Stopping CloudTrail from sending events to CloudWatch Logs](stop-cloudtrail-from-sending-events-to-cloudwatch-logs.md)
++ [CloudWatch log group and log stream naming for CloudTrail](cloudwatch-log-group-log-stream-naming-for-cloudtrail.md)
++ [Role policy document for CloudTrail to use CloudWatch Logs for monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)

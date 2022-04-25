@@ -1,6 +1,6 @@
-# AWS KMS Alias Naming Requirements<a name="KMS-key-naming-requirements"></a>
+# AWS KMS alias naming requirements<a name="KMS-key-naming-requirements"></a>
 
-When you create a customer master key \(CMK\), you can choose an alias to identify it\. For example, you might choose the alias "KMS\-CloudTrail\-us\-west\-2" to encrypt the logs for a specific trail\.
+When you create an AWS KMS key, you can choose an alias to identify it\. For example, you might choose the alias "KMS\-CloudTrail\-us\-west\-2" to encrypt the logs for a specific trail\.
 
 The alias must meet the following requirements:
 + Between 1 and 32 characters, inclusive

@@ -1,4 +1,4 @@
-# Enabling Log File Integrity Validation for CloudTrail<a name="cloudtrail-log-file-validation-enabling"></a>
+# Enabling log file integrity validation for CloudTrail<a name="cloudtrail-log-file-validation-enabling"></a>
 
 You can enable log file integrity validation by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), or CloudTrail API\. CloudTrail starts delivering digest files in about an hour\.
 
@@ -20,6 +20,6 @@ aws cloudtrail update-trail --name your-trail-name --enable-log-file-validation
 
 ## CloudTrail API<a name="cloudtrail-log-file-validation-enabling-api"></a>
 
- To enable log file integrity validation with the CloudTrail API, set the `EnableLogFileValidation` request parameter to `true` when calling `CreateTrail` or `UpdateTrail`\. 
+To enable log file integrity validation with the CloudTrail API, set the `EnableLogFileValidation` request parameter to `true` when calling `CreateTrail` or `UpdateTrail`\. 
 
- For more information, see [CreateTrail](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/api_CreateTrail.html) and [UpdateTrail](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_UpdateTrail.html) in the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
+For more information, see [CreateTrail](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/api_CreateTrail.html) and [UpdateTrail](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_UpdateTrail.html) in the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.

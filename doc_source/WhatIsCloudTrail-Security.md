@@ -9,10 +9,10 @@ Security is a shared responsibility between AWS and you\. The [shared responsibi
 This documentation helps you understand how to apply the shared responsibility model when using CloudTrail\. The following topics show you how to configure CloudTrail to meet your security and compliance objectives\. You also learn how to use other AWS services that help you to monitor and secure your CloudTrail resources\. 
 
 **Topics**
-+ [Data Protection in AWS CloudTrail](data-protection.md)
++ [Data protection in AWS CloudTrail](data-protection.md)
 + [Identity and Access Management for AWS CloudTrail](security-iam.md)
-+ [Compliance Validation for AWS CloudTrail](CloudTrail-compliance.md)
++ [Compliance validation for AWS CloudTrail](CloudTrail-compliance.md)
 + [Resilience in AWS CloudTrail](disaster-recovery-resiliency.md)
-+ [Infrastructure Security in AWS CloudTrail](infrastructure-security.md)
-+ [Security Best Practices in AWS CloudTrail](best-practices-security.md)
-+ [Encrypting CloudTrail Log Files with AWS KMS–Managed Keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)
++ [Infrastructure security in AWS CloudTrail](infrastructure-security.md)
++ [Security best practices in AWS CloudTrail](best-practices-security.md)
++ [Encrypting CloudTrail log files with AWS KMS–managed keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)

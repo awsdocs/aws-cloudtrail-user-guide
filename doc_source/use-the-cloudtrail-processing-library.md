@@ -44,7 +44,7 @@ To use the CloudTrail Processing Library, add it to your Java project's classpat
 
 #### Adding the library to an Apache Ant project<a name="use-the-cloudtrail-processing-library-add-to-project-apache-ant"></a>
 
-**To add the library to an Apache Ant project**
+**To add the CloudTrail Processing Library to an Apache Ant project**
 
 1. Download or clone the CloudTrail Processing Library source code from GitHub:
    + [https://github\.com/aws/aws\-cloudtrail\-processing\-library](https://github.com/aws/aws-cloudtrail-processing-library)
@@ -60,7 +60,7 @@ To use the CloudTrail Processing Library, add it to your Java project's classpat
    ```
    <classpath>
      <pathelement path="${classpath}"/>
-     <pathelement location="lib/aws-cloudtrail-processing-library-1.4.0.jar"/>
+     <pathelement location="lib/aws-cloudtrail-processing-library-1.5.0.jar"/>
    </classpath>
    ```
 
@@ -75,7 +75,7 @@ The CloudTrail Processing Library is available for [Apache Maven](http://maven.a
   <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-cloudtrail-processing-library</artifactId>
-      <version>1.4.0</version>
+      <version>1.5.0</version>
   </dependency>
   ```
 
@@ -92,13 +92,13 @@ The CloudTrail Processing Library is available for [Apache Maven](http://maven.a
    mvn clean install -Dgpg.skip=true
    ```
 
-1. Copy the built aws\-cloudtrail\-processing\-library\-1\.4\.0\.jar to a directory in your project \(typically `lib`\)\.
+1. Copy the built aws\-cloudtrail\-processing\-library\-1\.5\.0\.jar to a directory in your project \(typically `lib`\)\.
 
 1. Right\-click your project's name in the Eclipse **Project Explorer**, choose **Build Path**, and then choose **Configure**
 
 1. In the **Java Build Path** window, choose the **Libraries** tab\.
 
-1. Choose **Add JARs\.\.\.** and navigate to the path where you copied aws\-cloudtrail\-processing\-library\-1\.4\.0\.jar\.
+1. Choose **Add JARs\.\.\.** and navigate to the path where you copied aws\-cloudtrail\-processing\-library\-1\.5\.0\.jar\.
 
 1. Choose **OK** to complete adding the `.jar` to your project\.
 
@@ -119,7 +119,7 @@ The CloudTrail Processing Library is available for [Apache Maven](http://maven.a
 
 1. Choose **Modules** and then choose **Dependencies**\.
 
-1. Choose **\+ JARS or Directories** and then go to the path where you built the `aws-cloudtrail-processing-library-1.4.0.jar`\.
+1. Choose **\+ JARS or Directories** and then go to the path where you built the `aws-cloudtrail-processing-library-1.5.0.jar`\.
 
 1. Choose **Apply** and then choose **OK** to complete adding the `.jar` to your project\.
 
@@ -246,6 +246,7 @@ public class SampleApp {
 
 **Topics**
 + [Filtering the events to process](#use-the-cloudtrail-processing-library-advanced-filter-events)
++ [Processing data events](#use-the-cpl-advanced-integers-floats)
 + [Reporting progress](#use-the-cloudtrail-processing-library-advanced-report-progress)
 + [Handling errors](#use-the-cloudtrail-processing-library-advanced-handle-errors)
 
@@ -310,6 +311,40 @@ public class SampleEventFilter implements EventFilter{
 }
 ```
 If you don't provide your own `EventFilter`, then `DefaultEventFilter` is used, which allows all events to be processed \(it always returns `true`\)\.
+
+### Processing data events<a name="use-the-cpl-advanced-integers-floats"></a>
+
+When CloudTrail processes data events, it preserves numbers in their original format, whether that is an integer \(`int`\) or a `float` \(a number that contains a decimal\)\. In events that have integers in the fields of a data event, CloudTrail historically processed these numbers as floats\. Currently, CloudTrail processes numbers in these fields by keeping their original format\.
+
+As a best practice, to avoid breaking your automations, be flexible in any code or automation that you are using to process or filter CloudTrail data events, and allow both `int` and `float` formatted numbers\. For best results, use version 1\.4\.0 or higher of the CloudTrail Processing Library\.
+
+The following example snippet shows a `float` formatted number, `2.0`, for the `desiredCount` parameter in the `ResponseParameters` block of a data event\.
+
+```
+"eventName": "CreateService",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "000.00.00.00",
+    "userAgent": "console.amazonaws.com",
+    "requestParameters": {
+        "clientToken": "EXAMPLE",
+        "cluster": "default",
+        "desiredCount": 2.0
+...
+```
+
+The following example snippet shows an `int` formatted number, `2`, for the `desiredCount` parameter in the `ResponseParameters` block of a data event\.
+
+```
+"eventName": "CreateService",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "000.00.00.00",
+    "userAgent": "console.amazonaws.com",
+    "requestParameters": {
+        "clientToken": "EXAMPLE",
+        "cluster": "default",
+        "desiredCount": 2
+...
+```
 
 ### Reporting progress<a name="use-the-cloudtrail-processing-library-advanced-report-progress"></a>
 

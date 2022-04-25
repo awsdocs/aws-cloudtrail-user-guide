@@ -7,7 +7,7 @@ You can run the `create-trail` command to create trails that are specifically co
 To create a trail that applies to all Regions, use the `--is-multi-region-trail` option\. By default, the `create-trail` command creates a trail that logs events only in the AWS Region where the trail was created\. To ensure that you log global service events and capture all management event activity in your AWS account, you should create trails that log events in all AWS Regions\.
 
 **Note**  
-When you create a trail, if you specify an Amazon S3 bucket that was not created with CloudTrail, you need to attach the appropriate policy\. See [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
+When you create a trail, if you specify an Amazon S3 bucket that was not created with CloudTrail, you need to attach the appropriate policy\. See [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
 
 The following example creates a trail with the name *my\-trail* and a tag with a key named *Group* with a value of *Marketing* that delivers logs from all Regions to an existing bucket named `my-bucket`\.
 
@@ -70,13 +70,13 @@ To confirm that the trail is logging, the `IsLogging` element in the output show
 
 ## Creating a single\-region trail<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single"></a>
 
-The following command creates a single\-region trail\. The specified Amazon S3 bucket must already exist and have the appropriate CloudTrail permissions applied\. For more information, see [Amazon S3 Bucket Policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
+The following command creates a single\-region trail\. The specified Amazon S3 bucket must already exist and have the appropriate CloudTrail permissions applied\. For more information, see [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
 
 ```
 aws cloudtrail create-trail --name my-trail --s3-bucket-name my-bucket
 ```
 
-For more information, see [CloudTrail Trail Naming Requirements](cloudtrail-trail-naming-requirements.md)\.
+For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
 The following is example output\.
 
@@ -96,7 +96,7 @@ The following is example output\.
 
 To enable log file validation when using `create-trail`, use the `--enable-log-file-validation` option\.
 
-For information about log file validation, see [Validating CloudTrail Log File Integrity](cloudtrail-log-file-validation-intro.md)\.
+For information about log file validation, see [Validating CloudTrail log file integrity](cloudtrail-log-file-validation-intro.md)\.
 
 The following example creates a trail that delivers logs from all Regions to the specified bucket\. The command uses the `--enable-log-file-validation` option\. 
 

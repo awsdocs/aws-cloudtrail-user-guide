@@ -1,20 +1,20 @@
-# Assuming a Role<a name="cloudtrail-sharing-logs-assume-role"></a>
+# Assuming a role<a name="cloudtrail-sharing-logs-assume-role"></a>
 
 You must designate a separate IAM user to assume each role you've created in each account, and ensure that each IAM user has appropriate permissions\.
 
-## IAM Users and Roles<a name="cloudtrail-sharing-logs-assume-role-iam-user-permission"></a>
+## IAM users and roles<a name="cloudtrail-sharing-logs-assume-role-iam-user-permission"></a>
 
 After you have created the necessary roles and policies in Account A for scenarios 1 and 2, you must designate an IAM user in each of the accounts B, C, and Z\. Each IAM user will programmatically assume the appropriate role to access the log files\. That is, the user in account B will assume the role created for account B, the user in account C will assume the role created for account C, and the user in account Z will assume the role created for account Z\. When a user assumes a role, AWS returns temporary security credentials that can be used to make requests to list, retrieve, copy, or delete the log files depending on the permissions granted by the access policy associated with the role\. 
 
 For more information about working with IAM users, see [ Working with IAM Users and Groups ](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html)\. 
 
 The primary difference between scenarios 1 and 2 is in the access policy that you create for each IAM role in each scenario\.
-+ In scenario 1, the access policies for accounts B and C limit each account to reading only its own log files\. For more information, see [Creating an Access Policy to Grant Access to Accounts You Own](cloudtrail-sharing-logs-your-accounts.md)\.
-+ In scenario 2, the access policy for Account Z allows it to read all the log files that are aggregated in the Amazon S3 bucket\. For more information, see [Creating an Access Policy to Grant Access to a Third Party ](cloudtrail-sharing-logs-third-party.md)\.
++ In scenario 1, the access policies for accounts B and C limit each account to reading only its own log files\. For more information, see [Creating an access policy to grant access to accounts you own](cloudtrail-sharing-logs-your-accounts.md)\.
++ In scenario 2, the access policy for Account Z allows it to read all the log files that are aggregated in the Amazon S3 bucket\. For more information, see [Creating an access policy to grant access to a third party](cloudtrail-sharing-logs-third-party.md)\.
 
 ## Creating permissions policies for IAM users<a name="cloudtrail-sharing-logs-assume-role-create-policy"></a>
 
-To perform the actions permitted by the roles, the IAM user must have permission to call the AWS STS [ `AssumeRole` ](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API\. You must edit the *user\-based policy* for each IAM user to grant them the appropriate permissions\. That is, you set a **Resource** element in the policy that is attached to the IAM user\. The following example shows a policy for an IAM user in Account B that allows the user to assume a role named "Test" created earlier by Account A\. 
+To perform the actions permitted by the roles, the IAM user must have permission to call the AWS STS [https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API\. You must edit the *user\-based policy* for each IAM user to grant them the appropriate permissions\. That is, you set a **Resource** element in the policy that is attached to the IAM user\. The following example shows a policy for an IAM user in Account B that allows the user to assume a role named "Test" created earlier by Account A\. 
 
 **To attach the required policy to the IAM role**
 
@@ -78,10 +78,15 @@ def list_buckets_from_assumed_role(user_key, assume_role_arn, session_name):
     """
     sts_client = boto3.client(
         'sts', aws_access_key_id=user_key.id, aws_secret_access_key=user_key.secret)
-    response = sts_client.assume_role(
-        RoleArn=assume_role_arn, RoleSessionName=session_name)
-    temp_credentials = response['Credentials']
-    print(f"Assumed role {assume_role_arn} and got temporary credentials.")
+    try:
+        response = sts_client.assume_role(
+            RoleArn=assume_role_arn, RoleSessionName=session_name)
+        temp_credentials = response['Credentials']
+        print(f"Assumed role {assume_role_arn} and got temporary credentials.")
+    except ClientError as error:
+        print(f"Couldn't assume role {assume_role_arn}. Here's why: "
+              f"{error.response['Error']['Message']}")
+        raise
 
     # Create an S3 resource that can access the account with the temporary credentials.
     s3_resource = boto3.resource(
@@ -89,8 +94,12 @@ def list_buckets_from_assumed_role(user_key, assume_role_arn, session_name):
         aws_access_key_id=temp_credentials['AccessKeyId'],
         aws_secret_access_key=temp_credentials['SecretAccessKey'],
         aws_session_token=temp_credentials['SessionToken'])
-
     print(f"Listing buckets for the assumed role's account:")
-    for bucket in s3_resource.buckets.all():
-        print(bucket.name)
+    try:
+        for bucket in s3_resource.buckets.all():
+            print(bucket.name)
+    except ClientError as error:
+        print(f"Couldn't list buckets for the account. Here's why: "
+              f"{error.response['Error']['Message']}")
+        raise
 ```
