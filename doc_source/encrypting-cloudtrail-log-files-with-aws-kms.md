@@ -1,6 +1,6 @@
-# Encrypting CloudTrail log files with AWS KMS–managed keys \(SSE\-KMS\)<a name="encrypting-cloudtrail-log-files-with-aws-kms"></a>
+# Encrypting CloudTrail log files with AWS KMS keys \(SSE\-KMS\)<a name="encrypting-cloudtrail-log-files-with-aws-kms"></a>
 
-By default, the log files delivered by CloudTrail to your bucket are encrypted by Amazon [server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\. To provide a security layer that is directly manageable, you can instead use [server\-side encryption with AWS KMS–managed keys \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) for your CloudTrail log files\.
+By default, the log files delivered by CloudTrail to your bucket are encrypted by Amazon [server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\. To provide a security layer that is directly manageable, you can instead use [server\-side encryption with AWS KMS keys \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) for your CloudTrail log files\.
 
 **Note**  
 Enabling server\-side encryption encrypts the log files but not the digest files with SSE\-KMS\. Digest files are encrypted with [Amazon S3\-managed encryption keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\.  
@@ -41,7 +41,7 @@ Be sure to include decrypt permissions in the policy for all users who need to r
    + For information about attaching a policy to a KMS key with the AWS CLI, see [put\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/put-key-policy.html)\.
 
 1. Update your trail to use the KMS key whose policy you modified for CloudTrail\.
-   + To update your trail configuration by using the CloudTrail console, see [Updating a trail to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\.
+   + To update your trail configuration by using the CloudTrail console, see [Updating a resource to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\.
    + To update your trail configuration by using the AWS CLI, see [Enabling and disabling CloudTrail log file encryption with the AWS CLI](cloudtrail-log-file-encryption-cli.md)\.
 
 CloudTrail also supports AWS KMS multi\-Region keys\. For more information about multi\-Region keys, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in the *AWS Key Management Service Developer Guide*\.

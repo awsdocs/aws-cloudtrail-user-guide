@@ -42,7 +42,7 @@ For the time range specified, the `validate-logs` command checks only the log fi
 `--s3-bucket`  
 Optionally specifies the Amazon S3 bucket where the digest files are stored\. If a bucket name is not specified, the AWS CLI will retrieve it by calling `DescribeTrails()`\. 
 
-`--prefix`  
+`--s3-prefix`  
 Optionally specifies the Amazon S3 prefix where the digest files are stored\. If not specified, the AWS CLI will retrieve it by calling `DescribeTrails()`\.   
 You should use this option only if your current prefix is different from the prefix that was in use during the time range that you specify\.
 

@@ -20,7 +20,7 @@ You can store the CloudTrail log files and digest files in Amazon S3 or S3 Glaci
 
 ### Enabling validation and validating files<a name="cloudtrail-log-file-validation-intro-enabling-and-using"></a>
 
-To enable log file integrity validation, you can use the AWS Management Console, the AWS CLI, or CloudTrail API\. For more information, see [Enabling log file integrity validation for CloudTrail](cloudtrail-log-file-validation-enabling.md)\. 
+To enable log file integrity validation, you can use the AWS Management Console, the AWS CLI, or CloudTrail API\. Enabling log file integrity validation allows CloudTrail to deliver digest log files to your Amazon S3 bucket, but does not validate the integrity of the files\. For more information, see [Enabling log file integrity validation for CloudTrail](cloudtrail-log-file-validation-enabling.md)\. 
 
 To validate the integrity of CloudTrail log files, you can use the AWS CLI or create your own solution\. The AWS CLI will validate files in the location where CloudTrail delivered them\. If you want to validate logs that you have moved to a different location, either in Amazon S3 or elsewhere, you can create your own validation tools\. 
 

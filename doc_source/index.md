@@ -4,13 +4,13 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
@@ -42,9 +42,12 @@ Amazon's trademarks and trade dress may not be used in
          + [Using update-trail](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md)
          + [Managing trails with the AWS CLI](cloudtrail-additional-cli-commands.md)
    + [Creating a trail for an organization](creating-trail-organization.md)
+      + [Event history and organization trails](creating-an-organizational-trail-event-history.md)
+      + [Best practices for moving from member account trails to organization trails](creating-an-organizational-trail-best-practice.md)
       + [Prepare for creating a trail for your organization](creating-an-organizational-trail-prepare.md)
       + [Creating a trail for your organization in the console](creating-an-organizational-trail-in-the-console.md)
       + [Creating a trail for an organization with the AWS Command Line Interface](cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli.md)
+   + [Copying trail events to CloudTrail Lake](cloudtrail-copy-trail-to-lake.md)
    + [Getting and viewing your CloudTrail log files](get-and-view-cloudtrail-log-files.md)
       + [Finding your CloudTrail log files](cloudtrail-find-log-files.md)
       + [Downloading your CloudTrail log files](cloudtrail-read-log-files.md)
@@ -59,12 +62,24 @@ Amazon's trademarks and trade dress may not be used in
 + [Working with AWS CloudTrail Lake](cloudtrail-lake.md)
    + [Create an event data store](query-event-data-store.md)
    + [Manage event data store lifecycles](query-eds-disable-termination.md)
+   + [Copy trail events to an event data store](cloudtrail-copy-trail-to-lake-eds.md)
+      + [Event copy details](copy-trail-details.md)
    + [Create or edit a query](query-create-edit-query.md)
-   + [Run a query](query-run-query.md)
+   + [Run a query and save query results](query-run-query.md)
+      + [Additional information about saved query results](save-query-results.md)
    + [View query results](query-results.md)
+   + [Get and download saved query results](view-download-cloudtrail-lake-query-results.md)
+      + [Find your CloudTrail Lake saved query results](cloudtrail-find-lake-query-results.md)
+      + [Download your CloudTrail Lake saved query results](cloudtrail-download-lake-query-results.md)
+   + [Validate saved query results](cloudtrail-query-results-validation-intro.md)
+      + [Validate query results with the command line](cloudtrail-query-results-validation-cli.md)
+      + [CloudTrail sign file structure](cloudtrail-results-file-validation-sign-file-structure.md)
+      + [Custom implementations of CloudTrail query result file integrity validation](cloudtrail-results-file-custom-validation.md)
+   + [Viewing service-linked channels for CloudTrail by using the AWS CLI](viewing-service-linked-channels.md)
    + [Managing CloudTrail Lake by using the AWS CLI](query-lake-cli.md)
    + [CloudTrail Lake SQL constraints](query-limitations.md)
    + [Example queries](query-lake-examples.md)
+   + [Supported CloudWatch metrics](cloudtrail-lake-cloudwatch-metrics.md)
 + [Working with CloudTrail log files](cloudtrail-working-with-log-files.md)
    + [Create multiple trails](create-multiple-trails.md)
    + [Logging management events for trails](logging-management-events-with-cloudtrail.md)
@@ -94,28 +109,36 @@ Amazon's trademarks and trade dress may not be used in
       + [CloudTrail digest file structure](cloudtrail-log-file-validation-digest-file-structure.md)
       + [Custom implementations of CloudTrail log file integrity validation](cloudtrail-log-file-custom-validation.md)
    + [Using the CloudTrail Processing Library](use-the-cloudtrail-processing-library.md)
++ [Settings](cloudtrail-settings.md)
+   + [Organization delegated administrator](cloudtrail-delegated-administrator.md)
+      + [Required permissions to assign a delegated administrator](cloudtrail-delegated-administrator-permissions.md)
+      + [Add a CloudTrail delegated administrator](cloudtrail-add-delegated-administrator.md)
+      + [Remove a CloudTrail delegated administrator](cloudtrail-remove-delegated-administrator.md)
 + [Security in AWS CloudTrail](WhatIsCloudTrail-Security.md)
    + [Data protection in AWS CloudTrail](data-protection.md)
    + [Identity and Access Management for AWS CloudTrail](security-iam.md)
       + [How AWS CloudTrail works with IAM](security_iam_service-with-iam.md)
       + [AWS CloudTrail identity-based policy examples](security_iam_id-based-policy-examples.md)
       + [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
+      + [Amazon S3 bucket policy for CloudTrail Lake query results](s3-bucket-policy-lake-query-results.md)
       + [Amazon SNS topic policy for CloudTrail](cloudtrail-permissions-for-sns-notifications.md)
       + [Troubleshooting AWS CloudTrail identity and access](security_iam_troubleshoot.md)
       + [Using service-linked roles for AWS CloudTrail](using-service-linked-roles.md)
+      + [AWS managed policies for AWS CloudTrail](security-iam-awsmanpol.md)
    + [Compliance validation for AWS CloudTrail](CloudTrail-compliance.md)
    + [Resilience in AWS CloudTrail](disaster-recovery-resiliency.md)
    + [Infrastructure security in AWS CloudTrail](infrastructure-security.md)
    + [Security best practices in AWS CloudTrail](best-practices-security.md)
-   + [Encrypting CloudTrail log files with AWS KMS–managed keys (SSE-KMS)](encrypting-cloudtrail-log-files-with-aws-kms.md)
+   + [Encrypting CloudTrail log files with AWS KMS keys (SSE-KMS)](encrypting-cloudtrail-log-files-with-aws-kms.md)
       + [Granting permissions to create a KMS key](granting-kms-permissions.md)
       + [Configure AWS KMS key policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)
          + [Default KMS key policy created in CloudTrail console](default-kms-key-policy.md)
-      + [Updating a trail to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)
+      + [Updating a resource to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)
       + [Enabling and disabling CloudTrail log file encryption with the AWS CLI](cloudtrail-log-file-encryption-cli.md)
 + [CloudTrail log event reference](cloudtrail-event-reference.md)
    + [CloudTrail record contents](cloudtrail-event-reference-record-contents.md)
       + [Example sharedEventID](shared-event-ID.md)
+      + [Services that support TLS details in CloudTrail](cloudtrail-supported-tls-details.md)
    + [CloudTrail userIdentity element](cloudtrail-event-reference-user-identity.md)
    + [CloudTrail Insights insightDetails element](cloudtrail-event-reference-insight-details.md)
    + [Non-API events captured by CloudTrail](cloudtrail-non-api-events.md)

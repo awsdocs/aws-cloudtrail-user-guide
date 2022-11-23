@@ -1,6 +1,6 @@
 # Create an event data store<a name="query-event-data-store"></a>
 
-To get started with CloudTrail Lake, create an event data store\. An event data store can include events that you have logged on your account from the last 7 to 2555 days \(a week to up to seven years\)\. By default, event data is retained for 2555 days, and termination protection is enabled for an event data store\.
+To get started with CloudTrail Lake, create an event data store\. You can keep the event data in an event data store for up to seven years, or 2557 days\. By default, event data is retained for 2557 days, and termination protection is enabled for an event data store\.
 
 1. Choose **Lake** in the left navigation pane of the CloudTrail console\.
 
@@ -10,15 +10,25 @@ To get started with CloudTrail Lake, create an event data store\. An event data 
 
 1. On the **Configure event data store** page, in **General details**, enter a name for the event data store\. A name is required\.
 
-1. Specify a retention period for the event data store in days\. Valid values are integers from 7 to 2555 \(seven years\)\. The event data store retains the specified number of days worth of events that are logged by CloudTrail\. For example, if you specify a retention period of 100 days, a query run on this data store queries events that have been logged within the last 100 days before you ran the query\.
+1. Specify a retention period for the event data store in days\. Valid values are integers from 7 to 2557 \(seven years\)\. The event data store retains event data for the specified number of days\.
 
-1. CloudTrail stores the event data store resource in the region in which you create it, but by default, the events collected in the data store are from all regions in your account\. Optionally, you can select **Include only the current region in my event data store** to include only events that are logged in the current region\. If you do not choose this option, your event data store includes events from all regions\. Choose **Next**\.
+1. \(Optional\) To enable AWS Key Management Service encryption, choose **Use my own AWS KMS key**\. Choose **New** to have an AWS KMS key created for you, or choose **Existing** to use an existing KMS key\. In **Enter KMS alias**, specify an alias, in the format `alias/`*MyAliasName*\. Using your own KMS key requires that you edit your KMS key policy to allow CloudTrail logs to be encrypted and decrypted\. For more information, see [Configure AWS KMS key policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\. CloudTrail also supports AWS KMS multi\-Region keys\. For more information about multi\-Region keys, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in the *AWS Key Management Service Developer Guide*\.
 
-1. To have your event data store collect events from all accounts in an AWS Organizations organization, select **Enable for all accounts in my organization**\. You must be signed in to the management account for the organization to create an event data store that collects events for an organization\.
+   Using your own KMS key incurs AWS KMS costs for encryption and decryption\. After you associate an event data store with a KMS key, the KMS key cannot be removed or changed\.
+**Note**  
+To enable AWS Key Management Service encryption for an organization event data store, you must use an existing KMS key for the management account\.
 
 1. \(Optional\) In the **Tags** area, you can add up to 50 tag key and value pairs to help you identify, sort, and control access to your event data store\. For more information about how to use IAM policies to authorize access to an event data store based on tags, see [Examples: Denying access to create or delete event data stores based on tags](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-eds-tags)\. For more information about how you can use tags in AWS, see [Tagging AWS resources](https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the *AWS General Reference*\.
 
+1.  Choose **Next** to configure the event data store\. 
+
 1. On the **Choose events** page, choose at least one event type\. By default, **Management events** is selected\. You can add both management and data events to your event data store\. For more information about management events, see [Logging management events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)\. For more information about data events, see [Logging data events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\.
+
+1. \(Optional\) Choose **Copy trail events** if you want to copy events from an existing trail to run queries on past events\. To copy trail events to an organization event data store, you must use the management account for the organization\. The delegated administrator account cannot copy trail events to an organization event data store\. For more information about considerations for copying trail events, see [Considerations](cloudtrail-copy-trail-to-lake-eds.md#cloudtrail-trail-copy-considerations-lake)\.
+
+1. CloudTrail stores the event data store resource in the region in which you create it, but by default, the events collected in the data store are from all regions in your account\. Optionally, you can select **Include only the current region in my event data store** to include only events that are logged in the current region\. If you do not choose this option, your event data store includes events from all regions\.
+
+1. To have your event data store collect events from all accounts in an AWS Organizations organization, select **Enable for all accounts in my organization**\. You must be signed in to the management account or delegated administrator account for the organization to create an event data store that collects events for an organization\.
 
 1. If your event data store includes management events, choose **Read**, **Write**, or both\. At least one is required\. For more information about **Read** and **Write** management events, see [Logging management events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)\.
 
@@ -39,10 +49,25 @@ To get started with CloudTrail Lake, create an event data store\. An event data 
 **Important**  
 To exclude or include data events with advanced event selectors by using an S3 bucket ARN, always use the **Starts with** operator\.
 
-   1. Optionally, expand **JSON view** to see your advanced event selectors as a JSON block\. Choose **Next**\.
+   1. Optionally, expand **JSON view** to see your advanced event selectors as a JSON block\.
+
+1. To copy existing trail events to your event data store, do the following\.
+
+   1. Choose the trail that you want to copy\. By default, CloudTrail only copies CloudTrail events contained in the S3 bucket's `CloudTrail` prefix and the prefixes inside the `CloudTrail` prefix, and does not check prefixes for other AWS services\. If you want to copy CloudTrail events contained in another prefix, choose **Enter S3 URI**, and then choose **Browse S3** to browse to the prefix\. If the source S3 bucket for the trail uses a KMS key for data encryption, ensure that the KMS key policy allows CloudTrail to decrypt the data\. If your source S3 bucket uses multiple KMS keys, you must update each key's policy to allow CloudTrail to decrypt the data in the bucket\. For more information about updating the KMS key policy, see [KMS key policy for decrypting data in the source S3 bucket](cloudtrail-copy-trail-to-lake-eds.md#copy-trail-events-permissions-kms)\.
+
+   1. \(Optional\) Choose a time range for copying the events\. If you choose a time range, CloudTrail checks the prefix and log file name to verify the name contains a date between the chosen start and end date before attempting to copy trail events\. You can choose a **Relative range** or an **Absolute range**\. To avoid duplicating events between the source trail and destination event data store, choose a time range that is earlier than the creation of the event data store\.
+      + If you choose **Relative range**, you can choose to copy events logged in the last 5 minutes, 30 minutes, 1 hour, 6 hours, or a custom range\. CloudTrail copies the events logged within the chosen time period\.
+      + If you choose **Absolute range**, you can choose a specific start and end date\. CloudTrail copies the events that occurred between the chosen start and end dates\.
+
+   1. For **Permissions**, choose from the following IAM role options\. If you choose an existing IAM role, verify that the IAM role policy provides the necessary permissions\. For more information about updating the IAM role permissions, see [IAM permissions for copying trail events](cloudtrail-copy-trail-to-lake-eds.md#copy-trail-events-permissions-iam)\.
+      + Choose **Create a new role \(recommended\)** to create a new IAM role\. For **Enter IAM role name**, enter a name for the role\. CloudTrail automatically creates the necessary permissions for this new role\.
+      + Choose **Use a custom IAM role** to use a custom IAM role that is not listed\. For **Enter IAM role ARN**, enter the IAM ARN\.
+      + Choose **Use an existing role** to choose an existing IAM role from the drop\-down list\.
+
+1. Choose **Next** to review your choices\.
 
 1. On the **Review and create** page, review your choices\. Choose **Edit** to make changes to a section\. When you're ready to create the event data store, choose **Create event data store**\.
 
 1. The new event data store is visible in the **Event data stores** table on the **Lake** page\.
 
-   From this point forward, the event data store captures events that match its advanced event selectors\. Events that occurred before you created the event data store are not in the event data store\.
+   From this point forward, the event data store captures events that match its advanced event selectors\. Events that occurred before you created the event data store are not in the event data store unless you chose to copy existing trail events\.

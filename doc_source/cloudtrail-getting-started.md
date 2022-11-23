@@ -11,6 +11,7 @@ If you have created an organization in AWS Organizations, you can create a trail
 + [Viewing CloudTrail Insights events](view-insights-events.md)
 + [Creating a trail for your AWS account](cloudtrail-create-and-update-a-trail.md)
 + [Creating a trail for an organization](creating-trail-organization.md)
++ [Copying trail events to CloudTrail Lake](cloudtrail-copy-trail-to-lake.md)
 + [Getting and viewing your CloudTrail log files](get-and-view-cloudtrail-log-files.md)
 + [Configuring Amazon SNS notifications for CloudTrail](configure-sns-notifications-for-cloudtrail.md)
 + [Controlling user permissions for CloudTrail](control-user-permissions-for-cloudtrail.md)

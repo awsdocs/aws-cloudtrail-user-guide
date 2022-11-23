@@ -1,24 +1,24 @@
 # Creating a trail for your organization in the console<a name="creating-an-organizational-trail-in-the-console"></a>
 
-To create an organization trail in the CloudTrail console, you must sign in to the console using an IAM user or role in the management account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. If you are not signed in with the management account, you will not see the option to apply a trail to an organization when you create or edit a trail in the CloudTrail console\.
+To create an organization trail in the CloudTrail console, you must sign in to the console using an IAM user or role in the management account or delegated administrator account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. If you are not signed in with the management account or delegated administrator account, you will not see the option to apply a trail to an organization when you create or edit a trail in the CloudTrail console\.
 
 You can choose to configure an organization trail in various ways\. For example, you can: 
 + By default, when you create a trail in the console, the trail logs all regions\. Logging all regions in your account is a recommended best practice\. To create a single\-region trail, [use the AWS CLI](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single)\. For more information, see [How CloudTrail works](how-cloudtrail-works.md)\.
 + Specify whether to apply the trail to your organization\. The default is not to do so; you must choose this option to create an organization trail\.
-+ Specify which Amazon S3 bucket to use to receive log files for the organization trail\. You can choose an existing Amazon S3 bucket in the management account, or create one specifically for the organization trail\. 
++ Specify which Amazon S3 bucket to use to receive log files for the organization trail\. You can choose an existing Amazon S3 bucket, or create one specifically for the organization trail\. 
 + For management and data events, specify if you want to log **Read** events, **Write** events, or both\. [CloudTrail Insights](logging-insights-events-with-cloudtrail.md) events are logged only on management events, and you must be logging **Write** management events\. You can specify logging data events for resources in the management account by choosing them from the lists in the console, and in member accounts if you specify the ARNs of each resource for which you want to enable data event logging\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 
 **To create an organization trail with the AWS Management Console**
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-   You must be signed in as a user, role, or root account in the management account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions) to create an organization trail\.
+   You must be signed in as a user, role, or root account in the management account or delegated administrator account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions) to create an organization trail\.
 
 1. Choose **Trails**, and then choose **Create trail**\.
 
 1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
-1. Select **Enable for all accounts in my organization**\. You only see this option if you are signed in to the console with an IAM user or role in the management account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\.
+1. Select **Enable for all accounts in my organization**\. You only see this option if you are signed in to the console with an IAM user or role in the management account or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\.
 
 1. For **Storage location**, choose **Create new S3 bucket** to create a bucket\. When you create a bucket, CloudTrail creates and applies the required bucket policies\.
 **Note**  
@@ -28,9 +28,9 @@ If you chose **Use existing S3 bucket**, specify a bucket in **Trail log bucket 
 
 1. For **Log file SSE\-KMS encryption**, choose **Enabled** if you want to encrypt your log files with SSE\-KMS instead of SSE\-S3\. The default is **Enabled**\. For more information about this encryption type, see [Protecting Data Using Server\-Side Encryption with Amazon S3\-Managed Encryption Keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\.
 
-   If you enable SSE\-KMS encryption, choose a **New** or **Existing** AWS KMS key\. In **AWS KMS Alias**, specify an alias, in the format `alias/`*MyAliasName*\. For more information, see [Updating a trail to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\.
+   If you enable SSE\-KMS encryption, choose a **New** or **Existing** AWS KMS key\. In **AWS KMS Alias**, specify an alias, in the format `alias/`*MyAliasName*\. For more information, see [Updating a resource to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\.
 **Note**  
-You can also type the ARN of a key from another account\. For more information, see [Updating a trail to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [Configure AWS KMS key policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
+You can also type the ARN of a key from another account\. For more information, see [Updating a resource to use your KMS key](create-kms-key-policy-for-cloudtrail-update-trail.md)\. The key policy must allow CloudTrail to use the key to encrypt your log files, and allow the users you specify to read log files in unencrypted form\. For information about manually editing the key policy, see [Configure AWS KMS key policies for CloudTrail](create-kms-key-policy-for-cloudtrail.md)\.
 
 1. In **Additional settings**, configure the following\.
 
@@ -53,6 +53,8 @@ You can also type the ARN of a key from another account\. For more information, 
    1. Choose **New** to create a new IAM role for permissions to send logs to CloudWatch Logs\. Choose **Existing** to choose an existing IAM role from the drop\-down list\. The policy statement for the new or existing role is displayed when you expand **Policy document**\. For more information about this role, see [Role policy document for CloudTrail to use CloudWatch Logs for monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)\.
 **Note**  
 When you configure a trail, you can choose an S3 bucket and SNS topic that belong to another account\. However, if you want CloudTrail to deliver events to a CloudWatch Logs log group, you must choose a log group that exists in your current account\.
+ The delegated administrator account cannot currently configure a CloudWatch Logs log group using the console, because the console operation is not supported\. The delegated administrator account must use the AWS CLI or CloudTrail APIs to create an organization trail with a CloudWatch Logs log group\. 
+ If you have an existing organization trail with a CloudWatch Logs log group owned by the management account, the delegated administrator account can view the CloudWatch Logs log group in the console, but the delegated administrator account cannot update the CloudWatch Logs log group because it is owned by the management account\. 
 
 1. For **Tags**, add one or more custom tags \(key\-value pairs\) to your trail\. Tags can help you identify both your CloudTrail trails and the Amazon S3 buckets that contain CloudTrail log files\. You can then use resource groups for your CloudTrail resources\. For more information, see [AWS Resource Groups](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html) and [Why use tags for trails?](cloudtrail-concepts.md#cloudtrail-concepts-tags)\.
 

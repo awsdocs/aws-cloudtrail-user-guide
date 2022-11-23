@@ -1,6 +1,6 @@
 # Logging management events for trails<a name="logging-management-events-with-cloudtrail"></a>
 
-By default, trails log all management events and don't include data or Insights events\. Additional charges apply for data or Insights events\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
+By default, trails log management events and don't include data or Insights events\. Additional charges apply for data or Insights events\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
 **Contents**
 + [Management events](#logging-management-events)

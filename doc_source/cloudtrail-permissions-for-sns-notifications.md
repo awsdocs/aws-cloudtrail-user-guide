@@ -54,7 +54,7 @@ To use an AWS KMS\-encrypted Amazon SNS topic to send notifications, you must al
 }
 ```
 
-For more information, see [Enable Compatibility between Event Sources from AWS Services and Encrypted Topics](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sns-what-permissions-for-sse)\.
+For more information, see [Enable Compatibility between Event Sources from AWS Services and Encrypted Topics](https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html#compatibility-with-aws-services)\.
 
 **Contents**
 + [Security best practice for SNS topic policy](#cloudtrail-sns-notifications-policy-security)

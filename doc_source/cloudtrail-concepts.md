@@ -63,6 +63,7 @@ Data events provide information about the resource operations performed on or in
 + Amazon S3 API activity on access points
 + Amazon DynamoDB API activity on streams
 + AWS Glue API activity on tables
++ Amazon FinSpace API activity on environments
 
 Data events are not logged by default when you create a trail\. To record CloudTrail data events, you must explicitly add to a trail the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 
@@ -91,7 +92,7 @@ A trail is a configuration that enables delivery of CloudTrail events to an Amaz
 
 ## What are organization trails?<a name="cloudtrail-concepts-trails-org"></a>
 
-An organization trail is a configuration that enables delivery of CloudTrail events in the management account and all member accounts in an AWS Organizations organization to the same Amazon S3 bucket, CloudWatch Logs, and CloudWatch Events\. Creating an organization trail helps you define a uniform event logging strategy for your organization\. 
+An organization trail is a configuration that enables delivery of CloudTrail events in the management account, delegated administrator account, and all member accounts in an AWS Organizations organization to the same Amazon S3 bucket, CloudWatch Logs, and CloudWatch Events\. Creating an organization trail helps you define a uniform event logging strategy for your organization\. 
 
 When you create an organization trail, a trail with the name that you give it will be created in every AWS account that belongs to your organization\. Users with CloudTrail permissions in member accounts will be able to see this trail \(including the trail ARN\) when they log into the AWS CloudTrail console from their AWS accounts, or when they run AWS CLI commands such as `describe-trails` \(although member accounts must use the ARN for the organization trail, and not the name, when using the AWS CLI\)\. However, users in member accounts will not have sufficient permissions to delete the organization trail, turn logging on or off, change what types of events are logged, or otherwise alter the organization trail in any way\. For more information about AWS Organizations, see [Organizations Terminology and Concepts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html)\. For more information about creating and working with organization trails, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
@@ -137,7 +138,7 @@ AWS Identity and Access Management is a web service that enables Amazon Web Serv
 
 ## How do you log management and data events?<a name="understanding-event-selectors"></a>
 
-By default, trails log all management events for your AWS account and don't include data events\. You can choose to create or update trails to log data events\. Only events that match your trail settings are delivered to your Amazon S3 bucket, and optionally to an Amazon CloudWatch Logs log group\. If the event doesn't match the settings for a trail, the trail doesn't log the event\. For more information, see [Working with CloudTrail log files](cloudtrail-working-with-log-files.md)\. 
+By default, trails log management events for your AWS account and don't include data events\. You can choose to create or update trails to log data events\. Only events that match your trail settings are delivered to your Amazon S3 bucket, and optionally to an Amazon CloudWatch Logs log group\. If the event doesn't match the settings for a trail, the trail doesn't log the event\. For more information, see [Working with CloudTrail log files](cloudtrail-working-with-log-files.md)\. 
 
 ## How do you log CloudTrail Insights events?<a name="understanding-insight-selectors"></a>
 

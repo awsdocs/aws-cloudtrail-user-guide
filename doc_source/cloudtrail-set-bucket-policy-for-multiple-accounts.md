@@ -9,11 +9,9 @@ For security reasons, unauthorized users cannot create a trail that includes `AW
 
 1.  Sign in to the AWS Management Console using the account that owns the bucket \(111111111111 in this example\) and open the Amazon S3 console\. 
 
-1. Choose the bucket where CloudTrail delivers your log files and then choose **Properties**\. 
+1. Choose the bucket where CloudTrail delivers your log files and then choose **Permissions**\. 
 
-1. Choose **Permissions**\.
-
-1. Choose **Edit Bucket Policy**\.
+1. For **Bucket policy**, choose **Edit**\.
 
 1. Modify the existing policy to add a line for each additional account whose log files you want delivered to this bucket\. See the following example policy and note the underlined `Resource` line specifying a second account ID\. As a security best practice, add an `aws:SourceArn` condition key to the Amazon S3 bucket policy\. This helps prevent unauthorized access to your S3 bucket\. If you have existing trails, be sure to add one or more condition keys\.
 **Note**  

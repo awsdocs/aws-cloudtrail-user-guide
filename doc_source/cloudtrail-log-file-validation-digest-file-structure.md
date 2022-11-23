@@ -16,7 +16,7 @@ s3://s3-bucket-name/optional-prefix/AWSLogs/aws-account-id/CloudTrail-Digest/
 For organization trails, the bucket location also includes the organization unit ID, as follows:  
 
 ```
-s3://s3-bucket-name/optional-prefix/AWSLogs/OU-ID/aws-account-id/CloudTrail-Digest/
+s3://s3-bucket-name/optional-prefix/AWSLogs/O-ID/aws-account-id/CloudTrail-Digest/
     region/digest-end-year/digest-end-month/digest-end-date/
     aws-account-id_CloudTrail-Digest_region_trail-name_region_digest_end_timestamp.json.gz
 ```

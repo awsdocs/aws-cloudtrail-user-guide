@@ -17,7 +17,7 @@ The following are example AWS CLI commands for creating and managing event data 
 
 ## Create an event data store<a name="lake-cli-create-eds"></a>
 
-The following example AWS CLI command creates an event data store named `my-event-data-store` that selects all Amazon S3 data events\. The event data store retention period in this example is 90 days\.`--name` is required; other parameters are optional\. Valid values for `--retention-period` are integers between 7 and 2555, representing days\. If you do not specify `--retention-period`, CloudTrail uses the default retention period of 2555 days\. By default, `--multi-region-enabled` is set, even if the parameter is not added, and the event data store includes events from all regions\. The event data store is not enabled for all accounts in an AWS Organizations organization by default; to enable an event data store to collect events for all accounts in an organization, add the `--organization-enabled` parameter\. `--termination-protection-enabled` \(the default\) and `--no-termination-protection-enabled` set and remove termination protection, respectively\. `--advanced-event-selectors` includes or excludes data events in your event data store; for more information about `--advanced-event-selectors`, see [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#awscloudtrail-PutEventSelectors-request-AdvancedEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#awscloudtrail-PutEventSelectors-request-AdvancedEventSelectors) in the CloudTrail API Reference\.
+The following example AWS CLI command creates an event data store named `my-event-data-store` that selects all Amazon S3 data events\. The event data store retention period in this example is 90 days\.`--name` is required; other parameters are optional\. Valid values for `--retention-period` are integers between 7 and 2557, representing days\. If you do not specify `--retention-period`, CloudTrail uses the default retention period of 2557 days\. By default, `--multi-region-enabled` is set, even if the parameter is not added, and the event data store includes events from all regions\. The event data store is not enabled for all accounts in an AWS Organizations organization by default; to enable an event data store to collect events for all accounts in an organization, add the `--organization-enabled` parameter\. `--termination-protection-enabled` \(the default\) and `--no-termination-protection-enabled` set and remove termination protection, respectively\. Optionally, you can choose to enable AWS Key Management Service encryption and specify an AWS KMS key by adding `--kms-key-id` to the command, and specifying a KMS key ARN as the value\. `--advanced-event-selectors` includes or excludes data events in your event data store; for more information about `--advanced-event-selectors`, see [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#awscloudtrail-PutEventSelectors-request-AdvancedEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#awscloudtrail-PutEventSelectors-request-AdvancedEventSelectors) in the CloudTrail API Reference\.
 
 When you use advanced event selectors to select for data events on S3 objects, always use the `StartsWith` operator\.
 
@@ -25,6 +25,7 @@ When you use advanced event selectors to select for data events on S3 objects, a
 aws cloudtrail create-event-data-store
 --name my-event-data-store
 --retention-period 90
+--kms-key-id "arn:aws:kms:us-east-1:0123456789:alias/KMS_key_alias" \
 --advanced-event-selectors '[
         {
             "Name": "Select all S3 data events",
@@ -72,6 +73,7 @@ The following is an example response\.
     "MultiRegionEnabled": true,
     "OrganizationEnabled": false,
     "RetentionPeriod": 90,
+    "KmsKeyId": "arn:aws:kms:us-east-1:0123456789:alias/KMS_key_alias",
     "TerminationProtectionEnabled": true,
     "CreatedTimestamp": "2021-12-09T22:19:39.417000-05:00",
     "UpdatedTimestamp": "2021-12-09T22:19:39.603000-05:00"
@@ -135,12 +137,13 @@ The following is an example response\.
 
 ## Update an event data store<a name="lake-cli-update-eds"></a>
 
-The following example updates an event data store to change its retention period to 100 days, and enable termination protection\. The required `--event-data-store` parameter value is an ARN \(or the ID suffix of the ARN\) and is required; other parameters are optional\. In this example, the `--retention-period` parameter is added to change the retention period to 100 days\. `--termination-protection-enabled` is added to enable termination protection on an event data store that did not have termination protection enabled\.
+The following example updates an event data store to change its retention period to 100 days, and enable termination protection\. The required `--event-data-store` parameter value is an ARN \(or the ID suffix of the ARN\) and is required; other parameters are optional\. In this example, the `--retention-period` parameter is added to change the retention period to 100 days\. Optionally, you can choose to enable AWS Key Management Service encryption and specify an AWS KMS key by adding `--kms-key-id` to the command, and specifying a KMS key ARN as the value\. `--termination-protection-enabled` is added to enable termination protection on an event data store that did not have termination protection enabled\.
 
 ```
 aws cloudtrail update-event-data-store
 --event-data-store arn:aws:cloudtrail:us-east-1:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE
 --retention-period 100
+--kms-key-id "arn:aws:kms:us-east-1:0123456789:alias/KMS_key_alias" \
 --termination-protection-enabled
 ```
 
@@ -179,6 +182,7 @@ The following is an example response\.
     "MultiRegionEnabled": true,
     "OrganizationEnabled": false,
     "RetentionPeriod": 100,
+    "KmsKeyId": "arn:aws:kms:us-east-1:0123456789:alias/KMS_key_alias",
     "TerminationProtectionEnabled": true,
     "CreatedTimestamp": "2021-12-09T22:19:39.417000-05:00",
     "UpdatedTimestamp": "2021-12-09T22:19:39.603000-05:00"
@@ -211,11 +215,12 @@ The response includes information about the event data store, including its ARN,
 
 ## Start a query<a name="lake-cli-start-query"></a>
 
-The following example runs a query on the event data store specified as an ID in the query statement\. The required `--query-statement` parameter provides a SQL query, enclosed in single quotation marks\.
+The following example runs a query on the event data store specified as an ID in the query statement and delivers the query results to a specified S3 bucket\. The required `--query-statement` parameter provides a SQL query, enclosed in single quotation marks\. Optional parameters include `--delivery-s3uri`, to deliver the query results to a specified S3 bucket\.
 
 ```
 aws cloudtrail start-query
 --query-statement 'SELECT eventID, eventTime FROM EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE LIMIT 10'
+--delivery-s3uri "s3://aws-cloudtrail-lake-query-results-12345678910-us-east-1"
 ```
 
 The response is a `QueryId` string\. To get the status of a query, run describe\-query using the `QueryId` value returned by start\-query\. If the query is successful, you can run get\-query\-results to get results\.
@@ -229,7 +234,8 @@ The response is a `QueryId` string\. To get the status of a query, run describe\
 ```
 
 **Note**  
-Queries that run for longer than one hour might time out\. You can still get partial results that were processed before the query timed out\.
+Queries that run for longer than one hour might time out\. You can still get partial results that were processed before the query timed out\.  
+If you are delivering the query results to an S3 bucket using the optional `--delivery-s3uri` parameter, the bucket policy must grant CloudTrail permission to delivery query results to the bucket\. For information about manually editing the bucket policy, see [Amazon S3 bucket policy for CloudTrail Lake query results](s3-bucket-policy-lake-query-results.md)\.
 
 ## Get metadata about a query<a name="lake-cli-describe-query"></a>
 

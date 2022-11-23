@@ -3,7 +3,7 @@
 You can create an organization trail by using the AWS CLI\. The AWS CLI is regularly updated with additional functionality and commands\. To help ensure success, be sure that you have installed or updated to a recent AWS CLI version before you begin\.
 
 **Note**  
-The examples in this section are specific to creating and updating organization trails\. For examples of using the AWS CLI to manage trails, see [Managing trails with the AWS CLI](cloudtrail-additional-cli-commands.md)\. When creating or updating an organization trail with the AWS CLI, you must use an AWS CLI profile in the management account with sufficient permissions\.  
+The examples in this section are specific to creating and updating organization trails\. For examples of using the AWS CLI to manage trails, see [Managing trails with the AWS CLI](cloudtrail-additional-cli-commands.md)\. When creating or updating an organization trail with the AWS CLI, you must use an AWS CLI profile in the management account or delegated administrator account with sufficient permissions\.  
 You must configure the Amazon S3 bucket used for an organization trail with sufficient permissions\. 
 
 ## Create or update an Amazon S3 bucket to use to store the log files for an organization trail<a name="org-trail-bucket-policy"></a>
@@ -12,7 +12,7 @@ You must specify an Amazon S3 bucket to receive the log files for an organizatio
 
 The following is an example policy for an Amazon S3 bucket named *myOrganizationBucket*\. This bucket is in an AWS account with the ID *111111111111*, which is the management account for an organization with the ID *o\-exampleorgid* that allows logging for an organization trail\. It also allows logging for the *111111111111* account in the event that the trail is changed from an organization trail to a trail for that account only\. Replace *myOrganizationBucket*, *111111111111*, *region*, and *trailName* with the appropriate values for your configuration\.
 
-The example policy includes an `aws:SourceArn` condition key to the Amazon S3 bucket policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail writes to the S3 bucket only for a specific trail or trails\. In an organization trail, the value of `aws:SourceArn` must be a trail ARN that is owned by the management account and uses the management account ID\.
+The example policy includes an `aws:SourceArn` condition key for the Amazon S3 bucket policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail writes to the S3 bucket only for a specific trail or trails\. In an organization trail, the value of `aws:SourceArn` must be a trail ARN that is owned by the management account, and uses the management account ID\.
 
 ```
 {
@@ -27,7 +27,12 @@ The example policy includes an `aws:SourceArn` condition key to the Amazon S3 bu
                 ]
             },
             "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::myOrganizationBucket"
+            "Resource": "arn:aws:s3:::myOrganizationBucket",
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceArn": "arn:aws:cloudtrail:region:111111111111:trail/trailName"
+                }
+            }
         },
         {
             "Sid": "AWSCloudTrailWrite20150319",
@@ -47,7 +52,7 @@ The example policy includes an `aws:SourceArn` condition key to the Amazon S3 bu
             }
         },
         {
-            "Sid": "AWSCloudTrailWrite20150319",
+            "Sid": "AWSCloudTrailOrganizationWrite20150319",
             "Effect": "Allow",
             "Principal": {
                 "Service": [
@@ -92,7 +97,7 @@ aws organizations enable-aws-service-access --service-principal cloudtrail.amazo
 To create an organization trail that applies to all regions, add the `--is-organization-trail` and `--is-multi-region-trail` options\.
 
 **Note**  
-When you create or update an organization trail with the AWS CLI, you must use an AWS CLI profile in the management account with sufficient permissions\.
+When you create or update an organization trail with the AWS CLI, you must use an AWS CLI profile in the management account or delegated administrator account with sufficient permissions\.
 
 The following example creates an organization trail that delivers logs from all regions to an existing bucket named `my-bucket`:
 
@@ -152,7 +157,7 @@ You can run the `update-trail` command to change the configuration settings for 
 
 **Note**  
 If you use the AWS CLI or one of the AWS SDKs to update a trail, be sure that the trail's bucket policy is up\-to\-date\. For more information, see [Creating a trail for an organization with the AWS Command Line Interface](#cloudtrail-create-and-update-an-organizational-trail-by-using-the-aws-cli)\.  
-When you create or update an organization trail with the AWS CLI, you must use an AWS CLI profile in the management account with sufficient permissions\.
+When you create or update an organization trail with the AWS CLI, you must use an AWS CLI profile in the management account or delegated administrator account with sufficient permissions\.
 
 ### Applying an existing trail to an organization<a name="cloudtrail-update-organization-trail-by-using-the-cli-apply-org"></a>
 

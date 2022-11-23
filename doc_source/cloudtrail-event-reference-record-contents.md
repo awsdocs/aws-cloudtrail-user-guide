@@ -3,7 +3,7 @@
 The body of the record contains fields that help you determine the requested action as well as when and where the request was made\. When the value of **Optional** is **True**, the field is only present when it applies to the service, API, or event type\. An **Optional** value of **False** means that the field is either always present, or that its presence does not depend on the service, API, or event type\. An example is `responseElements`, which is present in events for actions that make changes \(create, update, or delete actions\)\.
 
 **`eventTime`**  
-The date and time the request was made, in coordinated universal time \(UTC\)\. An event's time stamp comes from the local host that provides the service API endpoint on which the API call was made\. For example, a CreateBucket API event that is run in the US West \(Oregon\) Region would get its time stamp from the time on an AWS host running the Amazon S3 endpoint, `s3.us-west-2.amazonaws.com`\. In general, AWS services use Network Time Protocol \(NTP\) to synchronize their system clocks\.  
+The date and time the request was completed, in coordinated universal time \(UTC\)\. An event's time stamp comes from the local host that provides the service API endpoint on which the API call was made\. For example, a CreateBucket API event that is run in the US West \(Oregon\) Region would get its time stamp from the time on an AWS host running the Amazon S3 endpoint, `s3.us-west-2.amazonaws.com`\. In general, AWS services use Network Time Protocol \(NTP\) to synchronize their system clocks\.  
 **Since:** 1\.0  
 **Optional:** False
 
@@ -203,11 +203,11 @@ Shows information about edge devices that are targets of a request\. Currently, 
 **Optional:** True
 
 **`tlsDetails`**  
-Shows information about the Transport Layer Security \(TLS\) version, cipher suites, and the FQDN of the client\-provided host name of a service API call\. Contents include the following\. CloudTrail still logs partial TLS details if expected information is missing or empty\. For example, if the TLS version and cipher suite are present, but the `HOST` header is empty, available TLS details are still logged in the CloudTrail event\.  
+Shows information about the Transport Layer Security \(TLS\) version, cipher suites, and the fully qualified domain name \(FQDN\) of the client\-provided host name used in the service API call, which is typically the FQDN of the service endpoint\. CloudTrail still logs partial TLS details if expected information is missing or empty\. For example, if the TLS version and cipher suite are present, but the `HOST` header is empty, available TLS details are still logged in the CloudTrail event\. For more information about which services log TLS details to CloudTrail, see [Services that support TLS details in CloudTrail](cloudtrail-supported-tls-details.md)\.  
 If `sessionCredentialFromConsole` is present with a value of `true`, `tlsDetails` is present in an event record only if an external client was used to make the API call\.  
 + **`tlsVersion`** \- The TLS version of a request\.
 + **`cipherSuite`** \- The cipher suite \(combination of security algorithms used\) of a request\.
-+ **`clientProvidedHostHeader`** \- The FQDN of the client that made the request\.
++ **`clientProvidedHostHeader`** \- The client\-provided host name used in the service API call, which is typically the FQDN of the service endpoint\.
 **Since:** 1\.08  
 **Optional:** True
 

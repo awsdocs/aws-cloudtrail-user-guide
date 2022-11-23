@@ -18,6 +18,7 @@ SELECT [ DISTINCT ] columns [ Aggregate ]
 + [Supported schema for event record ﬁelds](#query-supported-event-schema)
 + [Aggregate functions and condition operators](#query-aggregates-condition-operators)
 + [Supported functions](#query-supported-functions)
++ [Advanced, multi\-table query support](#query-advanced-multi-table)
 
 ## Supported schema for event record ﬁelds<a name="query-supported-event-schema"></a>
 
@@ -246,3 +247,44 @@ For more information about the supported date and time functions, see [Date and 
 |  `year`  | 
 |  `year_of_week`  | 
 |  `yow`  | 
+
+## Advanced, multi\-table query support<a name="query-advanced-multi-table"></a>
+
+CloudTrail Lake supports advanced query language across multiple event data stores\. Only queries that do not include sub\-queries are supported\.
++ [`UNION|UNION ALL|EXCEPT|INTERSECT`](#query-multi-table-union)
++ [`LEFT|RIGHT|INNER JOIN`](#query-multi-table-left-right)
+
+To run your query, use the start\-query command in the AWS CLI\. The following is an example, using one of the sample queries in this section\.
+
+```
+aws cloudtrail start-query
+--query-statement "Select eventId, eventName from EXAMPLEf852-4e8f-8bd1-bcf6cEXAMPLE UNION Select eventId, eventName from EXAMPLEg741-6y1x-9p3v-bnh6iEXAMPLE UNION ALL Select eventId, eventName from EXAMPLEb529-4e8f9l3d-6m2z-lkp5sEXAMPLE ORDER BY eventId LIMIT 10;"
+```
+
+The response is a `QueryId` string\. To get the status of a query, run `describe-query`, using the `QueryId` value returned by `start-query`\. If the query is successful, you can run `get-query-results` to get results\.
+
+### `UNION|UNION ALL|EXCEPT|INTERSECT`<a name="query-multi-table-union"></a>
+
+This release adds *multi\-table* queries, or queries that you can run across multiple event data stores\. The following is an example query that uses `UNION` and `UNION.ALL` to find events by their event ID and event name in three event data stores, EDS1, EDS2, and EDS3\. The results are selected from each event data store first, then results are concatenated, ordered by event ID, and limited to ten events\.
+
+```
+Select eventId, eventName from EDS1
+UNION
+Select eventId, eventName from EDS2
+UNION ALL
+Select eventId, eventName from EDS3 
+ORDER BY eventId LIMIT 10;
+```
+
+### `LEFT|RIGHT|INNER JOIN`<a name="query-multi-table-left-right"></a>
+
+This release adds *multi\-table* queries, or queries that you can run across multiple event data stores\. The following is an example query that uses `LEFT JOIN` to find all events from an event data store named `eds2`, mapped to `edsB`, that match those in a primary \(left\) event data store, `edsA`\. The returned events occur on or before January 1, 2020, and only the event names are returned\.
+
+```
+SELECT edsA.eventName, edsB.eventName, element_at(edsA.map, 'test')
+FROM eds1 as edsA 
+LEFT JOIN eds2 as edsB
+ON edsA.eventId = edsB.eventId 
+WHERE edsA.eventtime <= '2020-01-01'
+ORDER BY edsB.eventName;
+```

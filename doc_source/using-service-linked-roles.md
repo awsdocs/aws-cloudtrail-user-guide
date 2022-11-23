@@ -16,11 +16,15 @@ The AWSServiceRoleForCloudTrail service\-linked role trusts the following servic
 This role is used to support the creation and management of organization trails in CloudTrail\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
 The role permissions policy allows CloudTrail to complete the following actions on the specified resources:
-+ Action: `All` on all CloudTrail resources\.
-+ Action: `organizations:DescribeAccount` on all Organizations resources\. 
-+ Action: `organizations:DescribeOrganizations` on all Organizations resources\. 
-+ Action: `organizations:ListAccounts` on all Organizations resources\. 
-+ Action: `organizations:ListAWSServiceAccessForOrganization` on all Organizations resources\. 
++ Actions on all CloudTrail resources:
+  + `All`
++ Actions on all Organizations resources:
+  + `organizations:DescribeAccount`
+  + `organizations:DescribeOrganizations`
+  + `organizations:ListAccounts`
+  + `organizations:ListAWSServiceAccessForOrganization`
++ Actions on all Organizations resources for the CloudTrail service principal: 
+  + `organizations:ListDelegatedAdministrators` 
 
 You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\. For more information, see [Service\-Linked Role Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-permissions) in the *IAM User Guide*\.
 

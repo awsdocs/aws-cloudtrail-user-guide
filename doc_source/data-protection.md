@@ -15,7 +15,7 @@ We strongly recommend that you never put confidential or sensitive information, 
 By default, CloudTrail event log files are encrypted using Amazon S3 server\-side encryption \(SSE\)\. You can also choose to encrypt your log files with an AWS Key Management Service \(AWS KMS\) key\. You can store your log files in your bucket for as long as you want\. You can also define Amazon S3 lifecycle rules to archive or delete log files automatically\. If you want notifications about log file delivery and validation, you can set up Amazon SNS notifications\.
 
 The following security best practices also address data protection in CloudTrail:
-+ [Encrypting CloudTrail log files with AWS KMS–managed keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)
++ [Encrypting CloudTrail log files with AWS KMS keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)
 + [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
 + [Validating CloudTrail log file integrity](cloudtrail-log-file-validation-intro.md)
 + [Sharing CloudTrail log files between AWS accounts](cloudtrail-sharing-logs.md)

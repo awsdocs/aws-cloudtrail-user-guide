@@ -15,4 +15,4 @@ This documentation helps you understand how to apply the shared responsibility m
 + [Resilience in AWS CloudTrail](disaster-recovery-resiliency.md)
 + [Infrastructure security in AWS CloudTrail](infrastructure-security.md)
 + [Security best practices in AWS CloudTrail](best-practices-security.md)
-+ [Encrypting CloudTrail log files with AWS KMS–managed keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)
++ [Encrypting CloudTrail log files with AWS KMS keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)

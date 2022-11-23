@@ -22,7 +22,7 @@ bucket_name/prefix_name/AWSLogs/Account ID/CloudTrail/region/YYYY/MM/DD/file_nam
 For organization trails, the log file object name includes the organization unit ID in the path, as follows:  
 
 ```
-bucket_name/prefix_name/AWSLogs/OU-ID/Account ID/CloudTrail/region/YYYY/MM/DD/file_name.json.gz
+bucket_name/prefix_name/AWSLogs/O-ID/Account ID/CloudTrail/region/YYYY/MM/DD/file_name.json.gz
 ```
 
 To retrieve a log file, you can use the Amazon S3 console, the Amazon S3 command line interface \(CLI\), or the API\. 

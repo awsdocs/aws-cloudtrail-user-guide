@@ -6,7 +6,7 @@ Insights events are logged when CloudTrail detects unusual `write` management AP
 
 CloudTrail Insights continuously monitors CloudTrail `write` management events, and uses mathematical models to determine the normal levels of API event and error rate activity for an account\. CloudTrail Insights identifies behavior that is outside normal patterns, generates Insights events, and delivers those events to a `/CloudTrail-Insight` folder in the chosen destination S3 bucket for your trail\. You can also access and view Insights events in the AWS Management Console for CloudTrail\. For more information about how to access and view Insights events in the console and by using the AWS CLI, see [Viewing CloudTrail Insights events](view-insights-events.md) in this guide\.
 
-By default, trails log all management events and don't include data events or Insights events\. Additional charges apply for data and Insights events\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
+By default, trails log management events and don't include data events or Insights events\. Additional charges apply for data and Insights events\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
 When an event occurs in your account, CloudTrail evaluates whether the event matches the settings for your trails\. Only events that match your trail settings are delivered to your Amazon S3 bucket and Amazon CloudWatch Logs log group\.
 

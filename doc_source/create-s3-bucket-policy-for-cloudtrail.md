@@ -12,7 +12,7 @@ CloudTrail adds the following fields in the policy for you:
 + The service principal name for CloudTrail
 + The name of the folder where the log files are stored, including the bucket name, a prefix \(if you specified one\), and your AWS account ID
 
-As a security best practice, add an `aws:SourceArn` condition key to the Amazon S3 bucket policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail writes to the S3 bucket only for a specific trail or trails\. The value of `aws:SourceArn` is always the ARN of the trail \(or array of trail ARNs\) that is using the bucket to store logs\. Be sure to add the `aws:SourceArn` condition key on S3 bucket policies for existing trails\.
+As a security best practice, add an `aws:SourceArn` condition key to the Amazon S3 bucket policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail writes to the S3 bucket only for a specific trail or trails\. The value of `aws:SourceArn` is always the ARN of the trail \(or array of trail ARNs\) that is using the bucket to store logs\. Be sure to add the `aws:SourceArn` condition key to S3 bucket policies for existing trails\.
 
 The following policy allows CloudTrail to write log files to the bucket from supported regions\. Replace *myBucketName*, *\[optionalPrefix\]/*, *myAccountID*, *region*, and *trailName* with the appropriate values for your configuration\.
 
@@ -27,7 +27,12 @@ The following policy allows CloudTrail to write log files to the bucket from sup
             "Effect": "Allow",
             "Principal": {"Service": "cloudtrail.amazonaws.com"},
             "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::myBucketName"
+            "Resource": "arn:aws:s3:::myBucketName",
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceArn": "arn:aws:cloudtrail:region:myAccountID:trail/trailName"
+                }
+            }
         },
         {
             "Sid": "AWSCloudTrailWrite20150319",
@@ -68,11 +73,9 @@ As a best practice, use a dedicated S3 bucket for CloudTrail logs\.
 
 1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-1. Choose the bucket where you want CloudTrail to deliver your log files, and then choose **Properties**\. 
+1. Choose the bucket where you want CloudTrail to deliver your log files, and then choose **Permissions**\. 
 
-1. Choose **Permissions**\.
-
-1. Choose **Edit Bucket Policy**\.
+1. Choose **Edit**\.
 
 1. Copy the [S3 bucket policy](#s3-bucket-policy) to the **Bucket Policy Editor** window\. Replace the placeholders in italics with the names of your bucket, prefix, and account number\. If you specified a prefix when you created your trail, include it here\. The prefix is an optional addition to the S3 object key that creates a folder\-like organization in your bucket\. 
 **Note**  
@@ -88,7 +91,7 @@ You must specify an Amazon S3 bucket to receive the log files for an organizatio
 
 The following is an example policy for an Amazon S3 bucket named *myOrganizationBucket*\. This bucket is in an AWS account with the ID *111111111111*, which is the management account for an organization with the ID *o\-exampleorgid* that allows logging for an organization trail\. It also allows logging for the *111111111111* account in the event that the trail is changed from an organization trail to a trail for that account only\. Replace *myOrganizationBucket*, *111111111111*, *region*, and *trailName* with the appropriate values for your configuration\.
 
-The example policy includes an `aws:SourceArn` condition key to the Amazon S3 bucket policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail writes to the S3 bucket only for a specific trail or trails\. In an organization trail, the value of `aws:SourceArn` must be a trail ARN that is owned by the management account and uses the management account ID\.
+The example policy includes an `aws:SourceArn` condition key for the Amazon S3 bucket policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail writes to the S3 bucket only for a specific trail or trails\. In an organization trail, the value of `aws:SourceArn` must be a trail ARN that is owned by the management account, and uses the management account ID\.
 
 ```
 {
@@ -103,7 +106,12 @@ The example policy includes an `aws:SourceArn` condition key to the Amazon S3 bu
                 ]
             },
             "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::myOrganizationBucket"
+            "Resource": "arn:aws:s3:::myOrganizationBucket",
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceArn": "arn:aws:cloudtrail:region:111111111111:trail/trailName"
+                }
+            }
         },
         {
             "Sid": "AWSCloudTrailWrite20150319",
@@ -123,7 +131,7 @@ The example policy includes an `aws:SourceArn` condition key to the Amazon S3 bu
             }
         },
         {
-            "Sid": "AWSCloudTrailWrite20150319",
+            "Sid": "AWSCloudTrailOrganizationWrite20150319",
             "Effect": "Allow",
             "Principal": {
                 "Service": [
@@ -168,7 +176,12 @@ As a best practice, update the policy to use a permission with the CloudTrail se
             "Effect": "Allow",
             "Principal": {"Service": "cloudtrail.amazonaws.com"},
             "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::myBucketName"
+            "Resource": "arn:aws:s3:::myBucketName",
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceArn": "arn:aws:cloudtrail:region:myAccountID:trail/trailName"
+                }
+            }
         },
         {
             "Sid": "AWSCloudTrailWrite20150319",
@@ -194,11 +207,9 @@ If you try to add, modify, or remove a log file prefix for an S3 bucket that rec
 
 1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-1. Choose the bucket for which you want to modify the prefix, and then choose **Properties**\. 
+1. Choose the bucket for which you want to modify the prefix, and then choose **Permissions**\. 
 
-1. Choose **Permissions**\.
-
-1. Choose **Edit Bucket Policy**\.
+1. Choose **Edit**\.
 
 1. In the bucket policy, under the `s3:PutObject` action, edit the `Resource` entry to add, modify, or remove the log file *prefix/* as needed\.
 

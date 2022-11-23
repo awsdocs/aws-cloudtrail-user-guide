@@ -361,7 +361,7 @@ The following example creates an event selector for a trail named *TrailName* to
 
 If you choose not to log management events, AWS KMS events are not logged, and you cannot change AWS KMS event logging settings\.
 
-To start logging AWS KMS events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`\.
+To start logging AWS KMS events to a trail again, pass an empty array as the value of `ExcludeManagementEventSources`\.
 
 ```
 aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": ["kms.amazonaws.com"],"IncludeManagementEvents": true]}]'
@@ -383,7 +383,7 @@ The example returns the event selector that is configured for the trail\.
 }
 ```
 
-To start logging AWS KMS events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`, as shown in the following command\.
+To start logging AWS KMS events to a trail again, pass an empty array as the value of `ExcludeManagementEventSources`, as shown in the following command\.
 
 ```
 aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
@@ -419,10 +419,10 @@ The following example creates an event selector for a trail named *TrailName* to
 
 If you choose not to log management events, Amazon RDS Data API events are not logged, and you cannot change event logging settings\.
 
-To start logging Amazon RDS Data API events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`\.
+To start logging Amazon RDS Data API events to a trail again, pass an empty array as the value of `ExcludeManagementEventSources`\.
 
 ```
-aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": ["kms.amazonaws.com"],"IncludeManagementEvents": true]}]'
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": ["rdsdata.amazonaws.com"],"IncludeManagementEvents": true]}]'
 ```
 
 The example returns the event selector that is configured for the trail\.
@@ -441,7 +441,7 @@ The example returns the event selector that is configured for the trail\.
 }
 ```
 
-To start logging Amazon RDS Data API events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`, as shown in the following command\.
+To start logging Amazon RDS Data API events to a trail again, pass an empty array as the value of `ExcludeManagementEventSources`, as shown in the following command\.
 
 ```
 aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
@@ -449,7 +449,7 @@ aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"
 
 ## Configuring advanced event selectors<a name="configuring-adv-event-selector-examples"></a>
 
-To use advanced event selectors to include or exclude data events instead of basic event selectors, use advanced event selectors on a trail's details page\. Advanced event selectors let you log data events on more resource types than basic event selectors\. Basic selectors log S3 object activity, AWS Lambda function execution activity, and DynamoDB tables\. Advanced event selectors log basic selectors as well as API activity on Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, and AWS Glue tables\. For more information advanced event selectors, see [Configuring advanced event selectors](#configuring-adv-event-selector-examples)\.
+To use advanced event selectors to include or exclude data events instead of basic event selectors, use advanced event selectors on a trail's details page\. Advanced event selectors let you log data events on more resource types than basic event selectors\. Basic selectors log S3 object activity, AWS Lambda function execution activity, and DynamoDB tables\. Advanced event selectors log basic selectors as well as API activity on Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables, and Amazon FinSpace environments\. For more information advanced event selectors, see [Configuring advanced event selectors](#configuring-adv-event-selector-examples)\.
 
 To view the advanced event selector settings for a trail, run the following `get-event-selectors` command\. You must either run this command from the AWS Region where the trail was created \(the Home Region\), or you must specify that Region by adding the \-\-region parameter\.
 
@@ -610,14 +610,14 @@ The example returns the advanced event selectors that are configured for the tra
 
 ### Example trail that uses custom advanced event selectors to log all management and data events<a name="configuring-adv-event-selector-logall"></a>
 
-The following example creates advanced event selectors for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, and AWS Glue tables\.
+The following example creates advanced event selectors for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables, and Amazon FinSpace environments\.
 
 **Note**  
 If the trail applies only to one Region, only events in that Region are logged, even though the event selector parameters specify all Amazon S3 buckets and Lambda functions\. In a single\-region trail, event selectors apply only to the Region where the trail is created\.
 
 ```
 aws cloudtrail put-event-selectors --trail-name TrailName2 \
---advanced event-selectors '
+--advanced-event-selectors '
 [
   {
     "Name": "Log readOnly and writeOnly management events",
@@ -681,7 +681,6 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
       { "Field": "resources.type", "Equals": ["AWS::S3::AccessPoint"] }
     ]
   },
-
   {
     "Name": "Log all events for DynamoDB streams",
     "FieldSelectors": [
@@ -694,6 +693,13 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::Glue::Table"] }
+    ]
+  },
+  {
+    "Name": "Log all events for FinSpace environments",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::FinSpace::Environment"] }
     ]
   }
 ]'
@@ -947,6 +953,29 @@ The example returns the advanced event selectors configured for the trail\.
           "NotEndsWith": []
         }
       ]
+    },
+    {
+      "Name": "Log all events for FinSpace environments",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory",
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type",
+          "Equals": [ "AWS::FinSpace::Environment" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
     }
   ],
   "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName2"
@@ -1008,7 +1037,7 @@ To start logging AWS KMS events to a trail again, remove the `eventSource` selec
 
 ```
 aws cloudtrail put-event-selectors --trail-name TrailName \
---advanced event-selectors '
+--advanced-event-selectors '
 [
   {
     "Name": "Log all management events except KMS events",
@@ -1057,7 +1086,7 @@ To start logging excluded events to a trail again, remove the `eventSource` sele
 
 ```
 aws cloudtrail put-event-selectors --trail-name TrailName \
---advanced event-selectors '
+--advanced-event-selectors '
 [
   {
     "Name": "Log all management events",
@@ -1078,7 +1107,7 @@ To start logging Amazon RDS Data API events to a trail again, remove the `eventS
 
 ```
 aws cloudtrail put-event-selectors --trail-name TrailName \
---advanced event-selectors '
+--advanced-event-selectors '
 [
   {
     "Name": "Log all management events except Amazon RDS data events",
@@ -1127,7 +1156,7 @@ To start logging excluded events to a trail again, remove the `eventSource` sele
 
 ```
 aws cloudtrail put-event-selectors --trail-name TrailName \
---advanced event-selectors '
+--advanced-event-selectors '
 [
   {
     "Name": "Log all management events",

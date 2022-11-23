@@ -10,7 +10,7 @@ Beginning on April 12, 2019, you can view trails only in the AWS Regions where t
 If you use AWS Organizations, you can create a trail that will log events for all AWS accounts in the organization\. A trail with the same name will be created in each member account, and events from each trail will be delivered to the Amazon S3 bucket that you specify\. 
 
 **Note**  
-Only the management account for an organization can create a trail for the organization\. Creating a trail for an organization automatically enables integration between CloudTrail and Organizations\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
+Only the management account or delegated administrator account for an organization can create a trail for the organization\. Creating a trail for an organization automatically enables integration between CloudTrail and Organizations\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
 **Topics**
 + [Creating and updating a trail with the console](cloudtrail-create-and-update-a-trail-by-using-the-console.md)

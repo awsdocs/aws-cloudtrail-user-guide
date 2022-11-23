@@ -1,6 +1,6 @@
 # AWS Management Console sign\-in events<a name="cloudtrail-event-reference-aws-console-sign-in-events"></a>
 
-CloudTrail logs attempts to sign into the AWS Management Console, the AWS Discussion Forums, and the AWS Support Center\. All IAM user and root user sign\-in events, as well as all federated user sign\-in events, generate records in CloudTrail log files\. AWS Management Console sign\-in events are global service events\.
+CloudTrail logs attempts to sign into the AWS Management Console, the AWS Discussion Forums, and the AWS Support Center\. All IAM user and root user sign\-in events, as well as all federated user sign\-in events, generate records in CloudTrail log files\. AWS Management Console sign\-in events are global service events\. For information about getting and viewing logs, see [Getting and viewing your CloudTrail log files](get-and-view-cloudtrail-log-files.md)\. 
 
 **Topics**
 + [Example records for IAM users](#cloudtrail-event-reference-aws-console-sign-in-events-iam-user)
@@ -11,14 +11,15 @@ CloudTrail logs attempts to sign into the AWS Management Console, the AWS Discus
 The following examples show event records for several IAM user sign\-in scenarios\.
 
 **Topics**
-+ [IAM user, successful sign\-in](#cloudtrail-aws-console-sign-in-events-iam-user-success)
-+ [IAM user, signing in with MFA](#cloudtrail-aws-console-sign-in-events-iam-user-mfa)
++ [IAM user, successful sign\-in without MFA](#cloudtrail-aws-console-sign-in-events-iam-user-success)
++ [IAM user, successful sign\-in with MFA](#cloudtrail-aws-console-sign-in-events-iam-user-mfa)
 + [IAM user, unsuccessful sign\-in](#cloudtrail-aws-console-sign-in-events-iam-user-failure)
-+ [IAM user, sign\-in process checks for MFA](#cloudtrail-aws-console-sign-in-requires-mfa)
++ [IAM user, sign\-in process checks for MFA \(single MFA device type\)](#cloudtrail-aws-console-sign-in-requires-mfa)
++ [IAM user, sign\-in process checks for MFA \(multiple MFA device types\)](#cloudtrail-aws-console-sign-in-requires-mfa-multiple)
 
-### IAM user, successful sign\-in<a name="cloudtrail-aws-console-sign-in-events-iam-user-success"></a>
+### IAM user, successful sign\-in without MFA<a name="cloudtrail-aws-console-sign-in-events-iam-user-success"></a>
 
-The following record shows that an IAM user named Anaya successfully signed into the AWS Management Console without using multi\-factor authentication\. 
+The following record shows that an IAM user named Anaya successfully signed into the AWS Management Console without using multi\-factor authentication \(MFA\)\. 
 
 ```
 {
@@ -32,7 +33,7 @@ The following record shows that an IAM user named Anaya successfully signed into
             "accountId":"111122223333",
             "userName":"anaya"
          },
-         "eventTime":"2018-08-29T16:24:34Z",
+         "eventTime":"2022-11-10T16:24:34Z",
          "eventSource":"signin.amazonaws.com",
          "eventName":"ConsoleLogin",
          "awsRegion":"us-east-2",
@@ -54,9 +55,9 @@ The following record shows that an IAM user named Anaya successfully signed into
 }
 ```
 
-### IAM user, signing in with MFA<a name="cloudtrail-aws-console-sign-in-events-iam-user-mfa"></a>
+### IAM user, successful sign\-in with MFA<a name="cloudtrail-aws-console-sign-in-events-iam-user-mfa"></a>
 
-The following record shows that an IAM user named Anaya logged into the AWS Management Console using multi\-factor authentication \(MFA\)\. 
+The following record shows that an IAM user named Anaya successfully signed into the AWS Management Console using multi\-factor authentication \(MFA\)\. 
 
 ```
 {
@@ -68,7 +69,7 @@ The following record shows that an IAM user named Anaya logged into the AWS Mana
         "accountId": "111122223333",
         "userName": "anaya"
     },
-    "eventTime": "2018-07-24T18:34:07Z",
+    "eventTime": "2022-11-10T16:24:34Z",
     "eventSource": "signin.amazonaws.com",
     "eventName": "ConsoleLogin",
     "awsRegion": "us-east-1",
@@ -79,10 +80,11 @@ The following record shows that an IAM user named Anaya logged into the AWS Mana
         "ConsoleLogin": "Success"
     },
     "additionalEventData": {
-        "LoginTo": "https://console.aws.amazon.com/console/home?state=hashArgs%23&isauthcode=true",
-        "MobileVersion": "No",
-        "MFAUsed": "Yes"
-    },
+            "LoginTo": "https://console.aws.amazon.com/console/home?state=hashArgs%23&isauthcode=true",
+            "MobileVersion": "No",
+            "MFAIdentifier": "arn:aws:iam::111122223333:u2f/user/anaya/default-AAAAAAAABBBBBBBBCCCCCCCCDD",
+            "MFAUsed": "Yes"
+     },
     "eventID": "fed06f42-cb12-4764-8c69-121063dc79b9",
     "eventType": "AwsConsoleSignIn",
     "recipientAccountId": "111122223333"
@@ -103,7 +105,7 @@ The following record shows an IAM user's unsuccessful sign\-in attempt\.
         "accessKeyId": "",
         "userName": "anaya"
     },
-    "eventTime": "2018-07-24T18:32:11Z",
+    "eventTime": "2022-11-10T16:24:34Z",
     "eventSource": "signin.amazonaws.com",
     "eventName": "ConsoleLogin",
     "awsRegion": "us-east-1",
@@ -125,9 +127,9 @@ The following record shows an IAM user's unsuccessful sign\-in attempt\.
 }
 ```
 
-### IAM user, sign\-in process checks for MFA<a name="cloudtrail-aws-console-sign-in-requires-mfa"></a>
+### IAM user, sign\-in process checks for MFA \(single MFA device type\)<a name="cloudtrail-aws-console-sign-in-requires-mfa"></a>
 
-The following shows that the sign\-process checked whether multi\-factor authentication \(MFA\) is required for an IAM user during sign\-in\.
+The following shows that the sign\-process checked whether multi\-factor authentication \(MFA\) is required for an IAM user during sign\-in\. In this example, the `mfaType` value is `U2F MFA`, which indicates that the IAM user enabled a single MFA device or multiple MFA devices of the same type \(`U2F MFA`\)\.
 
 ```
  {
@@ -139,7 +141,7 @@ The following shows that the sign\-process checked whether multi\-factor authent
         "accessKeyId": "",
         "userName": "anaya"
     },
-    "eventTime": "2018-07-24T18:33:45Z",
+    "eventTime": "2022-11-10T16:24:34Z",
     "eventSource": "signin.amazonaws.com",
     "eventName": "CheckMfa",
     "awsRegion": "us-east-1",
@@ -158,19 +160,53 @@ The following shows that the sign\-process checked whether multi\-factor authent
 }
 ```
 
+### IAM user, sign\-in process checks for MFA \(multiple MFA device types\)<a name="cloudtrail-aws-console-sign-in-requires-mfa-multiple"></a>
+
+The following shows that the sign\-process checked whether multi\-factor authentication \(MFA\) is required for an IAM user during sign\-in\. In this example, the `mfaType` value is `Multiple MFA Devices`, which indicates that the IAM user enabled multiple MFA device types\.
+
+```
+ {
+    "eventVersion": "1.05",
+    "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+        "accountId": "111122223333",
+        "accessKeyId": "",
+        "userName": "anaya"
+    },
+    "eventTime": "2022-11-10T16:24:34Z",
+    "eventSource": "signin.amazonaws.com",
+    "eventName": "CheckMfa",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "192.0.2.0",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36",
+    "requestParameters": null,
+    "responseElements": {
+        "CheckMfa": "Success"
+    },
+    "additionalEventData": {
+        "MfaType": "Multiple MFA Devices"
+    },
+    "eventID": "f8ef8fc5-e3e8-4ee1-9d52-2f412ddf17e3",
+    "eventType": "AwsConsoleSignIn",
+    "recipientAccountId": "111122223333"
+}
+```
+
 ## Example event records for root users<a name="cloudtrail-event-reference-aws-console-sign-in-events-root"></a>
 
 The following examples show event records for several `root` user sign\-in scenarios\.
 
 **Topics**
-+ [Root user, successful sign\-in](#cloudtrail-signin-root)
++ [Root user, successful sign\-in without MFA](#cloudtrail-signin-root)
++ [Root user, successful sign\-in with MFA](#cloudtrail-signin-root-mfa)
 + [Root user, unsuccessful sign\-in](#cloudtrail-unsuccessful-signin-root)
 + [Root user, MFA changed](#cloudtrail-signin-mfa-changed-root)
 + [Root user, password changed](#cloudtrail-root-password-changed)
 
-### Root user, successful sign\-in<a name="cloudtrail-signin-root"></a>
+### Root user, successful sign\-in without MFA<a name="cloudtrail-signin-root"></a>
 
-The following shows a successful sign\-in event for a root user not using MFA\.
+The following shows a successful sign\-in event for a root user not using multi\-factor authentication \(MFA\)\.
 
 ```
 {
@@ -182,7 +218,7 @@ The following shows a successful sign\-in event for a root user not using MFA\.
         "accountId": "111122223333",
         "accessKeyId": ""
     },
-    "eventTime": "2018-08-29T16:24:34Z",
+    "eventTime": "2022-11-10T16:24:34Z",
     "eventSource": "signin.amazonaws.com",
     "eventName": "ConsoleLogin",
     "awsRegion": "us-east-1",
@@ -196,6 +232,42 @@ The following shows a successful sign\-in event for a root user not using MFA\.
         "LoginTo": "https://console.aws.amazon.com/console/home?state=hashArgs%23&isauthcode=true",
         "MobileVersion": "No",
         "MFAUsed": "No"
+    },
+    "eventID": "deb1e1f9-c99b-4612-8e9f-21f93b5d79c0",
+    "eventType": "AwsConsoleSignIn",
+    "recipientAccountId": "111122223333"
+}
+```
+
+### Root user, successful sign\-in with MFA<a name="cloudtrail-signin-root-mfa"></a>
+
+The following shows a successful sign\-in event for a root user using multi\-factor authentication \(MFA\)\.
+
+```
+{
+    "eventVersion": "1.05",
+    "userIdentity": {
+        "type": "Root",
+        "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+        "arn": "arn:aws:iam::111122223333:root",
+        "accountId": "111122223333",
+        "accessKeyId": ""
+    },
+    "eventTime": "2022-11-10T16:24:34Z",
+    "eventSource": "signin.amazonaws.com",
+    "eventName": "ConsoleLogin",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "192.0.2.0",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:62.0) Gecko/20100101 Firefox/62.0",
+    "requestParameters": null,
+    "responseElements": {
+        "ConsoleLogin": "Success"
+    },
+    "additionalEventData": {
+        "LoginTo": "https://console.aws.amazon.com/console/home?state=hashArgs%23&isauthcode=true",
+        "MobileVersion": "No",
+        "MFAIdentifier": "arn:aws:iam::111122223333:mfa/root-account-mfa-device",
+        "MFAUsed": "YES"
     },
     "eventID": "deb1e1f9-c99b-4612-8e9f-21f93b5d79c0",
     "eventType": "AwsConsoleSignIn",
@@ -217,7 +289,7 @@ The following shows an unsuccessful sign\-in event for a root user not using MFA
         "accountId": "111122223333",
         "accessKeyId": ""
     },
-    "eventTime": "2018-08-25T18:10:29Z",
+    "eventTime": "2022-11-10T16:24:34Z",
     "eventSource": "signin.amazonaws.com",
     "eventName": "ConsoleLogin",
     "awsRegion": "us-east-1",
@@ -261,7 +333,7 @@ The following shows an example event for a root user changing multi\-factor auth
             }
         }
     },
-    "eventTime": "2020-10-13T21:19:09Z",
+    "eventTime": "2022-11-10T16:24:34Z",
     "eventSource": "iam.amazonaws.com",
     "eventName": "EnableMFADevice",
     "awsRegion": "us-east-1",
@@ -294,7 +366,7 @@ The following shows an example event for a root user changing their password\.
         "accountId": "111122223333",
         "accessKeyId": ""
     },
-    "eventTime": "2020-10-13T21:47:13Z",
+    "eventTime": "2022-11-10T16:24:34Z",
     "eventSource": "signin.amazonaws.com",
     "eventName": "PasswordUpdated",
     "awsRegion": "us-east-1",

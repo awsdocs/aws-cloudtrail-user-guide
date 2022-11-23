@@ -11,7 +11,7 @@ Use the following information to help you diagnose and fix common issues that yo
 
 If the AWS Management Console tells you that you're not authorized to perform an action, then you must contact your administrator for assistance\. Your administrator is the person that provided you with your user name and password\.
 
-The following example error occurs when the `mateojackson` IAM user tries to use the console to view details about a trail but does not have either the appropriate CloudTrail managed policy \(**AWSCloudTrail\_FullAccess** or **AWSCloudTrailReadOnlyAccess**\) or the equivalent permissions applied to his account\.
+The following example error occurs when the `mateojackson` IAM user tries to use the console to view details about a trail but does not have either the appropriate CloudTrail managed policy \(**AWSCloudTrail\_FullAccess** or **AWSCloudTrail\_ReadOnlyAccess**\) or the equivalent permissions applied to his account\.
 
 ```
 User: arn:aws:iam::123456789012:user/mateojackson is not authorized to perform: cloudtrail:GetTrailStatus on resource: My-Trail
