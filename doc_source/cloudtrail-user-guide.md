@@ -12,7 +12,7 @@ You can integrate CloudTrail into applications using the API, automate trail cre
 + [How CloudTrail works](how-cloudtrail-works.md)
 + [CloudTrail workflow](cloudtrail-workflow.md)
 + [CloudTrail concepts](cloudtrail-concepts.md)
-+ [CloudTrail supported regions](cloudtrail-supported-regions.md)
++ [CloudTrail supported Regions](cloudtrail-supported-regions.md)
 + [CloudTrail log file examples](cloudtrail-log-file-examples.md)
 + [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)
 + [Quotas in AWS CloudTrail](WhatIsCloudTrail-Limits.md)

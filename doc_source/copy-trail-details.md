@@ -7,9 +7,11 @@ Details shown on the event copy details page are not in real\-time\. The actual 
 
 **To access the event copy details page**
 
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
 1. Choose **Lake** in the left navigation pane of the CloudTrail console\.
 
-1. On the **Lake** page, open the **Event data stores** tab\.
+1. On the **Lake** page, choose the **Event data stores** tab\.
 
 1. Choose the event data store\.
 

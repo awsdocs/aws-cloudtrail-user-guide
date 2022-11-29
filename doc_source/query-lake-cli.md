@@ -3,7 +3,8 @@
 The following are example AWS CLI commands for creating and managing event data stores and queries in CloudTrail Lake\.
 
 **Topics**
-+ [Create an event data store](#lake-cli-create-eds)
++ [Create an event data store for CloudTrail data events](#lake-cli-create-eds)
++ [Create an event data store for AWS Config configuration items](#lake-cli-create-eds-config)
 + [Get an event data store](#lake-cli-get-eds)
 + [List all event data stores in an account](#lake-cli-list-eds)
 + [Update an event data store](#lake-cli-update-eds)
@@ -15,9 +16,9 @@ The following are example AWS CLI commands for creating and managing event data 
 + [List all queries on an event data store](#lake-cli-list-queries)
 + [Cancel a running query](#lake-cli-cancel-query)
 
-## Create an event data store<a name="lake-cli-create-eds"></a>
+## Create an event data store for CloudTrail data events<a name="lake-cli-create-eds"></a>
 
-The following example AWS CLI command creates an event data store named `my-event-data-store` that selects all Amazon S3 data events\. The event data store retention period in this example is 90 days\.`--name` is required; other parameters are optional\. Valid values for `--retention-period` are integers between 7 and 2557, representing days\. If you do not specify `--retention-period`, CloudTrail uses the default retention period of 2557 days\. By default, `--multi-region-enabled` is set, even if the parameter is not added, and the event data store includes events from all regions\. The event data store is not enabled for all accounts in an AWS Organizations organization by default; to enable an event data store to collect events for all accounts in an organization, add the `--organization-enabled` parameter\. `--termination-protection-enabled` \(the default\) and `--no-termination-protection-enabled` set and remove termination protection, respectively\. Optionally, you can choose to enable AWS Key Management Service encryption and specify an AWS KMS key by adding `--kms-key-id` to the command, and specifying a KMS key ARN as the value\. `--advanced-event-selectors` includes or excludes data events in your event data store; for more information about `--advanced-event-selectors`, see [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#awscloudtrail-PutEventSelectors-request-AdvancedEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#awscloudtrail-PutEventSelectors-request-AdvancedEventSelectors) in the CloudTrail API Reference\.
+The following example AWS Command Line Interface \(AWS CLI\) command creates an event data store named `my-event-data-store` that selects all Amazon S3 data events\. The event data store retention period in this example is 90 days\.`--name` is required; other parameters are optional\. Valid values for `--retention-period` are integers between 7 and 2557, representing days\. If you do not specify `--retention-period`, CloudTrail uses the default retention period of 2557 days\. By default, `--multi-region-enabled` is set, even if the parameter is not added, and the event data store includes events from all Regions\. The event data store is not enabled for all accounts in an AWS Organizations organization by default\. To enable an event data store to collect events for all accounts in an organization, add the `--organization-enabled` parameter\. The parameters `--termination-protection-enabled` \(the default\) and `--no-termination-protection-enabled` set and remove termination protection, respectively\. Optionally, you can choose to enable AWS Key Management Service encryption and specify an AWS KMS key by adding `--kms-key-id` to the command, and specifying a KMS key ARN as the value\. The `--advanced-event-selectors` parameter includes or excludes data events in your event data store\. For more information about `--advanced-event-selectors`, see [https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#awscloudtrail-PutEventSelectors-request-AdvancedEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#awscloudtrail-PutEventSelectors-request-AdvancedEventSelectors) in the CloudTrail API Reference\.
 
 When you use advanced event selectors to select for data events on S3 objects, always use the `StartsWith` operator\.
 
@@ -80,9 +81,58 @@ The following is an example response\.
 }
 ```
 
+## Create an event data store for AWS Config configuration items<a name="lake-cli-create-eds-config"></a>
+
+The following example AWS CLI create\-event\-data\-store command creates an event data store named `my-event-data-store` that selects AWS Config configuration items\. The event data store retention period in this example is 90 days\. The `--name` parameter is required; other parameters are optional\. Valid values for `--retention-period` are integers between 7 and 2557, representing days\. If you don't specify `--retention-period`, CloudTrail uses the default retention period of 2557 days\. By default, `--multi-region-enabled` is set, even if the parameter is not added, and the event data store includes configuration items from all AWS Regions\. The event data store is not enabled for all accounts in an AWS Organizations organization by default; to enable an event data store to collect configuration items for all accounts in an organization, add the `--organization-enabled` parameter\. The parameters `--termination-protection-enabled` \(the default\) and `--no-termination-protection-enabled` set and remove termination protection, respectively\. Optionally, you can choose to enable AWS Key Management Service encryption and specify an AWS KMS key by adding `--kms-key-id` to the command, and specifying a KMS key ARN as the value\. The `--advanced-event-selectors` parameter includes configuration items in your event data store by specifying the `eventCategory` field equals `ConfigurationItem`\.
+
+```
+aws cloudtrail create-event-data-store
+--name my-event-data-store
+--retention-period 90
+--kms-key-id "arn:aws:kms:us-east-1:0123456789:alias/KMS_key_alias" \
+--advanced-event-selectors '[
+        {
+            "Name": "Select AWS Config configuration items",
+            "FieldSelectors": [
+                { "Field": "eventCategory", "Equals": ["ConfigurationItem"] }
+            ]
+        }
+    ]'
+```
+
+The following is an example response\.
+
+```
+{
+    "EventDataStoreArn": "arn:aws:cloudtrail:us-east-1:123456789012:eventdatastore/EXAMPLE-ee54-4813-92d5-999aeEXAMPLE",
+    "Name": "my-event-data-store",
+    "Status": "CREATED",
+    "AdvancedEventSelectors": [
+        {
+            "Name": "Select AWS Config configuration items",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "ConfigurationItem"
+                    ]
+                }
+            ]
+        }
+    ],
+    "MultiRegionEnabled": true,
+    "OrganizationEnabled": false,
+    "RetentionPeriod": 90,
+    "KmsKeyId": "arn:aws:kms:us-east-1:0123456789:alias/KMS_key_alias",
+    "TerminationProtectionEnabled": true,
+    "CreatedTimestamp": "2022-10-07T19:03:24.277000+00:00",
+    "UpdatedTimestamp": "2022-10-07T19:03:24.468000+00:00"
+}
+```
+
 ## Get an event data store<a name="lake-cli-get-eds"></a>
 
-The following AWS CLI example returns information about the event data store specified by the required `--event-data-store` parameter, which accepts an ARN or the ID suffix of the ARN\.
+The following example AWS CLI get\-event\-data\-store command returns information about the event data store specified by the required `--event-data-store` parameter, which accepts an ARN or the ID suffix of the ARN\.
 
 ```
 aws cloudtrail get-event-data-store
@@ -116,7 +166,7 @@ The following is an example response\. Creation and last updated times are in `t
 
 ## List all event data stores in an account<a name="lake-cli-list-eds"></a>
 
-The following example AWS CLI command returns information about all event data stores in an account, in the current region\. Optional parameters include `--max-results`, to specify a maximum number of results that you want the command to return on a single page\. If there are more results than your specified `--max-results` value, run the command again adding the returned `NextToken` value to get the next page of results\.
+The following example AWS CLI list\-event\-data\-stores command returns information about all event data stores in an account, in the current Region\. Optional parameters include `--max-results`, to specify a maximum number of results that you want the command to return on a single page\. If there are more results than your specified `--max-results` value, run the command again adding the returned `NextToken` value to get the next page of results\.
 
 ```
 aws cloudtrail list-event-data-stores
@@ -137,7 +187,7 @@ The following is an example response\.
 
 ## Update an event data store<a name="lake-cli-update-eds"></a>
 
-The following example updates an event data store to change its retention period to 100 days, and enable termination protection\. The required `--event-data-store` parameter value is an ARN \(or the ID suffix of the ARN\) and is required; other parameters are optional\. In this example, the `--retention-period` parameter is added to change the retention period to 100 days\. Optionally, you can choose to enable AWS Key Management Service encryption and specify an AWS KMS key by adding `--kms-key-id` to the command, and specifying a KMS key ARN as the value\. `--termination-protection-enabled` is added to enable termination protection on an event data store that did not have termination protection enabled\.
+The following example AWS CLI update\-event\-data\-store command updates an event data store to change its retention period to 100 days, and enable termination protection\. The required `--event-data-store` parameter value is an ARN \(or the ID suffix of the ARN\) and is required; other parameters are optional\. In this example, the `--retention-period` parameter is added to change the retention period to 100 days\. Optionally, you can choose to enable AWS Key Management Service encryption and specify an AWS KMS key by adding `--kms-key-id` to the command, and specifying a KMS key ARN as the value\. `--termination-protection-enabled` is added to enable termination protection on an event data store that did not have termination protection enabled\.
 
 ```
 aws cloudtrail update-event-data-store
@@ -191,7 +241,7 @@ The following is an example response\.
 
 ## Delete an event data store<a name="lake-cli-delete-eds"></a>
 
-The following example AWS CLI command disables the event data store specified by `--event-data-store`, which accepts an event data store ARN, or the ID suffix of the ARN\. After you run delete\-event\-data\-store, the final state of the event data store is `PENDING_DELETION`, and the event data store is automatically deleted after a wait period of seven days\. `--no-termination-protection-enabled` must be set on the event data store; this operation cannot work if `--termination-protection-enabled` is set\.
+The following example AWS CLI delete\-event\-data\-store command disables the event data store specified by `--event-data-store`, which accepts an event data store ARN, or the ID suffix of the ARN\. After you run delete\-event\-data\-store, the final state of the event data store is `PENDING_DELETION`, and the event data store is automatically deleted after a wait period of seven days\. `--no-termination-protection-enabled` must be set on the event data store; this operation cannot work if `--termination-protection-enabled` is set\.
 
 After you run delete\-event\-data\-store on an event data store, you cannot run list\-queries, describe\-query, or get\-query\-results on queries that are using the disabled data store\. The event data store does not count towards your account maximum of five event data stores when it is pending deletion\.
 
@@ -204,7 +254,7 @@ There is no response if the operation is successful\.
 
 ## Restore an event data store<a name="lake-cli-restore-eds"></a>
 
-The following example AWS CLI command restores an event data store that is pending deletion\. The event data store is specified by `--event-data-store`, which accepts an event data store ARN or the ID suffix of the ARN\. You can only restore a deleted event data store within the seven\-day wait period after deletion\.
+The following example AWS CLI restore\-event\-data\-store command restores an event data store that is pending deletion\. The event data store is specified by `--event-data-store`, which accepts an event data store ARN or the ID suffix of the ARN\. You can only restore a deleted event data store within the seven\-day wait period after deletion\.
 
 ```
 aws cloudtrail restore-event-data-store
@@ -215,7 +265,7 @@ The response includes information about the event data store, including its ARN,
 
 ## Start a query<a name="lake-cli-start-query"></a>
 
-The following example runs a query on the event data store specified as an ID in the query statement and delivers the query results to a specified S3 bucket\. The required `--query-statement` parameter provides a SQL query, enclosed in single quotation marks\. Optional parameters include `--delivery-s3uri`, to deliver the query results to a specified S3 bucket\.
+The following example AWS CLI start\-query command runs a query on the event data store specified as an ID in the query statement and delivers the query results to a specified S3 bucket\. The required `--query-statement` parameter provides a SQL query, enclosed in single quotation marks\. Optional parameters include `--delivery-s3uri`, to deliver the query results to a specified S3 bucket\.
 
 ```
 aws cloudtrail start-query
@@ -268,7 +318,7 @@ The following is an example response\.
 
 ## Get query results<a name="lake-cli-get-query-results"></a>
 
-The following example AWS CLI command gets event data results of a query\. You must specify an ARN or the ID suffix of the ARN for `--event-data-store`, and the `QueryID` returned by the start\-query command\. The `BytesScanned` value matches the number of bytes for which your account is billed for the query, unless the query is still running\. Optional parameters include `--max-query-results`, to specify a maximum number of results that you want the command to return on a single page\. If there are more results than your specified `--max-query-results` value, run the command again adding the returned `NextToken` value to get the next page of results\.
+The following example AWS CLI get\-query\-results command gets event data results of a query\. You must specify an ARN or the ID suffix of the ARN for `--event-data-store`, and the `QueryID` returned by the start\-query command\. The `BytesScanned` value matches the number of bytes for which your account is billed for the query, unless the query is still running\. Optional parameters include `--max-query-results`, to specify a maximum number of results that you want the command to return on a single page\. If there are more results than your specified `--max-query-results` value, run the command again adding the returned `NextToken` value to get the next page of results\.
 
 ```
 aws cloudtrail get-query-results
@@ -301,7 +351,7 @@ aws cloudtrail get-query-results
 
 ## List all queries on an event data store<a name="lake-cli-list-queries"></a>
 
-The following example AWS CLI command returns a list of queries and query statuses on a specified event data store for the past seven days\. You must specify an ARN or the ID suffix of an ARN value for `--event-data-store`\. Optionally, to shorten the list of results, you can specify a time range, formatted as timestamps, by adding `--start-time` and `--end-time` parameters, and a `--query-status` value\. Valid values for `QueryStatus` include `QUEUED`, `RUNNING`, `FINISHED`, `FAILED`, or `CANCELLED`\.
+The following example AWS CLI list\-queries command returns a list of queries and query statuses on a specified event data store for the past seven days\. You must specify an ARN or the ID suffix of an ARN value for `--event-data-store`\. Optionally, to shorten the list of results, you can specify a time range, formatted as timestamps, by adding `--start-time` and `--end-time` parameters, and a `--query-status` value\. Valid values for `QueryStatus` include `QUEUED`, `RUNNING`, `FINISHED`, `FAILED`, or `CANCELLED`\.
 
 list\-queries also has optional pagination parameters\. Use `--max-results` to specify a maximum number of results that you want the command to return on a single page\. If there are more results than your specified `--max-results` value, run the command again adding the returned `NextToken` value to get the next page of results\.
 
@@ -336,7 +386,7 @@ aws cloudtrail list-queries
 
 ## Cancel a running query<a name="lake-cli-cancel-query"></a>
 
-The following example cancels a query with a status of `RUNNING`\. You must specify an ARN or the ID suffix of an ARN value for `--event-data-store`, and a value for `--query-id`\. When you run cancel\-query, the query status might show as `CANCELLED` even if the cancel\-query operation is not yet finished\.
+The following example AWS CLI cancel\-query command cancels a query with a status of `RUNNING`\. You must specify an ARN or the ID suffix of an ARN value for `--event-data-store`, and a value for `--query-id`\. When you run cancel\-query, the query status might show as `CANCELLED` even if the cancel\-query operation is not yet finished\.
 
 **Note**  
 A canceled query can incur charges\. Your account is still charged for the amount of data that was scanned before you canceled the query\.

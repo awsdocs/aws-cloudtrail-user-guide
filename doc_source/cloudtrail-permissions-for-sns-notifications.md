@@ -10,7 +10,7 @@ CloudTrail adds the following statement to the policy for you with the following
 + The service principal name for CloudTrail\.
 + The SNS topic, including region, account ID, and topic name\.
 
-The following policy allows CloudTrail to send notifications about log file delivery from supported regions\. For more information, see [CloudTrail supported regions](cloudtrail-supported-regions.md)\. This is the default policy that is attached to a new or existing SNS topic policy when you create or update a trail, and choose to enable SNS notifications\.
+The following policy allows CloudTrail to send notifications about log file delivery from supported regions\. For more information, see [CloudTrail supported Regions](cloudtrail-supported-regions.md)\. This is the default policy that is attached to a new or existing SNS topic policy when you create or update a trail, and choose to enable SNS notifications\.
 
 **SNS topic policy**
 

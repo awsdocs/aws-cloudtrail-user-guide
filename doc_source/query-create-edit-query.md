@@ -13,7 +13,11 @@ WHERE
 
 In this walkthrough, we open one of the sample queries, edit it to select events that have a `userIdentity.principalId` value like `Alice` and an event name of `ConsoleLogin`, and save it as a new query\. You can also edit a saved query on the **Saved queries** tab, if you have saved queries\.
 
-1. On the CloudTrail **Lake** page, open the **Sample queries** tab\.
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
+1. Choose **Lake** in the left navigation pane of the CloudTrail console\.
+
+1. On the CloudTrail **Lake** page, choose the **Sample queries** tab\.
 
 1. Open **sample query 1** by choosing the **Query SQL** string for the query\. This opens the query in the **Editor** tab\.
 
@@ -50,6 +54,6 @@ A toolbar at the upper right of the query editor offers commands to help author 
 ![\[Query editor toolbar\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/query-editor-toolbar.png)
 
 The following list describes the commands on the toolbar\.
-+ **Undo** \- Reverts the last content change made in the query editor\.
-+ **Redo** \- Repeats the last content change made in the query editor\.
-+ **Format selected** \- Arranges the query editor content according to SQL formatting and spacing conventions\.
++ **Undo** – Reverts the last content change made in the query editor\.
++ **Redo** – Repeats the last content change made in the query editor\.
++ **Format selected** – Arranges the query editor content according to SQL formatting and spacing conventions\.

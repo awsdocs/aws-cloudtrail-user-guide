@@ -205,6 +205,8 @@ When you configure a trail, you can choose an S3 bucket and SNS topic that belon
 1. To log data events, choose **Data events**\.
 
 1. For **Data event type**, choose the resource type on which you want to log data events\.
+**Note**  
+To log data events for AWS Glue, choose **Lake Formation**\.
 
 1. Choose a log selector template\. CloudTrail includes predefined templates that log all data events for the resource type\. To build a custom log selector template, choose **Custom**\.
 **Note**  

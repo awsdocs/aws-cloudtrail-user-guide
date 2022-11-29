@@ -2,7 +2,7 @@
 
 CloudTrail Lake queries are SQL strings\. This section describes the allowed SQL language that you use to create queries\.
 
-Only `SELECT` statements are allowed\. No query strings can change or mutate data\. The API restricts the scope of a `SELECT` statement to the argument tree shown in the following template\. Simple aggregations, conditions, and operators are allowed\. A keyword, operator, or function that is not described in this section is disallowed\. The event data store ID—the ID portion of the event data store's ARN—is the valid value for tables\.
+Only `SELECT` statements are allowed\. No query strings can change or mutate data\. The API restricts the scope of a `SELECT` statement to the argument tree shown in the following template\. Simple aggregations, conditions, and join operators are allowed\. A keyword, operator, or function that is not described in this section is disallowed\. The event data store ID—the ID portion of the event data store's ARN—is the valid value for tables\.
 
 ```
 SELECT [ DISTINCT ] columns [ Aggregate ]
@@ -15,14 +15,16 @@ SELECT [ DISTINCT ] columns [ Aggregate ]
 ```
 
 **Topics**
-+ [Supported schema for event record ﬁelds](#query-supported-event-schema)
-+ [Aggregate functions and condition operators](#query-aggregates-condition-operators)
++ [Supported schema for CloudTrail event record ﬁelds](#query-supported-event-schema)
++ [Supported schema for AWS Config configuration item record ﬁelds](#query-supported-config-items-schema)
++ [Supported schema for AWS Audit Manager evidence record ﬁelds](#query-supported-event-schema-audit-manager)
++ [Aggregate functions, condition and join operators](#query-aggregates-condition-operators)
 + [Supported functions](#query-supported-functions)
 + [Advanced, multi\-table query support](#query-advanced-multi-table)
 
-## Supported schema for event record ﬁelds<a name="query-supported-event-schema"></a>
+## Supported schema for CloudTrail event record ﬁelds<a name="query-supported-event-schema"></a>
 
-The following is the valid SQL schema for event record fields\.
+The following is the valid SQL schema for CloudTrail event record fields\.
 
 ```
 [
@@ -166,7 +168,108 @@ The following is the valid SQL schema for event record fields\.
 ]
 ```
 
-## Aggregate functions and condition operators<a name="query-aggregates-condition-operators"></a>
+## Supported schema for AWS Config configuration item record ﬁelds<a name="query-supported-config-items-schema"></a>
+
+The following is the valid SQL schema for configuration item record fields\. For configuration items, the value of `eventcategory` is `ConfigurationItem`, and the value of `eventtype` is `AwsConfigurationItem`\.
+
+```
+[
+    {
+        "Name": "eventversion",
+        "Type": "string"
+    },
+    {
+        "Name": "eventcategory",
+        "Type": "string"
+    },
+    {
+        "Name": "eventtype",
+        "Type": "string"
+    },
+        "Name": "eventid",
+        "Type": "string"
+    },
+    {
+        "Name": "eventtime",
+        "Type": "timestamp"
+    },
+    {
+        "Name": "awsregion",
+        "Type": "string"
+    },
+    {
+        "Name": "recipientaccountid",
+        "Type": "string"
+    },
+    {
+        "Name": "addendum",
+        "Type": "map<string,string>"
+    },
+    {
+        "Name": "eventdata",
+        "Type": "struct<configurationitemversion:string,configurationitemcapturetime:
+                 string,configurationitemstatus:string,configurationitemstateid:string,accountid:string,
+                 resourcetype:string,resourceid:string,resourcename:string,arn:string,awsregion:string,
+                 availabilityzone:string,resourcecreationtime:string,configuration:map<string,string>,
+                 supplementaryconfiguration:map<string,string>,relatedevents:string,
+                 relationships:struct<name:string,resourcetype:string,resourceid:string,
+                 resourcename:string>,tags:map<string,string>>"
+    }
+]
+```
+
+## Supported schema for AWS Audit Manager evidence record ﬁelds<a name="query-supported-event-schema-audit-manager"></a>
+
+The following is the valid SQL schema for Audit Manager evidence record fields\. For Audit Manager evidence record fields, the value of `eventcategory` is `Evidence`, and the value of `eventtype` is `AwsAuditManagerEvidence`\. For more information about aggregating evidence in CloudTrail Lake using Audit Manager, see [Evidence finder](https://docs.aws.amazon.com/audit-manager/latest/userguide/evidence-finder.html) in the *AWS Audit Manager User Guide*\.
+
+```
+[
+    {
+        "Name": "eventversion",
+        "Type": "string"
+    },
+    {
+        "Name": "eventcategory",
+        "Type": "string"
+    },
+    {
+        "Name": "eventtype",
+        "Type": "string"
+    },
+        "Name": "eventid",
+        "Type": "string"
+    },
+    {
+        "Name": "eventtime",
+        "Type": "timestamp"
+    },
+    {
+        "Name": "awsregion",
+        "Type": "string"
+    },
+    {
+        "Name": "recipientaccountid",
+        "Type": "string"
+    },
+    {
+        "Name": "addendum",
+        "Type": "map<string,string>"
+    },
+    {
+        "Name": "eventdata",
+        "Type": "struct<attributes:map<string,string>,awsaccountid:string,awsorganization:string,
+                 compliancecheck:string,datasource:string,eventname:string,eventsource:string,
+                 evidenceawsaccountid:string,evidencebytype:string,iamid:string,evidenceid:string,
+                 time:timestamp,assessmentid:string,controlsetid:string,controlid:string,
+                 controlname:string,controldomainname:string,frameworkname:string,frameworkid:string,
+                 service:string,servicecategory:string,resourcearn:string,resourcetype:string,
+                 evidencefolderid:string,description:string,manualevidences3resourcepath:string,
+                 evidencefoldername:string,resourcecompliancecheck:string>"
+    }
+]
+```
+
+## Aggregate functions, condition and join operators<a name="query-aggregates-condition-operators"></a>
 
 The following are allowed `Aggregate` functions\.
 
@@ -194,6 +297,18 @@ LIKE
 <>
 !=
 ( conditions ) #parenthesised conditions
+```
+
+The following are allowed `JOIN` operators\. For more information about running multi\-table queries, see [Advanced, multi\-table query support](#query-advanced-multi-table)\.
+
+```
+UNION 
+UNION ALL 
+EXCEPT 
+INTERSECT 
+LEFT JOIN 
+RIGHT JOIN 
+INNER JOIN
 ```
 
 ## Supported functions<a name="query-supported-functions"></a>
@@ -265,7 +380,7 @@ The response is a `QueryId` string\. To get the status of a query, run `describe
 
 ### `UNION|UNION ALL|EXCEPT|INTERSECT`<a name="query-multi-table-union"></a>
 
-This release adds *multi\-table* queries, or queries that you can run across multiple event data stores\. The following is an example query that uses `UNION` and `UNION.ALL` to find events by their event ID and event name in three event data stores, EDS1, EDS2, and EDS3\. The results are selected from each event data store first, then results are concatenated, ordered by event ID, and limited to ten events\.
+This release adds *multi\-table* queries, or queries that you can run across multiple event data stores\. The following is an example query that uses `UNION` and `UNION ALL` to find events by their event ID and event name in three event data stores, EDS1, EDS2, and EDS3\. The results are selected from each event data store first, then results are concatenated, ordered by event ID, and limited to ten events\.
 
 ```
 Select eventId, eventName from EDS1

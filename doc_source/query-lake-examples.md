@@ -6,7 +6,7 @@ This section includes example CloudTrail Lake queries to help you get started\.
 + [Find all principal user identities who called `CreateBucket` on January 22, 2022](#query-example-principal-ids)
 + [Find all APIs that a user called on January 22, 2022](#query-example-user-called-apis)
 + [Find the number of API calls since January 1, 2022, grouped by `eventName` and `eventSource`](#query-example-apis-eventname-eventsource)
-+ [Find all users who signed in to the console in a set of regions](#query-example-users-login-regions)
++ [Find all users who signed in to the console in a set of Regions](#query-example-users-login-regions)
 + [Find all CloudTrail Lake queries that were run in January 2022](#query-example-all-queries)
 
 ## Find all principal user identities who called `CreateBucket` on January 22, 2022<a name="query-example-principal-ids"></a>
@@ -176,7 +176,7 @@ Results
 }
 ```
 
-## Find all users who signed in to the console in a set of regions<a name="query-example-users-login-regions"></a>
+## Find all users who signed in to the console in a set of Regions<a name="query-example-users-login-regions"></a>
 
 ```
 SELECT 

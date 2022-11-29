@@ -1,4 +1,4 @@
-# CloudTrail supported regions<a name="cloudtrail-supported-regions"></a>
+# CloudTrail supported Regions<a name="cloudtrail-supported-regions"></a>
 
 
 ****  

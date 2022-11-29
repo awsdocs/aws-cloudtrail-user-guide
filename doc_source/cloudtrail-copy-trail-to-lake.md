@@ -166,6 +166,8 @@ The following example provides the KMS key policy, which allows CloudTrail to de
 
 Use the following procedure to copy trail events to CloudTrail Lake\.
 
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
 1. Choose **Trails** in the left navigation pane of the CloudTrail console\.
 
 1. On the **Trails** page, choose the trail, and then choose **Copy events to Lake**\. If the source S3 bucket for the trail uses a KMS key for data encryption, ensure that the KMS key policy allows CloudTrail to decrypt data in the bucket\. If the source S3 bucket uses multiple KMS keys, you must update each key's policy to allow CloudTrail to decrypt data in the bucket\. For more information about updating the KMS key policy, see [KMS key policy for decrypting data in the source S3 bucket](#cloudtrail-copy-trail-events-permissions-kms)\. 

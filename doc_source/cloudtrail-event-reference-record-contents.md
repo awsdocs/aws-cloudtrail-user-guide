@@ -36,7 +36,7 @@ The requested action, which is one of the actions in the API for that service\.
 **Optional:** False
 
 **`awsRegion`**  
-The AWS region that the request was made to, such as `us-east-2`\. See [CloudTrail supported regions](cloudtrail-supported-regions.md)\.  
+The AWS region that the request was made to, such as `us-east-2`\. See [CloudTrail supported Regions](cloudtrail-supported-regions.md)\.  
 **Since:** 1\.0  
 **Optional:** False
 

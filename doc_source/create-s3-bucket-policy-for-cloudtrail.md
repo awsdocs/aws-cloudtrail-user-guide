@@ -51,7 +51,7 @@ The following policy allows CloudTrail to write log files to the bucket from sup
 }
 ```
 
-For more information about AWS Regions, see [CloudTrail supported regions](cloudtrail-supported-regions.md)\.
+For more information about AWS Regions, see [CloudTrail supported Regions](cloudtrail-supported-regions.md)\.
 
 **Contents**
 + [Specifying an existing bucket for CloudTrail log delivery](#specify-an-existing-bucket-for-cloudtrail-log-delivery)

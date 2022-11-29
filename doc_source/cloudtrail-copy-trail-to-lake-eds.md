@@ -159,9 +159,11 @@ The following example provides the KMS key policy, which allows CloudTrail to de
 
 Use the following procedure to copy trail events to an event data store\.
 
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
 1. Choose **Lake** in the left navigation pane of the CloudTrail console\.
 
-1. On the **Lake** page, open the **Event data stores** tab\.
+1. On the **Lake** page, choose the **Event data stores** tab\.
 
 1. Choose **Copy trail events**\.
 

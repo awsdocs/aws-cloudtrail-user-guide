@@ -17,3 +17,4 @@ If you have created an organization in AWS Organizations, you can create a trail
 + [Controlling user permissions for CloudTrail](control-user-permissions-for-cloudtrail.md)
 + [Tips for managing trails](cloudtrail-concepts-trails-managing-and-using.md)
 + [Using AWS CloudTrail with interface VPC endpoints](cloudtrail-and-interface-VPC.md)
++ [Viewing service\-linked channels for CloudTrail by using the AWS CLI](viewing-service-linked-channels.md)

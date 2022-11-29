@@ -139,6 +139,8 @@ If you have more than 15,000 Lambda functions in your account, you cannot view o
 1. If you are not already logging data events, choose **Data events**\.
 
 1. For **Data event type**, choose the resource type on which you want to log data events\.
+**Note**  
+To log data events for AWS Glue, choose **Lake Formation**\.
 
 1. Choose a log selector template\. CloudTrail includes predefined templates that log all data events for the resource type\. To build a custom log selector template, choose **Custom**\.
 **Note**  
