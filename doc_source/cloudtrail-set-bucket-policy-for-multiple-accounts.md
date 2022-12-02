@@ -43,7 +43,10 @@ An AWS account ID is a twelve\-digit number, including leading zeros\.
          ],
          "Condition": { 
            "StringEquals": { 
-             "aws:SourceArn": "arn:aws:cloudtrail:region:myAccountID:trail/trailName",
+             "aws:SourceArn": [ 
+               "arn:aws:cloudtrail:region:111111111111:trail/primaryTrailName",
+               "arn:aws:cloudtrail:region:222222222222:trail/secondaryTrailName"
+             ],
              "s3:x-amz-acl": "bucket-owner-full-control"
            }
          }

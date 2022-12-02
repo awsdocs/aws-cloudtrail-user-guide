@@ -16,7 +16,7 @@ Instead of manually creating the following metric filters and alarms examples, y
 
 Before you can use the examples in this topic, you must:
 + Create a trail with the console or CLI\.
-+ Create a log group, which you can do as part of creating a trail\.
++ Create a log group, which you can do as part of creating a trail\. For more information about creating a trail, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\.
 + Specify or create an IAM role that grants CloudTrail the permissions to create a CloudWatch Logs log stream in the log group that you specify and to deliver CloudTrail events to that log stream\. The default `CloudTrail_CloudWatchLogs_Role` does this for you\.
 
 For more information, see [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\. Examples in this section are performed in the Amazon CloudWatch Logs console\. For more information about how to create metric filters and alarms, see [Creating metrics from log events using filters](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html) and [Using Amazon CloudWatch alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.

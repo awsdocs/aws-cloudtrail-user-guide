@@ -8,10 +8,10 @@ If you create an AWS KMS key in the CloudTrail console, the following policies a
 + Enables cross\-account log decryption for the account ID of the account that created the trail\. 
 
 **Topics**
-+ [](#default-kms-key-policy-eds)
-+ [](#default-kms-key-policy-trail)
++ [Default KMS key policy for CloudTrail Lake event data stores](#default-kms-key-policy-eds)
++ [Default KMS key policy for trails](#default-kms-key-policy-trail)
 
-## <a name="default-kms-key-policy-eds"></a>
+## Default KMS key policy for CloudTrail Lake event data stores<a name="default-kms-key-policy-eds"></a>
 
 The following is the default policy created for a AWS KMS key that you use with an event data store in CloudTrail Lake\.
 
@@ -57,7 +57,7 @@ The following is the default policy created for a AWS KMS key that you use with 
     }
 ```
 
-## <a name="default-kms-key-policy-trail"></a>
+## Default KMS key policy for trails<a name="default-kms-key-policy-trail"></a>
 
 The following is the default policy created for a AWS KMS key that you use with a trail\.
 
@@ -118,20 +118,6 @@ The policy's final statement allows cross accounts to decrypt log files with the
                 "kms:ViaService": "ec2.region.amazonaws.com",
                 "kms:CallerAccount": "account-id"
             }}
-        },
-        {
-            "Sid": "Enable cross account log decryption",
-            "Effect": "Allow",
-            "Principal": {"AWS": "*"},
-            "Action": [
-                "kms:Decrypt",
-                "kms:ReEncryptFrom"
-            ],
-            "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
-            "Condition": {
-                "StringEquals": {"kms:CallerAccount": "account-id"},
-                "StringLike": {"kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:account-id:trail/*"}
-            }
         }
     ]
 }

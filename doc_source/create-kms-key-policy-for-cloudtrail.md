@@ -161,6 +161,20 @@ Users of your key must be given explicit permissions to read the log files that 
 }
 ```
 
+The following is an example policy that is required to allow the CloudTrail service principal to decrypt trail logs\.
+
+```
+{
+      "Sid": "Allow CloudTrail to decrypt a trail",
+      "Effect": "Allow",
+      "Principal": {
+          "Service": "cloudtrail.amazonaws.com"
+        },
+      "Action": "kms:Decrypt"
+      "Resource": "*"
+}
+```
+
 A decrypt policy for a KMS key that is used with a CloudTrail Lake event data store is similar to the following\. The user or role ARNs specified as values for `Principal` need decrypt permissions to create or update event data stores, run queries, or get query results\.
 
 ```

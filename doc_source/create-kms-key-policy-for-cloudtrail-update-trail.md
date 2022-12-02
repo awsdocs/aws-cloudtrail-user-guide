@@ -24,7 +24,7 @@ To update a trail using the AWS CLI, see [Enabling and disabling CloudTrail log 
 
 1. In **General details**, choose **Edit**\.
 
-1. For **Log file SSE\-KMS encryption**, if it is not already enabled, choose **Enabled** to encrypt your log files with SSE\-KMS instead of SSE\-S3\. The default is **Enabled**\. For more information about this encryption type, see [Protecting Data Using Server\-Side Encryption with Amazon S3\-Managed Encryption Keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\.
+1. For **Log file SSE\-KMS encryption**, choose **Enabled** if you want to encrypt your log files using SSE\-KMS encryption instead of SSE\-S3 encryption\. The default is **Enabled**\. If you don't enable SSE\-KMS encryption, your logs are encrypted using SSE\-S3 encryption\. For more information about SSE\-KMS encryption, see [Using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](https://docs.aws.amazon.com/com)\. For more information about SSE\-S3 encryption, see [Protecting Data Using Server\-Side Encryption with Amazon S3\-Managed Encryption Keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\.
 
    Choose **Existing** to update your trail with your AWS KMS key\. Choose a KMS key that is in the same region as the S3 bucket that receives your log files\. To verify the region for an S3 bucket, view its properties in the S3 console\.
 **Note**  

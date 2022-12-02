@@ -1,6 +1,6 @@
 # Deleting a trail<a name="cloudtrail-delete-trails-console"></a>
 
-You can delete trails with the CloudTrail console\.
+You can delete trails with the CloudTrail console\. If an organization's management account or delegated administrator account deletes an organization trail, the trail is removed from all member accounts of the organization\.
 
 **To delete a trail with the CloudTrail console**
 

@@ -157,10 +157,10 @@ You can specify only one attribute key/value pair for each lookup\-events comman
 
 ### Attribute lookup examples<a name="attribute-lookup-example"></a>
 
-The following example command returns events in region US East \(N\. Virginia\) region, us\-east\-1 which allows you to view global service events\. Replace *ConsoleLogin*, and *gseService* with appropriate values for your configuration\.
+The following example command returns events in region US East \(N\. Virginia\) region, us\-east\-1 which allows you to view console login events\. Replace *ConsoleLogin* with the appropriate value for your configuration\.
 
 ```
-aws cloudtrail --region us-east-1  lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin AttributeKey=EventSource,AttributeValue=gseService
+aws cloudtrail --region us-east-1  lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin
 ```
 
 The following example command returns events in which the value of `AccessKeyId` is `AKIAIOSFODNN7EXAMPLE`\.

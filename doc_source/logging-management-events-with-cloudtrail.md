@@ -80,15 +80,20 @@ The following example returns the default settings for a trail\. By default, tra
 
 ```
 {
-    "EventSelectors": [
+    "TrailARN": "arn:aws:cloudtrail:us-east-1:111122223333:trail/TrailName",
+    "AdvancedEventSelectors": [
         {
-            "ExcludeManagementEventSources": [],
-            "IncludeManagementEvents": true,
-            "DataResources": [],
-            "ReadWriteType": "All"
+            "Name": "Management events selector",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Management"
+                    ]
+                }
+            ]
         }
-    ],
-    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+    ]
 }
 ```
 
@@ -105,45 +110,47 @@ The following example returns the event selector configured for the trail\.
 
 ```
 {
+    "TrailARN": "arn:aws:cloudtrail:us-east-1:111122223333:trail/TrailName",
     "EventSelectors": [
         {
-            "ExcludeManagementEventSources": [],
+            "ReadWriteType": "All",
             "IncludeManagementEvents": true,
             "DataResources": [
                 {
+                    "Type": "AWS::S3::Object",
                     "Values": [
                         "arn:aws:s3:::mybucket/prefix",
                         "arn:aws:s3:::mybucket2/prefix2",
-                    ],
-                    "Type": "AWS::S3::Object"
+                    ]  
                 }
             ],
-            "ReadWriteType": "All"
+            "ExcludeManagementEventSources": []
         }
-    ],
-    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+    ]
 }
 ```
 
 To exclude AWS Key Management Service \(AWS KMS\) events from a trail's logs, run the `put-event-selectors` command and add the attribute `ExcludeManagementEventSources` with a value of `kms.amazonaws.com`\. The following example creates an event selector for a trail named *TrailName* to include read\-only and write\-only management events, but exclude AWS KMS events\. Because AWS KMS can generate a high volume of events, the user in this example might want to limit events to manage the cost of a trail\.
 
 ```
-aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": ["kms.amazonaws.com"],"IncludeManagementEvents": true]}]'
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": ["kms.amazonaws.com"],"IncludeManagementEvents": true}]'
 ```
 
 The example returns the event selector configured for the trail\.
 
 ```
 {
+    "TrailARN": "arn:aws:cloudtrail:us-east-1:111122223333:trail/TrailName",
     "EventSelectors": [
         {
-            "ExcludeManagementEventSources": [ "kms.amazonaws.com" ],
+            "ReadWriteType": "All",
             "IncludeManagementEvents": true,
             "DataResources": [],
-            "ReadWriteType": "All"
+            "ExcludeManagementEventSources": [
+                "kms.amazonaws.com"
+            ]
         }
-    ],
-    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+    ]
 }
 ```
 
@@ -151,28 +158,30 @@ To exclude Amazon RDS Data API events from a trail's logs, run the `put-event-se
 
 ```
 {
+    "TrailARN": "arn:aws:cloudtrail:us-east-1:111122223333:trail/TrailName",
     "EventSelectors": [
         {
-            "ExcludeManagementEventSources": [ "rdsdata.amazonaws.com" ],
+            "ReadWriteType": "All",
             "IncludeManagementEvents": true,
             "DataResources": [],
-            "ReadWriteType": "All"
+            "ExcludeManagementEventSources": [
+                "rdsdata.amazonaws.com"
+            ]
         }
-    ],
-    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+    ]
 }
 ```
 
 To start logging AWS KMS or Amazon RDS Data API events to a trail again, pass an empty string as the value of `ExcludeManagementEventSources`, as shown in the following command\.
 
 ```
-aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "All","ExcludeManagementEventSources": [],"IncludeManagementEvents": true}]'
 ```
 
 To log relevant AWS KMS events to a trail like `Disable`, `Delete` and `ScheduleKey`, but exclude high\-volume AWS KMS events like `Encrypt`, `Decrypt`, and `GenerateDataKey`, log write\-only management events, and keep the default setting to log AWS KMS events, as shown in the following example\.
 
 ```
-aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "WriteOnly","ExcludeManagementEventSources": [],"IncludeManagementEvents": true]}]'
+aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "WriteOnly","ExcludeManagementEventSources": [],"IncludeManagementEvents": true}]'
 ```
 
 ## Logging events with the AWS SDKs<a name="logging-management-events-with-the-AWS-SDKs"></a>

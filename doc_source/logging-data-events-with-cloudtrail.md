@@ -26,7 +26,7 @@ Data events provide visibility into the resource operations performed on or with
 Use the following data event resource types with basic event selectors:
 + Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\) on buckets and objects in buckets
 + AWS Lambda function execution activity \(the `Invoke` API\)
-+ Amazon DynamoDB object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)\.
++ Amazon DynamoDB object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)\. For more information about DynamoDB events, see [DynamoDB data plane events in CloudTrail](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail)\.
 
 In addition to basic event selectors, use the following data types with advanced event selectors:
 + Amazon S3 on Outposts object\-level API activity
