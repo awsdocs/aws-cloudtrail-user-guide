@@ -17,44 +17,46 @@ The following is the default policy created for a AWS KMS key that you use with 
 
 ```
 {
-      "Version": "2012-10-17",
-      "Id": "Key policy created by CloudTrail",
-      "Statement": [
-        {
-          "Sid": "The key created by CloudTrail to encrypt event data stores. Created ${new Date().toUTCString()}",
-          "Effect": "Allow",
-          "Principal": {
-            "Service": ["cloudtrail.amazonaws.com"]
-          },
-          "Action": [
-            "kms:GenerateDataKey",
-            "kms:Decrypt"
-          ],
-          "Resource": "*"
-        },
-        {
-          "Sid": "Enable IAM User Permissions",
-          "Effect": "Allow",
-          "Principal": {
-            "AWS": "arn:${this.partition}:iam::${this.account-id}:root"
-          },
-          "Action": "kms:*",
-          "Resource": "*"
-        },
-        {
-          "Sid": "Enable user to have permissions",
-          "Effect": "Allow",
-          "Principal": {
-            "AWS" : "${this.role-ARN}"
-          },
-          "Action": [
-            "kms:Decrypt",
-            "kms:GenerateDataKey"
-           ],
-          "Resource": "*"
-        }
-      ]
+  "Version": "2012-10-17",
+  "Id": "Key policy created by CloudTrail",
+  "Statement": [
+    {
+      "Sid": "The key created by CloudTrail to encrypt event data stores. Created ${new Date().toUTCString()}",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "cloudtrail.amazonaws.com"
+        ]
+      },
+      "Action": [
+        "kms:GenerateDataKey",
+        "kms:Decrypt"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Enable IAM User Permissions",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:${this.partition}:iam::${this.account-id}:root"
+      },
+      "Action": "kms:*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "Enable user to have permissions",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "${this.role-ARN}"
+      },
+      "Action": [
+        "kms:Decrypt",
+        "kms:GenerateDataKey"
+      ],
+      "Resource": "*"
     }
+  ]
+}
 ```
 
 ## Default KMS key policy for trails<a name="default-kms-key-policy-trail"></a>
@@ -66,59 +68,83 @@ The policy's final statement allows cross accounts to decrypt log files with the
 
 ```
 {
-    "Version": "2012-10-17",
-    "Id": "Key policy created by CloudTrail",
-    "Statement": [
-        {
-            "Sid": "Enable IAM User Permissions",
-            "Effect": "Allow",
-            "Principal": {"AWS": [
-                "arn:aws:iam::account-id:root",
-                "arn:aws:iam::account-id:user/username"
-            ]},
-            "Action": "kms:*",
-            "Resource": "arn:aws:s3:::myBucketName"
-        },
-        {
-            "Sid": "Allow CloudTrail to encrypt logs",
-            "Effect": "Allow",
-            "Principal": {"Service": ["cloudtrail.amazonaws.com"]},
-            "Action": "kms:GenerateDataKey*",
-            "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
-            "Condition": {"StringLike": {"kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:account-id:trail/*"}}
-        },
-        {
-            "Sid": "Allow CloudTrail to describe key",
-            "Effect": "Allow",
-            "Principal": {"Service": ["cloudtrail.amazonaws.com"]},
-            "Action": "kms:DescribeKey",
-            "Resource": "arn:aws:kms:Region:account_ID:key/key_ID"
-        },
-        {
-            "Sid": "Allow principals in the account to decrypt log files",
-            "Effect": "Allow",
-            "Principal": {"AWS": "*"},
-            "Action": [
-                "kms:Decrypt",
-                "kms:ReEncryptFrom"
-            ],
-            "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
-            "Condition": {
-                "StringEquals": {"kms:CallerAccount": "account-id"},
-                "StringLike": {"kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:account-id:trail/*"}
-            }
-        },
-        {
-            "Sid": "Allow alias creation during setup",
-            "Effect": "Allow",
-            "Principal": {"AWS": "*"},
-            "Action": "kms:CreateAlias",
-            "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
-            "Condition": {"StringEquals": {
-                "kms:ViaService": "ec2.region.amazonaws.com",
-                "kms:CallerAccount": "account-id"
-            }}
+  "Version": "2012-10-17",
+  "Id": "Key policy created by CloudTrail",
+  "Statement": [
+    {
+      "Sid": "Enable IAM User Permissions",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::account-id:root",
+          "arn:aws:iam::account-id:user/username"
+        ]
+      },
+      "Action": "kms:*",
+      "Resource": "arn:aws:s3:::myBucketName"
+    },
+    {
+      "Sid": "Allow CloudTrail to encrypt logs",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "cloudtrail.amazonaws.com"
+        ]
+      },
+      "Action": "kms:GenerateDataKey*",
+      "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
+      "Condition": {
+        "StringLike": {
+          "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:account-id:trail/*"
         }
-    ]
+      }
+    },
+    {
+      "Sid": "Allow CloudTrail to describe key",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "cloudtrail.amazonaws.com"
+        ]
+      },
+      "Action": "kms:DescribeKey",
+      "Resource": "arn:aws:kms:Region:account_ID:key/key_ID"
+    },
+    {
+      "Sid": "Allow principals in the account to decrypt log files",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": [
+        "kms:Decrypt",
+        "kms:ReEncryptFrom"
+      ],
+      "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
+      "Condition": {
+        "StringEquals": {
+          "kms:CallerAccount": "account-id"
+        },
+        "StringLike": {
+          "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:account-id:trail/*"
+        }
+      }
+    },
+    {
+      "Sid": "Allow alias creation during setup",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "kms:CreateAlias",
+      "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
+      "Condition": {
+        "StringEquals": {
+          "kms:ViaService": "ec2.region.amazonaws.com",
+          "kms:CallerAccount": "account-id"
+        }
+      }
+    }
+  ]
 }
 ```
