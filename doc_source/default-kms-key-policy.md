@@ -92,7 +92,7 @@ The policy's final statement allows cross accounts to decrypt log files with the
         ]
       },
       "Action": "kms:GenerateDataKey*",
-      "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
+      "Resource": "arn:aws:kms:Region:account-id:key/key_ID",
       "Condition": {
         "StringLike": {
           "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:account-id:trail/*"
@@ -108,7 +108,7 @@ The policy's final statement allows cross accounts to decrypt log files with the
         ]
       },
       "Action": "kms:DescribeKey",
-      "Resource": "arn:aws:kms:Region:account_ID:key/key_ID"
+      "Resource": "arn:aws:kms:Region:account-id:key/key_ID"
     },
     {
       "Sid": "Allow principals in the account to decrypt log files",
@@ -120,7 +120,7 @@ The policy's final statement allows cross accounts to decrypt log files with the
         "kms:Decrypt",
         "kms:ReEncryptFrom"
       ],
-      "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
+      "Resource": "arn:aws:kms:Region:account-id:key/key_ID",
       "Condition": {
         "StringEquals": {
           "kms:CallerAccount": "account-id"
@@ -137,7 +137,7 @@ The policy's final statement allows cross accounts to decrypt log files with the
         "AWS": "*"
       },
       "Action": "kms:CreateAlias",
-      "Resource": "arn:aws:kms:Region:account_ID:key/key_ID",
+      "Resource": "arn:aws:kms:Region:account-id:key/key_ID",
       "Condition": {
         "StringEquals": {
           "kms:ViaService": "ec2.region.amazonaws.com",
