@@ -62,7 +62,7 @@ The following is the default policy created for a AWS KMS key that you use with 
 The following is the default policy created for a AWS KMS key that you use with a trail\.
 
 **Note**  
-The policy's final statement allows cross accounts to decrypt log files with the KMS key\.
+The policy includes a statement to allow cross accounts to decrypt log files with the KMS key\.
 
 ```
 {
