@@ -162,6 +162,7 @@ You can learn more about how the events for individual AWS services are recorded
 | Amazon Managed Streaming for Apache Kafka | [Logging Amazon MSK API Calls with AWS CloudTrail](https://docs.aws.amazon.com/msk/latest/developerguide/logging-using-cloudtrail.html) | 12/11/2018 | 
 | Amazon Managed Workflows for Apache Airflow | [Monitoring Amazon MWAA API activity with AWS CloudTrail](https://docs.aws.amazon.com/mwaa/latest/userguide/monitoring.html#monitor-ct-logs) | 11/24/2020 | 
 | AWS Marketplace | [Logging AWS Marketplace API Calls with AWS CloudTrail](https://docs.aws.amazon.com/marketplace/latest/userguide/logging-aws-marketplace-api-calls-with-aws-cloudtrail.html) | 05/02/2017 | 
+| AWS Marketplace Discovery | [Logging AWS Marketplace Discovery API calls using AWS CloudTrail](https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/logging-using-cloudtrail.html)  | 12/15/2022 | 
 | AWS Marketplace Metering Service | [Logging AWS Marketplace API Calls with AWS CloudTrail](https://docs.aws.amazon.com/marketplace/latest/userguide/logging-aws-marketplace-api-calls-with-aws-cloudtrail.html) | 08/22/2018 | 
 | AWS Migration Hub  | [Logging AWS Migration Hub API Calls with AWS CloudTrail](https://docs.aws.amazon.com/migrationhub/latest/ug/logging-using-cloudtrail.html) | 08/14/2017 | 
 | AWS Mobile Hub | [Logging AWS Mobile CLI API Calls with AWS CloudTrail](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-cloudtrail-logging.html)  | 06/29/2018 | 

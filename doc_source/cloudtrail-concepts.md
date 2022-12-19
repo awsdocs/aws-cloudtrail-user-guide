@@ -64,6 +64,7 @@ Data events provide information about the resource operations performed on or in
 + Amazon DynamoDB API activity on streams
 + AWS Glue API activity on tables
 + Amazon FinSpace API activity on environments
++ Amazon SageMaker API activity on experiment trial components
 
 Data events are not logged by default when you create a trail\. To record CloudTrail data events, you must explicitly add to a trail the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 

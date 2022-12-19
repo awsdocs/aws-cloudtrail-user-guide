@@ -2,10 +2,12 @@
 
 The following table describes the important changes to the documentation for AWS CloudTrail\. For notification about updates to this documentation, you can subscribe to an RSS feed\.
 + **API version**: 2013\-11\-01
-+ **Latest documentation update**: 2022\-12\-09
++ **Latest documentation update**: 2022\-12\-15
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Added service support](#cloudtrail-document-history) | This release supports AWS Marketplace Discovery\. See [AWS CloudTrail Supported Services and Integrations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html)\. | December 15, 2022 | 
+| [Added functionality](#cloudtrail-document-history) | You can now log CloudTrail data events on Amazon SageMaker metrics experiment trial components by using advanced event selectors\. For more information, see [Logging data events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\. | December 15, 2022 | 
 | [Added functionality](#cloudtrail-document-history) | You can now create an event data store to include AWS Config configuration items, and use the event data store to investigate non\-compliant changes to your production environments\. For more information, see [Create an event data store for AWS Config configuration items](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store-config.html)\. | November 28, 2022 | 
 | [New region support](#cloudtrail-document-history) | CloudTrail expanded support to a new region, the Asia Pacific \(Hyderabad\) region\. For more information, see [CloudTrail supported regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-supported-regions.html)\. | November 22, 2022 | 
 | [Added functionality](#cloudtrail-document-history) | You can now log CloudTrail data events on Amazon FinSpace environments by using advanced event selectors\. For more information, see [Logging data events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\. | November 18, 2022 | 

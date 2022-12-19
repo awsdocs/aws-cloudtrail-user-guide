@@ -11,6 +11,9 @@ Before you add a delegated administrator, be sure they have an account in your o
 
 The following procedure shows you how to add a CloudTrail delegated administrator using the CloudTrail console\.
 
+**Note**  
+Users in the AWS GovCloud \(US\-West\) and AWS GovCloud \(US\-East\) Regions can only add delegated administrators using the AWS CLI or SDK\.
+
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
 1. Choose **Settings** in the left navigation pane of the CloudTrail console\.

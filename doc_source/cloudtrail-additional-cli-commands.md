@@ -610,7 +610,7 @@ The example returns the advanced event selectors that are configured for the tra
 
 ### Example trail that uses custom advanced event selectors to log all management and data events<a name="configuring-adv-event-selector-logall"></a>
 
-The following example creates advanced event selectors for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables, and Amazon FinSpace environments\.
+The following example creates advanced event selectors for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables, Amazon FinSpace environments, and Amazon SageMaker metrics experiment trial components\.
 
 **Note**  
 If the trail applies only to one Region, only events in that Region are logged, even though the event selector parameters specify all Amazon S3 buckets and Lambda functions\. In a single\-region trail, event selectors apply only to the Region where the trail is created\.
@@ -700,6 +700,13 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::FinSpace::Environment"] }
+    ]
+  },
+  {
+    "Name": "Log all events for SageMaker metrics experiment trial components",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::SageMaker::ExperimentTrialComponent"] }
     ]
   }
 ]'
@@ -969,6 +976,29 @@ The example returns the advanced event selectors configured for the trail\.
         {
           "Field": "resources.type",
           "Equals": [ "AWS::FinSpace::Environment" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    },
+    {
+      "Name": "Log all events for SageMaker metrics experiment trial components",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory",
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type",
+          "Equals": [ "AWS::SageMaker::ExperimentTrialComponent" ],
           "StartsWith": [],
           "EndsWith": [],
           "NotEquals": [],
