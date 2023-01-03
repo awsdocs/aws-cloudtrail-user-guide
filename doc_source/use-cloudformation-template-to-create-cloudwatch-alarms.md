@@ -89,13 +89,6 @@ The following tables show the metric filters and alarms in the template, their p
 You can review the metric filter or alarm definitions in the [CloudWatch console](https://console.aws.amazon.com/cloudwatch/)\.
 
 
-**Amazon S3 bucket events**  
-
-|  Metric Filter and Alarm | Monitor and Send Notifications for: | Notifications triggered by one or more of the following API operations: | 
-| --- | --- | --- | 
-|  **S3BucketChangesMetricFilter** **S3BucketChangesAlarm**  |  API calls that change bucket policy, lifecycle, replication, or ACLs\.  |  `PutBucketAcl` `DeleteBucketPolicy` `PutBucketPolicy` `DeleteBucketLifecycle` `PutBucketLifecycle` `DeleteBucketReplication` `PutBucketReplication` `DeleteBucketCors` `PutBucketCors`  | 
-
-
 **Network events**  
 
 | Metric Filter and Alarm | Monitor and Send Notifications for: | Notifications triggered by one or more of the following API operations: | 

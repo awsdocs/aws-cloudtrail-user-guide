@@ -239,6 +239,7 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::Glue::Table`
         + `AWS::FinSpace::Environment`
         + `AWS::SageMaker::ExperimentTrialComponent`
+        + `AWS::SageMaker::FeatureGroup`
       + **`resources.ARN`** \- You can use any operator with `resources.ARN`, but if you use **Equals** or **NotEquals**, the value must exactly match the ARN of a valid resource of the type you've specified in the template as the value of `resources.type`\. 
 
         For example, when `resources.type` equals **AWS::S3::Object**, the ARN must be in one of the following formats\. To log all data events for all objects in a specific S3 bucket, use the `StartsWith` operator, and include only the bucket ARN as the matching value\. The trailing slash is intentional; do not exclude it\.
@@ -313,6 +314,12 @@ Logging data events for all functions also enables logging of data event activit
 
         ```
         arn:partition:sagemaker:region:account_ID:experiment-trial-component/experiment_trial_component_name
+        ```
+
+        When `resources.type` equals **AWS::SageMaker::FeatureGroup**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
+
+        ```
+        arn:partition:sagemaker:region:account_ID:feature-group/feature_group_name
         ```
 
       For more information about the ARN formats of data event resources, see [Actions, resources, and condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html) in the *AWS Identity and Access Management User Guide*\.

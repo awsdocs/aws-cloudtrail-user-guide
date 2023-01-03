@@ -113,6 +113,7 @@ You can learn more about how the events for individual AWS services are recorded
 | Amazon EMR on EKS | [Logging Amazon EMR on EKS API calls using AWS CloudTrail](https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/logging-using-cloudtrail.html) | 12/09/2020 | 
 | Amazon EventBridge | [EventBridge information in AWS CloudTrail](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-logging-monitoring.html#eb-info-in-cloudtrail) | 07/11/2019 | 
 | AWS Fault Injection Simulator | [Log API calls with AWS CloudTrail](https://docs.aws.amazon.com/fis/latest/userguide/logging-using-cloudtrail.html) | 03/15/2021 | 
+| Amazon FinSpace | [Querying AWS CloudTrail logs](finspace/latest/userguide/logging-cloudtrail-events.html) | 10/18/2022 | 
 | AWS Firewall Manager | [Logging AWS Firewall Manager API Calls with AWS CloudTrail](https://docs.aws.amazon.com/waf/latest/developerguide/logging-using-cloudtrail.html#cloudtrail-fms) | 04/05/2018 | 
 | Amazon Forecast | [Logging Amazon Forecast API Calls with AWS CloudTrail](https://docs.aws.amazon.com/forecast/latest/dg/logging-using-cloudtrail.html) | 11/28/2018 | 
 | FreeRTOS Over\-the\-Air Updates \(OTA\) | [Logging AWS IoT OTA API Calls with AWS CloudTrail](https://docs.aws.amazon.com/freertos/latest/userguide/iot-using-cloudtrail-afr.html) | 05/22/2019 | 

@@ -54,17 +54,18 @@ Management events can also include non\-API events that occur in your account\. 
 
 Data events provide information about the resource operations performed on or in a resource\. These are also known as *data plane operations*\. Data events are often high\-volume activities\. The following data types are recorded:
 + Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\) on buckets and objects in buckets
-+ AWS Lambda function execution activity \(the `Invoke` API\)
-+ Amazon DynamoDB object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)
++ [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html) function execution activity \(the `Invoke` API\)
++ [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)
 + Amazon S3 on Outposts object\-level API activity
-+ Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`
++ [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`
 + Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`
-+ Amazon Elastic Block Store \(EBS\) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots
++ [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots
 + Amazon S3 API activity on access points
-+ Amazon DynamoDB API activity on streams
++ [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams
 + AWS Glue API activity on tables
-+ Amazon FinSpace API activity on environments
++ [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments
 + Amazon SageMaker API activity on experiment trial components
++ Amazon SageMaker API activity on feature stores
 
 Data events are not logged by default when you create a trail\. To record CloudTrail data events, you must explicitly add to a trail the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 

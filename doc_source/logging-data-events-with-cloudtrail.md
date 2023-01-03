@@ -15,6 +15,7 @@ The events that are logged by your trails are available in Amazon CloudWatch Eve
   + [Log events by using advanced event selectors](#creating-data-event-selectors-advanced)
   + [Log all Amazon S3 events for a bucket by using advanced event selectors](#creating-data-adv-event-selectors-CLI-s3)
   + [Log Amazon S3 on AWS Outposts events by using advanced event selectors](#creating-data-event-selectors-CLI-outposts)
+  + [Log all data events by using advanced event selectors](#creating-data-adv-event-selectors-CLI-all-data)
 + [Logging data events for AWS Config compliance](#config-data-events-best-practices)
 + [Logging events with the AWS SDKs](#logging-data-events-with-the-AWS-SDKs)
 + [Sending events to Amazon CloudWatch Logs](#sending-data-events-to-cloudwatch-logs)
@@ -30,11 +31,11 @@ Use the following data event resource types with basic event selectors:
 
 In addition to basic event selectors, use the following data types with advanced event selectors:
 + Amazon S3 on Outposts object\-level API activity
-+ Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`
++ [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`
 + Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`
 + [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots
 + Amazon S3 API activity on access points
-+ Amazon DynamoDB API activity on streams
++ [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams
 + AWS Glue API activity on tables
 **Note**  
 AWS Glue data events for tables are currently supported only in the following regions:  
@@ -43,8 +44,9 @@ US East \(Ohio\)
 US West \(Oregon\)
 Europe \(Ireland\)
 Asia Pacific \(Tokyo\) Region
-+ Amazon FinSpace API activity on environments
++ [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments
 + Amazon SageMaker API activity on experiment trial components
++ Amazon SageMaker API activity on feature stores
 
 Data events are not logged by default when you create a trail\. To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity to a trail\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\.
 
@@ -137,7 +139,7 @@ Logging data events for all functions also enables logging of data event activit
 
 1. \(Optional\) Enter a name for your custom log selector template\.
 
-1. In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables, Amazon FinSpace environments, and Amazon SageMaker metrics experiment trial components\.
+1. In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, and Amazon SageMaker feature stores\.
 
    1. Choose from the following fields\. For fields that accept an array \(more than one value\), CloudTrail adds an OR between values\.
       + **`readOnly`** \- `readOnly` can be set to **Equals** a value of `true` or `false`\. Read\-only data events are events that do not change the state of a resource, such as `Get*` or `Describe*` events\. Write events add, change, or delete resources, attributes, or artifacts, such as `Put*`, `Delete*`, or `Write*` events\. To log both `read` and `write` events, don't add a `readOnly` selector\.
@@ -155,7 +157,8 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::Glue::Table`
         + `AWS::FinSpace::Environment`
         + `AWS::SageMaker::ExperimentTrialComponent`
-      + **`resources.ARN`** \- You can use any operator with `resources.ARN`, but if you use **Equals** or **NotEquals**, the value must exactly match the ARN of a valid resource of the type you've specified in the template as the value of `resources.type`\. 
+        + `AWS::SageMaker::FeatureGroup`
+      + **`resources.ARN`** \- You can use any operator with `resources.ARN`, but if you use **Equals** or **NotEquals**, the value must exactly match the ARN of a valid resource of the type you've specified in the template as the value of `resources.type`\.
 
         For example, when `resources.type` equals **AWS::S3::Object**, the ARN must be in one of the following formats\. To log all data events for all objects in a specific S3 bucket, use the `StartsWith` operator, and include only the bucket ARN as the matching value\. The trailing slash is intentional; do not exclude it\.
 
@@ -229,6 +232,12 @@ Logging data events for all functions also enables logging of data event activit
 
         ```
         arn:partition:sagemaker:region:account_ID:experiment-trial-component/experiment_trial_component_name
+        ```
+
+        When `resources.type` equals **AWS::SageMaker::FeatureGroup**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
+
+        ```
+        arn:partition:sagemaker:region:account_ID:feature-group/feature_group_name
         ```
 
       For more information about the ARN formats of data event resources, see [Actions, resources, and condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html) in the *AWS Identity and Access Management User Guide*\.
@@ -376,6 +385,7 @@ The command returns the default settings for a trail\.
 + [Log events by using advanced event selectors](#creating-data-event-selectors-advanced)
 + [Log all Amazon S3 events for a bucket by using advanced event selectors](#creating-data-adv-event-selectors-CLI-s3)
 + [Log Amazon S3 on AWS Outposts events by using advanced event selectors](#creating-data-event-selectors-CLI-outposts)
++ [Log all data events by using advanced event selectors](#creating-data-adv-event-selectors-CLI-all-data)
 
 ### Log events by using basic event selectors<a name="creating-data-event-selectors-basic"></a>
 
@@ -615,6 +625,342 @@ The command returns the following example output\.
         }
     ],
   "TrailARN": "arn:aws:cloudtrail:region:account_ID:trail/TrailName"
+}
+```
+
+### Log all data events by using advanced event selectors<a name="creating-data-adv-event-selectors-CLI-all-data"></a>
+
+The following example shows how to configure your trail to include data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, and Amazon SageMaker feature stores\.
+
+**Note**  
+If the trail applies only to one Region, only events in that Region are logged, even though the event selector parameters specify all Amazon S3 buckets and Lambda functions\. In a single\-region trail, event selectors apply only to the Region where the trail is created\.
+
+```
+aws cloudtrail put-event-selectors --trail-name TrailName \
+--advanced-event-selectors '
+[
+  {
+    "Name": "Log all events for all Amazon S3 buckets",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::S3::Object"] }
+    ]
+  },
+  {
+    "Name": "Log all events for Lambda functions",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::Lambda::Function"] }
+    ]
+  },
+  {
+    "Name": "Log all events for DynamoDB tables",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::DynamoDB::Table"] }
+    ]
+  },
+  {
+    "Name": "Log all events for Amazon S3 on Outposts",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::S3Outposts::Object"] }
+    ]
+  },
+  {
+    "Name": "Log all JSON-RPC calls for Ethereum nodes in Amazon Managed Blockchain",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::ManagedBlockchain::Node"] }
+    ]
+  },
+  {
+    "Name": "Log all events for Amazon S3 Object Lambda access points",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::S3ObjectLambda::AccessPoint"] }
+    ]
+  },
+  {
+    "Name": "Log all Amazon EBS direct API calls on snapshots",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::EC2::Snapshot"] }
+    ]
+  },
+  {
+    "Name": "Log all events for Amazon S3 access points",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::S3::AccessPoint"] }
+    ]
+  },
+  {
+    "Name": "Log all events for DynamoDB streams",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::DynamoDB::Stream"] }
+    ]
+  },
+  {
+    "Name": "Log all events for AWS Glue tables",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::Glue::Table"] }
+    ]
+  },
+  {
+    "Name": "Log all events for FinSpace environments",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::FinSpace::Environment"] }
+    ]
+  },
+  {
+    "Name": "Log all events for SageMaker metrics experiment trial components",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::SageMaker::ExperimentTrialComponent"] }
+    ]
+  },
+  {
+    "Name": "Log all events for SageMaker feature stores",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::SageMaker::FeatureGroup"] }
+    ]
+  }
+]'
+```
+
+The command returns the following example output\.
+
+```
+{
+    "TrailARN": "arn:aws:cloudtrail:us-east-1:111122223333:trail/TrailName",
+    "AdvancedEventSelectors": [
+        {
+            "Name": "Log all events for all Amazon S3 buckets",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::S3::Object"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for Lambda functions",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::Lambda::Function"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for DynamoDB tables",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::DynamoDB::Table"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for Amazon S3 on Outposts",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::S3Outposts::Object"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all JSON-RPC calls for Ethereum nodes in Amazon Managed Blockchain",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::ManagedBlockchain::Node"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for Amazon S3 Object Lambda access points",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::S3ObjectLambda::AccessPoint"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all Amazon EBS direct API calls on snapshots",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::EC2::Snapshot"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for Amazon S3 access points",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::S3::AccessPoint"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for DynamoDB streams",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::DynamoDB::Stream"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for AWS Glue tables",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::Glue::Table"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for FinSpace environments",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::FinSpace::Environment"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for SageMaker metrics experiment trial components",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::SageMaker::ExperimentTrialComponent"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for SageMaker feature stores",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::SageMaker::FeatureGroup"
+                    ]
+                }
+            ]
+        }
+    ]
 }
 ```
 
