@@ -42,7 +42,7 @@ To enable AWS Key Management Service encryption for an organization event data s
 
 1. To include data events in your event data store, do the following\.
 
-   1. Choose a data event type\. This is the AWS service and resource on which data events are logged\. To log data events for AWS Glue, choose **Lake Formation** for the data type\.
+   1. Choose a data event type\. This is the AWS service and resource on which data events are logged\. To log data events for AWS Glue tables created by Lake Formation, choose **Lake Formation** for the data type\.
 
    1. In **Log selector template**, choose a template\. You can choose to log all data events, `readOnly` events, `writeOnly` events, or **Custom** to build a custom log selector\.
 

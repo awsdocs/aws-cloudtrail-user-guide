@@ -62,7 +62,7 @@ Data events provide information about the resource operations performed on or in
 + [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots
 + Amazon S3 API activity on access points
 + [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams
-+ AWS Glue API activity on tables
++ AWS Glue API activity on tables created by Lake Formation
 + [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments
 + Amazon SageMaker API activity on experiment trial components
 + Amazon SageMaker API activity on feature stores

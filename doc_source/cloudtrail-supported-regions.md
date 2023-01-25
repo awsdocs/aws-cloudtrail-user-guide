@@ -20,6 +20,7 @@
 | Asia Pacific \(Singapore\) | ap\-southeast\-1 | cloudtrail\.ap\-southeast\-1\.amazonaws\.com | HTTPS | 903692715234  | 06/30/2014 | 
 | Asia Pacific \(Sydney\) | ap\-southeast\-2 | cloudtrail\.ap\-southeast\-2\.amazonaws\.com | HTTPS | 284668455005 | 05/13/2014 | 
 | Asia Pacific \(Jakarta\) | ap\-southeast\-3 | cloudtrail\.ap\-southeast\-3\.amazonaws\.com | HTTPS | 069019280451 | 12/13/2021 | 
+| Asia Pacific \(Melbourne\) | ap\-southeast\-4 | cloudtrail\.ap\-southeast\-4\.amazonaws\.com | HTTPS | 187074758985 | 01/23/2023 | 
 | China \(Beijing\) | cn\-north\-1 | cloudtrail\.cn\-north\-1\.amazonaws\.com\.cn | HTTPS | 193415116832 | 03/01/2014 | 
 | China \(Ningxia\) | cn\-northwest\-1 | cloudtrail\.cn\-northwest\-1\.amazonaws\.com\.cn | HTTPS | 681348832753  | 12/11/2017 | 
 | Europe \(Frankfurt\) | eu\-central\-1 | cloudtrail\.eu\-central\-1\.amazonaws\.com | HTTPS | 035351147821 | 10/23/2014 | 
@@ -30,8 +31,8 @@
 | Europe \(Paris\) | eu\-west\-3 | cloudtrail\.eu\-west\-3\.amazonaws\.com | HTTPS | 262312530599  | 12/18/2017 | 
 | Europe \(Milan\) | eu\-south\-1 | cloudtrail\.eu\-south\-1\.amazonaws\.com | HTTPS | 669305197877 | 04/27/2020 | 
 | Europe \(Spain\) | eu\-south\-2 | cloudtrail\.eu\-south\-2\.amazonaws\.com | HTTPS | 757211635381 | 11/16/2022 | 
-| Middle East \(Bahrain\) | me\-south\-1 | cloudtrail\.me\-south\-1\.amazonaws\.com | HTTPS | 034638983726 | 07/29/2019 | 
 | Middle East \(UAE\) | me\-central\-1 | cloudtrail\.me\-central\-1\.amazonaws\.com | HTTPS | 585772288577 | 08/30/2022 | 
+| Middle East \(Bahrain\) | me\-south\-1 | cloudtrail\.me\-south\-1\.amazonaws\.com | HTTPS | 034638983726 | 07/29/2019 | 
 | AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | cloudtrail\.us\-gov\-east\-1\.amazonaws\.com | HTTPS | 886388586500  | 11/12/2018 | 
 | AWS GovCloud \(US\-West\) | us\-gov\-west\-1 | cloudtrail\.us\-gov\-west\-1\.amazonaws\.com | HTTPS | 608710470296  | 08/16/2011 | 
 | South America \(São Paulo\) | sa\-east\-1 | cloudtrail\.sa\-east\-1\.amazonaws\.com | HTTPS | 814480443879 | 06/30/2014 | 

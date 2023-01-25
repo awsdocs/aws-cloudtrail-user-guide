@@ -90,6 +90,7 @@ sponsored by Amazon.
    + [Logging data events for trails](logging-data-events-with-cloudtrail.md)
    + [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md)
    + [Receiving CloudTrail log files from multiple regions](receive-cloudtrail-log-files-from-multiple-regions.md)
+   + [Managing data consistency in CloudTrail](cloudtrail-data-consistency.md)
    + [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)
       + [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)
       + [Creating CloudWatch alarms with an AWS CloudFormation template](use-cloudformation-template-to-create-cloudwatch-alarms.md)

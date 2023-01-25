@@ -60,7 +60,7 @@ If encryption is enabled on an event data store, and the KMS key is disabled or 
 ## Granting encrypt permissions<a name="create-kms-key-policy-for-cloudtrail-encrypt"></a>
 
 **Example Allow CloudTrail to encrypt logs on behalf of specific accounts**  
-CloudTrail needs explicit permission to use the KMS key to encrypt logs on behalf of specific accounts\. To specify an account, add the following required statement to your KMS key policy and replace *myBucketName*, *account\-id*, *region*, and *trailName* with the appropriate values for your configuration\. You can add additional account IDs to the `EncryptionContext` section to enable those accounts to use CloudTrail to use your KMS key to encrypt log files\.  
+CloudTrail needs explicit permission to use the KMS key to encrypt logs on behalf of specific accounts\. To specify an account, add the following required statement to your KMS key policy and replace *account\-id*, *region*, and *trailName* with the appropriate values for your configuration\. You can add additional account IDs to the `EncryptionContext` section to enable those accounts to use CloudTrail to use your KMS key to encrypt log files\.  
 As a security best practice, add an `aws:SourceArn` condition key to the KMS key policy for a trail\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail uses the KMS key only for a specific trail or trails\.
 
 ```
