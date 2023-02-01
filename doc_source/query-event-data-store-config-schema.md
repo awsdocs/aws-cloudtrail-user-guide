@@ -3,8 +3,8 @@
 The following table describes the required and optional schema elements that match those in configuration item records\. The contents of `eventData` are provided by your configuration items; other fields are provided by CloudTrail after ingestion\.
 
 CloudTrail event record contents are described in more detail in [CloudTrail record contents](cloudtrail-event-reference-record-contents.md)\.
-+ [Fields that are provided by CloudTrail after ingestion](#fields-cloudtrail)
-+ [Fields that are provided by your events](#fields-event)<a name="fields-cloudtrail"></a>
++ [Fields that are provided by CloudTrail after ingestion](#fields-cloudtrail-event)
++ [Fields that are provided by your events](#fields-config)<a name="fields-cloudtrail-event"></a>
 
 
 **Fields that are provided by CloudTrail after ingestion**  
@@ -18,7 +18,7 @@ CloudTrail event record contents are described in more detail in [CloudTrail rec
 | eventTime |  string  | Required |  The event timestamp, in `yyyy-MM-DDTHH:mm:ss` format, in Universal Coordinated Time \(UTC\)\.  | 
 | awsRegion | string | Required |  The AWS Region to which to assign an event\.  | 
 | recipientAccountId | string | Required |  Represents the AWS account ID that received this event\.  | 
-| addendum |  addendum  | Optional |  Shows information about why an event was delayed\. If information was missing from an existing event, the addendum block includes the missing information and a reason for why it was missing\.  | <a name="fields-event"></a>
+| addendum |  addendum  | Optional |  Shows information about why an event was delayed\. If information was missing from an existing event, the addendum block includes the missing information and a reason for why it was missing\.  | <a name="fields-config"></a>
 
 
 **Fields in `eventData` are provided by your configuration items**  

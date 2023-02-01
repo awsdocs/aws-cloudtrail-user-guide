@@ -449,7 +449,11 @@ aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"
 
 ## Configuring advanced event selectors<a name="configuring-adv-event-selector-examples"></a>
 
-To use advanced event selectors to include or exclude data events instead of basic event selectors, use advanced event selectors on a trail's details page\. Advanced event selectors let you log data events on more resource types than basic event selectors\. Basic selectors log S3 object activity, AWS Lambda function execution activity, and DynamoDB tables\. Advanced event selectors log basic selectors as well as API activity on Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, and Amazon SageMaker feature stores\. For more information advanced event selectors, see [Configuring advanced event selectors](#configuring-adv-event-selector-examples)\.
+To use advanced event selectors to include or exclude data events instead of basic event selectors, use advanced event selectors on a trail's details page\. Advanced event selectors let you log data events on more resource types than basic event selectors\. Basic selectors log S3 object activity, AWS Lambda function execution activity, and DynamoDB tables\. 
+
+In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, `PutAuditEvents` calls on CloudTrail Lake channels, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, and Amazon SageMaker feature stores\.
+
+ For more information advanced event selectors, see [Configuring advanced event selectors](#configuring-adv-event-selector-examples)\.
 
 To view the advanced event selector settings for a trail, run the following `get-event-selectors` command\. You must either run this command from the AWS Region where the trail was created \(the Home Region\), or you must specify that Region by adding the \-\-region parameter\.
 
@@ -610,7 +614,7 @@ The example returns the advanced event selectors that are configured for the tra
 
 ### Example trail that uses custom advanced event selectors to log all management and data events<a name="configuring-adv-event-selector-logall"></a>
 
-The following example creates advanced event selectors for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, and Amazon SageMaker feature stores\.
+The following example creates advanced event selectors for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all S3 buckets, Lambda functions, DynamoDB tables, PutAuditEvents calls on CloudTrail Lake channels, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, and Amazon SageMaker feature stores\.
 
 **Note**  
 If the trail applies only to one Region, only events in that Region are logged, even though the event selector parameters specify all Amazon S3 buckets and Lambda functions\. In a single\-region trail, event selectors apply only to the Region where the trail is created\.
@@ -644,6 +648,13 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::DynamoDB::Table"] }
+    ]
+  },
+  {
+    "Name": "Log all PutAuditEvents events on CloudTrail Lake channels",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::CloudTrail::Channel"] }
     ]
   },
   {
@@ -799,6 +810,29 @@ The example returns the advanced event selectors configured for the trail\.
         {
           "Field": "resources.type", 
           "Equals": [ "AWS::DynamoDB::Table" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        }
+      ]
+    },    
+    {
+      "Name": "Log all PutAuditEvents events on CloudTrail Lake channels",
+      "FieldSelectors": [
+        {
+          "Field": "eventCategory", 
+          "Equals": [ "Data" ],
+          "StartsWith": [],
+          "EndsWith": [],
+          "NotEquals": [],
+          "NotStartsWith": [],
+          "NotEndsWith": []
+        },
+        {
+          "Field": "resources.type", 
+          "Equals": [ "AWS::CloudTrail::Channel" ],
           "StartsWith": [],
           "EndsWith": [],
           "NotEquals": [],

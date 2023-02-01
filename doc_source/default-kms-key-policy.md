@@ -36,6 +36,7 @@ The following is the default policy created for a AWS KMS key that you use with 
           "Sid": "Enable IAM User Permissions",
           "Effect": "Allow",
           "Principal": {
+            "AWS": "arn:${this.ARN_PARTITION}:iam::${this.ACCOUNT_ID}:root"
             "AWS": "arn:${this.partition}:iam::${this.account-id}:root"
           },
           "Action": "kms:*",

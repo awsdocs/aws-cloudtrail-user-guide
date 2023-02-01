@@ -169,6 +169,7 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::S3ObjectLambda::AccessPoint`
         + `AWS::EC2::Snapshot`
         + `AWS::S3::AccessPoint`
+        + `AWS::CloudTrail::Channel`
         + `AWS::DynamoDB::Stream`
         + `AWS::Glue::Table`
         + `AWS::FinSpace::Environment`
@@ -193,6 +194,12 @@ Logging data events for all functions also enables logging of data event activit
 
         ```
         arn:partition:dynamodb:region:account_ID:table/table_name
+        ```
+
+        When `resources.type` equals **AWS::CloudTrail::Channel**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
+
+        ```
+        arn:partition:cloudtrail:region:account_ID:channel/channel_UUID
         ```
 
         When `resources.type` equals **AWS::S3Outposts::Object**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:

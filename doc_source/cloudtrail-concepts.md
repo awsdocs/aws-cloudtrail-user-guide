@@ -56,6 +56,7 @@ Data events provide information about the resource operations performed on or in
 + Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\) on buckets and objects in buckets
 + [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html) function execution activity \(the `Invoke` API\)
 + [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)
++ CloudTrail `PutAuditEvents` activity on a [CloudTrail Lake channel](query-event-data-store-integration.md) that is used to log events from outside AWS
 + Amazon S3 on Outposts object\-level API activity
 + [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`
 + Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`
@@ -102,17 +103,23 @@ When you create an organization trail, a trail with the name that you give it wi
 
 ### CloudTrail console<a name="cloudtrail-concepts-console"></a>
 
-You can use and manage the CloudTrail service with the AWS CloudTrail console\. The console provides a user interface for performing many CloudTrail tasks such as:
+You can use and manage the service with the AWS CloudTrail console\. The console provides a user interface for performing many CloudTrail tasks such as:
 + Viewing recent events and event history for your AWS account\.
 + Downloading a filtered or complete file of the last 90 days of events\.
 + Creating and editing CloudTrail trails\.
++ Creating and editing CloudTrail Lake event data stores\.
++ Running queries on event data stores\.
 + Configuring CloudTrail trails, including: 
-  + Selecting an Amazon S3 bucket\.
+  + Selecting an Amazon S3 bucket for trails\.
   + Setting a prefix\.
   + Configuring delivery to CloudWatch Logs\.
-  + Using AWS KMS keys for encryption\. 
-  + Enabling Amazon SNS notifications for log file delivery\.
+  + Using AWS KMS keys for encryption of trail data\.
+  + Enabling Amazon SNS notifications for log file delivery on trails\.
   + Adding and managing tags for your trails\.
++ Configuring CloudTrail Lake event data stores, including:
+  + Integrating event data stores with CloudTrail partners or with your own applications, to log events from sources outside of AWS\.
+  + Using AWS KMS keys for encryption of event data store data\.
+  + Adding and managing tags for your event data stores\.
 
 Beginning on April 12, 2019, trails will be viewable only in the AWS Regions where they log events\. If you create a trail that logs events in all AWS Regions, it will appear in the console in all AWS Regions\. If you create a trail that only logs events in a single AWS Region, you can view and manage it only in that AWS Region\.
 
@@ -148,7 +155,7 @@ AWS CloudTrail Insights helps AWS users identify and respond to unusual volumes 
 
 ## How do you run complex queries on events logged by CloudTrail?<a name="cloudtrail-concepts-lake"></a>
 
-CloudTrail Lake lets you run fine\-grained SQL\-based queries on your events\. You do not need to have a trail configured in your account to use CloudTrail Lake\. Event data stores are immutable collections of events based on criteria that you select by applying [advanced event selectors](logging-data-events-with-cloudtrail.md#creating-data-event-selectors-advanced)\. You can keep the event data in an event data store for up to seven years\. You can save Lake queries for future use, and view results of queries for up to seven days\. CloudTrail Lake can also store events from an organization in AWS Organizations in an event data store, or events from multiple regions and accounts\. CloudTrail Lake is part of an auditing solution that helps you perform security investigations and troubleshooting\. For more information, see [Working with AWS CloudTrail Lake](cloudtrail-lake.md)\.
+CloudTrail Lake lets you run fine\-grained SQL\-based queries on your events, and log events from sources outside AWS, including from your own applications, and from partners who are integrated with CloudTrail\. You do not need to have a trail configured in your account to use CloudTrail Lake\. Event data stores are immutable collections of events based on criteria that you select by applying [advanced event selectors](logging-data-events-with-cloudtrail.md#creating-data-event-selectors-advanced)\. You can keep the event data in an event data store for up to seven years\. You can save Lake queries for future use, and view results of queries for up to seven days\. You can also save query results to an Amazon Simple Storage Service bucket\. CloudTrail Lake can also store events from an organization in AWS Organizations in an event data store, or events from multiple regions and accounts\. CloudTrail Lake is part of an auditing solution that helps you perform security investigations and troubleshooting\. For more information, see [Working with AWS CloudTrail Lake](cloudtrail-lake.md)\.
 
 ## How do you perform monitoring with CloudTrail?<a name="cloudtrail-concepts-monitoring"></a>
 

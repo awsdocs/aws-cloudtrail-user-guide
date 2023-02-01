@@ -2,7 +2,7 @@
 
 CloudTrail Lake queries are SQL strings\. This section describes the allowed SQL language that you use to create queries\.
 
-Only `SELECT` statements are allowed\. No query strings can change or mutate data\. The API restricts the scope of a `SELECT` statement to the argument tree shown in the following template\. Simple aggregations, conditions, and join operators are allowed\. A keyword, operator, or function that is not described in this section is disallowed\. The event data store ID—the ID portion of the event data store's ARN—is the valid value for tables\.
+Only `SELECT` statements are allowed\. No query strings can change or mutate data\. The API restricts the scope of a `SELECT` statement to the argument tree shown in the following template\. A keyword, operator, or function that is not described in this section is disallowed\. The event data store ID—the ID portion of the event data store's ARN—is the valid value for tables\.
 
 ```
 SELECT [ DISTINCT ] columns [ Aggregate ]
@@ -18,6 +18,7 @@ SELECT [ DISTINCT ] columns [ Aggregate ]
 + [Supported schema for CloudTrail event record ﬁelds](#query-supported-event-schema)
 + [Supported schema for AWS Config configuration item record ﬁelds](#query-supported-config-items-schema)
 + [Supported schema for AWS Audit Manager evidence record ﬁelds](#query-supported-event-schema-audit-manager)
++ [Supported schema for non\-AWS event ﬁelds](#query-supported-event-schema-integration)
 + [Aggregate functions, condition and join operators](#query-aggregates-condition-operators)
 + [Supported functions](#query-supported-functions)
 + [Advanced, multi\-table query support](#query-advanced-multi-table)
@@ -265,6 +266,61 @@ The following is the valid SQL schema for Audit Manager evidence record fields\.
                  service:string,servicecategory:string,resourcearn:string,resourcetype:string,
                  evidencefolderid:string,description:string,manualevidences3resourcepath:string,
                  evidencefoldername:string,resourcecompliancecheck:string>"
+    }
+]
+```
+
+## Supported schema for non\-AWS event ﬁelds<a name="query-supported-event-schema-integration"></a>
+
+**Note**  
+Currently, you can log activity events from non\-AWS events in all commercial AWS Regions supported by CloudTrail Lake except: me\-central\-1\. For information about CloudTrail Lake supported Regions, see [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)\. 
+
+The following is the valid SQL schema for non\-AWS events\. For non\-AWS events, the value of `eventcategory` is `ActivityLog`, and the value of `eventtype` is `ActivityAuditLog`\.
+
+```
+[
+    {
+        "Name": "eventversion",
+        "Type": "string"
+    },
+    {
+        "Name": "eventcategory",
+        "Type": "string"
+    },
+    {
+        "Name": "eventtype",
+        "Type": "string"
+    },
+        "Name": "eventid",
+        "Type": "string"
+    },
+    {
+        "Name": "eventtime",
+        "Type": "timestamp"
+    },
+    {
+        "Name": "awsregion",
+        "Type": "string"
+    },
+    {
+        "Name": "recipientaccountid",
+        "Type": "string"
+    },
+    {
+        "Name": "addendum",
+        "Type": "struct<reason:string,updatedfields:string,originalUID:string,originaleventid:string>"
+    },
+    {
+        "Name": "metadata",
+        "Type": "struct<ingestiontime:string,channelarn:string>"
+    },
+    {
+        "Name": "eventdata",
+        "Type": "struct<version:string,useridentity:struct<type:string,
+                 principalid:string,details:map<string,string>>,useragent:string,eventsource:string,
+                 eventname:string,eventtime:string,uid:string,requestparameters:map<string,string>>,
+                 responseelements":map<string,string>>,errorcode:string,errormssage:string,sourceipaddress:string,
+                 recipientaccountid:string,additionaleventdata":map<string,string>>"
     }
 ]
 ```

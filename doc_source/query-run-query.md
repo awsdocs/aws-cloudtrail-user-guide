@@ -10,7 +10,7 @@ After you choose or save a query, you can run a query on an event data store\.
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1. Choose **Lake** in the left navigation pane of the CloudTrail console\.
+1.  From the navigation pane, open the **Lake** submenu, then choose **Query**\. 
 
 1. On the **Saved queries** or **Sample queries** tabs, choose a query to run by choosing the value in the **Query SQL** column\. 
 

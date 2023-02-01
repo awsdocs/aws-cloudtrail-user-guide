@@ -1,6 +1,6 @@
 # CloudTrail log file examples<a name="cloudtrail-log-file-examples"></a>
 
-CloudTrail monitors events for your account\. If you create a trail, it delivers those events as log files to your Amazon S3 bucket\. See the following to learn more about log files\.
+CloudTrail monitors events for your account\. If you create a trail, it delivers those events as log files to your Amazon S3 bucket\. If you create an event data store in CloudTrail Lake, events are logged to your event data store\. Event data stores do not use S3 buckets\.
 
 **Topics**
 + [CloudTrail log file name format](#cloudtrail-log-filename-format)

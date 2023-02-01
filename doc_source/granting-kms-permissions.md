@@ -1,12 +1,12 @@
 # Granting permissions to create a KMS key<a name="granting-kms-permissions"></a>
 
-You can grant users permission to create an AWS KMS key with the AWSKeyManagementServicePowerUser policy\.
+You can grant users permission to create an AWS KMS key with the `AWSKeyManagementServicePowerUser` policy\.
 
 **To grant permission to create a KMS key**
 
-1.  Open the IAM console at [https://console\.aws\.amazon\.com/iam](https://console.aws.amazon.com/iam)\. 
+1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. Choose the group or user that you want to give permission\. 
+1. Choose the group or user that you want to give permission\.
 
 1.  Choose **Permissions**, and then choose **Attach Policy**\. 
 

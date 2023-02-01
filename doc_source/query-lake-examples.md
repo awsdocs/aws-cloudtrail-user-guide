@@ -3,13 +3,13 @@
 This section includes example CloudTrail Lake queries to help you get started\.
 
 **Topics**
-+ [Find all principal user identities who called `CreateBucket` on January 22, 2022](#query-example-principal-ids)
-+ [Find all APIs that a user called on January 22, 2022](#query-example-user-called-apis)
-+ [Find the number of API calls since January 1, 2022, grouped by `eventName` and `eventSource`](#query-example-apis-eventname-eventsource)
++ [Find all principal user identities who called `CreateBucket` on January 22, 2023](#query-example-principal-ids)
++ [Find all APIs that a user called on January 22, 2023](#query-example-user-called-apis)
++ [Find the number of API calls since January 1, 2023, grouped by `eventName` and `eventSource`](#query-example-apis-eventname-eventsource)
 + [Find all users who signed in to the console in a set of Regions](#query-example-users-login-regions)
-+ [Find all CloudTrail Lake queries that were run in January 2022](#query-example-all-queries)
++ [Find all CloudTrail Lake queries that were run in January 2023](#query-example-all-queries)
 
-## Find all principal user identities who called `CreateBucket` on January 22, 2022<a name="query-example-principal-ids"></a>
+## Find all principal user identities who called `CreateBucket` on January 22, 2023<a name="query-example-principal-ids"></a>
 
 ```
 SELECT 
@@ -20,9 +20,9 @@ FROM
 WHERE 
     userIdentity.principalid IS NOT NULL 
 AND 
-    eventTime > '2022-01-22 00:00:00' 
+    eventTime > '2023-01-22 00:00:00' 
 AND 
-    eventTime < '2022-01-23 00:00:00' 
+    eventTime < '2023-01-23 00:00:00' 
 AND 
     eventName='CreateBucket'
 ```
@@ -50,7 +50,7 @@ Results
 }
 ```
 
-## Find all APIs that a user called on January 22, 2022<a name="query-example-user-called-apis"></a>
+## Find all APIs that a user called on January 22, 2023<a name="query-example-user-called-apis"></a>
 
 ```
 SELECT 
@@ -63,9 +63,9 @@ FROM
 WHERE 
     userIdentity.username = 'bob' 
 AND 
-    eventTime > '2022-01-22 00:00:00' 
+    eventTime > '2023-01-22 00:00:00' 
 AND 
-    eventTime < '2022-01-23 00:00:00'
+    eventTime < '2023-01-23 00:00:00'
 ```
 
 Results
@@ -90,7 +90,7 @@ Results
                 "eventSource": "cloudtrail.amazonaws.com"
             },
             {
-                "eventTime": "2022-01-22 16:53:53.000"
+                "eventTime": "2023-01-22 16:53:53.000"
             }
         ],
         [
@@ -104,14 +104,14 @@ Results
                 "eventSource": "s3.amazonaws.com"
             },
             {
-                "eventTime": "2022-01-22 20:25:01.000"
+                "eventTime": "2023-01-22 20:25:01.000"
             }
         ]
     ]
 }
 ```
 
-## Find the number of API calls since January 1, 2022, grouped by `eventName` and `eventSource`<a name="query-example-apis-eventname-eventsource"></a>
+## Find the number of API calls since January 1, 2023, grouped by `eventName` and `eventSource`<a name="query-example-apis-eventname-eventsource"></a>
 
 ```
 SELECT 
@@ -121,7 +121,7 @@ SELECT
 FROM 
     event_data_store_ID
 WHERE 
-    eventTime > '2022-01-01 00:00:00' 
+    eventTime > '2023-01-01 00:00:00' 
 GROUP BY 
     eventSource, eventName 
 ORDER BY 
@@ -228,7 +228,7 @@ Results
 }
 ```
 
-## Find all CloudTrail Lake queries that were run in January 2022<a name="query-example-all-queries"></a>
+## Find all CloudTrail Lake queries that were run in January 2023<a name="query-example-all-queries"></a>
 
 ```
 SELECT 
@@ -243,9 +243,9 @@ AND
 AND 
     responseElements IS NOT NULL
 AND 
-    eventTime > '2022-01-01 00:00:00' 
+    eventTime > '2023-01-01 00:00:00' 
 AND 
-    eventTime < '2022-02-01 00:00:00'
+    eventTime < '2023-02-01 00:00:00'
 ```
 
 Results

@@ -6,6 +6,15 @@ You can view and search the last 90 days of events recorded by CloudTrail in the
 **Download events**  
 You can download a CSV or JSON file containing up to the past 90 days of CloudTrail events for your AWS account\. For more information, see [Downloading events](view-cloudtrail-events-console.md#downloading-events) or [Downloading Insights events](view-insights-events-console.md#downloading-insights-events)\.
 
+**Enable CloudTrail Lake**  
+CloudTrail Lake lets you run fine\-grained SQL\-based queries on events from both AWS sources, and sources outside of AWS\. Events are aggregated into event data stores, which are immutable collections of events based on criteria that you select by applying [advanced event selectors](logging-data-events-with-cloudtrail.md#creating-data-event-selectors-advanced)\. You can keep the event data in an event data store for up to seven years\. CloudTrail Lake is part of an auditing solution that helps you perform security investigations and troubleshooting\. For more information, see [Working with AWS CloudTrail Lake](cloudtrail-lake.md)\.
+
+**Copy trail events to CloudTrail Lake**  
+You can copy existing trail events to a CloudTrail Lake event data store to create a point\-in\-time snapshot of events logged to the trail\. For more information, see [Copying trail events to CloudTrail Lake](cloudtrail-copy-trail-to-lake.md)\.
+
+**Save CloudTrail Lake query results to an Amazon S3 bucket**  
+When you run a query, you can save the query results to an S3 bucket\. For more information, see [Run a query and save query results](query-run-query.md)\.
+
 **Download saved query results**  
 You can download a CSV file containing your saved CloudTrail Lake query results\. For more information, see [Download your CloudTrail Lake saved query results](cloudtrail-download-lake-query-results.md)\.
 
@@ -37,15 +46,6 @@ Log file encryption provides an extra layer of security for your log files\. For
 
 ** Enable log file integrity **  
 Log file integrity validation helps you verify that log files have remained unchanged since CloudTrail delivered them\. For more information, see [Validating CloudTrail log file integrity](cloudtrail-log-file-validation-intro.md)\.
-
-**Enable CloudTrail Lake**  
-CloudTrail Lake lets you run fine\-grained SQL\-based queries on events\. Events are aggregated into event data stores, which are immutable collections of events based on criteria that you select by applying [advanced event selectors](logging-data-events-with-cloudtrail.md#creating-data-event-selectors-advanced)\. You can keep the event data in an event data store for up to seven years\. CloudTrail Lake is part of an auditing solution that helps you perform security investigations and troubleshooting\. For more information, see [Working with AWS CloudTrail Lake](cloudtrail-lake.md)\.
-
-**Copy trail events to CloudTrail Lake**  
-You can copy existing trail events to a CloudTrail Lake event data store to create a point\-in\-time snapshot of events logged to the trail\. For more information, see [Copying trail events to CloudTrail Lake](cloudtrail-copy-trail-to-lake.md)\.
-
-**Save CloudTrail Lake query results to an Amazon S3 bucket**  
-When you run a query, you can save the query results to an S3 bucket\. For more information, see [Run a query and save query results](query-run-query.md)\.
 
 **Share log files with other AWS accounts**  
 You can share log files between accounts\. For more information, see [Sharing CloudTrail log files between AWS accounts](cloudtrail-sharing-logs.md)\.

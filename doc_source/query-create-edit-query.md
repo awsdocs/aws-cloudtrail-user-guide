@@ -15,9 +15,9 @@ In this walkthrough, we open one of the sample queries, edit it to select events
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1. Choose **Lake** in the left navigation pane of the CloudTrail console\.
+1.  From the navigation pane, open the **Lake** submenu, then choose **Query**\. 
 
-1. On the CloudTrail **Lake** page, choose the **Sample queries** tab\.
+1. On the **Query** page, choose the **Sample queries** tab\.
 
 1. Open **sample query 1** by choosing the **Query SQL** string for the query\. This opens the query in the **Editor** tab\.
 

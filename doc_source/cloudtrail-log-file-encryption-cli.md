@@ -110,5 +110,35 @@ The following is an example response:
 }
 ```
 
+To stop encrypting logs on an event data store, run `update-event-data-store` and pass an empty string to the `kms-key-id` parameter: 
+
+```
+aws cloudtrail update-event-data-store --name my-event-data-store --kms-key-id ""
+```
+
+The following is an example response:
+
+```
+{
+    "Name": "my-event-data-store",
+    "ARN": "arn:aws:cloudtrail:us-east-1:12345678910:eventdatastore/EXAMPLEf852-4e8f-8bd1-bcf6cEXAMPLE",
+    "RetentionPeriod": "90",
+    "MultiRegionEnabled": false,
+    "OrganizationEnabled": false,
+    "TerminationProtectionEnabled": true,
+    "AdvancedEventSelectors": [{
+        "Name": "Select all external events",
+        "FieldSelectors": [{
+            "Field": "eventCategory",
+            "Equals": [
+                "ActivityAuditLog"
+            ]
+        }]
+    }]
+}
+```
+
+The absence of the `KmsKeyId` value indicates that log file encryption is no longer enabled\.
+
 **Important**  
 You cannot stop log file encryption on an event data store\.

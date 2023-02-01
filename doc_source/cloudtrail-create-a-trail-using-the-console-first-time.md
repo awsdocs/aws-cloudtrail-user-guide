@@ -71,7 +71,7 @@ When you configure a trail, you can choose an S3 bucket and SNS topic that belon
 
    1. Choose **Exclude Amazon RDS Data API events** to filter Amazon Relational Database Service Data API events out of your trail\. The default setting is to include all Amazon RDS Data API events\. For more information about Amazon RDS Data API events, see [Logging Data API calls with AWS CloudTrail](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/logging-using-cloudtrail-data-api.html) in the *Amazon RDS User Guide for Aurora*\.
 
-1. For **Data events**, you can specify logging data events for Amazon S3 buckets, AWS Lambda functions, Amazon DynamoDB tables, or a combination of these resource types\. By default, trails don't log data events\. Additional charges apply for logging data events\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\. More data event types are available if you use advanced event selectors; for more information, see [Creating a trail in the console \(advanced event selectors\)](#creating-a-trail-in-the-console-adv) in this topic\.
+1. For **Data events**, you can specify logging data events for Amazon S3 buckets, AWS Lambda functions, Amazon DynamoDB tables, and many other resource types\. By default, trails don't log data events\. Additional charges apply for logging data events\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\. More data event types are available if you use advanced event selectors; for more information, see [Creating a trail in the console \(advanced event selectors\)](#creating-a-trail-in-the-console-adv) in this topic\.
 
    For Amazon S3 buckets:
 
@@ -235,6 +235,7 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::S3ObjectLambda::AccessPoint`
         + `AWS::EC2::Snapshot`
         + `AWS::S3::AccessPoint`
+        + `AWS::CloudTrail::Channel`
         + `AWS::DynamoDB::Stream`
         + `AWS::Glue::Table`
         + `AWS::FinSpace::Environment`
@@ -259,6 +260,12 @@ Logging data events for all functions also enables logging of data event activit
 
         ```
         arn:partition:dynamodb:region:account_ID:table/table_name
+        ```
+
+        When `resources.type` equals **AWS::CloudTrail::Channel**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
+
+        ```
+        arn:partition:cloudtrail:region:account_ID:channel/channel_UUID
         ```
 
         When `resources.type` equals **AWS::S3Outposts::Object**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:

@@ -1,14 +1,12 @@
 # Create an event data store for CloudTrail events<a name="query-event-data-store-cloudtrail"></a>
 
-To get started with CloudTrail Lake, create an event data store\. You can keep the event data in an event data store for up to seven years, or 2557 days\. By default, event data is retained for 2557 days, and termination protection is enabled for an event data store\.
+Event data stores for CloudTrail events can log CloudTrail management and data events\. You can keep the event data in an event data store for up to seven years, or 2557 days\. By default, event data is retained for 2557 days, and termination protection is enabled for an event data store\.
 
 ## To create an event data store for CloudTrail events<a name="query-event-data-store-cloudtrail-procedure"></a>
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1. Choose **Lake** in the left navigation pane of the CloudTrail console\.
-
-1. On the **Lake** page, choose the **Event data stores** tab\.
+1.  From the navigation pane, open the **Lake** submenu, then choose **Event data stores**\. 
 
 1. Choose **Create event data store**\.
 
@@ -26,7 +24,7 @@ To enable AWS Key Management Service encryption for an organization event data s
 
 1.  Choose **Next** to configure the event data store\. 
 
-1.  On the **Choose events** page, choose **CloudTrail events**\. 
+1.  On the **Choose events** page, choose **AWS events**, and then choose **CloudTrail events**\. 
 
 1. For **CloudTrail events**, choose at least one event type\. By default, **Management events** is selected\. You can add both management and data events to your event data store\. For more information about management events, see [Logging management events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)\. For more information about data events, see [Logging data events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\.
 
@@ -35,6 +33,8 @@ To enable AWS Key Management Service encryption for an organization event data s
 1. CloudTrail stores the event data store resource in the AWS Region in which you create it, but by default, the events collected in the data store are from all Regions in your account\. Optionally, you can select **Include only the current region in my event data store** to include only events that are logged in the current Region\. If you do not choose this option, your event data store includes events from all Regions\.
 
 1. To have your event data store collect events from all accounts in an AWS Organizations organization, select **Enable for all accounts in my organization**\. You must be signed in to the management account or delegated administrator account for the organization to create an event data store that collects events for an organization\.
+
+1. To have your event data store collect events from all accounts in an AWS Organizations organization, select **Enable for all accounts in my organization**\. You must be signed in to the management account for the organization to create an event data store that collects events for an organization\. An event data store that you use to log events from sources outside AWS cannot be for an organization\.
 
 1. If your event data store includes management events, choose **Read**, **Write**, or both\. At least one is required\. For more information about **Read** and **Write** management events, see [Logging management events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)\.
 
@@ -76,6 +76,6 @@ To exclude or include data events with advanced event selectors by using an S3 b
 
 1. The new event data store is visible in the **Event data stores** table on the **Lake** page\.
 
-   From this point forward, the event data store captures events that match its advanced event selectors\. Events that occurred before you created the event data store are not in the event data store unless you chose to copy existing trail events\.
+   From this point forward, the event data store captures events that match its advanced event selectors\. Events that occurred before you created the event data store are not in the event data store, unless you opted to copy existing trail events\.
 
 You can now run queries on your new event data store\. The **Sample queries** tab provides example queries to get you started\. For more information about creating and editing queries, see [Create or edit a query](query-create-edit-query.md)\.

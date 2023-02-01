@@ -28,9 +28,7 @@ Additionally, the following actions are recommended, but are not required to cre
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1. Choose **Lake** in the left navigation pane of the CloudTrail console\.
-
-1. On the **Lake** page, choose the **Event data stores** tab\.
+1.  From the navigation pane, open the **Lake** submenu, then choose **Event data stores**\. 
 
 1. Choose **Create event data store**\.
 
@@ -48,7 +46,7 @@ To enable AWS Key Management Service encryption for an organization event data s
 
 1. Choose **Next**\.
 
-1. On the **Choose events** page, choose **Configuration items**\.
+1. On the **Choose events** page, choose **AWS events**, and then choose **Configuration items**\.
 
 1. CloudTrail stores the event data store resource in the Region in which you create it, but by default, the configuration items collected in the data store are from all Regions in your account that have recording enabled\. Optionally, you can select **Include only the current region in my event data store** to include only configuration items that are captured in the current Region\. If you do not choose this option, your event data store includes configuration items from all Regions that have recording enabled\.
 

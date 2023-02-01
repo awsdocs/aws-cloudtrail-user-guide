@@ -2,8 +2,6 @@
 
 Before you use IAM to manage access to CloudTrail, you should understand what IAM features are available to use with CloudTrail\. To get a high\-level view of how CloudTrail and other AWS services work with IAM, see [AWS Services That Work with IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html) in the *IAM User Guide*\.
 
-CloudTrail works with IAM identity\-based policies, but does not work with resource\-based policies\. For more information on the differences between identity\-based policies and resource\-based policies, see [Identity\-Based Policies and Resource\-Based Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) in the *IAM User Guide*\.
-
 **Topics**
 + [CloudTrail identity\-based policies](#security_iam_service-with-iam-id-based-policies)
 + [CloudTrail resource\-based policies](#security_iam_service-with-iam-resource-based-policies)
@@ -120,11 +118,22 @@ To view examples of CloudTrail identity\-based policies, see [AWS CloudTrail ide
 
 ## CloudTrail resource\-based policies<a name="security_iam_service-with-iam-resource-based-policies"></a>
 
-CloudTrail does not support resource\-based policies\. 
+Resource\-based policies are JSON policy documents that specify what actions a specified principal can perform on the CloudTrail resource and under what conditions\. Resource\-based policies let you grant usage permission to other accounts on a per\-resource basis\. 
+
+To enable cross\-account access, you can specify an entire account or IAM entities in another account as the [principal in a resource\-based policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html)\. Adding a cross\-account principal to a resource\-based policy is only half of establishing the trust relationship\. When the principal and the resource are in different AWS accounts, you must also grant the principal entity permission to access the resource\. Grant permission by attaching an identity\-based policy to the entity\. However, if a resource\-based policy grants access to a principal in the same account, no additional identity\-based policy is required\. For more information, see [How IAM Roles Differ from Resource\-based Policies ](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_compare-resource-policies.html)in the *IAM User Guide*\.
+
+CloudTrail supports resource\-based policies on channels used for CloudTrail Lake integrations with event sources outside of AWS\. The resource\-based policy for the channel defines which principal entities \(accounts, users, roles, and federated users\) can call `PutAuditEvents` on the channel to deliver events to the destination event data store\. For more information about creating integrations with CloudTrail Lake, see [Create an integration with an event source outside of AWS](query-event-data-store-integration.md)\. 
+
+**Note**  
+Currently, integrations are supported in all commercial AWS Regions supported by CloudTrail Lake except: me\-central\-1\. For information about CloudTrail Lake supported Regions, see [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)\. 
+
+### Examples<a name="security_iam_service-with-iam-resource-based-policies-examples"></a>
+
+To view examples of CloudTrail resource\-based policies, see [AWS CloudTrail resource\-based policy examples](security_iam_resource-based-policy-examples.md)\.
 
 ## Access control lists<a name="security_iam_service-with-iam-acls"></a>
 
-Access control lists \(ACLs\) are lists of grantees that you can attach to resources\. They grant accounts permissions to access the resource to which they are attached\. While CloudTrail does not support ACLs, Amazon S3 does\. For example, you can attach ACLs to an Amazon S3 bucket resource where you store log files for one or more trails\. For more information about attaching ACLs to buckets, see [https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html) in the Amazon Simple Storage Service User Guide\.
+Access control lists \(ACLs\) are lists of grantees that you can attach to resources\. They grant accounts permissions to access the resource to which they are attached\. While CloudTrail does not support ACLs, Amazon S3 does\. For example, you can attach ACLs to an Amazon S3 bucket resource where you store log files for one or more trails\. For more information about attaching ACLs to buckets, see [Managing Access with ACLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acls.html) in the Amazon Simple Storage Service User Guide\.
 
 ## Authorization based on CloudTrail tags<a name="security_iam_service-with-iam-tags"></a>
 

@@ -199,7 +199,7 @@ You can learn more about how the events for individual AWS services are recorded
 | AWS Security Token Service \(AWS STS\) |  [Logging IAM Events with AWS CloudTrail](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html) The IAM topic includes information for AWS STS\.  | 11/13/2013 | 
 | AWS Server Migration Service | [AWS SMS API Reference](https://docs.aws.amazon.com/server-migration-service/latest/APIReference/Welcome.html) | 11/14/2016 | 
 | AWS Serverless Application Repository | [Logging AWS Serverless Application Repository API Calls with AWS CloudTrail](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/logging-using-cloudtrail.html) | 02/20/2018 | 
-| AWS Service Catalog | [Logging AWS Service Catalog API Calls with AWS CloudTrail](https://docs.aws.amazon.com/servicecatalog/latest/dg/logging-using-cloudtrail.html) | 07/06/2016 | 
+| AWS Service Catalog | [Logging Service Catalog API Calls with AWS CloudTrail](https://docs.aws.amazon.com/servicecatalog/latest/dg/logging-using-cloudtrail.html) | 07/06/2016 | 
 | Service Quotas |  | 06/24/2019 | 
 | AWS Shield | [Logging Shield Advanced API Calls with AWS CloudTrail](https://docs.aws.amazon.com/waf/latest/developerguide/logging-using-cloudtrail.html#shield-info-in-cloudtrail) | 02/08/2018 | 
 | Amazon Simple Email Service \(Amazon SES\) | [Logging Amazon SES API Calls By Using AWS CloudTrail](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/logging-using-cloudtrail.html) | 05/07/2015 | 

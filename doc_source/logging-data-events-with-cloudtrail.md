@@ -33,6 +33,7 @@ In addition to basic event selectors, use the following data types with advanced
 + Amazon S3 on Outposts object\-level API activity
 + [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`
 + Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`
++ CloudTrail `PutAuditEvents` activity on a [CloudTrail Lake channel](query-event-data-store-integration.md) that is used to log events from outside AWS
 + [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots
 + Amazon S3 API activity on access points
 + [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams
@@ -139,7 +140,7 @@ Logging data events for all functions also enables logging of data event activit
 
 1. \(Optional\) Enter a name for your custom log selector template\.
 
-1. In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, and Amazon SageMaker feature stores\.
+1. In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, `PutAuditEvents` calls on CloudTrail Lake channels, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, and Amazon SageMaker feature stores\.
 
    1. Choose from the following fields\. For fields that accept an array \(more than one value\), CloudTrail adds an OR between values\.
       + **`readOnly`** \- `readOnly` can be set to **Equals** a value of `true` or `false`\. Read\-only data events are events that do not change the state of a resource, such as `Get*` or `Describe*` events\. Write events add, change, or delete resources, attributes, or artifacts, such as `Put*`, `Delete*`, or `Write*` events\. To log both `read` and `write` events, don't add a `readOnly` selector\.
@@ -153,6 +154,7 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::S3ObjectLambda::AccessPoint`
         + `AWS::EC2::Snapshot`
         + `AWS::S3::AccessPoint`
+        + `AWS::CloudTrail::Channel`
         + `AWS::DynamoDB::Stream`
         + `AWS::Glue::Table`
         + `AWS::FinSpace::Environment`
@@ -177,6 +179,12 @@ Logging data events for all functions also enables logging of data event activit
 
         ```
         arn:partition:dynamodb:region:account_ID:table/table_name
+        ```
+
+        When `resources.type` equals **AWS::CloudTrail::Channel**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
+
+        ```
+        arn:partition:cloudtrail:region:account_ID:channel/channel_UUID
         ```
 
         When `resources.type` equals **AWS::S3Outposts::Object**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
@@ -661,6 +669,13 @@ aws cloudtrail put-event-selectors --trail-name TrailName \
     ]
   },
   {
+    "Name": "Log all CloudTrail PutAuditEvents activity on a CloudTrail Lake channel,
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::CloudTrail::Channel"] }
+    ]
+  },
+  {
     "Name": "Log all events for Amazon S3 on Outposts",
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
@@ -786,6 +801,23 @@ The command returns the following example output\.
                     "Field": "resources.type",
                     "Equals": [
                         "AWS::DynamoDB::Table"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all CloudTrail PutAuditEvents activity on a CloudTrail Lake channel",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::CloudTrail::Channel"
                     ]
                 }
             ]
