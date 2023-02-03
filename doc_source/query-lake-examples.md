@@ -1,15 +1,30 @@
 # Example queries<a name="query-lake-examples"></a>
 
-This section includes example CloudTrail Lake queries to help you get started\.
+This section describes how you can access sample queries in the CloudTrail console and includes a few example CloudTrail Lake queries to help you get started\.
 
 **Topics**
-+ [Find all principal user identities who called `CreateBucket` on January 22, 2023](#query-example-principal-ids)
-+ [Find all APIs that a user called on January 22, 2023](#query-example-user-called-apis)
-+ [Find the number of API calls since January 1, 2023, grouped by `eventName` and `eventSource`](#query-example-apis-eventname-eventsource)
-+ [Find all users who signed in to the console in a set of Regions](#query-example-users-login-regions)
-+ [Find all CloudTrail Lake queries that were run in January 2023](#query-example-all-queries)
++ [Viewing sample queries in the CloudTrail console](#lake-console-queries)
++ [Example: Find all principal user identities who called `CreateBucket` on January 22, 2023](#query-example-principal-ids)
++ [Example: Find all APIs that a user called on January 22, 2023](#query-example-user-called-apis)
++ [Example: Find the number of API calls since January 1, 2023, grouped by `eventName` and `eventSource`](#query-example-apis-eventname-eventsource)
++ [Example: Find all users who signed in to the console in a set of Regions](#query-example-users-login-regions)
++ [Example: Find all CloudTrail Lake queries that were run in January 2023](#query-example-all-queries)
 
-## Find all principal user identities who called `CreateBucket` on January 22, 2023<a name="query-example-principal-ids"></a>
+## Viewing sample queries in the CloudTrail console<a name="lake-console-queries"></a>
+
+The CloudTrail console provides a number of sample queries that can help you get started writing your own queries\.
+
+**To access the sample queries in the CloudTrail console**
+
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
+1.  From the navigation pane, open the **Lake** submenu, then choose **Query**\. 
+
+1. Choose the **Sample queries** tab\. 
+
+1. To edit a sample query, choose the query string in the **Query SQL** column\. For information about running queries, see [Run a query and save query results](query-run-query.md)\.
+
+## Example: Find all principal user identities who called `CreateBucket` on January 22, 2023<a name="query-example-principal-ids"></a>
 
 ```
 SELECT 
@@ -50,7 +65,7 @@ Results
 }
 ```
 
-## Find all APIs that a user called on January 22, 2023<a name="query-example-user-called-apis"></a>
+## Example: Find all APIs that a user called on January 22, 2023<a name="query-example-user-called-apis"></a>
 
 ```
 SELECT 
@@ -111,7 +126,7 @@ Results
 }
 ```
 
-## Find the number of API calls since January 1, 2023, grouped by `eventName` and `eventSource`<a name="query-example-apis-eventname-eventsource"></a>
+## Example: Find the number of API calls since January 1, 2023, grouped by `eventName` and `eventSource`<a name="query-example-apis-eventname-eventsource"></a>
 
 ```
 SELECT 
@@ -176,7 +191,7 @@ Results
 }
 ```
 
-## Find all users who signed in to the console in a set of Regions<a name="query-example-users-login-regions"></a>
+## Example: Find all users who signed in to the console in a set of Regions<a name="query-example-users-login-regions"></a>
 
 ```
 SELECT 
@@ -228,7 +243,7 @@ Results
 }
 ```
 
-## Find all CloudTrail Lake queries that were run in January 2023<a name="query-example-all-queries"></a>
+## Example: Find all CloudTrail Lake queries that were run in January 2023<a name="query-example-all-queries"></a>
 
 ```
 SELECT 
