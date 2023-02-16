@@ -19,7 +19,7 @@ Use the following procedure if you have not yet enabled advanced event selectors
 
 1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
-1. If this is an AWS Organizations organization trail, you can choose to enable the trail for all accounts in your organization\. You only see this option if you are signed in to the console with an IAM user or role in the management account or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
+1. If this is an AWS Organizations organization trail, you can enable the trail for all accounts in your organization\. To see this option, you must sign in to the console with a user or role in the management or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
 1. For **Storage location**, choose **Create new S3 bucket** to create a bucket\. When you create a bucket, CloudTrail creates and applies the required bucket policies\.
 **Note**  
@@ -79,7 +79,7 @@ When you configure a trail, you can choose an S3 bucket and SNS topic that belon
 
    1. You can choose to log **All current and future S3 buckets**, or you can specify individual buckets or functions\. By default, data events are logged for all current and future S3 buckets\.
 **Note**  
-Keeping the default **All current and future S3 buckets** option enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
+Keeping the default **All current and future S3 buckets** option enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any IAM identity in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
 If you are creating a trail for a single Region \(done by using the AWS CLI\), choosing **All current and future S3 buckets** enables data event logging for all buckets in the same Region as your trail and any buckets you create later in that Region\. It will not log data events for Amazon S3 buckets in other Regions in your AWS account\.
 
    1. If you leave the default, **All current and future S3 buckets**, choose to log **Read** events, **Write** events, or both\.
@@ -101,7 +101,7 @@ If you are creating a trail for a single Region \(done by using the AWS CLI\), c
       To log data events for all Lambda functions in your AWS account, select **Log all current and future functions**\. This setting takes precedence over individual settings you configure for individual functions\. All functions are logged, even if all functions are not displayed\.
 **Note**  
 If you are creating a trail for all Regions, this selection enables data event logging for all functions currently in your AWS account, and any Lambda functions you might create in any Region after you finish creating the trail\. If you are creating a trail for a single Region \(done by using the AWS CLI\), this selection enables data event logging for all functions currently in that Region in your AWS account, and any Lambda functions you might create in that Region after you finish creating the trail\. It does not enable data event logging for Lambda functions created in other Regions\.  
-Logging data events for all functions also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
+Logging data events for all functions also enables logging of data event activity performed by any IAM identity in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
 
    1. If you choose **Input function as ARN**, enter the ARN of a Lambda function\.
 **Note**  
@@ -150,7 +150,7 @@ Use the following procedure if you have enabled advanced event selectors\. If yo
 
 1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
-1. If this is an AWS Organizations organization trail, you can choose to enable the trail for all accounts in your organization\. You only see this option if you are signed in to the console with an IAM user or role in the management account or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
+1. If this is an AWS Organizations organization trail, you can enable the trail for all accounts in your organization\. To see this option, you must sign in to the console with a user or role in the management or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
 1. For **Storage location**, choose **Create new S3 bucket** to create a bucket\. When you create a bucket, CloudTrail creates and applies the required bucket policies\.
 **Note**  
@@ -210,10 +210,10 @@ To log data events for AWS Glue tables created by Lake Formation, choose **Lake 
 
 1. Choose a log selector template\. CloudTrail includes predefined templates that log all data events for the resource type\. To build a custom log selector template, choose **Custom**\.
 **Note**  
-Choosing a predefined template for S3 buckets enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
+Choosing a predefined template for S3 buckets enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any IAM identity in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
 If the trail applies only to one Region, choosing a predefined template that logs all S3 buckets enables data event logging for all buckets in the same Region as your trail and any buckets you create later in that Region\. It will not log data events for Amazon S3 buckets in other Regions in your AWS account\.  
 If you are creating a trail for all Regions, choosing a predefined template for Lambda functions enables data event logging for all functions currently in your AWS account, and any Lambda functions you might create in any Region after you finish creating the trail\. If you are creating a trail for a single Region \(done by using the AWS CLI\), this selection enables data event logging for all functions currently in that Region in your AWS account, and any Lambda functions you might create in that Region after you finish creating the trail\. It does not enable data event logging for Lambda functions created in other Regions\.  
-Logging data events for all functions also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
+Logging data events for all functions also enables logging of data event activity performed by any IAM identity in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
 
 1. If you want to apply a predefined log selector template, and you do not want to add another data event resource type, go on to Step 18\. To apply a custom log selector template, go on to the next step\.
 
@@ -227,107 +227,31 @@ Logging data events for all functions also enables logging of data event activit
       + **`readOnly`** \- `readOnly` can be set to **Equals** a value of `true` or `false`\. Read\-only data events are events that do not change the state of a resource, such as `Get*` or `Describe*` events\. Write events add, change, or delete resources, attributes, or artifacts, such as `Put*`, `Delete*`, or `Write*` events\. To log both `read` and `write` events, don't add a `readOnly` selector\.
       + **`eventName`** \- `eventName` can use any operator\. You can use it to include or exclude any data event logged to CloudTrail, such as `PutBucket`, `PutItem`, or `GetSnapshotBlock`\. You can have multiple values for this field, separated by commas\.
       + **`resources.type`** \- In the AWS Management Console, this field doesn't occur, because it's already populated by your choice of data event type from the **Data event type** drop\-down list\. In the AWS CLI and SDKs, `resources.type` can only use the **Equals** operator, and the value can be one of the following: 
-        + `AWS::S3::Object`
-        + `AWS::Lambda::Function`
         + `AWS::DynamoDB::Table`
-        + `AWS::S3Outposts::Object`
-        + `AWS::ManagedBlockchain::Node`
-        + `AWS::S3ObjectLambda::AccessPoint`
-        + `AWS::EC2::Snapshot`
-        + `AWS::S3::AccessPoint`
+        + `AWS::Lambda::Function`
+        + `AWS::S3::Object`
         + `AWS::CloudTrail::Channel`
+        + `AWS::Cognito::IdentityPool`
         + `AWS::DynamoDB::Stream`
+        + `AWS::EC2::Snapshot`
         + `AWS::Glue::Table`
         + `AWS::FinSpace::Environment`
+        + `AWS::KendraRanking::ExecutionPlan`
+        + `AWS::ManagedBlockchain::Node`
         + `AWS::SageMaker::ExperimentTrialComponent`
         + `AWS::SageMaker::FeatureGroup`
+        + `AWS::S3::AccessPoint`
+        + `AWS::S3ObjectLambda::AccessPoint`
+        + `AWS::S3Outposts::Object`
       + **`resources.ARN`** \- You can use any operator with `resources.ARN`, but if you use **Equals** or **NotEquals**, the value must exactly match the ARN of a valid resource of the type you've specified in the template as the value of `resources.type`\. 
 
-        For example, when `resources.type` equals **AWS::S3::Object**, the ARN must be in one of the following formats\. To log all data events for all objects in a specific S3 bucket, use the `StartsWith` operator, and include only the bucket ARN as the matching value\. The trailing slash is intentional; do not exclude it\.
+        The following table shows the valid ARN format for each `resources.Type`\.  
+****    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html)
 
-        ```
-        arn:partition:s3:::bucket_name/
-        arn:partition:s3:::bucket_name/object_or_file_name/
-        ```
+        1 To log all data events for all objects in a specific S3 bucket, use the `StartsWith` operator, and include only the bucket ARN as the matching value\. The trailing slash is intentional; do not exclude it\.
 
-        When `resources.type` equals **AWS::Lambda::Function**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:lambda:region:account_ID:function:function_name
-        ```
-
-        When `resources.type` equals **AWS::DynamoDB::Table**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:dynamodb:region:account_ID:table/table_name
-        ```
-
-        When `resources.type` equals **AWS::CloudTrail::Channel**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:cloudtrail:region:account_ID:channel/channel_UUID
-        ```
-
-        When `resources.type` equals **AWS::S3Outposts::Object**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:s3-outposts:region:account_ID:object_path
-        ```
-
-        When `resources.type` equals **AWS::ManagedBlockchain::Node**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:managedblockchain:region:account_ID:nodes/node_ID
-        ```
-
-        When `resources.type` equals **AWS::S3ObjectLambda::AccessPoint**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:s3-object-lambda:region:account_ID:accesspoint/access_point_name
-        ```
-
-        When `resources.type` equals **AWS::EC2::Snapshot**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:ec2:region::snapshot/snapshot_ID
-        ```
-
-        When `resources.type` equals **AWS::S3::AccessPoint**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in one of the following formats\. To log events on all objects in an S3 access point, we recommend that you use only the access point ARN, don’t include the object path, and use the `StartsWith` or `NotStartsWith` operators\.
-
-        ```
-        arn:partition:s3:region:account_ID:accesspoint/access_point_name
-        arn:partition:s3:region:account_ID:accesspoint/access_point_name/object/object_path
-        ```
-
-        When `resources.type` equals **AWS::DynamoDB::Stream**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:dynamodb:region:account_ID:table/table_name/stream/date_time
-        ```
-
-        When `resources.type` equals **AWS::Glue::Table**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:glue:region:account_ID:table/database_name/table_name
-        ```
-
-        When `resources.type` equals **AWS::FinSpace::Environment**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:finspace:region:account_ID:environment/environment_ID
-        ```
-
-        When `resources.type` equals **AWS::SageMaker::ExperimentTrialComponent**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:sagemaker:region:account_ID:experiment-trial-component/experiment_trial_component_name
-        ```
-
-        When `resources.type` equals **AWS::SageMaker::FeatureGroup**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:sagemaker:region:account_ID:feature-group/feature_group_name
-        ```
+        2 To log events on all objects in an S3 access point, we recommend that you use only the access point ARN, don’t include the object path, and use the `StartsWith` or `NotStartsWith` operators\.
 
       For more information about the ARN formats of data event resources, see [Actions, resources, and condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html) in the *AWS Identity and Access Management User Guide*\.
 

@@ -1,24 +1,24 @@
 # Creating a trail for your organization in the console<a name="creating-an-organizational-trail-in-the-console"></a>
 
-To create an organization trail in the CloudTrail console, you must sign in to the console using an IAM user or role in the management account or delegated administrator account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. If you are not signed in with the management account or delegated administrator account, you will not see the option to apply a trail to an organization when you create or edit a trail in the CloudTrail console\.
+To create an organization trail from the CloudTrail console, you must sign in to the console as a user or role in the management or delegated administrator account that has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. If you don't sign in with the management or delegated administrator account, you won't see the option to apply a trail to an organization when you create or edit a trail from the CloudTrail console\.
 
-You can choose to configure an organization trail in various ways\. For example, you can: 
-+ By default, when you create a trail in the console, the trail logs all regions\. Logging all regions in your account is a recommended best practice\. To create a single\-region trail, [use the AWS CLI](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single)\. For more information, see [How CloudTrail works](how-cloudtrail-works.md)\.
-+ Specify whether to apply the trail to your organization\. The default is not to do so; you must choose this option to create an organization trail\.
-+ Specify which Amazon S3 bucket to use to receive log files for the organization trail\. You can choose an existing Amazon S3 bucket, or create one specifically for the organization trail\. 
-+ For management and data events, specify if you want to log **Read** events, **Write** events, or both\. [CloudTrail Insights](logging-insights-events-with-cloudtrail.md) events are logged only on management events, and you must be logging **Write** management events\. You can specify logging data events for resources in the management account by choosing them from the lists in the console, and in member accounts if you specify the ARNs of each resource for which you want to enable data event logging\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
+You can configure an organization trail in multiple ways\. For example, you can configure the following details for your organization trail: 
++ By default, when you create a trail in the console, the trail logs all AWS Regions\. As a best practice, we strongly recommend logging events in all Regions in your AWS account\. To create a trail for a single Region, [use the AWS CLI](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single)\. For more information, see [How CloudTrail works](how-cloudtrail-works.md)\.
++ Specify whether to apply the trail to your organization\. By default, trails aren't applied to organizations\. You must choose this option to create an organization trail\.
++ Specify which Amazon S3 bucket that receives log files for the organization trail\. You can choose an existing Amazon S3 bucket, or create one specifically for the organization trail\. 
++ For management and data events, specify if you want to log **Read** events, **Write** events, or both\. [CloudTrail Insights](logging-insights-events-with-cloudtrail.md) only logs management events\. You must also specify logging **Write** management events\. You can specify logging data events for resources in the management account by choosing them from the lists in the console\. For member accounts, you can log events for their resources if you specify the ARNs of each resource you want to enable data event logging for\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 
 **To create an organization trail with the AWS Management Console**
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-   You must be signed in as a user, role, or root account in the management account or delegated administrator account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions) to create an organization trail\.
+   You must be signed in using an IAM identity in the management or delegated administrator account with [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions) to create an organization trail\.
 
 1. Choose **Trails**, and then choose **Create trail**\.
 
 1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
-1. Select **Enable for all accounts in my organization**\. You only see this option if you are signed in to the console with an IAM user or role in the management account or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\.
+1. Select **Enable for all accounts in my organization**\. You only see this option if you sign in to the console with a user or role in the management or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\.
 
 1. For **Storage location**, choose **Create new S3 bucket** to create a bucket\. When you create a bucket, CloudTrail creates and applies the required bucket policies\.
 **Note**  
@@ -82,7 +82,7 @@ More data event types are available if you use advanced event selectors\. If you
 
    1. You can choose to log **All current and future S3 buckets**, or you can specify individual buckets or functions\. By default, data events are logged for all current and future S3 buckets\.
 **Note**  
-Keeping the default **All current and future S3 buckets** option enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
+Keeping the default **All current and future S3 buckets** option enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any IAM identity in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
 If the trail applies only to one Region, selecting the **Select all S3 buckets in your account** option enables data event logging for all buckets in the same Region as your trail and any buckets you create later in that Region\. It will not log data events for Amazon S3 buckets in other Regions in your AWS account\.
 
    1. If you leave the default, **All current and future S3 buckets**, choose to log **Read** events, **Write** events, or both\.
@@ -104,7 +104,7 @@ If the trail applies only to one Region, selecting the **Select all S3 buckets i
       To log data events for all Lambda functions in your AWS account, select **Log all current and future functions**\. This setting takes precedence over individual settings you configure for individual functions\. All functions are logged, even if all functions are not displayed\.
 **Note**  
 If you are creating a trail for all Regions, this selection enables data event logging for all functions currently in your AWS account, and any Lambda functions you might create in any Region after you finish creating the trail\. If you are creating a trail for a single Region \(done by using the AWS CLI\), this selection enables data event logging for all functions currently in that Region in your AWS account, and any Lambda functions you might create in that Region after you finish creating the trail\. It does not enable data event logging for Lambda functions created in other Regions\.  
-Logging data events for all functions also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
+Logging data events for all functions also enables logging of data event activity performed by any IAM identity in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
 
    1. If you choose **Input function as ARN**, enter the ARN of a Lambda function\.
 **Note**  
@@ -135,7 +135,7 @@ You can't rename a trail after it has been created\. Instead, you can delete the
 
 After you create your trail, you can return to the trail to make changes:
 + Change the configuration of your trail by editing it\. For more information, see [Updating a trail](cloudtrail-update-a-trail-console.md)\.
-+ Configure the Amazon S3 bucket to allow specific IAM users in member accounts to read the log files for the organization, if desired\. For more information, see [Sharing CloudTrail log files between AWS accounts](cloudtrail-sharing-logs.md)\.
++ If needed, configure the Amazon S3 bucket to allow specific users in member accounts to read the log files for the organization\. For more information, see [Sharing CloudTrail log files between AWS accounts](cloudtrail-sharing-logs.md)\.
 + Configure CloudTrail to send log files to CloudWatch Logs\. For more information, see [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md) and [the CloudWatch Logs item](creating-an-organizational-trail-prepare.md#cwl-org-pb) in [Prepare for creating a trail for your organization](creating-an-organizational-trail-prepare.md)\.
 + Create a table and use it to run a query in Amazon Athena to analyze your AWS service activity\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#create-cloudtrail-table-ct) in the [Amazon Athena User Guide](https://docs.aws.amazon.com/athena/latest/ug/)\.
 + Add custom tags \(key\-value pairs\) to the trail\.

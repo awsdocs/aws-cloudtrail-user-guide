@@ -14,5 +14,6 @@ This documentation helps you understand how to apply the shared responsibility m
 + [Compliance validation for AWS CloudTrail](CloudTrail-compliance.md)
 + [Resilience in AWS CloudTrail](disaster-recovery-resiliency.md)
 + [Infrastructure security in AWS CloudTrail](infrastructure-security.md)
++ [Cross\-service confused deputy prevention](cross-service-confused-deputy-prevention.md)
 + [Security best practices in AWS CloudTrail](best-practices-security.md)
 + [Encrypting CloudTrail log files with AWS KMS keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)

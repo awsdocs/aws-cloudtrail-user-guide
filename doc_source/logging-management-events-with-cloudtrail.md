@@ -1,12 +1,18 @@
-# Logging management events for trails<a name="logging-management-events-with-cloudtrail"></a>
+# Logging management events<a name="logging-management-events-with-cloudtrail"></a>
 
-By default, trails log management events and don't include data or Insights events\. Additional charges apply for data or Insights events\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
+By default, trails log management events and don't include data or Insights events\.
+
+By default, event data stores log management events and don't include data events\. Event data stores do not currently support Insights events\.
+
+Additional charges apply for data or Insights events\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
 **Contents**
 + [Management events](#logging-management-events)
   + [Logging management events with the AWS Management Console](#logging-management-events-with-the-cloudtrail-console)
 + [Read and write events](#read-write-events-mgmt)
 + [Logging events with the AWS Command Line Interface](#creating-mgmt-event-selectors-with-the-AWS-CLI)
+  + [Examples: Logging management events for trails](#log-mgmt-events-trails-examples)
+  + [Examples: Logging management events for event data stores](#log-mgmt-events-eds-examples)
 + [Logging events with the AWS SDKs](#logging-management-events-with-the-AWS-SDKs)
 + [Sending events to Amazon CloudWatch Logs](#sending-management-events-to-cloudwatch-logs)
 
@@ -20,31 +26,35 @@ Management events provide visibility into management operations that are perform
 
 Management events can also include non\-API events that occur in your account\. For example, when a user logs in to your account, CloudTrail logs the `ConsoleLogin` event\. For more information, see [Non\-API events captured by CloudTrail](cloudtrail-non-api-events.md)\. For a list of supported management events that CloudTrail logs for AWS services, see [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.
 
-By default, trails are configured to log management events\. For a list of supported management events that CloudTrail logs for AWS services, see [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.
+By default, trails and event data stores are configured to log management events\. For a list of supported management events that CloudTrail logs for AWS services, see [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 **Note**  
-The CloudTrail **Event history **feature supports only management events\. Not all management events are supported in event history\. You cannot exclude AWS KMS or Amazon RDS Data API events from **Event history **; settings that you apply to a trail do not apply to **Event history **\. For more information, see [Viewing events with CloudTrail Event history](view-cloudtrail-events.md)\. 
+The CloudTrail **Event history **feature supports only management events\. Not all management events are supported in event history\. You cannot exclude AWS KMS or Amazon RDS Data API events from **Event history **; settings that you apply to a trail or event data store do not apply to **Event history **\. For more information, see [Viewing events with CloudTrail Event history](view-cloudtrail-events.md)\. 
 
 ### Logging management events with the AWS Management Console<a name="logging-management-events-with-the-cloudtrail-console"></a>
 
-1. Open the **Trails** page of the CloudTrail console and choose the trail name\.
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
+1. To update a trail, open the **Trails** page of the CloudTrail console and choose the trail name\.
+
+   To update an event data store, open the **Event data stores** page of the CloudTrail console and choose the event data store name\.
 
 1. For **Management events**, choose **Edit**\.
-   + Choose if you want your trail to log **Read** events, **Write** events, or both\.
-   + Choose **Exclude AWS KMS events** to filter AWS Key Management Service \(AWS KMS\) events out of your trail\. The default setting is to include all AWS KMS events\.
+   + Choose if you want your trail or event data store to log **Read** events, **Write** events, or both\.
+   + Choose **Exclude AWS KMS events** to filter AWS Key Management Service \(AWS KMS\) events out of your trail or event data store\. The default setting is to include all AWS KMS events\.
 
-     The option to log or exclude AWS KMS events is available only if you log management events on your trail\. If you choose not to log management events, AWS KMS events are not logged, and you cannot change AWS KMS event logging settings\.
+     The option to log or exclude AWS KMS events is available only if you log management events on your trail or event data store\. If you choose not to log management events, AWS KMS events are not logged, and you cannot change AWS KMS event logging settings\.
 
      AWS KMS actions such as `Encrypt`, `Decrypt`, and `GenerateDataKey` typically generate a large volume \(more than 99%\) of events\. These actions are now logged as **Read** events\. Low\-volume, relevant AWS KMS actions such as `Disable`, `Delete`, and `ScheduleKey` \(which typically account for less than 0\.5% of AWS KMS event volume\) are logged as **Write** events\.
 
      To exclude high\-volume events like `Encrypt`, `Decrypt`, and `GenerateDataKey`, but still log relevant events such as `Disable`, `Delete` and `ScheduleKey`, choose to log **Write** management events, and clear the check box for **Exclude AWS KMS events**\.
-   + Choose **Exclude Amazon RDS Data API events** to filter Amazon Relational Database Service Data API events out of your trail\. The default setting is to include all Amazon RDS Data API events\. For more information about Amazon RDS Data API events, see [Logging Data API calls with AWS CloudTrail](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/logging-using-cloudtrail-data-api.html) in the *Amazon RDS User Guide for Aurora*\.
+   + Choose **Exclude Amazon RDS Data API events** to filter Amazon Relational Database Service Data API events out of your trail or event data store\. The default setting is to include all Amazon RDS Data API events\. For more information about Amazon RDS Data API events, see [Logging Data API calls with AWS CloudTrail](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/logging-using-cloudtrail-data-api.html) in the *Amazon RDS User Guide for Aurora*\.
 
-   Choose **Update trail** when you are finished\.
+   Choose **Save changes** when you are finished\.
 
 ## Read and write events<a name="read-write-events-mgmt"></a>
 
-When you configure your trail to log management events, you can specify whether you want read\-only events, write\-only events, or both\.
+When you configure your trail or event data store to log management events, you can specify whether you want read\-only events, write\-only events, or both\.
 + **Read**
 
   Read\-only events include API operations that read your resources, but don't make changes\. For example, read\-only events include the Amazon EC2 `DescribeSecurityGroups` and `DescribeSubnets` API operations\. These operations return only information about your Amazon EC2 resources and don't change your configurations\.
@@ -68,7 +78,13 @@ The following example shows how you can configure trails to split log activity f
 
 ## Logging events with the AWS Command Line Interface<a name="creating-mgmt-event-selectors-with-the-AWS-CLI"></a>
 
-You can configure your trails to log management events using the AWS CLI\.
+You can configure your trails or event data stores to log management events using the AWS CLI\.
+
+**Topics**
++ [Examples: Logging management events for trails](#log-mgmt-events-trails-examples)
++ [Examples: Logging management events for event data stores](#log-mgmt-events-eds-examples)
+
+### Examples: Logging management events for trails<a name="log-mgmt-events-trails-examples"></a>
 
 To view whether your trail is logging management events, run the `get-event-selectors` command\.
 
@@ -184,9 +200,184 @@ To log relevant AWS KMS events to a trail like `Disable`, `Delete` and `Schedule
 aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"ReadWriteType": "WriteOnly","ExcludeManagementEventSources": [],"IncludeManagementEvents": true}]'
 ```
 
+### Examples: Logging management events for event data stores<a name="log-mgmt-events-eds-examples"></a>
+
+To view whether your event data store includes management events, run the get\-event\-data\-store command\.
+
+```
+aws cloudtrail get-event-data-store
+--event-data-store arn:aws:cloudtrail:us-east-1:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE
+```
+
+The following is an example response\. Creation and last updated times are in `timestamp` format\.
+
+```
+{
+    "EventDataStoreArn": "arn:aws:cloudtrail:us-east-1:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE",
+    "Name": "myManagementEvents",
+    "Status": "ENABLED",
+    "AdvancedEventSelectors": [
+        {
+            "Name": "Management events selector",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Management"
+                    ]
+                }
+            ]
+        }
+    ],
+    "MultiRegionEnabled": true,
+    "OrganizationEnabled": false,
+    "RetentionPeriod": 2557,
+    "TerminationProtectionEnabled": true,
+    "CreatedTimestamp": "2023-01-04T15:56:27.418000+00:00",
+    "UpdatedTimestamp": "2023-01-04T15:56:27.544000+00:00"
+}
+```
+
+To create an event data store that includes all management events, you run the create\-event\-data\-store command\. You do not need to specify any advanced event selectors to include all management events\.
+
+```
+aws cloudtrail create-event-data-store
+--name my-event-data-store
+--retention-period 90\
+```
+
+The following is an example response\.
+
+```
+{
+    "EventDataStoreArn": "arn:aws:cloudtrail:us-east-1:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE",
+    "Name": "my-event-data-store",
+    "Status": "CREATED",
+    "AdvancedEventSelectors": [
+        {
+            "Name": "Default management events",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Management"
+                    ]
+                }
+            ]
+        }
+    ],
+    "MultiRegionEnabled": true,
+    "OrganizationEnabled": false,
+    "RetentionPeriod": 90,
+    "TerminationProtectionEnabled": true,
+    "CreatedTimestamp": "2023-02-13T16:41:57.224000+00:00",
+    "UpdatedTimestamp": "2023-02-13T16:41:57.357000+00:00"
+}
+```
+
+To create an event data store that excludes AWS Key Management Service \(AWS KMS\) events, run the `create-event-data-store` command and specify that `eventSource` does not equal `kms.amazonaws.com`\. The following example creates an event data store that includes read\-only and write\-only management events, but excludes AWS KMS events\.
+
+```
+aws cloudtrail create-event-data-store --name event-data-store-name --retention-period 90 --advanced-event-selectors '[
+    {
+        "Name": "Management events selector",
+        "FieldSelectors": [
+            {"Field": "eventCategory","Equals": ["Management"]},
+            {"Field": "eventSource","NotEquals": ["kms.amazonaws.com"]}
+        ]
+    }
+]'
+```
+
+The following is an example response\.
+
+```
+{
+    "EventDataStoreArn": "arn:aws:cloudtrail:us-east-1:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE",
+    "Name": "event-data-store-name,
+    "Status": "CREATED",
+    "AdvancedEventSelectors": [
+        {
+            "Name": "Management events selector",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Management"
+                    ]
+                },
+                {
+                    "Field": "eventSource",
+                    "NotEquals": [
+                        "kms.amazonaws.com"
+                    ]
+                }
+            ]
+        }
+    ],
+    "MultiRegionEnabled": true,
+    "OrganizationEnabled": false,
+    "RetentionPeriod": 90,
+    "TerminationProtectionEnabled": true,
+    "CreatedTimestamp": "2023-02-13T17:02:02.067000+00:00",
+    "UpdatedTimestamp": "2023-02-13T17:02:02.241000+00:00"
+}
+```
+
+To create an event data store that excludes Amazon RDS Data API events, run the `create-event-data-store` command and specify that `eventSource` does not equal `rdsdata.amazonaws.com`\. The following example creates an event data store that includes read\-only and write\-only management events, but excludes Amazon RDS Data API events\. 
+
+```
+aws cloudtrail create-event-data-store --name event-data-store-name --retention-period 90 --advanced-event-selectors '[
+    {
+        "Name": "Management events selector",
+        "FieldSelectors": [
+            {"Field": "eventCategory","Equals": ["Management"]},
+            {"Field": "eventSource","NotEquals": ["rdsdata.amazonaws.com"]}
+        ]
+    }
+]'
+```
+
+The following is an example response\.
+
+```
+{
+    "EventDataStoreArn": "arn:aws:cloudtrail:us-east-1:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE",
+    "Name": "event-data-store-name,
+    "Status": "CREATED",
+    "AdvancedEventSelectors": [
+        {
+            "Name": "Management events selector",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Management"
+                    ]
+                },
+                {
+                    "Field": "eventSource",
+                    "NotEquals": [
+                        "rdsdata.amazonaws.com"
+                    ]
+                }
+            ]
+        }
+    ],
+    "MultiRegionEnabled": true,
+    "OrganizationEnabled": false,
+    "RetentionPeriod": 90,
+    "TerminationProtectionEnabled": true,
+    "CreatedTimestamp": "2023-02-13T17:02:02.067000+00:00",
+    "UpdatedTimestamp": "2023-02-13T17:02:02.241000+00:00"
+}
+```
+
 ## Logging events with the AWS SDKs<a name="logging-management-events-with-the-AWS-SDKs"></a>
 
 Use the [GetEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_GetEventSelectors.html) operation to see whether your trail is logging management events for a trail\. You can configure your trails to log management events with the [PutEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html) operation\. For more information, see the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
+
+Run the [GetEventDataStore](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_GetEventDataStore.html) operation to see whether your event data store includes management events\. You can configure your event data stores to include management events by running the [CreateEventDataStore](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateEventDataStore.html) or [UpdateEventDataStore](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_UpdateEventDataStore.html) operations and specifying advanced event selectors\. For more information, see [Managing CloudTrail Lake by using the AWS CLI](query-lake-cli.md) and the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
 
 ## Sending events to Amazon CloudWatch Logs<a name="sending-management-events-to-cloudwatch-logs"></a>
 

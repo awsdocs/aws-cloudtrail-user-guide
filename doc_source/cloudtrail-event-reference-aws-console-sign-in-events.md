@@ -4,7 +4,7 @@
 As of November 22, 2021, AWS CloudTrail will change how trails can be used to capture global service events\. After the change, events created by CloudFront, IAM, and AWS STS will be recorded in the region in which they were created, the US East \(N\. Virginia\) region, us\-east\-1\. This makes CloudTrail's treatment of these services consistent with that of other AWS global services\.  
 To continue receiving global service events outside of US East \(N\. Virginia\), be sure to convert *single\-region trails* using global service events outside of US East \(N\. Virginia\) into *multi\-region trails*\. Also update the region of your lookup\-events API calls to view global service events\. For more information about using the CLI to update or create trails for global service events and update lookup events, see [Viewing CloudTrail events with the AWS CLI](view-cloudtrail-events-cli.md) and [Using update\-trail](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md)\. 
 
-CloudTrail logs attempts to sign into the AWS Management Console, the AWS Discussion Forums, and the AWS Support Center\. All IAM user and root user sign\-in events, as well as all federated user sign\-in events, generate records in CloudTrail log files\. AWS Management Console sign\-in events are global service events\. For information about getting and viewing logs, see [Getting and viewing your CloudTrail log files](get-and-view-cloudtrail-log-files.md)\. 
+CloudTrail logs attempts to sign in to the AWS Management Console, the AWS Discussion Forums, and the AWS Support Center\. All IAM user and root user sign\-in events, as well as all federated user sign\-in events, generate records in CloudTrail log files\. AWS Management Console sign\-in events are global service events\. For information about getting and viewing logs, see [Getting and viewing your CloudTrail log files](get-and-view-cloudtrail-log-files.md)\. 
 
 **Topics**
 + [Example records for IAM users](#cloudtrail-event-reference-aws-console-sign-in-events-iam-user)
@@ -23,7 +23,7 @@ The following examples show event records for several IAM user sign\-in scenario
 
 ### IAM user, successful sign\-in without MFA<a name="cloudtrail-aws-console-sign-in-events-iam-user-success"></a>
 
-The following record shows that an IAM user named Anaya successfully signed into the AWS Management Console without using multi\-factor authentication \(MFA\)\. 
+The following record shows that a user named Anaya successfully signed in to the AWS Management Console without using multi\-factor authentication \(MFA\)\. 
 
 ```
 {
@@ -61,7 +61,7 @@ The following record shows that an IAM user named Anaya successfully signed into
 
 ### IAM user, successful sign\-in with MFA<a name="cloudtrail-aws-console-sign-in-events-iam-user-mfa"></a>
 
-The following record shows that an IAM user named Anaya successfully signed into the AWS Management Console using multi\-factor authentication \(MFA\)\. 
+The following record shows that an IAM user named Anaya successfully signed in to the AWS Management Console using multi\-factor authentication \(MFA\)\. 
 
 ```
 {
@@ -97,7 +97,7 @@ The following record shows that an IAM user named Anaya successfully signed into
 
 ### IAM user, unsuccessful sign\-in<a name="cloudtrail-aws-console-sign-in-events-iam-user-failure"></a>
 
-The following record shows an IAM user's unsuccessful sign\-in attempt\. 
+The following record shows an unsuccessful sign\-in attempt from an IAM user\. 
 
 ```
 {
@@ -133,7 +133,7 @@ The following record shows an IAM user's unsuccessful sign\-in attempt\.
 
 ### IAM user, sign\-in process checks for MFA \(single MFA device type\)<a name="cloudtrail-aws-console-sign-in-requires-mfa"></a>
 
-The following shows that the sign\-process checked whether multi\-factor authentication \(MFA\) is required for an IAM user during sign\-in\. In this example, the `mfaType` value is `U2F MFA`, which indicates that the IAM user enabled a single MFA device or multiple MFA devices of the same type \(`U2F MFA`\)\.
+The following shows that the sign\-process checked whether multi\-factor authentication \(MFA\) is required for an IAM user during sign\-in\. In this example, the `mfaType` value is `U2F MFA`, which indicates that the IAM user enabled either a single MFA device or multiple MFA devices of the same type \(`U2F MFA`\)\.
 
 ```
  {

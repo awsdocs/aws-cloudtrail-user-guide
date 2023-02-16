@@ -39,7 +39,7 @@ A log file contains one or more records\. The following examples are snippets of
 
 Amazon Elastic Compute Cloud \(Amazon EC2\) provides resizeable computing capacity in the AWS Cloud\. You can launch virtual servers, configure security and networking, and manage storage\. Amazon EC2 can also scale up or down quickly to handle changes in requirements or spikes in popularity, thereby reducing your need to forecast server traffic\. For more information, see the [Amazon EC2 User Guide for Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/)\.
 
-The following example shows that an IAM user named Alice used the AWS CLI to call the Amazon EC2 `StartInstances` action by using the `ec2-start-instances` command for instance `i-ebeaf9e2`\. 
+The following example shows that an IAM user named Alice used the AWS CLI to call the Amazon EC2 `StartInstances` action using the `ec2-start-instances` command for instance `i-ebeaf9e2`\. 
 
 ```
 {"Records": [{
@@ -110,7 +110,7 @@ The following example shows that an IAM user named Alice used the AWS CLI to cal
 }]}
 ```
 
-The following example shows that the Amazon EC2 console backend called the `CreateKeyPair` action in response to requests initiated by the IAM user Alice\. Note that the `responseElements` contain a hash of the key pair and that the key material has been removed by AWS\. 
+The following example shows that the Amazon EC2 console backend called the `CreateKeyPair` action in response to requests initiated by the IAM user Alice\. Note that the `responseElements` contain a hash of the key pair and that AWS removed the key material\. 
 
 ```
 {"Records": [{
@@ -144,7 +144,7 @@ The following example shows that the Amazon EC2 console backend called the `Crea
 
 ### IAM log examples<a name="cloudtrail-log-file-examples-iam"></a>
 
-AWS Identity and Access Management \(IAM\) is a web service that enables AWS customers to manage users and user permissions\. With IAM, you can manage users, security credentials such as access keys, and permissions that control which AWS resources users can access\. For more information, see the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
+AWS Identity and Access Management \(IAM\) is a web service that helps you securely control access to AWS resources\. With IAM, you can centrally manage permissions that control which AWS resources users can access\. You use IAM to control who is authenticated \(signed in\) and authorized \(has permissions\) to use resources\. For more information, see the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
 The following example shows that the IAM user Alice used the AWS CLI to call the `CreateUser` action to create a new user named Bob\.
 

@@ -4,14 +4,26 @@ Use the following information to help you diagnose and fix common issues that yo
 
 **Topics**
 + [I am not authorized to perform an action in CloudTrail](#security_iam_troubleshoot-no-permissions)
-+ [I'm an Administrator and Want to Allow Others to Access CloudTrail](#security_iam_troubleshoot-admin-delegate)
++ [I am not authorized to perform `iam:PassRole`](#security_iam_troubleshoot-passrole)
 + [I want to allow people outside of my AWS account to access my CloudTrail resources](#security_iam_troubleshoot-cross-account-access)
 
 ## I am not authorized to perform an action in CloudTrail<a name="security_iam_troubleshoot-no-permissions"></a>
 
-If the AWS Management Console tells you that you're not authorized to perform an action, then you must contact your administrator for assistance\. Your administrator is the person that provided you with your user name and password\.
+If you receive an error that you're not authorized to perform an action, your policies must be updated to allow you to perform the action\.
 
-The following example error occurs when the `mateojackson` IAM user tries to use the console to view details about a trail but does not have either the appropriate CloudTrail managed policy \(**AWSCloudTrail\_FullAccess** or **AWSCloudTrail\_ReadOnlyAccess**\) or the equivalent permissions applied to his account\.
+The following example error occurs when the `mateojackson` IAM user tries to use the console to view details about a fictional `my-example-widget` resource but doesn't have the fictional `cloudtrail:GetWidget` permissions\.
+
+```
+User: arn:aws:iam::123456789012:user/mateojackson is not authorized to perform: cloudtrail:GetWidget on resource: my-example-widget
+```
+
+In this case, the policy for the `mateojackson` user must be updated to allow access to the `my-example-widget` resource by using the `cloudtrail:GetWidget` action\.
+
+If you need help, contact your AWS administrator\. Your administrator is the person who provided you with your sign\-in credentials\.
+
+If the AWS Management Console tells you that you're not authorized to perform an action, then you must contact your administrator for assistance\. Your administrator is the person that provided you with your sign\-in credentials\.
+
+The following example error occurs when the `mateojackson` IAM user tries to use the console to view details about a trail but doesn't have either the appropriate CloudTrail managed policy \(**AWSCloudTrail\_FullAccess** or **AWSCloudTrail\_ReadOnlyAccess**\) or the equivalent permissions applied to his account\.
 
 ```
 User: arn:aws:iam::123456789012:user/mateojackson is not authorized to perform: cloudtrail:GetTrailStatus on resource: My-Trail
@@ -19,13 +31,23 @@ User: arn:aws:iam::123456789012:user/mateojackson is not authorized to perform: 
 
 In this case, Mateo asks his administrator to update his policies to allow him to access trail information and status in the console\.
 
-If you are signed in with an IAM user or role that has the **AWSCloudTrail\_FullAccess** managed policy or its equivalent permissions, and you cannot configure AWS Config or Amazon CloudWatch Logs integration with a trail, you might be missing the required permissions for integration with those services\. For more information, see [Granting permission to view AWS Config information on the CloudTrail console](security_iam_id-based-policy-examples.md#grant-aws-config-permissions-for-cloudtrail-users) and [Granting permission to view and configure Amazon CloudWatch Logs information on the CloudTrail console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
+If you sign in with an IAM user or role that has the **AWSCloudTrail\_FullAccess** managed policy or its equivalent permissions, and you can't configure AWS Config or Amazon CloudWatch Logs integration with a trail, you might be missing the required permissions for integration with those services\. For more information, see [Granting permission to view AWS Config information on the CloudTrail console](security_iam_id-based-policy-examples.md#grant-aws-config-permissions-for-cloudtrail-users) and [Granting permission to view and configure Amazon CloudWatch Logs information on the CloudTrail console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
 
-## I'm an Administrator and Want to Allow Others to Access CloudTrail<a name="security_iam_troubleshoot-admin-delegate"></a>
+## I am not authorized to perform `iam:PassRole`<a name="security_iam_troubleshoot-passrole"></a>
 
-To allow others to access CloudTrail, you must create an IAM entity \(user, group, or role\) for the person or application that needs access\. They will use the credentials for that entity to access AWS\. You must then attach a policy to the entity that grants them the correct permissions in CloudTrail\. For examples of how to do this, see [Granting custom permissions for CloudTrail users](security_iam_id-based-policy-examples.md#grant-custom-permissions-for-cloudtrail-users) and [Granting permissions for CloudTrail administration](security_iam_id-based-policy-examples.md#grant-permissions-for-cloudtrail-administration)\.
+If you receive an error that you're not authorized to perform the `iam:PassRole` action, your policies must be updated to allow you to pass a role to CloudTrail\.
 
+Some AWS services allow you to pass an existing role to that service instead of creating a new service role or service\-linked role\. To do this, you must have permissions to pass the role to the service\.
 
+The following example error occurs when an IAM user named `marymajor` tries to use the console to perform an action in CloudTrail\. However, the action requires the service to have permissions that are granted by a service role\. Mary does not have permissions to pass the role to the service\.
+
+```
+User: arn:aws:iam::123456789012:user/marymajor is not authorized to perform: iam:PassRole
+```
+
+In this case, Mary's policies must be updated to allow her to perform the `iam:PassRole` action\.
+
+If you need help, contact your AWS administrator\. Your administrator is the person who provided you with your sign\-in credentials\.
 
 ## I want to allow people outside of my AWS account to access my CloudTrail resources<a name="security_iam_troubleshoot-cross-account-access"></a>
 

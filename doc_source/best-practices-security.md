@@ -20,7 +20,7 @@ The following are some steps you can take:
 
 **Apply trails to all AWS Regions**
 
-To obtain a complete record of events taken by a user, role, or service in your AWS account, each trail should be configured to log events in all AWS Regions\. By logging events in all AWS Regions, you ensure that all events that occur in your AWS account are logged, regardless of which AWS Region where they occurred\. This includes logging [global service events](cloudtrail-concepts.md#cloudtrail-concepts-global-service-events), which are logged to an AWS Region specific to that service\. When you create a trail that applies to all regions, CloudTrail records events in each region and delivers the CloudTrail event log files to an S3 bucket that you specify\. If an AWS Region is added after you create a trail that applies to all regions, that new region is automatically included, and events in that region are logged\. This is the default option when you create a trail in the CloudTrail console\. 
+To obtain a complete record of events taken by an IAM identity, or service in your AWS account, each trail should be configured to log events in all AWS Regions\. By logging events in all AWS Regions, you ensure that all events that occur in your AWS account are logged, regardless of which AWS Region where they occurred\. This includes logging [global service events](cloudtrail-concepts.md#cloudtrail-concepts-global-service-events), which are logged to an AWS Region specific to that service\. When you create a trail that applies to all regions, CloudTrail records events in each region and delivers the CloudTrail event log files to an S3 bucket that you specify\. If an AWS Region is added after you create a trail that applies to all regions, that new region is automatically included, and events in that region are logged\. This is the default option when you create a trail in the CloudTrail console\. 
 
 The following are some steps you can take:
 + [Create a trail for your AWS account\.](cloudtrail-create-a-trail-using-the-console-first-time.md#creating-a-trail-in-the-console)
@@ -29,7 +29,7 @@ The following are some steps you can take:
 
 **Enable CloudTrail log file integrity**
 
-Validated log files are especially valuable in security and forensic investigations\. For example, a validated log file enables you to assert positively that the log file itself has not changed, or that particular user credentials performed specific API activity\. The CloudTrail log file integrity validation process also lets you know if a log file has been deleted or changed, or assert positively that no log files were delivered to your account during a given period of time\. CloudTrail log file integrity validation uses industry standard algorithms: SHA\-256 for hashing and SHA\-256 with RSA for digital signing\. This makes it computationally unfeasible to modify, delete or forge CloudTrail log files without detection\. For more information, see [Enabling validation and validating files](cloudtrail-log-file-validation-intro.md#cloudtrail-log-file-validation-intro-enabling-and-using)\.
+Validated log files are especially valuable in security and forensic investigations\. For example, a validated log file enables you to assert positively that the log file itself has not changed, or that particular IAM identity credentials performed specific API activity\. The CloudTrail log file integrity validation process also lets you know if a log file has been deleted or changed, or assert positively that no log files were delivered to your account during a given period of time\. CloudTrail log file integrity validation uses industry standard algorithms: SHA\-256 for hashing and SHA\-256 with RSA for digital signing\. This makes it computationally unfeasible to modify, delete or forge CloudTrail log files without detection\. For more information, see [Enabling validation and validating files](cloudtrail-log-file-validation-intro.md#cloudtrail-log-file-validation-intro-enabling-and-using)\.
 
 **Integrate with Amazon CloudWatch Logs**
 
@@ -48,7 +48,7 @@ The following best practices for CloudTrail can help prevent security incidents\
 
 **Log to a dedicated and centralized Amazon S3 bucket**
 
-CloudTrail log files are an audit log of actions taken by a user, role or an AWS service\. The integrity, completeness and availability of these logs is crucial for forensic and auditing purposes\. By logging to a dedicated and centralized Amazon S3 bucket, you can enforce strict security controls, access, and segregation of duties\. 
+CloudTrail log files are an audit log of actions taken by an IAM identity or an AWS service\. The integrity, completeness and availability of these logs is crucial for forensic and auditing purposes\. By logging to a dedicated and centralized Amazon S3 bucket, you can enforce strict security controls, access, and segregation of duties\. 
 
 The following are some steps you can take:
 + Create a separate AWS account as a log archive account\. If you use AWS Organizations, enroll this account in the organization, and consider [creating an organization trail](creating-trail-organization.md) to log data for all AWS accounts in your organization\.
@@ -80,7 +80,7 @@ When you configure a trail to send notifications to Amazon SNS, CloudTrail adds 
 
 **Implement least privilege access to Amazon S3 buckets where you store log files**
 
-CloudTrail trails log events to an Amazon S3 bucket that you specify\. These log files contain an audit log of actions taken by users, roles, and AWS services\. The integrity and completeness of these log files are crucial for auditing and forensic purposes\. In order to help ensure that integrity, you should adhere to the principle of least privilege when creating or modifying access to any Amazon S3 bucket used for storing CloudTrail log files\. 
+CloudTrail trails log events to an Amazon S3 bucket that you specify\. These log files contain an audit log of actions taken by IAM identities and AWS services\. The integrity and completeness of these log files are crucial for auditing and forensic purposes\. In order to help ensure that integrity, you should adhere to the principle of least privilege when creating or modifying access to any Amazon S3 bucket used for storing CloudTrail log files\. 
 
 Take the following steps:
 + Review the [Amazon S3 bucket policy](create-s3-bucket-policy-for-cloudtrail.md) for any and all buckets where you store log files and adjust it if necessary to remove any unnecessary access\. This bucket policy will be generated for you if you create a trail using the CloudTrail console, but can also be created and managed manually\.
@@ -91,7 +91,7 @@ Take the following steps:
 
 **Enable MFA Delete on the Amazon S3 bucket where you store log files**
 
-Configuring multi\-factor authentication \(MFA\) ensures that any attempt to change the versioning state of your bucket or permanently delete an object version requires additional authentication\. This helps prevent any operation that could compromise the integrity of your log files, even if a user acquires the password of an IAM user that has permissions to permanently delete Amazon S3 objects\.
+When you configure multi\-factor authentication \(MFA\), attempts to change the versioning state of bucket, or delete an object version in a bucket, require additional authentication\. This way, even if a user acquires the password of an IAM user with permissions to permanently delete Amazon S3 objects, you can still prevent operations that could compromise your log files\.
 
 The following are some steps you can take:
 + Review the [MFA Delete](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html#MultiFactorAutenticationDelete) guidance\.
@@ -103,4 +103,4 @@ The CloudTrail trail default is to store log files indefinitely in the Amazon S3
 
 **Limit access to the AWSCloudTrail\_FullAccess policy**
 
-Users with the [AWSCloudTrail\_FullAccess](security_iam_id-based-policy-examples.md#grant-custom-permissions-for-cloudtrail-users-full-access) policy have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. This policy is not intended to be shared or applied broadly to users and roles in your AWS account\. Limit application of this policy to as few individuals as possible, those you expect to act as AWS account administrators\.
+Users with the [AWSCloudTrail\_FullAccess](security_iam_id-based-policy-examples.md#grant-custom-permissions-for-cloudtrail-users-full-access) policy have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. This policy is not intended to be shared or applied broadly to IAM identities in your AWS account\. Limit application of this policy to as few individuals as possible, those you expect to act as AWS account administrators\.

@@ -2,10 +2,12 @@
 
 You can troubleshoot operational and security incidents in the CloudTrail console by viewing **Event history**\. The **Event history** provides a read\-only view of the last 90 days of recorded API activity \(management events\) in an AWS Region\. 
 
-You can look up events related to creation, modification, or deletion of resources \(such as IAM users or Amazon EC2 instances\) in your AWS account on a per\-region basis\. Events can be viewed and downloaded by using the AWS CloudTrail console\. You can customize the view of event history in the console by selecting which columns are displayed and which are hidden\. You can programmatically look up events by using the AWS SDKs or AWS Command Line Interface\. You can also compare the details of events in **Event history** side\-by\-side\.
+You can look up events related to the creation, modification, or deletion of resources \(such as IAM users or Amazon EC2 instances\) in your AWS account on a by\-Region basis\. You can view events  and download them with the AWS CloudTrail console\. You can customize the view of event history in the console by selecting which columns to display or hide\. You can programmatically look up events by using the AWS SDKs or AWS Command Line Interface\. You can also compare the details of events in **Event history** side\-by\-side\.
+
+CloudTrail logging varies between AWS services\. While most AWS services support CloudTrail logging of all events, some services only support logging a subset of APIs and events, and a few services are unsupported\. For example, some AWS services log a `ThrottlingException` when API requests are throttled, while other AWS services do not\. You can learn more about the specifics of how CloudTrail logs events for a specific service by consulting the documentation for that service\. For more information, see [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 **Note**  
-Over time, AWS services might add additional events\. CloudTrail will record these events in **Event history**, but a full 90\-day record of activity that includes added events will not be available until 90 days after the events are added\.
+Over time, AWS services might add additional events\. CloudTrail records these events in **Event history**, but a full 90\-day record of activity that includes added events won't be available until 90 days after it adds the events\.
 
 This section describes how to look up events by using the CloudTrail console and the AWS CLI\. It also describes how to download a file of events\. For information on using the `LookupEvents` API to retrieve information from CloudTrail events, see the [AWS CloudTrail API Reference](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/)\.
 

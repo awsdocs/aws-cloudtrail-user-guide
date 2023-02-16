@@ -1,7 +1,7 @@
 # AWS CloudTrail resource\-based policy examples<a name="security_iam_resource-based-policy-examples"></a>
 
 **Note**  
-Currently, integrations are supported in all commercial AWS Regions supported by CloudTrail Lake except: me\-central\-1\. For information about CloudTrail Lake supported Regions, see [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)\. 
+Currently, CloudTrail Lake supports integrations in all commercial AWS Regions where the service is available except for Middle East \(UAE\)\. For information about CloudTrail Lake supported Regions, see [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)\. 
 
 CloudTrail supports resource\-based permissions policies for CloudTrail channels used for CloudTrail Lake integrations\. For more information about creating integrations with CloudTrail Lake, see [Create an integration with an event source outside of AWS](query-event-data-store-integration.md)\. 
 
@@ -11,7 +11,7 @@ The information required for the policy is determined by the integration type\.
 
 The following are requirements for the resource\-based policy:
 + The resource ARN defined in the policy must match the channel ARN the policy is attached to\.
-+  The policy contains only one action: cloudtrail\-data:PutAuditEvents 
++  The policy contains only one action: `cloudtrail-data:PutAuditEvents` 
 +  The policy contains at least one statement\. The policy can have a maximum of 20 statements\. 
 +  Each statement contains at least one principal\. A statement can have a maximum of 50 principals\. 
 
@@ -51,9 +51,9 @@ The following example grants permissions to the principals with the ARNs `arn:aw
 
 ## Example: Using an external ID to prevent against confused deputy<a name="security_iam_resource-based-policy-examples-externalID"></a>
 
-The following example uses an external ID to address and prevent against [confused deputy](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html)\. The confused deputy problem is a security issue where an entity that doesn't have permission to perform an action can coerce a more\-privileged entity to perform the action\. 
+The following example uses an external ID to address and prevent against [confused deputy](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cross-service-confused-deputy-prevention.html)\. The confused deputy problem is a security issue where an entity that doesn't have permission to perform an action can coerce a more\-privileged entity to perform the action\. 
 
-The integration partner creates the external ID to use in the policy and provides the external ID to you as part of creating the integration\. The value can be any unique string, such as a passphrase or account number\. 
+The integration partner creates the external ID to use in the policy\. Then, it provides the external ID to you as part of creating the integration\. The value can be any unique string, such as a passphrase or account number\. 
 
 The example grants permissions to the principals with the ARNs `arn:aws:iam::111122223333:root`, `arn:aws:iam::444455556666:root`, and `arn:aws:iam::123456789012:root` to call the [PutAuditEvents](https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html) API on the CloudTrail channel resource if the call to the `PutAuditEvents` API includes the external ID value defined in the policy\. 
 

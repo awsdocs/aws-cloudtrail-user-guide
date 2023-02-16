@@ -106,9 +106,9 @@ The following example policy statement illustrates how another account can use y
 + Your KMS key is in account *111111111111*\.
 + Both you and account *222222222222* will encrypt logs\.
 
-In the policy, you add one or more accounts that will encrypt with your key to the CloudTrail **EncryptionContext**\. This restricts CloudTrail to using your key to encrypt logs only for those accounts that you specify\. Giving the root of account *222222222222* permission to encrypt logs delegates the administrator of that account to allocate encrypt permissions as required to other users in account *222222222222* by changing their IAM user policies\. 
+In the policy, you add one or more accounts that encrypt with your key to the CloudTrail **EncryptionContext**\. This restricts CloudTrail to using your key to encrypt logs only for the accounts that you specify\. When you give the root of account *222222222222* permission to encrypt logs, it delegates permission to the acount administrator to encrypt the necessary permissions to other users in that account\. The account administrator does this by changing the policies associated with those IAM users\.
 
-As a security best practice, add an `aws:SourceArn` condition key to the KMS key policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail uses the KMS key only for a specific trail or trails\. This condition is not supported in KMS key policies for event data stores\.
+As a security best practice, add an `aws:SourceArn` condition key to the KMS key policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail uses the KMS key only for the specified trails\. This condition isn't supported in KMS key policies for event data stores\.
 
 KMS key policy statement:
 
@@ -142,7 +142,7 @@ For more information about editing a KMS key policy for use with CloudTrail, see
 Before you add your KMS key to your CloudTrail configuration, it is important to give decrypt permissions to all users who require them\. Users who have encrypt permissions but no decrypt permissions cannot read encrypted logs\. If you are using an existing S3 bucket with an [S3 Bucket Key](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html), `kms:Decrypt` permissions are required to create or update a trail with SSE\-KMS encryption enabled\.
 
 **Enable CloudTrail log decrypt permissions**  
-Users of your key must be given explicit permissions to read the log files that CloudTrail has encrypted\. To enable users to read encrypted logs, add the following required statement to your KMS key policy, modifying the `Principal` section to add a line for every principal \(role or user\) that you want to be able decrypt by using your KMS key\.
+Users of your key must be given explicit permissions to read the log files that CloudTrail has encrypted\. To enable users to read encrypted logs, add the following required statement to your KMS key policy, modifying the `Principal` section to add a line for every principal that you want to be able decrypt by using your KMS key\.
 
 ```
 {
@@ -209,10 +209,10 @@ The following is an example policy that is required to allow the CloudTrail serv
 ### Allow users in your account to decrypt trail logs with your KMS key<a name="create-kms-key-policy-for-cloudtrail-decrypt-your-account"></a>
 
 **Example**  
-This policy statement illustrates how to allow an IAM user or role in your account to use your key to read the encrypted logs in your account's S3 bucket\.
+This policy statement illustrates how to allow a user or role in your account to use your key to read the encrypted logs in your account's S3 bucket\.
 
 **Example Scenario**  
-+ Your KMS key, S3 bucket, and IAM user Bob are in account *111111111111*\.
++ Your KMS key, S3 bucket, and IAM user Bob are in account `111111111111`\.
 + You give IAM user Bob permission to decrypt CloudTrail logs in the S3 bucket\.
 
 In the key policy, you enable CloudTrail log decrypt permissions for IAM user Bob\.
@@ -248,10 +248,10 @@ You can allow users in other accounts to use your KMS key to decrypt trail logs,
 This policy statement illustrates how to allow an IAM user or role in another account to use your key to read encrypted logs from an S3 bucket in the other account\.
 
 **Scenario**
-+ Your KMS key is in account *111111111111*\.
-+ The IAM user Alice and S3 bucket are in account *222222222222*\.
++ Your KMS key is in account `111111111111`\.
++ The IAM user Alice and S3 bucket are in account `222222222222`\.
 
-In this case, you give CloudTrail permission to decrypt logs under account *222222222222*, and you give Alice's IAM user policy permission to use your key *KeyA*, which is in account *111111111111*\. 
+In this case, you give CloudTrail permission to decrypt logs under account `222222222222`, and you give Alice's IAM user policy permission to use your key `KeyA`, which is in account `111111111111`\. 
 
 KMS key policy statement:
 
@@ -295,8 +295,8 @@ Alice's IAM user policy statement:
 This policy illustrates how another account can use your key to read encrypted logs from your S3 bucket\.
 
 **Example Scenario**  
-+ Your KMS key and S3 bucket are in account *111111111111*\.
-+ The user who reads logs from your bucket is in account *222222222222*\.
++ Your KMS key and S3 bucket are in account `111111111111`\.
++ The user who reads logs from your bucket is in account `222222222222`\.
 
 To enable this scenario, you enable decrypt permissions for the IAM role **CloudTrailReadRole** in your account, and then give the other account permission to assume that role\.
 

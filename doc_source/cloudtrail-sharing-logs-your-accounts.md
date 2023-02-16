@@ -51,8 +51,8 @@ You must ensure that the prefix in the access policy is exactly the same as the 
 
 The role you create for Account C will be nearly identical to the one you created for Account B\. The access policy for each role must include the appropriate account ID and prefix so that each account can read from only the location to which CloudTrail wrote that account's log files\. 
 
-After you have created roles for each account and specified the appropriate trust and access policies, and after an IAM user in each account has been granted access by the administrator of that account, an IAM user in accounts B or C can programmatically assume the role\. 
+After you create roles for each account and specify the appropriate trust and access policies, and after an IAM user in each account has been granted access by the administrator of that account, an IAM user in accounts B or C can programmatically assume the role\. 
 
-After you have created roles for each account and specified the appropriate trust and access policies, an IAM user in one of the newly trusted accounts \(B or C\) must programmatically assume the role in order to read log files from the Amazon S3 bucket\. 
+After you create roles for each account and specify the appropriate trust and access policies, an IAM user in one of the newly trusted accounts \(B or C\) must programmatically assume the role in order to read log files from the Amazon S3 bucket\. 
 
 For more information, see [Assuming a role](cloudtrail-sharing-logs-assume-role.md)\. 

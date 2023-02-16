@@ -23,7 +23,7 @@ AWS CloudTrail Insights event records include fields that are different from oth
   **Optional:** False
 + **`insightContext`** \- 
 
-  Information about the AWS tools \(called *user agents*\), IAM users and roles \(called *user identities*\), and error codes associated with the events that were analyzed to generate the Insights event\. This element also includes statistics showing how the unusual activity in an Insights event compares to *baseline*, or normal activity\.
+  Information about the AWS tools \(called *user agents*\), IAM users and roles \(called *user identities*\), and error codes associated with the events that CloudTrail analyzed to generate the Insights event\. This element also includes statistics that show how the unusual activity in an Insights event compares to *baseline*, or normal, activity\.
 
   **Since:** 1\.07
 

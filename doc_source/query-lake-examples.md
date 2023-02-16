@@ -2,6 +2,9 @@
 
 This section describes how you can access sample queries in the CloudTrail console and includes a few example CloudTrail Lake queries to help you get started\.
 
+**Note**  
+You can also view queries created by the GitHub community\. For more information and to view these sample queries, see [CloudTrail Lake sample queries](https://github.com/aws-samples/cloud-trail-lake-query-samples) on the GitHub website\. AWS CloudTrail has not evaluated the queries in GitHub\. 
+
 **Topics**
 + [Viewing sample queries in the CloudTrail console](#lake-console-queries)
 + [Example: Find all principal user identities who called `CreateBucket` on January 22, 2023](#query-example-principal-ids)

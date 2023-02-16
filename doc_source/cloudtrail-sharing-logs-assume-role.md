@@ -1,12 +1,12 @@
 # Assuming a role<a name="cloudtrail-sharing-logs-assume-role"></a>
 
-You must designate a separate IAM user to assume each role you've created in each account, and ensure that each IAM user has appropriate permissions\.
+You must designate a separate IAM user to assume each role you creat in each account\. You must then ensure that each IAM user has appropriate permissions\.
 
 ## IAM users and roles<a name="cloudtrail-sharing-logs-assume-role-iam-user-permission"></a>
 
-After you have created the necessary roles and policies in Account A for scenarios 1 and 2, you must designate an IAM user in each of the accounts B, C, and Z\. Each IAM user will programmatically assume the appropriate role to access the log files\. That is, the user in account B will assume the role created for account B, the user in account C will assume the role created for account C, and the user in account Z will assume the role created for account Z\. When a user assumes a role, AWS returns temporary security credentials that can be used to make requests to list, retrieve, copy, or delete the log files depending on the permissions granted by the access policy associated with the role\. 
+After you create the necessary roles and policies in Account A for scenarios 1 and 2, you must designate an IAM user in each of the accounts B, C, and Z\. Each IAM user programmatically assumes the appropriate role to access the log files\. That is, the user in account B assumes the role created for account B, the user in account C assumes the role created for account C, and the user in account Z assumes the role created for account Z\. When a user assumes a role, AWS returns temporary security credentials to that user\. They can then make requests to list, retrieve, copy, or delete log files depending on the permissions granted by the access policy associated with the role\. 
 
-For more information about working with IAM users, see [ Working with IAM Users and Groups ](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html)\. 
+For more information about working with IAM identities, see [IAM Identities \(users, user groups, and roles\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html)\. 
 
 The primary difference between scenarios 1 and 2 is in the access policy that you create for each IAM role in each scenario\.
 + In scenario 1, the access policies for accounts B and C limit each account to reading only its own log files\. For more information, see [Creating an access policy to grant access to accounts you own](cloudtrail-sharing-logs-your-accounts.md)\.
@@ -14,23 +14,7 @@ The primary difference between scenarios 1 and 2 is in the access policy that yo
 
 ## Creating permissions policies for IAM users<a name="cloudtrail-sharing-logs-assume-role-create-policy"></a>
 
-To perform the actions permitted by the roles, the IAM user must have permission to call the AWS STS [https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API\. You must edit the *user\-based policy* for each IAM user to grant them the appropriate permissions\. That is, you set a **Resource** element in the policy that is attached to the IAM user\. The following example shows a policy for an IAM user in Account B that allows the user to assume a role named "Test" created earlier by Account A\. 
-
-**To attach the required policy to the IAM role**
-
-1. Sign in to the AWS Management Console and open the IAM console\.
-
-1. Choose the user whose permissions you want to modify\. 
-
-1. Choose the **Permissions** tab\.
-
-1. Choose **Custom Policy**\.
-
-1. Choose **Use the policy editor to customize your own set of permissions**\.
-
-1. Type a name for the policy\.
-
-1. Copy the following policy into the space provided for the policy document\.
+To perform the actions permitted by a role, the IAM user must have permission to call the AWS STS [https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API\. You must edit the policy for each user to grant them the appropriate permissions\. To do this, you set a **Resource** element in the policy that you attach to the IAM user\. The following example shows a policy for an IAM user in Account B that allows the user to assume a role named `Test` created earlier by Account A\. 
 
 ```
 {
@@ -45,8 +29,29 @@ To perform the actions permitted by the roles, the IAM user must have permission
 }
 ```
 
-**Important**  
-Only IAM users can assume a role\. If you attempt to use AWS root account credentials to assume a role, access will be denied\. 
+**To edit a customer managed policy \(console\)**
+
+1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. In the navigation pane, choose **Policies**\.
+
+1. In the list of policies, choose the policy name of the policy to edit\. You can use the **Filter policies** menu and the search box to filter the list of policies\.
+
+1. Choose the **Permissions** tab, and then choose **Edit policy**\. 
+
+1. Do one of the following:
+   + Choose the **Visual editor** tab to change your policy without understanding JSON syntax\. You can make changes to the service, actions, resources, or optional conditions for each permissions block in your policy\. You can also import a policy to add additional permissions to the bottom of your policy\. When you are finished making changes, choose **Review policy** to continue\.
+   + Choose the **JSON** tab to modify your policy by entering or pasting text in the JSON text box\. You can also import a policy to add additional permissions to the bottom of your policy\. Resolve any security warnings, errors, or general warnings generated during [policy validation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_policy-validator.html), and then choose **Review policy**\. 
+**Note**  
+You can switch between the **Visual editor** and **JSON** tabs any time\. However, if you make changes or choose **Review policy** in the **Visual editor** tab, IAM might restructure your policy to optimize it for the visual editor\. For more information, see [Policy restructuring](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_policies.html#troubleshoot_viseditor-restructure) in the *IAM User Guide*\.
+
+1. On the **Review** page, review the policy **Summary** and then choose **Save changes** to save your work\.
+
+1. If the managed policy already has the maximum of five versions, choosing **Save changes** displays a dialog box\. To save your new version, you must remove at least one earlier version\. You cannot delete the default version\. For more information about policy versions, see [Setting the default version of customer managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-versioning.html#default-version) in the *IAM User Guide*\. Choose from the following options:
+   + **Remove oldest nondefault policy version \(version v\# \- created \# days ago\)** – Use this option to see which version will be deleted and when it was created\. You can view the JSON policy document for all nondefault versions by choosing the second option, **Select versions to remove**\. 
+   + **Select versions to remove** – Use this option to view the JSON policy document and choose one or more versions to delete\.
+
+   After choosing the versions to remove, choose **Delete version and save** to save your new policy version\.
 
 ## Calling AssumeRole<a name="cloudtrail-sharing-logs-assume-role-call"></a>
 

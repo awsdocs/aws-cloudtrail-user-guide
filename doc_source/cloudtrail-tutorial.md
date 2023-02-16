@@ -11,27 +11,62 @@ If you're new to AWS CloudTrail, this tutorial helps you learn how to use its fe
 
 ## Prerequisites<a name="tutorial-prerequisites"></a>
 
-Before you begin, you must complete the following prerequisites and setup:
-+ Create an AWS account, if you do not already have one\.
+Before you begin, you must complete the following prerequisites and setup\.
 
-  If you do not have an AWS account, complete the following steps to create one\.
+**Topics**
++ [Sign up for an AWS account](#sign-up-for-aws)
++ [Create an administrative user](#create-an-admin)
++ [Grant permissions to use the CloudTrail console](#w77aab8b7c21)
+
+### Sign up for an AWS account<a name="sign-up-for-aws"></a>
+
+If you do not have an AWS account, complete the following steps to create one\.
 
 **To sign up for an AWS account**
 
-  1. Open [https://portal\.aws\.amazon\.com/billing/signup](https://portal.aws.amazon.com/billing/signup)\.
+1. Open [https://portal\.aws\.amazon\.com/billing/signup](https://portal.aws.amazon.com/billing/signup)\.
 
-  1. Follow the online instructions\.
+1. Follow the online instructions\.
 
-     Part of the sign\-up procedure involves receiving a phone call and entering a verification code on the phone keypad\.
+   Part of the sign\-up procedure involves receiving a phone call and entering a verification code on the phone keypad\.
 
-     When you sign up for an AWS account, an *AWS account root user* is created\. The root user has access to all AWS services and resources in the account\. As a security best practice, [assign administrative access to an administrative user](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html), and use only the root user to perform [tasks that require root user access](https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html)\.
-+ Create an IAM user for administering CloudTrail\. For more information, see [Granting permissions for CloudTrail administration](security_iam_id-based-policy-examples.md#grant-permissions-for-cloudtrail-administration)\.
+   When you sign up for an AWS account, an *AWS account root user* is created\. The root user has access to all AWS services and resources in the account\. As a security best practice, [assign administrative access to an administrative user](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html), and use only the root user to perform [tasks that require root user access](https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html)\.
+
+AWS sends you a confirmation email after the sign\-up process is complete\. At any time, you can view your current account activity and manage your account by going to [https://aws\.amazon\.com/](https://aws.amazon.com/) and choosing **My Account**\.
+
+### Create an administrative user<a name="create-an-admin"></a>
+
+After you sign up for an AWS account, create an administrative user so that you don't use the root user for everyday tasks\.
+
+**Secure your AWS account root user**
+
+1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
+
+   For help signing in by using root user, see [Signing in as the root user](https://docs.aws.amazon.com/signin/latest/userguide/console-sign-in-tutorials.html#introduction-to-root-user-sign-in-tutorial) in the *AWS Sign\-In User Guide*\.
+
+1. Turn on multi\-factor authentication \(MFA\) for your root user\.
+
+   For instructions, see [Enable a virtual MFA device for your AWS account root user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root) in the *IAM User Guide*\.
+
+**Create an administrative user**
++ For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM Identity Center \(successor to AWS Single Sign\-On\)\.
+
+  For instructions, see [Getting started](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
+
+**Sign in as the administrative user**
++ To sign in with your IAM Identity Center user, use the sign\-in URL that was sent to your email address when you created the IAM Identity Center user\.
+
+  For help signing in using an IAM Identity Center user, see [Signing in to the AWS access portal](https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html) in the *AWS Sign\-In User Guide*\.
+
+### Grant permissions to use the CloudTrail console<a name="w77aab8b7c21"></a>
+
+Grant permissions to use the CloudTrail console\. For more information, see [Granting permissions for CloudTrail administration](security_iam_id-based-policy-examples.md#grant-permissions-for-cloudtrail-administration)\.
 
 ## Step 1: Review AWS account activity in event history<a name="tutorial-step1"></a>
 
 CloudTrail is enabled on your AWS account when you create the account\. When activity occurs in any AWS service that supports CloudTrail, that activity is recorded in a CloudTrail event along with other AWS service events in **Event history**\. In other words, you can view, search, and download recent events in your AWS account before creating a trail, though creating a trail is important for long\-term records and auditing of your AWS account activity\. Unlike a trail, **Event history** only shows events that have occurred over the last 90 days\.
 
-1. Sign in to the AWS Management Console using the IAM user you configured for CloudTrail administration\. Open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/home/](https://console.aws.amazon.com/cloudtrail/home/)\.
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
 1. Review the information in your dashboard about the most recent events that have occurred in your AWS account\. A recent event should be a `ConsoleLogin` event, showing that you just signed in to the AWS Management Console\.  
 ![\[The CloudTrail dashboard showing recent events\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cloudtrail-dashboard.png)
@@ -59,7 +94,9 @@ For your first trail, we recommend creating a trail that logs all [management ev
 **Note**  
 This tutorial assumes you are creating your first trail\. Depending on the number of trails you have in your AWS account, and how those trails are configured, the following procedure might or might not incur expenses\. CloudTrail stores log files in an Amazon S3 bucket, which incurs costs\. For more information about pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/) and [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.
 
-1. Sign in to the AWS Management Console using the IAM user you configured for CloudTrail administration\. Open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/home/](https://console.aws.amazon.com/cloudtrail/home/)\. In the **Region** selector, choose the AWS Region where you want your trail to be created\. This is the home Region for the trail\.
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
+1. In the **Region** selector, choose the AWS Region where you want your trail to be created\. This is the home Region for the trail\.
 **Note**  
 The home Region is the only AWS Region where you can view and update the trail after it is created, even if the trail logs events in all AWS Regions\.
 
@@ -106,9 +143,9 @@ Within an average of about 15 minutes of creating your first trail, CloudTrail d
 **Note**  
 CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
 1. In the navigation pane, choose **Trails**\. On the **Trails** page, find the name of the trail you just created \(in the example, *My\-Management\-Events\-Trail*\)\.
-**Note**  
-Be sure you are still signed in using the IAM user you configured for CloudTrail administration\. Otherwise you might not have sufficient permissions to view trails in the CloudTrail console or the Amazon S3 bucket that contains log files for that trail\.
 
 1. In the row for the trail, choose the value for the S3 bucket \(in the example, *aws\-cloudtrail\-logs\-08132020\-mytrail*\)\.
 
@@ -154,13 +191,13 @@ Be sure you are still signed in using the IAM user you configured for CloudTrail
    }
    ```
 
-   This log file entry tells you more than just the identity of the IAM user who logged in \(**Mary\_Major**\), the date and time she logged in, and that the login was successful\. You can also learn the IP address she logged in from, the operating system and browser software of the computer she used, and that she was not using multi\-factor authentication\.
+   This log file entry tells you more than just the identity of the IAM user who logged in \(`Mary_Major`\), the date and time she logged in, and that the login was successful\. You can also learn the IP address she logged in from, the operating system and browser software of the computer she used, and that she was not using multi\-factor authentication\.
 
 ## Step 4: Plan for next steps<a name="tutorial-step4"></a>
 
 Now that you have a trail, you have access to an ongoing record of events and activities in your AWS account\. This ongoing record helps you meet accounting and auditing needs for your AWS account\. However, there is a lot more you can do with CloudTrail and CloudTrail data\.
 + **Add additional security for your trail data\.** CloudTrail automatically applies a certain level of security when you create a trail\. However, there are additional steps you can take to help keep your data secure\.
-  + By default, the Amazon S3 bucket you created as part of creating a trail has a policy applied that allows CloudTrail to write log files to that bucket\. The bucket is not publicly accessible, but it might be accessible to other users in your AWS account if they have permissions to read and write to buckets in your AWS account\. Review the policy for your bucket and if necessary, make changes to restrict access to a specific set of IAM users\. For more information, see the [Amazon S3 security documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/security.html) and the [example walkthrough for securing a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/walkthrough1.html)\.
+  + By default, the Amazon S3 bucket you created as part of creating a trail has a policy applied that allows CloudTrail to write log files to that bucket\. The bucket is not publicly accessible, but it might be accessible to other users in your AWS account if they have permissions to read and write to buckets in your AWS account\. Review the policy for your bucket and if necessary, make changes to restrict access\. For more information, see the [Amazon S3 security documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/security.html) and the [example walkthrough for securing a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/walkthrough1.html)\.
   + The log files delivered by CloudTrail to your bucket are encrypted by Amazon [server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\. To provide a security layer that is directly manageable, you can instead use [server\-side encryption with AWS KMS–managed keys \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) for your CloudTrail log files\. To use SSE\-KMS with CloudTrail, you create and manage a KMS key, also known as an [AWS KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)\. For more information, see [Encrypting CloudTrail log files with AWS KMS keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)\.
   + For additional security planning, review the [security best practices for CloudTrail](best-practices-security.md)\.
 + **Create a trail to log data events\.** If you are interested in logging when objects are added, retrieved, and deleted in one or more Amazon S3 buckets, when items are added, changed, or deleted in DynamoDB tables, or when one or more AWS Lambda functions are invoked, these are data events\. The management event trail you created earlier in this tutorial doesn't log these types of events\. You can create a separate trail specifically to log data events for some or all of supported resources\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.

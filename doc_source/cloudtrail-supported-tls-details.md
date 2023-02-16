@@ -7,9 +7,12 @@ AWS is updating the TLS configuration for all AWS service API endpoints to a min
 | --- | 
 | Alexa for Business | 
 | AWS Activate | 
+| AWS AppConfig | 
 | AWS App Mesh | 
+| AWS App Runner | 
 | Amazon AppStream 2\.0 | 
 | AWS Auto Scaling | 
+| AWS Backup | 
 | AWS Backup Gateway | 
 | AWS Billing | 
 | AWS Certificate Manager | 
@@ -39,6 +42,8 @@ AWS is updating the TLS configuration for all AWS service API endpoints to a min
 | AWS Cost and Usage Report | 
 | AWS Cost Explorer | 
 | AWS Database Migration Service \(DMS\) | 
+| AWS Data Pipeline | 
+| AWS DataSync | 
 | AWS DeepRacer | 
 | AWS Device Farm | 
 | AWS Diode | 
@@ -61,14 +66,22 @@ AWS is updating the TLS configuration for all AWS service API endpoints to a min
 | Amazon EMR | 
 | Amazon EventBridge | 
 | AWS Firewall Manager | 
+| Amazon Forecast | 
 | Amazon Fraud Detector | 
 | Amazon FSx | 
 | Amazon GameLift | 
+| AWS Global Accelerator | 
+| AWS Glue \(Lake Formation\) | 
 | Amazon HealthLake | 
 | AWS Identity and Access Management \(IAM\) | 
+| AWS Identity Store | 
 | Amazon Inspector | 
 | AWS IoT Analytics | 
+| AWS IoT Core | 
 | AWS IoT Events | 
+| AWS IoT Secure Tunneling | 
+| AWS IoT SiteWise | 
+| AWS IoT Wireless | 
 | Amazon Kendra | 
 | AWS Key Management Service \(KMS\) | 
 | Amazon Kinesis | 
@@ -76,27 +89,36 @@ AWS is updating the TLS configuration for all AWS service API endpoints to a min
 | Amazon Kinesis Data Firehose | 
 | Amazon Kinesis Data Streams | 
 | Amazon Kinesis Video Streams | 
+| AWS Lambda | 
 | AWS License Manager | 
+| Amazon Lightsail | 
 | Amazon Lookout for Equipment | 
 | Amazon Machine Learning | 
+| Amazon Managed Service for Prometheus | 
 | AWS Managed Services | 
 | AWS Marketplace Commerce Analytics | 
 | AWS Marketplace Discovery | 
 | AWS Marketplace Entitlement Service | 
 | AWS Marketplace Metering Service | 
+| Amazon Mechanical Turk | 
 | Amazon MemoryDB for Redis | 
+| AWS Migration Hub | 
 | AWS Network Firewall | 
 | Amazon OpenSearch Service | 
 | AWS OpsWorks CM | 
 | AWS Organizations | 
 | Amazon Polly | 
 | AWS Price List | 
+| AWS Private Certificate Authority | 
 | AWS Proton | 
+| Amazon QuickSight | 
 | Amazon Redshift | 
 | Amazon Rekognition | 
 | Amazon Relational Database Service \(RDS\) | 
+| Amazon Relational Database Service \(RDS\) Data API | 
 | AWS Resource Groups Tagging | 
 | Amazon Route 53 | 
+| Amazon Route 53 Domains | 
 | Amazon Route 53 Resolver | 
 | Amazon SageMaker | 
 | Amazon SageMaker\-Edge | 
@@ -107,6 +129,7 @@ AWS is updating the TLS configuration for all AWS service API endpoints to a min
 | AWS Service Quotas | 
 | AWS Shield | 
 | Amazon SimpleDB | 
+| Amazon Simple Email Service \(SES\) | 
 | Amazon Simple Notification Service \(SNS\) | 
 | Amazon Simple Queue Service \(SQS\) | 
 | Amazon Simple Storage Service \(S3\) | 
@@ -116,13 +139,13 @@ AWS is updating the TLS configuration for all AWS service API endpoints to a min
 | AWS Step Functions | 
 | AWS Storage Gateway | 
 | AWS Support | 
+| AWS Systems Manager | 
 | Amazon Textract | 
 | Amazon Timestream | 
 | Amazon Transcribe Streaming Service | 
 | AWS Transfer Family | 
 | Amazon Translate | 
 | AWS Trusted Advisor | 
-| Amazon Mechanical Turk | 
 | AWS WAF | 
 | Amazon WorkDocs | 
 | Amazon WorkMail | 

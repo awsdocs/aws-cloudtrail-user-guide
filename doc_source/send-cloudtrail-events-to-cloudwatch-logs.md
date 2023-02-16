@@ -31,7 +31,7 @@ CloudTrail uses a CloudWatch Logs log group as a delivery endpoint for log event
 
 **To create or specify a log group**
 
-1. Make sure you are logged in with an administrative IAM user or role with sufficient permissions to configure CloudWatch Logs integration\. For more information, see [Granting permission to view and configure Amazon CloudWatch Logs information on the CloudTrail console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
+1. Make sure you log in with an administrative user or role with sufficient permissions to configure CloudWatch Logs integration\. For more information, see [Granting permission to view and configure Amazon CloudWatch Logs information on the CloudTrail console](security_iam_id-based-policy-examples.md#grant-cloudwatch-permissions-for-cloudtrail-users)\.
 
 1. Open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 

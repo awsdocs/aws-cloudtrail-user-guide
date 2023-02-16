@@ -2,7 +2,7 @@
 
 A CloudTrail log is a record in JSON format\. The log contains information about requests for resources in your account, such as who made the request, the services used, the actions performed, and parameters for the action\. The event data is enclosed in a `Records` array\.
 
-The following example shows a single log record of an event where an IAM user named Mary\_Major called the CloudTrail `StartLogging` API from the CloudTrail console to start the logging process\.
+The following example shows a single log record of an event\. In this event, an IAM user named `Mary_Major` called the CloudTrail `StartLogging` API from the CloudTrail console to start the logging process\.
 
 ```
 {

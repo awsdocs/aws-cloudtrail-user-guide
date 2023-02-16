@@ -1,15 +1,17 @@
-# AWS CloudTrail identity\-based policy examples<a name="security_iam_id-based-policy-examples"></a>
+# Identity\-based policy examples for AWS CloudTrail<a name="security_iam_id-based-policy-examples"></a>
 
-By default, IAM users and roles don't have permission to create or modify CloudTrail resources\. They also can't perform tasks using the AWS Management Console, AWS CLI, or AWS API\. An IAM administrator must create IAM policies that grant users and roles permission to perform specific API operations on the specified resources they need\. The administrator must then attach those policies to the IAM users, groups, or roles that require those permissions\.
+By default, users and roles don't have permission to create or modify CloudTrail resources\. They also can't perform tasks by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), or AWS API\. An IAM administrator must create IAM policies that grant users and roles permission to perform actions on the resources that they need\. The administrator must then attach those policies for users that require them\.
 
-To learn how to create an IAM identity\-based policy using these example JSON policy documents, see [Creating Policies on the JSON Tab](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-json-editor) in the *IAM User Guide*\.
+To learn how to create an IAM identity\-based policy by using these example JSON policy documents, see [Creating IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html) in the *IAM User Guide*\.
+
+For details about actions and resource types defined by CloudTrail, including the format of the ARNs for each of the resource types, see [Actions, Resources, and Condition Keys for AWS CloudTrail](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awscloudtrail.html) in the *Service Authorization Reference*\.
 
 **Topics**
 + [Policy best practices](#security_iam_service-with-iam-policy-best-practices)
 + [Example: Allowing and denying actions for a specified trail](#security_iam_id-based-policy-examples-allow-deny-for-specific-trail)
 + [Examples: Creating and applying policies for actions on specific trails](#grant-custom-permissions-for-cloudtrail-users-resource-level)
 + [Examples: Denying access to create or delete event data stores based on tags](#security_iam_id-based-policy-examples-eds-tags)
-+ [Granting permissions for using the CloudTrail console](#security_iam_id-based-policy-examples-console)
++ [Using the CloudTrail console](#security_iam_id-based-policy-examples-console)
 + [Allow users to view their own permissions](#security_iam_id-based-policy-examples-view-own-permissions)
 + [Granting custom permissions for CloudTrail users](#grant-custom-permissions-for-cloudtrail-users)
 
@@ -20,15 +22,15 @@ Identity\-based policies determine whether someone can create, access, or delete
 + **Apply least\-privilege permissions** – When you set permissions with IAM policies, grant only the permissions required to perform a task\. You do this by defining the actions that can be taken on specific resources under specific conditions, also known as *least\-privilege permissions*\. For more information about using IAM to apply permissions, see [ Policies and permissions in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) in the *IAM User Guide*\.
 + **Use conditions in IAM policies to further restrict access** – You can add a condition to your policies to limit access to actions and resources\. For example, you can write a policy condition to specify that all requests must be sent using SSL\. You can also use conditions to grant access to service actions if they are used through a specific AWS service, such as AWS CloudFormation\. For more information, see [ IAM JSON policy elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
 + **Use IAM Access Analyzer to validate your IAM policies to ensure secure and functional permissions** – IAM Access Analyzer validates new and existing policies so that the policies adhere to the IAM policy language \(JSON\) and IAM best practices\. IAM Access Analyzer provides more than 100 policy checks and actionable recommendations to help you author secure and functional policies\. For more information, see [IAM Access Analyzer policy validation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html) in the *IAM User Guide*\.
-+ **Require multi\-factor authentication \(MFA\)** – If you have a scenario that requires IAM users or root users in your account, turn on MFA for additional security\. To require MFA when API operations are called, add MFA conditions to your policies\. For more information, see [ Configuring MFA\-protected API access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html) in the *IAM User Guide*\.
++ **Require multi\-factor authentication \(MFA\)** – If you have a scenario that requires IAM users or a root user in your AWS account, turn on MFA for additional security\. To require MFA when API operations are called, add MFA conditions to your policies\. For more information, see [ Configuring MFA\-protected API access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html) in the *IAM User Guide*\.
 
 For more information about best practices in IAM, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
-CloudTrail does not have service\-specific context keys that can be used in the `Condition` element of policy statements\.
+CloudTrail doesn't have service\-specific context keys that you can use in the `Condition` element of policy statements\.
 
 ## Example: Allowing and denying actions for a specified trail<a name="security_iam_id-based-policy-examples-allow-deny-for-specific-trail"></a>
 
-The following example demonstrates a policy that allows users with this policy to view the status and configuration of a trail and start and stop logging for a trail named *My\-First\-Trail*\. This trail was created in the US East \(Ohio\) Region \(its home region\) in the AWS account with the ID *123456789012*\.
+The following example demonstrates a policy that allows users with the policy to view the status and configuration of a trail and start and stop logging for a trail named *My\-First\-Trail*\. This trail was created in the US East \(Ohio\) Region \(its home region\) in the AWS account with the ID *123456789012*\.
 
 ```
 {
@@ -74,9 +76,9 @@ The following example demonstrates a policy that explicitly denies CloudTrail ac
 
 You can use permissions and policies to control a user's ability to perform specific actions on CloudTrail trails\. 
 
-For example, you don't want users of your company’s developer group to start or stop logging on a specific trail, but you want to grant them permission to perform the `DescribeTrails` and `GetTrailStatus` actions on the trail\. You want the users of the developer group to perform the `StartLogging` or `StopLogging` actions on trails that they manage\. 
+For example, you don't want users of your company’s developer group to start or stop logging on a specific trail\. However, you might want to grant them permission to perform the `DescribeTrails` and `GetTrailStatus` actions on the trail\. You want the users of the developer group to perform the `StartLogging` or `StopLogging` actions on trails that they manage\. 
 
-You can create two policy statements and then attach them to the developer group you create in IAM\. For more information about groups in IAM, see [IAM Groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html) in the *IAM User Guide*\.
+You can create two policy statements and attach them to the developer group you create in IAM\. For more information about groups in IAM, see [IAM Groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html) in the *IAM User Guide*\.
 
 In the first policy, you deny the `StartLogging` and `StopLogging` actions for the trail ARN that you specify\. In the following example, the trail ARN is `arn:aws:cloudtrail:us-east-2:123456789012:trail/Example-Trail`\.
 
@@ -123,13 +125,13 @@ In the second policy, the `DescribeTrails` and `GetTrailStatus` actions are allo
 
 If a user of the developer group tries to start or stop logging on the trail that you specified in the first policy, that user gets an access denied exception\. Users of the developer group can start and stop logging on trails that they create and manage\.
 
-The following CLI examples show that the developer group has been configured in an AWS CLI profile named `devgroup`\. First, a user of `devgroup` runs the `describe-trails` command\. 
+The following examples show that the configured developer group in an AWS CLI profile named `devgroup`\. First, a user of `devgroup` runs the `describe-trails` command\. 
 
 ```
 $ aws --profile devgroup cloudtrail describe-trails
 ```
 
-The command complete successfully:
+The command complete successfully with the following output:
 
 ```
 {
@@ -152,7 +154,7 @@ The user then runs the `get-trail-status` command on the trail that you specifie
 $ aws --profile devgroup cloudtrail get-trail-status --name Example-Trail
 ```
 
-The command complete successfully:
+The command complete successfully with the following output:
 
 ```
 {
@@ -169,13 +171,13 @@ The command complete successfully:
 }
 ```
 
-Next, a user of `devgroup` runs the `stop-logging` command on the same trail\. 
+Next, a user in the `devgroup` group runs the `stop-logging` command on the same trail\. 
 
 ```
 $ aws --profile devgroup cloudtrail stop-logging --name Example-Trail
 ```
 
-The command returns an access denied exception:
+The command returns an access denied exception, such as the following:
 
 ```
 A client error (AccessDeniedException) occurred when calling the StopLogging operation: Unknown
@@ -187,7 +189,7 @@ The user runs the `start-logging` command on the same trail\.
 $ aws --profile devgroup cloudtrail start-logging --name Example-Trail
 ```
 
-The command returns an access denied exception:
+Again the command returns an access denied exception, such as the following:
 
 ```
 A client error (AccessDeniedException) occurred when calling the StartLogging operation: Unknown 
@@ -195,7 +197,9 @@ A client error (AccessDeniedException) occurred when calling the StartLogging op
 
 ## Examples: Denying access to create or delete event data stores based on tags<a name="security_iam_id-based-policy-examples-eds-tags"></a>
 
-The following policy example denies permission to create an event data store \(using the `CreateEventDataStore` action\) when the event data store does not have a tag key of `stage` applied, or if the tag value of `stage` is not one of the following stages: `alpha`, `beta`, `gamma`, or `prod`\.
+In the following policy example, permission to create an event data store with `CreateEventDataStore` is denied if at least one of the following conditions aren't met:
++ The event data store doesn't have a tag key of `stage` applied to itself
++ The value of the stage tag isn't `alpha`, `beta`, `gamma`, or `prod`\.
 
 ```
 {
@@ -230,7 +234,7 @@ The following policy example denies permission to create an event data store \(u
 }
 ```
 
-The following policy example explicitly denies permission to delete an event data store \(using the `DeleteEventDataStore` action\) if the event data store has the `stage` tag applied with a value of `prod`\. A similar policy can help protect an event data store from accidental deletion\.
+In the following policy example, permission to delete an event data store with `DeleteEventDataStore` is denied is if the event data store has a `stage` tag with a value of `prod`\. A policy like this one can help protect an event data store from accidental deletion\.
 
 ```
 {
@@ -250,59 +254,40 @@ The following policy example explicitly denies permission to delete an event dat
 }
 ```
 
-## Granting permissions for using the CloudTrail console<a name="security_iam_id-based-policy-examples-console"></a>
+## Using the CloudTrail console<a name="security_iam_id-based-policy-examples-console"></a>
+
+To access the AWS CloudTrail console, you must have a minimum set of permissions\. These permissions must allow you to list and view details about the CloudTrail resources in your AWS account\. If you create an identity\-based policy that is more restrictive than the minimum required permissions, the console won't function as intended for entities \(users or roles\) with that policy\.
+
+You don't need to allow minimum console permissions for users that are making calls only to the AWS CLI or the AWS API\. Instead, allow access to only the actions that match the API operation that you're trying to perform\.
 
 ### Granting permissions for CloudTrail administration<a name="grant-permissions-for-cloudtrail-administration"></a>
 
-To allow users to administer a CloudTrail trail, you must grant explicit permissions to IAM users to perform the actions associated with CloudTrail tasks\. For most scenarios, you can do this using an AWS managed policy that contains predefined permissions\.
+To allow IAM roles or users to administer a CloudTrail resource, such as a trail, event data store, or channel, you must grant explicit permissions to perform the actions associated with CloudTrail tasks\. In most situations, you can use an AWS managed policy that contains predefined permissions\.
 
 **Note**  
-The permissions you grant to users to perform CloudTrail administration tasks are not the same as the permissions that CloudTrail itself requires in order to deliver log files to Amazon S3 buckets or send notifications to Amazon SNS topics\. For more information about those permissions, see [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.  
-If you configure integration with Amazon CloudWatch Logs, CloudTrail also requires a role that it can assume to deliver events to an Amazon CloudWatch Logs log group\. This will require additional permissions to create the role, as well as the role itself\. For more information, see [Granting permission to view and configure Amazon CloudWatch Logs information on the CloudTrail console](#grant-cloudwatch-permissions-for-cloudtrail-users) and [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
+The permissions you grant to users to perform CloudTrail administration tasks aren't the same those that CloudTrail requires to deliver log files to Amazon S3 buckets or send notifications to Amazon SNS topics\. For more information about those permissions, see [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.  
+If you configure integration with Amazon CloudWatch Logs, CloudTrail also requires a role it assumes to deliver events to an Amazon CloudWatch Logs log group\. This requires additional permissions to create the role\. You must also create the role CloudTrail uses\. For more information, see [Granting permission to view and configure Amazon CloudWatch Logs information on the CloudTrail console](#grant-cloudwatch-permissions-for-cloudtrail-users) and [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)\.
 
-A typical approach is to create an IAM group that has the appropriate permissions and then add individual IAM users to that group\. For example, you might create an IAM group for users who should have full access to CloudTrail actions, and a separate group for users who should be able to view trail information but not create or change trails\.
-
-**To create an IAM group and users for CloudTrail access**
-
-1.  Open the IAM console at [https://console\.aws\.amazon\.com/iam](https://console.aws.amazon.com/iam)\.
-
-1. From the dashboard, choose **Groups** in the navigation pane, and then choose **Create New Group**\. 
-
-1. Type a name, and then choose **Next Step**\. 
-
-1. On the **Attach Policy** page, find and select one of the following policies for CloudTrail:
-   +  **AWSCloudTrail\_FullAccess**\. This policy gives users in the group full access to CloudTrail actions\. These users have permissions to manage \(but not delete\) the Amazon S3 bucket, the log group for CloudWatch Logs, and an Amazon SNS topic for a trail\.
+You must give users permissions to interact with CloudTrail\. For users who need full access to CloudTrail, use the `AWSCloudTrail_FullAccess` managed policy\. 
++  **AWSCloudTrail\_FullAccess**\. This policy provides full access to CloudTrail actions on CloudTrail resources, such as trails and event data stores\. This policy provides permissions to manage, but not delete, the Amazon S3 bucket, the log group for CloudWatch Logs, and an Amazon SNS topic for a trail\.
 **Note**  
-The **AWSCloudTrail\_FullAccess** policy is not intended to be shared broadly across your AWS account\. Users with this role have the ability to disable or reconfigure the most sensitive and important auditing functions in their AWS accounts\. For this reason, this policy should be applied only to account administrators, and use of this policy should be closely controlled and monitored\.
-   +  **AWSCloudTrail\_ReadOnlyAccess**\. This policy lets users in the group view the CloudTrail console, including recent events and event history\. These users can also view existing trails\. Users can download a file of event history, but they cannot create or update trails\.
-**Note**  
-You can also create a custom policy that grants permissions to individual actions\. For more information, see [Granting custom permissions for CloudTrail users](#grant-custom-permissions-for-cloudtrail-users)\.
+The **AWSCloudTrail\_FullAccess** policy isn't intended to be shared broadly across your AWS account\. Users with this role can turn off or reconfigure the most sensitive and important auditing functions in their AWS accounts\. For this reason, you must only apply this policy to account administrators\. You must closely control and monitor use of this policy\.
++  **AWSCloudTrail\_ReadOnlyAccess**\. This policy grants permissions to view the CloudTrail console, including recent events and event history\. This policy also allows you to view existing trails and event data stores\. Roles and users with this policy can download a file of event history, but they can't create or update trails or event data stores\.
 
-1. Choose **Next step**\.
+To provide access, add permissions to your users, groups, or roles:
++ Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
 
-1. Review the information for the group you are about to create\.
-**Note**  
-You can edit the group name, but you will need to choose the policy again\.
+  Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
++ Users managed in IAM through an identity provider:
 
-1. Choose **Create group**\. The group that you created appears in the list of groups\.
-
-1. Choose the group name that you created, choose **Group actions**, and then choose **Add users to group**\. 
-
-1. On the **Add users to group** page, choose the existing IAM users, and then choose **Add users**\. If you don't already have IAM users, choose **Create new users**, enter user names, and then choose **Create**\.
-
-1. If you created new users, choose **Users** in the navigation pane and complete the following for each user: 
-
-   1. Choose the user\.
-
-   1. If the user will use the console to manage CloudTrail, in the **Security credentials** tab, choose **Manage password**, and then create a password for the user\. 
-
-   1. If the user will use the CLI or API to manage CloudTrail, and if you didn't already create access keys, in the **Security credentials** tab, choose **Manage access keys** and then create access keys\. Store the keys in a secure location\.
-
-   1. Give each user their credentials \(access keys or password\)\.
+  Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
++ IAM users:
+  + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+  + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.
 
 #### Additional resources<a name="cloudtrail-notifications-more-info-3"></a>
 
-To learn more about creating IAM users, groups, policies, and permissions, see [Creating an Admins Group Using the Console](https://docs.aws.amazon.com/IAM/latest/UserGuide/GSGHowToCreateAdminsGroup.html) and [Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\. 
+To learn more about using IAM to give identities, such as users and roles, access to resources in your account, see [Getting set up with IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-set-up.html) and [Access management for AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\. 
 
 You don't need to allow minimum console permissions for users that are making calls only to the AWS CLI or the AWS API\. Instead, allow access to only the actions that match the API operation that you're trying to perform\.
 
@@ -553,4 +538,4 @@ For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatc
 
 ### Additional information<a name="cloudtrail-notifications-more-info-2"></a>
 
-To learn more about creating IAM users, groups, policies, and permissions, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/GSGHowToCreateAdminsGroup.html) and [Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\. 
+To learn more about using IAM to give identities, such as users and roles, access to resources in your account, see [Getting started](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-set-up.html) and [Access management for AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\. 

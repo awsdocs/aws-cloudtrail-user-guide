@@ -33,7 +33,7 @@ This section summarizes basic concepts related to CloudTrail\.
 
 ## What are CloudTrail events?<a name="cloudtrail-concepts-events"></a>
 
-An event in CloudTrail is the record of an activity in an AWS account\. This activity can be an action taken by a user, role, or service that is monitorable by CloudTrail\. CloudTrail events provide a history of both API and non\-API account activity made through the AWS Management Console, AWS SDKs, command line tools, and other AWS services\. There are three types of events that can be logged in CloudTrail: management events, data events, and CloudTrail Insights events\. By default, trails log management events, but not data or Insights events\.
+An event in CloudTrail is the record of an activity in an AWS account\. This activity can be an action taken by an IAM identity, or service that is monitorable by CloudTrail\. CloudTrail events provide a history of both API and non\-API account activity made through the AWS Management Console, AWS SDKs, command line tools, and other AWS services\. There are three types of events that can be logged in CloudTrail: management events, data events, and CloudTrail Insights events\. By default, trails log management events, but not data or Insights events\.
 
 All event types use a CloudTrail JSON log format\.
 
@@ -53,22 +53,32 @@ Management events can also include non\-API events that occur in your account\. 
 ### What are data events?<a name="cloudtrail-concepts-data-events"></a>
 
 Data events provide information about the resource operations performed on or in a resource\. These are also known as *data plane operations*\. Data events are often high\-volume activities\. The following data types are recorded:
-+ Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\) on buckets and objects in buckets
-+ [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html) function execution activity \(the `Invoke` API\)
-+ [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)
-+ CloudTrail `PutAuditEvents` activity on a [CloudTrail Lake channel](query-event-data-store-integration.md) that is used to log events from outside AWS
-+ Amazon S3 on Outposts object\-level API activity
-+ [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`
-+ Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`
-+ [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots
-+ Amazon S3 API activity on access points
-+ [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams
-+ AWS Glue API activity on tables created by Lake Formation
-+ [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments
-+ Amazon SageMaker API activity on experiment trial components
-+ Amazon SageMaker API activity on feature stores
 
-Data events are not logged by default when you create a trail\. To record CloudTrail data events, you must explicitly add to a trail the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
+The following table shows the data event resource types available for trails and event data stores\. The first three rows of the table show the data event resource types selectable with basic event selectors\. The remaining rows show the data event resource types that you can specify using advanced event selectors\. The **Data event type \(console\)** column shows the appropriate selection in the console\. The ** resources\.Type \(API\)** column shows the `resources.Type` value to specify in your event selector to include data events of that type in your trail or event data store\.
+
+
+****  
+
+| AWS service | Event selector type | Data event type \(console\) | resources\.Type \(API\) | Description | 
+| --- | --- | --- | --- | --- | 
+| Amazon DynamoDB | basic | DynamoDB | AWS::DynamoDB::Table | Amazon DynamoDB object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)\. For more information about DynamoDB events, see [DynamoDB data plane events in CloudTrail](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail)\. | 
+| AWS Lambda | basic | Lambda | AWS::Lambda::Function | AWS Lambda function execution activity \(the `Invoke` API\)\. | 
+| Amazon S3 | basic | S3 | AWS::S3::Object | Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\) on buckets and objects in buckets\. | 
+| AWS CloudTrail | advanced | CloudTrail | AWS::CloudTrail::Channel | CloudTrail [https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html](https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html) activity on a [CloudTrail Lake channel](query-event-data-store-integration.md) that is used to log events from outside AWS\. | 
+| Amazon Cognito | advanced | Cognito Identity Pools | AWS::Cognito::IdentityPool | Amazon Cognito API activity on Amazon Cognito [identity pools](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-info-in-cloudtrail.html#identity-pools-cloudtrail-events)\. | 
+| Amazon DynamoDB | advanced | DynamoDB Streams | AWS::DynamoDB::Stream | [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams | 
+| Amazon Elastic Block Store | advanced | Amazon EBS direct APIs | AWS::EC2::Snapshot | [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots | 
+| Amazon FinSpace | advanced | FinSpace | AWS::FinSpace::Environment | [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments | 
+| AWS Glue | advanced | Lake Formation | AWS::Glue::Table | AWS Glue API activity on tables that were created by Lake Formation  AWS Glue data events for tables are currently supported only in the following regions:   US East \(N\. Virginia\)   US East \(Ohio\)   US West \(Oregon\)   Europe \(Ireland\)   Asia Pacific \(Tokyo\) Region    | 
+| Amazon Kendra Intelligent Ranking | advanced | Kendra Ranking | AWS::KendraRanking::ExecutionPlan | Amazon Kendra Intelligent Ranking API activity on [rescore execution plans](https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html#cloud-trail-intelligent-ranking-log-entry)\. | 
+| Amazon Managed Blockchain | advanced | Managed Blockchain | AWS::ManagedBlockchain::Node | [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`\. | 
+| Amazon SageMaker | advanced | SageMaker feature store | AWS::SageMaker::FeatureGroup | Amazon SageMaker API activity on feature stores | 
+| Amazon SageMaker | advanced | SageMaker metrics experiment trial component | AWS::SageMaker::ExperimentTrialComponent | Amazon SageMaker API activity on [experiment trial components](https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-monitoring.html) | 
+| Amazon S3 | advanced | S3 Access Point | AWS::S3::AccessPoint | Amazon S3 API activity on access points | 
+| Amazon S3 | advanced | S3 Object Lambda | AWS::S3ObjectLambda::AccessPoint | Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`\. | 
+| Amazon S3 on Outposts | advanced | S3 Outposts | AWS::S3Outposts::Object |  Amazon S3 on Outposts object\-level API activity\. | 
+
+Data events are not logged by default when you create a trail or event data store\. To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Create an event data store for CloudTrail events](query-event-data-store-cloudtrail.md)\.
 
 Additional charges apply for logging data events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
@@ -143,7 +153,7 @@ A tag is a customer\-defined key and optional value that can be assigned to AWS 
 
 ## How do you control access to CloudTrail?<a name="cloudtrail-concepts-iam"></a>
 
-AWS Identity and Access Management is a web service that enables Amazon Web Services \(AWS\) customers to manage users and user permissions\.  Use IAM to create individual users for anyone who needs access to AWS CloudTrail\. Create an IAM user for yourself, give that IAM user administrative privileges, and use that IAM user for all of your work\. By creating individual IAM users for people accessing your account, you can give each IAM user a unique set of security credentials\. You can also grant different permissions to each IAM user\. If necessary, you can change or revoke an IAM user’s permissions at any time\. For more information, see [Controlling user permissions for CloudTrail](control-user-permissions-for-cloudtrail.md)\.
+AWS Identity and Access Management is a web service that enables Amazon Web Services \(AWS\) customers to securely control access to AWS resources\.  With IAM, you can centrally manage permissions that control which CloudTrail resources users can access\. For more information about security in CloudTrail, see [Identity and Access Management for AWS CloudTrail](security-iam.md)\. For more information about controlling user permissions, see [Controlling user permissions for CloudTrail](control-user-permissions-for-cloudtrail.md)\.
 
 ## How do you log management and data events?<a name="understanding-event-selectors"></a>
 
@@ -193,6 +203,8 @@ This has the following effects:
 + CloudTrail delivers log files for account activity from all AWS Regions to the single Amazon S3 bucket that you specify, and, optionally, to a CloudWatch Logs log group\.
 + If you configured an Amazon SNS topic for the trail, SNS notifications about log file deliveries in all AWS Regions are sent to that single SNS topic\.
 + If you enabled it, log file integrity validation is enabled for the trail in all AWS Regions\. For information, see [Validating CloudTrail log file integrity](cloudtrail-log-file-validation-intro.md)\.
+
+Regardless of whether a trail is multi\-Region or single\-Region, events sent to Amazon EventBridge are received in each Region's [event bus](https://docs.aws.amazon.com/https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html), rather than in one single event bus\.
 
 ### Multiple trails per Region<a name="cloudtrail-concepts-trails-multiple-trails-per-region"></a>
 

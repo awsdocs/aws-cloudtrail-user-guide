@@ -12,7 +12,7 @@ You can use the CloudTrail console to turn on CloudTrail in additional accounts\
 
 1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
-1. If this is an AWS Organizations organization trail, you can choose to enable the trail for all accounts in your organization\. You only see this option if you are signed in to the console with an IAM user or role in the management account or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
+1. If this is an AWS Organizations organization trail, you can choose to enable the trail for all accounts in your organization\. You only see this option if you sign  in to the console with a user or role in the management account or a delegated administrator account\. To create an organization trail, the user or role must have [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
 1. For **Storage location**, choose **Use existing S3 bucket**\. Use the text box to enter the name of the bucket you created previously for storing log files when you signed in using account 111111111111 credentials\.
 **Note**  
@@ -74,7 +74,7 @@ When you configure a trail, you can choose an S3 bucket and SNS topic that belon
 
    1. You can choose to log **All current and future S3 buckets**, or you can specify individual buckets or functions\. By default, data events are logged for all current and future S3 buckets\.
 **Note**  
-Keeping the default **All current and future S3 buckets** option enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
+Keeping the default **All current and future S3 buckets** option enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any IAM identity in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
 If you are creating a trail for a single Region \(done by using the AWS CLI\), choosing **All current and future S3 buckets** enables data event logging for all buckets in the same Region as your trail and any buckets you create later in that Region\. It will not log data events for Amazon S3 buckets in other Regions in your AWS account\.
 
    1. If you leave the default, **All current and future S3 buckets**, choose to log **Read** events, **Write** events, or both\.
@@ -96,7 +96,7 @@ If you are creating a trail for a single Region \(done by using the AWS CLI\), c
       To log data events for all Lambda functions in your AWS account, select **Log all current and future functions**\. This setting takes precedence over individual settings you configure for individual functions\. All functions are logged, even if all functions are not displayed\.
 **Note**  
 If you are creating a trail for all Regions, this selection enables data event logging for all functions currently in your AWS account, and any Lambda functions you might create in any Region after you finish creating the trail\. If you are creating a trail for a single Region \(done by using the AWS CLI\), this selection enables data event logging for all functions currently in that Region in your AWS account, and any Lambda functions you might create in that Region after you finish creating the trail\. It does not enable data event logging for Lambda functions created in other Regions\.  
-Logging data events for all functions also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
+Logging data events for all functions also enables logging of data event activity performed by any IAM identity in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
 
    1. If you choose **Input function as ARN**, enter the ARN of a Lambda function\.
 **Note**  

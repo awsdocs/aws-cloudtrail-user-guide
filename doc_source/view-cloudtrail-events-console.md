@@ -91,7 +91,7 @@ The type of resource referenced by the event\. For example, a resource type can 
 The time range in which you want to filter events\. You can filter events for the last 90 days\.
 
 ** User name **  
-The identity of the user referenced by the event\. For example, this can be an IAM user, an IAM role name, or a service role\.
+The identity referenced by the event\. For example, this can be a user, a role name, or a service role\.
 
 If there are no events logged for the attribute or time that you choose, the results list is empty\. You can apply only one attribute filter in addition to the time range\. If you choose a different attribute filter, your specified time range is preserved\.
 
@@ -146,7 +146,7 @@ AWS Config records configuration details, relationships, and changes to your AWS
 
 On the **Resources Referenced** pane, choose the ![\[AWS Config timeline icon\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/config-timeline.png) in the **Config timeline** column to view the resource in the AWS Config console\.
 
-If the ![\[AWS Config timeline\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/config-timeline-gray.png) icon is gray, AWS Config is not turned on, or it's not recording the resource type\. Choose the icon to go to the AWS Config console to turn on the service or start recording that resource type\. For more information, see [Set Up AWS Config Using the Console](https://docs.aws.amazon.com/config/latest/developerguide/gs-console.html) in the *AWS Config Developer Guide*\.
+If the ![\[AWS Config timeline\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/config-timeline-gray.png) icon is gray, AWS Config isn't turned on, or it's not recording the resource type\. Choose the icon to go to the AWS Config console to turn on the service or start recording that resource type\. For more information, see [Set Up AWS Config Using the Console](https://docs.aws.amazon.com/config/latest/developerguide/gs-console.html) in the *AWS Config Developer Guide*\.
 
 If **Link not available** appears in the column, the resource can't be viewed for one of the following reasons:
 + AWS Config doesn't support the resource type\. For more information, see [Supported Resources, Configuration Items, and Relationships](https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html) in the *AWS Config Developer Guide*\.

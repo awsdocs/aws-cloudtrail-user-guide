@@ -161,107 +161,31 @@ Logging data events for all functions also enables logging of data event activit
       + **`readOnly`** \- `readOnly` can be set to **Equals** a value of `true` or `false`\. To log both `read` and `write` events, don't add a `readOnly` selector\.
       + **`eventName`** \- `eventName` can use any operator\. You can use it to include or exclude any data event logged to CloudTrail, such as `PutBucket` or `GetSnapshotBlock`\. You can have multiple values for this field, separated by commas\.
       + **`resources.type`** \- In the AWS Management Console, this field doesn't occur, because it's already populated by your choice of data event type from the **Data event type** drop\-down list\. In the AWS CLI and SDKs, `resources.type` can only use the **Equals** operator, and the value can be one of the following: 
-        + `AWS::S3::Object`
-        + `AWS::Lambda::Function`
         + `AWS::DynamoDB::Table`
-        + `AWS::S3Outposts::Object`
-        + `AWS::ManagedBlockchain::Node`
-        + `AWS::S3ObjectLambda::AccessPoint`
-        + `AWS::EC2::Snapshot`
-        + `AWS::S3::AccessPoint`
+        + `AWS::Lambda::Function`
+        + `AWS::S3::Object`
         + `AWS::CloudTrail::Channel`
+        + `AWS::Cognito::IdentityPool`
         + `AWS::DynamoDB::Stream`
+        + `AWS::EC2::Snapshot`
         + `AWS::Glue::Table`
         + `AWS::FinSpace::Environment`
+        + `AWS::KendraRanking::ExecutionPlan`
+        + `AWS::ManagedBlockchain::Node`
         + `AWS::SageMaker::ExperimentTrialComponent`
         + `AWS::SageMaker::FeatureGroup`
+        + `AWS::S3::AccessPoint`
+        + `AWS::S3ObjectLambda::AccessPoint`
+        + `AWS::S3Outposts::Object`
       + **`resources.ARN`** \- You can use any operator with `resources.ARN`, but if you use **Equals** or **NotEquals**, the value must exactly match the ARN of a valid resource of the type you've specified in the template as the value of `resources.type`\. 
 
-        For example, when `resources.type` equals **AWS::S3::Object**, the ARN must be in one of the following formats\. To log all data events for all objects in a specific S3 bucket, use the `StartsWith` operator, and include only the bucket ARN as the matching value\. The trailing slash is intentional; do not exclude it\.
+        The following table shows the valid ARN format for each `resources.Type`\.  
+****    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-update-a-trail-console.html)
 
-        ```
-        arn:partition:s3:::bucket_name/
-        arn:partition:s3:::bucket_name/object_or_file_name/
-        ```
+        1 To log all data events for all objects in a specific S3 bucket, use the `StartsWith` operator, and include only the bucket ARN as the matching value\. The trailing slash is intentional; do not exclude it\.
 
-        When `resources.type` equals **AWS::Lambda::Function**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:lambda:region:account_ID:function:function_name
-        ```
-
-        When `resources.type` equals **AWS::DynamoDB::Table**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:dynamodb:region:account_ID:table/table_name
-        ```
-
-        When `resources.type` equals **AWS::CloudTrail::Channel**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:cloudtrail:region:account_ID:channel/channel_UUID
-        ```
-
-        When `resources.type` equals **AWS::S3Outposts::Object**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:s3-outposts:region:account_ID:object_path
-        ```
-
-        When `resources.type` equals **AWS::ManagedBlockchain::Node**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:managedblockchain:region:account_ID:nodes/node_ID
-        ```
-
-        When `resources.type` equals **AWS::S3ObjectLambda::AccessPoint**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:s3-object-lambda:region:account_ID:accesspoint/access_point_name
-        ```
-
-        When `resources.type` equals **AWS::EC2::Snapshot**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:ec2:region::snapshot/snapshot_ID
-        ```
-
-        When `resources.type` equals **AWS::S3::AccessPoint**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in one of the following formats\. To log events on all objects in an S3 access point, we recommend that you use only the access point ARN, don’t include the object path, and use the `StartsWith` or `NotStartsWith` operators\.
-
-        ```
-        arn:partition:s3:region:account_ID:accesspoint/access_point_name
-        arn:partition:s3:region:account_ID:accesspoint/access_point_name/object/object_path
-        ```
-
-        When `resources.type` equals **AWS::DynamoDB::Stream**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:dynamodb:region:account_ID:table/table_name/stream/date_time
-        ```
-
-        When `resources.type` equals **AWS::Glue::Table**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:glue:region:account_ID:table/database_name/table_name
-        ```
-
-        When `resources.type` equals **AWS::FinSpace::Environment**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:finspace:region:account_ID:environment/environment_ID
-        ```
-
-        When `resources.type` equals **AWS::SageMaker::ExperimentTrialComponent**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:sagemaker:region:account_ID:experiment-trial-component/experiment_trial_component_name
-        ```
-
-        When `resources.type` equals **AWS::SageMaker::FeatureGroup**, and the operator is set to **Equals** or **NotEquals**, the ARN must be in the following format:
-
-        ```
-        arn:partition:sagemaker:region:account_ID:feature-group/feature_group_name
-        ```
+        2 To log events on all objects in an S3 access point, we recommend that you use only the access point ARN, don’t include the object path, and use the `StartsWith` or `NotStartsWith` operators\.
 
       For more information about the ARN formats of data event resources, see [Actions, resources, and condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html) in the *AWS Identity and Access Management User Guide*\.
 

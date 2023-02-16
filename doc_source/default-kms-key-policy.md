@@ -33,7 +33,7 @@ The following is the default policy created for a AWS KMS key that you use with 
           "Resource": "*"
         },
         {
-          "Sid": "Enable IAM User Permissions",
+          "Sid": "Enable user permissions",
           "Effect": "Allow",
           "Principal": {
             "AWS": "arn:${this.ARN_PARTITION}:iam::${this.ACCOUNT_ID}:root"
@@ -71,7 +71,7 @@ The policy includes a statement to allow cross accounts to decrypt log files wit
     "Id": "Key policy created by CloudTrail",
     "Statement": [
         {
-            "Sid": "Enable IAM User Permissions",
+            "Sid": "Enable user permissions",
             "Effect": "Allow",
             "Principal": {"AWS": [
                 "arn:aws:iam::account-id:root",

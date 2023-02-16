@@ -17,7 +17,7 @@ To be sure that your applications can parse the event structure, we recommend th
 **Optional:** False
 
 **`userIdentity`**  
-Information about the user that made a request\. For more information, see [CloudTrail userIdentity element](cloudtrail-event-reference-user-identity.md)\.   
+Information about the IAM identity that made a request\. For more information, see [CloudTrail userIdentity element](cloudtrail-event-reference-user-identity.md)\.   
 **Since:** 1\.0  
 **Optional:** False
 
@@ -41,7 +41,7 @@ The AWS region that the request was made to, such as `us-east-2`\. See [CloudTra
 **Optional:** False
 
 **`sourceIPAddress`**  
-The IP address that the request was made from\. For actions that originate from the service console, the address reported is for the underlying customer resource, not the console web server\. For services in AWS, only the DNS name is displayed\. CloudTrail redacts the value of `sourceIPAddress` and replaces it with `AWS Internal` if the request was made with a proxy client \(such as the AWS Management Console\), and `sessionCredentialFromConsole` is present with a value of `true`\.  
+The IP address that the request was made from\. For actions that originate from the service console, the address reported is for the underlying customer resource, not the console web server\. For services in AWS, only the DNS name is displayed\.  
 **Since:** 1\.0  
 **Optional:** False
 
@@ -53,7 +53,6 @@ The agent through which the request was made, such as the AWS Management Console
 + `aws-sdk-java` – The request was made with the AWS SDK for Java\. 
 + `aws-sdk-ruby` – The request was made with the AWS SDK for Ruby\. 
 + `aws-cli/1.3.23 Python/2.7.6 Linux/2.6.18-164.el5` – The request was made with the AWS CLI installed on Linux\. 
-+ `AWS Internal`–CloudTrail redacts the value of `userAgent` and replaces it with `AWS Internal` if the request was made with a proxy client \(such as the AWS Management Console\), and `sessionCredentialFromConsole` is present with a value of `true`\.
 For events originated by AWS, this field is usually `AWS Internal/#`, where `#` is a number used for internal purposes\.
 **Since:** 1\.0  
 **Optional:** True
