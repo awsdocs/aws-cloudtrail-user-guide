@@ -2,6 +2,9 @@
 
 After you enable CloudTrail Insights events on a trail, when CloudTrail detects unusual API or error rate activity, CloudTrail generates Insights events and displays them on the **Dashboard** and **Insights** pages in the AWS Management Console\. You can view the Insights events in the console and troubleshoot the unusual activity\. The most recent 90 days of Insights events are shown in the console\. You can also download Insights events by using the AWS CloudTrail console\. You can programmatically look up events by using the AWS SDKs or AWS Command Line Interface\. For more information about CloudTrail Insights events, see [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md) in this guide\.
 
+**Note**  
+ To log Insights events on API call volume, the trail must log `write` management events\. To log Insights events on API error rate, the trail must log `read` or `write` management events\. 
+
 After Insights events are logged, the events are shown on the **Insights** page for 90 days\. You cannot manually delete events from the **Insights** page\. Because you must [create a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) before you can enable CloudTrail Insights, you can view Insights events that are logged to your trail for as long as you store them in the S3 bucket that is configured in your trail settings\.
 
 Monitor your trail logs and be notified when specific Insights events activity occurs with Amazon CloudWatch Logs\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
@@ -32,6 +35,9 @@ The default display of events in **Insights** shows events in reverse chronologi
 **Event name**  
 The name of the event, typically the AWS API on which unusual levels of activity were recorded\.
 
+**Insight type**  
+The type of CloudTrail Insights event, which is either **API call rate** or **API error rate**\. The **API call rate** insight type analyzes write\-only management API calls that are aggregated per minute against a baseline API call volume\. The **API error rate** insight type analyzes management API calls that result in error codes\. The error is shown if the API call is unsuccessful\.
+
 **Event source**  
 The AWS service to which the request was made, such as `iam.amazonaws.com` or `s3.amazonaws.com`\. You can scroll through a list of event sources after you choose the **Event source** filter\.
 
@@ -42,7 +48,7 @@ The ID of the Insights event\. Event IDs are not shown in the **Insights** page 
 The start time of the Insights event, measured as the first minute in which unusual activity was recorded\. This attribute is shown in the **Insights** table, but you cannot filter on event start time in the console\.
 
 **Baseline average**  
-The normal pattern of API call rate or error rate activity\. The baseline average is calculated over the seven days preceding the start of an Insights event\. Though the value of the baseline duration—the period that CloudTrail measures for normal activity on APIs—is approximately seven days, CloudTrail rounds the baseline duration to a whole integer day, so the exact baseline duration can vary\.
+The normal pattern of API call rate or error rate activity\. The baseline average is calculated over the seven days preceding the start of an Insights event\. Though the value of the baseline duration—the period that CloudTrail analyzes for normal activity on APIs—is approximately seven days, CloudTrail rounds the baseline duration to a whole integer day, so the exact baseline duration can vary\.
 
 **Insight average**  
 The average number of calls to an API, or the average number of a specific error that was returned on calls to an API, that triggered the Insights event\. The CloudTrail Insights average for the start event is the rate of occurrences that triggered the Insights event\. Typically, this is the first minute of unusual activity\. The Insights average for the end event is the rate of occurrences over the duration of the unusual activity, between the start Insights event and the end Insights event\.
@@ -64,7 +70,7 @@ The following steps describe how to filter by a start and end date and time\.
 
 **To filter by a start and end date and time**
 
-1. To narrow the time range for the events that you want to see, choose a time range on the time span bar at the top of the table\.\. Preset time ranges include 30 minutes, 1 hour, 3 hours, or 12 hours\. To specify a custom time range, choose **Custom**\.
+1. To narrow the time range for the events that you want to see, choose a time range on the time span bar at the top of the table\. Preset time ranges include 30 minutes, 1 hour, 3 hours, or 12 hours\. To specify a custom time range, choose **Custom**\.
 
 1. Choose one of the following tabs\.
    + **Absolute** \- Lets you choose a specific time\. Go on to the next step\.

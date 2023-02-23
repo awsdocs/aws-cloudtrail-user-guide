@@ -9,6 +9,13 @@ You can use the `update-trail` command to change the configuration settings for 
 **Note**  
 If you use the AWS CLI or one of the AWS SDKs to modify a trail, be sure that the trail's bucket policy is up\-to\-date\. In order for your bucket to automatically receive events from a new AWS Region, the policy must contain the full service name, `cloudtrail.amazonaws.com`\. For more information, see [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)\.
 
+**Topics**
++ [Converting a trail that applies to one Region to apply to all Regions](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-convert)
++ [Converting a multi\-region trail to a single\-region trail](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-reduce)
++ [Enabling and disabling global service event logging](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-gses)
++ [Enabling log file validation](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-lfi)
++ [Disabling log file validation](#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-lfi-disable)
+
 ## Converting a trail that applies to one Region to apply to all Regions<a name="cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-convert"></a>
 
 To change an existing trail so that it applies to all Regions, use the `--is-multi-region-trail` option\.

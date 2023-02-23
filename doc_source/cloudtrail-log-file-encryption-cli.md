@@ -2,6 +2,10 @@
 
 This topic describes how to enable and disable SSE\-KMS log file encryption for CloudTrail by using the AWS CLI\. For background information, see [Encrypting CloudTrail log files with AWS KMS keys \(SSE\-KMS\)](encrypting-cloudtrail-log-files-with-aws-kms.md)\.
 
+**Topics**
++ [Enabling CloudTrail log file encryption by using the AWS CLI](#cloudtrail-log-file-encryption-cli-enable)
++ [Disabling CloudTrail log file encryption by using the AWS CLI](#cloudtrail-log-file-encryption-cli-disable)
+
 ## Enabling CloudTrail log file encryption by using the AWS CLI<a name="cloudtrail-log-file-encryption-cli-enable"></a>
 + [Enable log file encryption for a trail](#log-encryption-trail)
 + [Enable log file encryption for an event data store](#log-encryption-eds)<a name="log-encryption-trail"></a>
@@ -107,34 +111,6 @@ The following is an example response:
     "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/Default", 
     "LogFileValidationEnabled": false, 
     "S3BucketName": "my-bucket-name"
-}
-```
-
-To stop encrypting logs on an event data store, run `update-event-data-store` and pass an empty string to the `kms-key-id` parameter: 
-
-```
-aws cloudtrail update-event-data-store --name my-event-data-store --kms-key-id ""
-```
-
-The following is an example response:
-
-```
-{
-    "Name": "my-event-data-store",
-    "ARN": "arn:aws:cloudtrail:us-east-1:12345678910:eventdatastore/EXAMPLEf852-4e8f-8bd1-bcf6cEXAMPLE",
-    "RetentionPeriod": "90",
-    "MultiRegionEnabled": false,
-    "OrganizationEnabled": false,
-    "TerminationProtectionEnabled": true,
-    "AdvancedEventSelectors": [{
-        "Name": "Select all external events",
-        "FieldSelectors": [{
-            "Field": "eventCategory",
-            "Equals": [
-                "ActivityAuditLog"
-            ]
-        }]
-    }]
 }
 ```
 

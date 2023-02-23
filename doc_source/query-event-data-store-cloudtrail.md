@@ -26,7 +26,7 @@ To enable AWS Key Management Service encryption for an organization event data s
 
 1.  On the **Choose events** page, choose **AWS events**, and then choose **CloudTrail events**\. 
 
-1. For **CloudTrail events**, choose at least one event type\. By default, **Management events** is selected\. You can add both management and data events to your event data store\. For more information about management events, see [Logging management events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)\. For more information about data events, see [Logging data events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\.
+1. For **CloudTrail events**, choose at least one event type\. By default, **Management events** is selected\. You can add both management and data events to your event data store\. For more information about management events, see [Logging management events](logging-management-events-with-cloudtrail.md)\. For more information about data events, see [Logging data events](logging-data-events-with-cloudtrail.md)\.
 
 1. \(Optional\) Choose **Copy trail events** if you want to copy events from an existing trail to run queries on past events\. To copy trail events to an organization event data store, you must use the management account for the organization\. The delegated administrator account cannot copy trail events to an organization event data store\. For more information about considerations for copying trail events, see [Considerations](cloudtrail-copy-trail-to-lake-eds.md#cloudtrail-trail-copy-considerations-lake)\.
 
@@ -34,11 +34,9 @@ To enable AWS Key Management Service encryption for an organization event data s
 
 1. To have your event data store collect events from all accounts in an AWS Organizations organization, select **Enable for all accounts in my organization**\. You must be signed in to the management account or delegated administrator account for the organization to create an event data store that collects events for an organization\.
 
-1. To have your event data store collect events from all accounts in an AWS Organizations organization, select **Enable for all accounts in my organization**\. You must be signed in to the management account for the organization to create an event data store that collects events for an organization\. An event data store that you use to log events from sources outside AWS cannot be for an organization\.
+1. If your event data store includes management events, choose **Read**, **Write**, or both\. At least one is required\. For more information about **Read** and **Write** management events, see [Logging management events](logging-management-events-with-cloudtrail.md)\.
 
-1. If your event data store includes management events, choose **Read**, **Write**, or both\. At least one is required\. For more information about **Read** and **Write** management events, see [Logging management events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)\.
-
-1. You can choose to exclude AWS Key Management Service or Amazon RDS Data API events from your event data store\. For more information about these options, see [Logging management events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)\.
+1. You can choose to exclude AWS Key Management Service or Amazon RDS Data API events from your event data store\. For more information about these options, see [Logging management events](logging-management-events-with-cloudtrail.md)\.
 
 1. To include data events in your event data store, do the following\.
 

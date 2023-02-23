@@ -52,14 +52,18 @@ Management events can also include non\-API events that occur in your account\. 
 
 ### What are data events?<a name="cloudtrail-concepts-data-events"></a>
 
-Data events provide information about the resource operations performed on or in a resource\. These are also known as *data plane operations*\. Data events are often high\-volume activities\. The following data types are recorded:
+Data events provide information about the resource operations performed on or in a resource\. These are also known as *data plane operations*\. Data events are often high\-volume activities\.
 
-The following table shows the data event resource types available for trails and event data stores\. The first three rows of the table show the data event resource types selectable with basic event selectors\. The remaining rows show the data event resource types that you can specify using advanced event selectors\. The **Data event type \(console\)** column shows the appropriate selection in the console\. The ** resources\.Type \(API\)** column shows the `resources.Type` value to specify in your event selector to include data events of that type in your trail or event data store\.
+The following table shows the data event types available for trails and event data stores\. The **Data event type \(console\)** column shows the appropriate selection in the console\. The ** resources\.Type** column shows the `resources.Type` value that you would specify to include data events of that type in your trail or event data store\.
+
+Trails can use basic or advanced event selectors\. The **Event selector type** column of the table identities for trails whether the data event type is selectable using basic or advanced event selectors\. The first three rows of the table show the data event types selectable with basic event selectors\. The remaining rows show the data event types that you can specify using advanced event selectors\. 
+
+Unlike trails, event data stores only use advanced event selectors to specify data events\.
 
 
 ****  
 
-| AWS service | Event selector type | Data event type \(console\) | resources\.Type \(API\) | Description | 
+| AWS service | Event selector type | Data event type \(console\) | resources\.Type | Description | 
 | --- | --- | --- | --- | --- | 
 | Amazon DynamoDB | basic | DynamoDB | AWS::DynamoDB::Table | Amazon DynamoDB object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)\. For more information about DynamoDB events, see [DynamoDB data plane events in CloudTrail](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail)\. | 
 | AWS Lambda | basic | Lambda | AWS::Lambda::Function | AWS Lambda function execution activity \(the `Invoke` API\)\. | 
@@ -68,6 +72,7 @@ The following table shows the data event resource types available for trails and
 | Amazon Cognito | advanced | Cognito Identity Pools | AWS::Cognito::IdentityPool | Amazon Cognito API activity on Amazon Cognito [identity pools](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-info-in-cloudtrail.html#identity-pools-cloudtrail-events)\. | 
 | Amazon DynamoDB | advanced | DynamoDB Streams | AWS::DynamoDB::Stream | [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams | 
 | Amazon Elastic Block Store | advanced | Amazon EBS direct APIs | AWS::EC2::Snapshot | [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots | 
+| Amazon EC2 Instance Connect | advanced | Amazon EC2 Instance connect endpoint | AWS::EC2::InstanceConnectEndpoint | Amazon EC2 Instannce Connect API activity on endpoints\. | 
 | Amazon FinSpace | advanced | FinSpace | AWS::FinSpace::Environment | [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments | 
 | AWS Glue | advanced | Lake Formation | AWS::Glue::Table | AWS Glue API activity on tables that were created by Lake Formation  AWS Glue data events for tables are currently supported only in the following regions:   US East \(N\. Virginia\)   US East \(Ohio\)   US West \(Oregon\)   Europe \(Ireland\)   Asia Pacific \(Tokyo\) Region    | 
 | Amazon Kendra Intelligent Ranking | advanced | Kendra Ranking | AWS::KendraRanking::ExecutionPlan | Amazon Kendra Intelligent Ranking API activity on [rescore execution plans](https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html#cloud-trail-intelligent-ranking-log-entry)\. | 
@@ -84,14 +89,14 @@ Additional charges apply for logging data events\. For CloudTrail pricing, see [
 
 ### What are Insights events?<a name="cloudtrail-concepts-insights-events"></a>
 
-CloudTrail Insights events capture unusual API call rate or error rate activity in your AWS account\. If you have Insights events enabled, and CloudTrail detects unusual activity, Insights events are logged to a different folder or prefix in the destination S3 bucket for your trail\. You can also see the type of insight and the incident time period when you view Insights events on the CloudTrail console\. Insights events provide relevant information, such as the associated API, error code, incident time, and statistics, that help you understand and act on unusual activity\. Unlike other types of events captured in a CloudTrail trail, Insights events are logged only when CloudTrail detects changes in your account's API usage or error rate logging that differ significantly from the account's typical usage patterns\. Examples of activity that might generate Insights events include:
+CloudTrail Insights events capture unusual API call rate or error rate activity in your AWS account by analyzing CloudTrail management activity\. If you have Insights events enabled, and CloudTrail detects unusual activity, Insights events are logged to a different folder or prefix in the destination S3 bucket for your trail\. You can also see the type of insight and the incident time period when you view Insights events on the CloudTrail console\. Insights events provide relevant information, such as the associated API, error code, incident time, and statistics, that help you understand and act on unusual activity\. Unlike other types of events captured in a CloudTrail trail, Insights events are logged only when CloudTrail detects changes in your account's API usage or error rate logging that differ significantly from the account's typical usage patterns\. Examples of activity that might generate Insights events include:
 + Your account typically logs no more than 20 Amazon S3 `deleteBucket` API calls per minute, but your account starts to log an average of 100 `deleteBucket` API calls per minute\. An Insights event is logged at the start of the unusual activity, and another Insights event is logged to mark the end of the unusual activity\.
 + Your account typically logs 20 calls per minute to the Amazon EC2 `AuthorizeSecurityGroupIngress` API, but your account starts to log zero calls to `AuthorizeSecurityGroupIngress`\. An Insights event is logged at the start of the unusual activity, and ten minutes later, when the unusual activity ends, another Insights event is logged to mark the end of the unusual activity\.
 + Your account typically logs less than one `AccessDeniedException` error in a seven\-day period on the AWS Identity and Access Management API, `DeleteInstanceProfile`\. Your account starts to log an average of 12 `AccessDeniedException` errors per minute on the `DeleteInstanceProfile` API call\. An Insights event is logged at the start of the unusual error rate activity, and another Insights event is logged to mark the end of the unusual activity\.
 
 These examples are provided for illustration purposes only\. Your results may vary depending on your use case\.
 
-Insights events are disabled by default when you create a trail\. To record CloudTrail Insights events, you must explicitly enable Insights event collection on a new or existing trail\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md)\.
+Insights events are disabled by default when you create a trail\. To log CloudTrail Insights events, you must explicitly enable Insights event collection on a new or existing trail, and the trail must log CloudTrail management events\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md)\.
 
 Additional charges apply for logging CloudTrail Insights events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
@@ -153,7 +158,7 @@ A tag is a customer\-defined key and optional value that can be assigned to AWS 
 
 ## How do you control access to CloudTrail?<a name="cloudtrail-concepts-iam"></a>
 
-AWS Identity and Access Management is a web service that enables Amazon Web Services \(AWS\) customers to securely control access to AWS resources\.  With IAM, you can centrally manage permissions that control which CloudTrail resources users can access\. For more information about security in CloudTrail, see [Identity and Access Management for AWS CloudTrail](security-iam.md)\. For more information about controlling user permissions, see [Controlling user permissions for CloudTrail](control-user-permissions-for-cloudtrail.md)\.
+AWS Identity and Access Management is a web service that enables Amazon Web Services \(AWS\) customers to securely control access to AWS resources\. Using IAM, you can centrally manage permissions that control which CloudTrail resources users can access\. For more information about controlling user permissions, see [Controlling user permissions for CloudTrail](control-user-permissions-for-cloudtrail.md)\.
 
 ## How do you log management and data events?<a name="understanding-event-selectors"></a>
 
@@ -165,7 +170,7 @@ AWS CloudTrail Insights helps AWS users identify and respond to unusual volumes 
 
 ## How do you run complex queries on events logged by CloudTrail?<a name="cloudtrail-concepts-lake"></a>
 
-CloudTrail Lake lets you run fine\-grained SQL\-based queries on your events, and log events from sources outside AWS, including from your own applications, and from partners who are integrated with CloudTrail\. You do not need to have a trail configured in your account to use CloudTrail Lake\. Event data stores are immutable collections of events based on criteria that you select by applying [advanced event selectors](logging-data-events-with-cloudtrail.md#creating-data-event-selectors-advanced)\. You can keep the event data in an event data store for up to seven years\. You can save Lake queries for future use, and view results of queries for up to seven days\. You can also save query results to an Amazon Simple Storage Service bucket\. CloudTrail Lake can also store events from an organization in AWS Organizations in an event data store, or events from multiple regions and accounts\. CloudTrail Lake is part of an auditing solution that helps you perform security investigations and troubleshooting\. For more information, see [Working with AWS CloudTrail Lake](cloudtrail-lake.md)\.
+CloudTrail Lake lets you run fine\-grained SQL\-based queries on your events, and log events from sources outside AWS, including from your own applications, and from partners who are integrated with CloudTrail\. You do not need to have a trail configured in your account to use CloudTrail Lake\. Event data stores are immutable collections of events based on criteria that you select by applying [advanced event selectors](logging-data-events-with-cloudtrail.md#creating-data-event-selectors-advanced)\. You can keep the event data in an event data store for up to seven years\. You can save Lake queries for future use, and view results of queries for up to seven days\. You can also save query results to an Amazon Simple Storage Service bucket\. CloudTrail Lake can also store events from an organization in AWS Organizations in an event data store, or events from multiple Regions and accounts\. CloudTrail Lake is part of an auditing solution that helps you perform security investigations and troubleshooting\. For more information, see [Working with AWS CloudTrail Lake](cloudtrail-lake.md)\.
 
 ## How do you perform monitoring with CloudTrail?<a name="cloudtrail-concepts-monitoring"></a>
 
@@ -221,26 +226,26 @@ Trails appear in the AWS Region where they exist\. Trails that log events in all
 
 ### AWS Security Token Service and CloudTrail<a name="cloudtrail-concepts-sts-regionalization"></a>
 
-AWS Security Token Service \(AWS STS\) is a service that has a global endpoint and also supports region\-specific endpoints\. An endpoint is a URL that is the entry point for web service requests\. For example, `https://cloudtrail.us-west-2.amazonaws.com` is the US West \(Oregon\) regional entry point for the AWS CloudTrail service\. Regional endpoints help reduce latency in your applications\. 
+AWS Security Token Service \(AWS STS\) is a service that has a global endpoint and also supports Region\-specific endpoints\. An endpoint is a URL that is the entry point for web service requests\. For example, `https://cloudtrail.us-west-2.amazonaws.com` is the US West \(Oregon\) regional entry point for the AWS CloudTrail service\. Regional endpoints help reduce latency in your applications\. 
 
-When you use an AWS STS region\-specific endpoint, the trail in that region delivers only the AWS STS events that occur in that region\. For example, if you are using the endpoint `sts.us-west-2.amazonaws.com`, the trail in us\-west\-2 delivers only the AWS STS events that originate from us\-west\-2\. For more information about AWS STS regional endpoints, see [Activating and Deactivating AWS STS in an AWS Region](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html) in the *IAM User Guide*\.
+When you use an AWS STS Region\-specific endpoint, the trail in that Region delivers only the AWS STS events that occur in that Region\. For example, if you are using the endpoint `sts.us-west-2.amazonaws.com`, the trail in us\-west\-2 delivers only the AWS STS events that originate from us\-west\-2\. For more information about AWS STS regional endpoints, see [Activating and Deactivating AWS STS in an AWS Region](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html) in the *IAM User Guide*\.
 
 For a complete list of AWS regional endpoints, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *AWS General Reference*\. For details about events from the global AWS STS endpoint, see [Global service events](#cloudtrail-concepts-global-service-events)\.
 
 ## Global service events<a name="cloudtrail-concepts-global-service-events"></a>
 
 **Important**  
-As of November 22, 2021, AWS CloudTrail will change how trails can be used to capture global service events\. After the change, events created by CloudFront, IAM, and AWS STS will be recorded in the region in which they were created, the US East \(N\. Virginia\) region, us\-east\-1\. This makes CloudTrail's treatment of these services consistent with that of other AWS global services\.  
-To continue receiving global service events outside of US East \(N\. Virginia\), be sure to convert *single\-region trails* using global service events outside of US East \(N\. Virginia\) into *multi\-region trails*\. Also update the region of your lookup\-events API calls to view global service events\. For more information about using the CLI to update or create trails for global service events and update lookup events, see [Viewing CloudTrail events with the AWS CLI](view-cloudtrail-events-cli.md) and [Using update\-trail](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md)\. 
+As of November 22, 2021, AWS CloudTrail will change how trails can be used to capture global service events\. After the change, events created by CloudFront, IAM, and AWS STS will be recorded in the Region in which they were created, the US East \(N\. Virginia\) Region, us\-east\-1\. This makes CloudTrail's treatment of these services consistent with that of other AWS global services\.  
+To continue receiving global service events outside of US East \(N\. Virginia\), be sure to convert *single\-Region trails* using global service events outside of US East \(N\. Virginia\) into *multi\-Region trails*\. Also update the Region of your lookup\-events API calls to view global service events\. For more information about using the CLI to update or create trails for global service events and update lookup events, see [Viewing CloudTrail events with the AWS CLI](view-cloudtrail-events-cli.md) and [Using update\-trail](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md)\. 
 
-For most services, events are recorded in the region where the action occurred\. For global services such as AWS Identity and Access Management \(IAM\), AWS STS, and Amazon CloudFront, events are delivered to any trail that includes global services\.
+For most services, events are recorded in the Region where the action occurred\. For global services such as AWS Identity and Access Management \(IAM\), AWS STS, and Amazon CloudFront, events are delivered to any trail that includes global services\.
 
-For most global services, events are logged as occurring in US East \(N\. Virginia\) Region, but some global service events are logged as occurring in other regions, such as US East \(Ohio\) Region or US West \(Oregon\) Region\.
+For most global services, events are logged as occurring in US East \(N\. Virginia\) Region, but some global service events are logged as occurring in other Regions, such as US East \(Ohio\) Region or US West \(Oregon\) Region\.
 
 To avoid receiving duplicate global service events, remember the following:
 + Global service events are delivered by default to trails that are created using the CloudTrail console\. Events are delivered to the bucket for the trail\.
-+ If you have multiple single region trails, consider configuring your trails so that global service events are delivered in only one of the trails\. For more information, see [Enabling and disabling global service event logging](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-gses)\. 
-+ If you change the configuration of a trail from logging all regions to logging a single region, global service event logging is turned off automatically for that trail\. Similarly, if you change the configuration of a trail from logging a single region to logging all regions, global service event logging is turned on automatically for that trail\. 
++ If you have multiple single Region trails, consider configuring your trails so that global service events are delivered in only one of the trails\. For more information, see [Enabling and disabling global service event logging](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-gses)\. 
++ If you change the configuration of a trail from logging all Regions to logging a single Region, global service event logging is turned off automatically for that trail\. Similarly, if you change the configuration of a trail from logging a single Region to logging all Regions, global service event logging is turned on automatically for that trail\. 
 
   For more information about changing global service event logging for a trail, see [Enabling and disabling global service event logging](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-gses)\.
 
@@ -248,9 +253,9 @@ To avoid receiving duplicate global service events, remember the following:
 
 1. You create a trail in the CloudTrail console\. By default, this trail logs global service events\.
 
-1. You have multiple single region trails\.
+1. You have multiple single Region trails\.
 
-1. You do not need to include global services for the single region trails\. Global service events are delivered for the first trail\. For more information, see [Creating, updating, and managing trails with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)\.
+1. You do not need to include global services for the single Region trails\. Global service events are delivered for the first trail\. For more information, see [Creating, updating, and managing trails with the AWS Command Line Interface](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.md)\.
 
 **Note**  
 When you create or update a trail with the AWS CLI, AWS SDKs, or CloudTrail API, you can specify whether to include or exclude global service events for trails\. You cannot configure global service event logging from the CloudTrail console\.

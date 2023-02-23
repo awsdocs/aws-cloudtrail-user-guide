@@ -275,7 +275,7 @@ The following is the valid SQL schema for Audit Manager evidence record fields\.
 **Note**  
 Currently, you can log activity events from non\-AWS events in all commercial AWS Regions supported by CloudTrail Lake except: me\-central\-1\. For information about CloudTrail Lake supported Regions, see [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)\. 
 
-The following is the valid SQL schema for non\-AWS events\. For non\-AWS events, the value of `eventcategory` is `ActivityLog`, and the value of `eventtype` is `ActivityAuditLog`\.
+The following is the valid SQL schema for non\-AWS events\. For non\-AWS events, the value of `eventcategory` is `ActivityAuditLog`, and the value of `eventtype` is `ActivityLog`\.
 
 ```
 [

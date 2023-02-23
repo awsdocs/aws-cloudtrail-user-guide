@@ -6,7 +6,7 @@ You can configure an organization trail in multiple ways\. For example, you can 
 + By default, when you create a trail in the console, the trail logs all AWS Regions\. As a best practice, we strongly recommend logging events in all Regions in your AWS account\. To create a trail for a single Region, [use the AWS CLI](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single)\. For more information, see [How CloudTrail works](how-cloudtrail-works.md)\.
 + Specify whether to apply the trail to your organization\. By default, trails aren't applied to organizations\. You must choose this option to create an organization trail\.
 + Specify which Amazon S3 bucket that receives log files for the organization trail\. You can choose an existing Amazon S3 bucket, or create one specifically for the organization trail\. 
-+ For management and data events, specify if you want to log **Read** events, **Write** events, or both\. [CloudTrail Insights](logging-insights-events-with-cloudtrail.md) only logs management events\. You must also specify logging **Write** management events\. You can specify logging data events for resources in the management account by choosing them from the lists in the console\. For member accounts, you can log events for their resources if you specify the ARNs of each resource you want to enable data event logging for\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
++ For management and data events, specify if you want to log **Read** events, **Write** events, or both\. [CloudTrail Insights](logging-insights-events-with-cloudtrail.md) events are logged only on management events\. You can specify logging data events for resources in the management account by choosing them from the lists in the console, and in member accounts if you specify the ARNs of each resource for which you want to enable data event logging\. For more information, see [Data events](logging-data-events-with-cloudtrail.md#logging-data-events)\.
 
 **To create an organization trail with the AWS Management Console**
 
@@ -121,6 +121,14 @@ If you have more than 15,000 Lambda functions in your account, you cannot view o
       ```
 
       To add another table, choose **Add row**, and browse for a table or paste in the ARN of a table to which you have access\.
+
+1. Choose **Insights events** if you want your trail to log CloudTrail Insights events\.
+
+   In **Event type**, select **Insights events**\. In **Insights events**, choose **API call rate**, **API error rate**, or both\. You must be logging **Write** management events to log Insights events for **API call rate**\. You must be logging **Read** or **Write** management events to log Insights events for **API error rate**\.
+
+   CloudTrail Insights analyzes management events for unusual activity, and logs events when anomalies are detected\. By default, trails don't log Insights events\. For more information about Insights events, see [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md)\. Additional charges apply for logging Insights events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
+
+   Insights events are delivered to a different folder named `/CloudTrail-Insight`of the same S3 bucket that is specified in the **Storage location** area of the trail details page\. CloudTrail creates the new prefix for you\. For example, if your current destination S3 bucket is named `S3bucketName/AWSLogs/CloudTrail/`, the S3 bucket name with a new prefix is named `S3bucketName/AWSLogs/CloudTrail-Insight/`\.
 
 1. When you are finished choosing event types to log, choose **Next**\.
 

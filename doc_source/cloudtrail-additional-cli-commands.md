@@ -193,6 +193,9 @@ In addition to the fields shown in the preceding JSON code, the status contains 
 
 Enable Insights events on a trail by running the put\-insight\-selectors, and specifying `ApiCallRateInsight`, `ApiErrorRateInsight`, or both as the value of the `InsightType` attribute\. To view the Insights selector settings for a trail, run the `get-insight-selectors` command\. You must either run this command from the AWS Region where the trail was created \(the Home Region\), or you must specify that Region by adding the \-\-region parameter to the command\.
 
+**Note**  
+ To log Insights events for `ApiCallRateInsight`, the trail must log `write` management events\. To log Insights events for `ApiErrorRateInsight`, the trail must log `read` or `write` management events\. 
+
 ### Example trail that logs Insights events<a name="configuring-insights-selector-example"></a>
 
 The following example uses put\-insight\-selectors to create an Insights event selector for a trail named *TrailName3*\. This enables Insights event collection for the *TrailName3* trail\. The Insights event selector logs both `ApiErrorRateInsight` and `ApiCallRateInsight` Insights event types\.
@@ -262,7 +265,9 @@ The following example returns the default settings for an event selector for a t
 }
 ```
 
-To create an event selector, run the `put-event-selectors` command\. When an event occurs in your account, CloudTrail evaluates the configuration for your trails\. If the event matches any event selector for a trail, the trail processes and logs the event\. You can configure up to 5 event selectors for a trail and up to 250 data resources for a trail\. For more information, see [Logging data events](logging-data-events-with-cloudtrail.md)\.
+To create an event selector, run the `put-event-selectors` command\. If you want to log Insights events on the trail, be sure the event selector enables logging of the Insights types you want configured your trail\. For more information about logging Insights events, see [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md)\. 
+
+When an event occurs in your account, CloudTrail evaluates the configuration for your trails\. If the event matches any event selector for a trail, the trail processes and logs the event\. You can configure up to 5 event selectors for a trail and up to 250 data resources for a trail\. For more information, see [Logging data events](logging-data-events-with-cloudtrail.md)\.
 
 **Topics**
 + [Example trail with specific event selectors](#configuring-event-selector-example1)
@@ -451,7 +456,7 @@ aws cloudtrail put-event-selectors --trail-name TrailName --event-selectors '[{"
 
 To use advanced event selectors to include or exclude data events instead of basic event selectors, use advanced event selectors on a trail's details page\. Advanced event selectors let you log data events on more resource types than basic event selectors\. Basic selectors log S3 object activity, AWS Lambda function execution activity, and DynamoDB tables\. 
 
-In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, `PutAuditEvents` calls on CloudTrail Lake channels, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Kendra rescore execution plans, and Amazon Cognito identity pools\.
+In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, `PutAuditEvents` calls on CloudTrail Lake channels, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Kendra rescore execution plans, Amazon Cognito identity pools, and Amazon EC2 instance connect endpoints\.
 
  For more information advanced event selectors, see [Configuring advanced event selectors](#configuring-adv-event-selector-examples)\.
 
@@ -614,7 +619,7 @@ The example returns the advanced event selectors that are configured for the tra
 
 ### Example trail that uses custom advanced event selectors to log all management and data events<a name="configuring-adv-event-selector-logall"></a>
 
-The following example creates advanced event selectors for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all S3 buckets, Lambda functions, DynamoDB tables, PutAuditEvents calls on CloudTrail Lake channels, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Kendra rescore execution plans, and Amazon Cognito identity pools\.
+The following example creates advanced event selectors for a trail named *TrailName2* that includes all events, including read\-only and write\-only management events, and all data events for all S3 buckets, Lambda functions, DynamoDB tables, PutAuditEvents calls on CloudTrail Lake channels, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Kendra rescore execution plans, Amazon Cognito identity pools, and Amazon EC2 Instance Connect endpoints\.
 
 **Note**  
 If the trail applies only to one Region, only events in that Region are logged, even though the event selector parameters specify all Amazon S3 buckets and Lambda functions\. In a single\-region trail, event selectors apply only to the Region where the trail is created\.
@@ -731,14 +736,14 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
     "Name": "Log all events for Amazon Kendra Intelligent Ranking rescore execution plans",
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
-      { "Field": "resources.type", "Equals": ["AWS::Cognito::IdentityPool"] }
+      { "Field": "resources.type", "Equals": ["AWS::KendraRanking::ExecutionPlan"] }
     ]
   },
   {
     "Name": "Log all events for Amazon Cognito identity pools",
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
-      { "Field": "resources.type", "Equals": ["AWS::KendraRanking::ExecutionPlan"] }
+      { "Field": "resources.type", "Equals": ["AWS::Cognito::IdentityPool"] }
     ]
   }
 ]'
@@ -1116,6 +1121,23 @@ The example returns the advanced event selectors configured for the trail\.
                     "Field": "resources.type",
                     "Equals": [
                         "AWS::Cognito::IdentityPool"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for Amazon EC2 Instance Connect endpoints",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::EC2::InstanceConnectEndpoint"
                     ]
                 }
             ]

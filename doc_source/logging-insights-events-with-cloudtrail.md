@@ -1,10 +1,13 @@
 # Logging Insights events for trails<a name="logging-insights-events-with-cloudtrail"></a>
 
-AWS CloudTrail Insights helps AWS users identify and respond to unusual activity associated with `write` API calls by continuously analyzing CloudTrail management events\.
+AWS CloudTrail Insights helps AWS users identify and respond to unusual activity associated with API calls and API error rates by continuously analyzing CloudTrail management events\. CloudTrail Insights analyzes your normal patterns of API call volume and API error rates, also called the *baseline*, and generates Insights events when the call volume or error rates are outside normal patterns\. Insights events on API call volume are generated for `write` management APIs, and Insights events on API error rate are generated for both `read` and `write` management APIs\.
 
-Insights events are logged when CloudTrail detects unusual `write` management API activity in your account\. If you have CloudTrail Insights enabled and CloudTrail detects unusual activity, Insights events are delivered to the destination S3 bucket for your trail\. You can also see the type of insight and the incident time period when you view Insights events on the CloudTrail console\. Unlike other types of events captured in a CloudTrail trail, Insights events are logged only when CloudTrail detects changes in your account's API usage that differ significantly from the account's typical usage patterns\.
+**Note**  
+To log Insights events on API call volume, the trail must log `write` management events\. To log Insights events on API error rate, the trail must log `read` or `write` management events\. 
 
-CloudTrail Insights continuously monitors CloudTrail `write` management events, and uses mathematical models to determine the normal levels of API event and error rate activity for an account\. CloudTrail Insights identifies behavior that is outside normal patterns, generates Insights events, and delivers those events to a `/CloudTrail-Insight` folder in the chosen destination S3 bucket for your trail\. You can also access and view Insights events in the AWS Management Console for CloudTrail\. For more information about how to access and view Insights events in the console and by using the AWS CLI, see [Viewing CloudTrail Insights events](view-insights-events.md) in this guide\.
+If you have CloudTrail Insights enabled and CloudTrail detects unusual activity, Insights events are delivered to the destination S3 bucket for your trail\. You can also see the type of insight and the incident time period when you view Insights events on the CloudTrail console\. Unlike other types of events captured in a CloudTrail trail, Insights events are logged only when CloudTrail detects changes in your account's API usage that differ significantly from the account's typical usage patterns\.
+
+CloudTrail Insights continuously monitors CloudTrail management events, and uses mathematical models to determine the normal levels of API event and error rate activity for an account\. CloudTrail Insights identifies behavior that is outside normal patterns, generates Insights events, and delivers those events to a `/CloudTrail-Insight` folder in the chosen destination S3 bucket for your trail\. You can also access and view Insights events in the AWS Management Console for CloudTrail\. For more information about how to access and view Insights events in the console and by using the AWS CLI, see [Viewing CloudTrail Insights events](view-insights-events.md) in this guide\.
 
 By default, trails log management events and don't include data events or Insights events\. Additional charges apply for data and Insights events\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
@@ -25,7 +28,7 @@ When an event occurs in your account, CloudTrail evaluates whether the event mat
 
 ## Understanding CloudTrail Insights<a name="insights-events-understanding"></a>
 
-CloudTrail Insights can help you detect unusual API volume or error rate activity in your AWS account by raising Insights events\. CloudTrail Insights measures your normal patterns of API call volume and API error rates, also called the *baseline*, and generates Insights events when the call volume or error rates are outside normal patterns\. Insights events on API call volume are generated for `write` management APIs, and Insights events on API error rate are generated for both `read` and `write` management APIs\.
+CloudTrail Insights can help you detect unusual API volume or error rate activity in your AWS account by raising Insights events\. CloudTrail Insights analyzes your normal patterns of API call volume and API error rates, also called the *baseline*, and generates Insights events when the call volume or error rates are outside normal patterns\. Insights events on API call volume are generated for `write` management APIs, and Insights events on API error rate are generated for both `read` and `write` management APIs\.
 
 After you enable CloudTrail Insights for the first time on a trail, it can take up to 36 hours for CloudTrail to deliver the first Insights event, if unusual activity is detected\. CloudTrail Insights analyzes management events that occur in a single Region, not globally\. A CloudTrail Insights event is generated in the same Region as its supporting management events are generated\.
 
@@ -43,7 +46,7 @@ On the **Insights graph** tab, the details page for an Insights event shows a gr
 
 In this example, a vertical highlighting band shows unusual numbers of AWS Systems Manager `SendCommand` API calls in an account\. In the highlighted area, because the number of `SendCommand` calls rose above the account's baseline average of 0\.0442 calls per minute, CloudTrail logged an Insights event when it detected the unusual activity\. The Insights event recorded that as many as 15 `SendCommand` calls were made in a five\-minute period between 5:50 and 5:55 a\.m\. This is about two more calls to that API per minute than is expected for the account\. In this example, the graph's time span is three hours: 4:30 a\.m\. PDT on July 15, 2021 to 7:30 a\.m\. PDT on July 15, 2021\. This event has a start time of 6:00 a\.m\. PDT on July 15, 2021, and an end time two minutes later\. An ending Insights event, not highlighted, shows that the unusual activity ended at about 6:16 a\.m\.
 
-The baseline is calculated over the seven days preceding the start of an Insights event\. Though the value of the baseline duration—the period that CloudTrail measures for normal activity on APIs—is approximately seven days, CloudTrail rounds the baseline duration to a whole integer day, so the exact baseline duration can vary\.
+The baseline is calculated over the seven days preceding the start of an Insights event\. Though the value of the baseline duration—the period that CloudTrail analyzes for normal activity on APIs—is approximately seven days, CloudTrail rounds the baseline duration to a whole integer day, so the exact baseline duration can vary\.
 
 ![\[A CloudTrail Insights detail page showing unusual API activity that was logged as an Insights event.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/insights_event_callrate_view.png)
 
@@ -98,9 +101,9 @@ Enable CloudTrail Insights events on an existing trail\. By default, Insights ev
 **Note**  
 Additional charges apply for logging Insights events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
-1. In **Event type**, choose **Insights events**\. You must be logging **Write** management events to log Insights events\.
+1. In **Event type**, choose **Insights events**\.
 
-1. In **Insights events**, under **Choose Insights types**, choose **API call rate**, **API error rate**, or both\.
+1. In **Insights events**, under **Choose Insights types**, choose **API call rate**, **API error rate**, or both\. Your trail must be logging **Write** management events to log Insights events for **API call rate**\. Your trail must be logging **Read** or **Write** management events to log Insights events for **API error rate**\.
 
 1. Choose **Save changes** to save your changes\.
 
@@ -109,6 +112,9 @@ It can take up to 36 hours for CloudTrail to deliver the first Insights events, 
 ## Logging Insights events with the AWS Command Line Interface<a name="insights-events-CLI-enable"></a>
 
 You can configure your trails to log Insights events using the AWS CLI\.
+
+**Note**  
+ To log Insights events on API call volume, the trail must log `write` management events\. To log Insights events on API error rate, the trail must log `read` or `write` management events\. 
 
 To view whether your trail is logging Insights events, run the `get-insight-selectors` command\.
 

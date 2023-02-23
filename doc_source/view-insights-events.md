@@ -4,6 +4,9 @@ After you enable CloudTrail Insights on a trail, you can view up to 90 days of I
 
 For information about how to create a trail, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Getting and viewing your CloudTrail log files](get-and-view-cloudtrail-log-files.md)\.
 
+**Note**  
+ To log Insights events on API call volume, the trail must log `write` management events\. To log Insights events on API error rate, the trail must log `read` or `write` management events\. 
+
 **Topics**
 + [Viewing CloudTrail Insights events in the CloudTrail console](view-insights-events-console.md)
 + [Viewing CloudTrail Insights events with the AWS CLI](view-insights-events-cli.md)

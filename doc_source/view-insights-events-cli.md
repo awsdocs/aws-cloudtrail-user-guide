@@ -29,6 +29,7 @@ For general information about using the AWS Command Line Interface, see the [AWS
 + To run AWS CLI commands, you must install the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 + Make sure your AWS CLI version is greater than 1\.6\.6\. To verify the CLI version, run aws \-\-version on the command line\.
 + To set the account, Region, and default output format for an AWS CLI session, use the aws configure command\. For more information, see [ Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
++  To log Insights events on API call volume, the trail must log `write` management events\. To log Insights events on API error rate, the trail must log `read` or `write` management events\. 
 
 **Note**  
 The CloudTrail AWS CLI commands are case\-sensitive\.

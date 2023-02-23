@@ -2,10 +2,12 @@
 
 The following table describes the important changes to the documentation for AWS CloudTrail\. For notification about updates to this documentation, you can subscribe to an RSS feed\.
 + **API version**: 2013\-11\-01
-+ **Latest documentation update**: 2023\-02\-15
++ **Latest documentation update**: 2023\-02\-22
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Added functionality](#cloudtrail-document-history) | You can now log CloudTrail data events on Amazon EC2 Instance Connect endpoints by using advanced event selectors\. For more information, see [Logging data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\. | February 22, 2023 | 
+| [Added service support](#cloudtrail-document-history) | This release supports AWS Telco Network Builder \(AWS TNB\)\. For more information, see [CloudTrail supported services and integrations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html) and [Logging AWS Telco Network Builder API calls using AWS CloudTrail](https://docs.aws.amazon.com/tnb/latest/ug/logging-using-cloudtrail.html)\. | February 21, 2023 | 
 | [Added functionality](#cloudtrail-document-history) | You can now log CloudTrail data events on Amazon Cognito identity pools by using advanced event selectors\. For more information, see [Logging data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\. | February 15, 2023 | 
 | [Updated documentation](#cloudtrail-document-history) | Added new section about the learning resources available for CloudTrail Lake\. For more information, see [Learning resources](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/lake-learning-resources.html)\. | February 9, 2023 | 
 | [Added functionality](#cloudtrail-document-history) | You can now create CloudTrail Lake integrations with event sources outside of AWS\. You can log and store user activity data from any source in your hybrid environments, such as in\-house or SaaS applications hosted on\-premises or in the cloud, virtual machines, or containers\. For more information, see [Create an integration with an event source outside of AWS](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store-integration.html)\. | January 31, 2023 | 

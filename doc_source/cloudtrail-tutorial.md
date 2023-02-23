@@ -16,7 +16,7 @@ Before you begin, you must complete the following prerequisites and setup\.
 **Topics**
 + [Sign up for an AWS account](#sign-up-for-aws)
 + [Create an administrative user](#create-an-admin)
-+ [Grant permissions to use the CloudTrail console](#w77aab8b7c21)
++ [Grant permissions to use the CloudTrail console](#w78aab8b7c21)
 
 ### Sign up for an AWS account<a name="sign-up-for-aws"></a>
 
@@ -58,7 +58,7 @@ After you sign up for an AWS account, create an administrative user so that you 
 
   For help signing in using an IAM Identity Center user, see [Signing in to the AWS access portal](https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html) in the *AWS Sign\-In User Guide*\.
 
-### Grant permissions to use the CloudTrail console<a name="w77aab8b7c21"></a>
+### Grant permissions to use the CloudTrail console<a name="w78aab8b7c21"></a>
 
 Grant permissions to use the CloudTrail console\. For more information, see [Granting permissions for CloudTrail administration](security_iam_id-based-policy-examples.md#grant-permissions-for-cloudtrail-administration)\.
 
@@ -68,10 +68,9 @@ CloudTrail is enabled on your AWS account when you create the account\. When act
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1. Review the information in your dashboard about the most recent events that have occurred in your AWS account\. A recent event should be a `ConsoleLogin` event, showing that you just signed in to the AWS Management Console\.  
-![\[The CloudTrail dashboard showing recent events\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cloudtrail-dashboard.png)
+1. In the navigation pane, choose **Dashboard**\. Review the information in your dashboard about the most recent events that have occurred in your AWS account\. A recent event should be a `ConsoleLogin` event, showing that you just signed in to the AWS Management Console\.
 
-1. To see more information about an event, expand it\.  
+1. To see more information about an event in your dashboard, expand it\.  
 ![\[The CloudTrail dashboard showing expanded information about an event\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/cloudtrail-dashboard-expand-event.png)
 
 1. In the navigation pane, choose **Event history**\. You see a filtered list of events, with the most recent events showing first\. The default filter for events is **Read only**, set to **false**\. You can clear that filter by choosing **X** at the right of the filter\.  

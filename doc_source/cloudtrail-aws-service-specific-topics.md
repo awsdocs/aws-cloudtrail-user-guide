@@ -215,6 +215,7 @@ You can learn more about how the events for individual AWS services are recorded
 | AWS Support |  [Logging AWS Support API Calls with AWS CloudTrail](https://docs.aws.amazon.com/awssupport/latest/user/logging-using-cloudtrail.html)  | 04/21/2016 | 
 | AWS Systems Manager | [Logging AWS Systems Manager API Calls with AWS CloudTrail](https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-cloudtrail-logs.html) | 11/13/2013 | 
 | AWS Systems Manager Incident Manager | [Logging AWS Systems Manager Incident Manager API calls using AWS CloudTrail](https://docs.aws.amazon.com/incident-manager/latest/userguide/logging-using-cloudtrail.html) | 05/10/2021 | 
+| AWS Telco Network Builder \(AWS TNB\)  | [Logging AWS Telco Network Builder API calls using AWS CloudTrail](https://docs.aws.amazon.com/tnb/latest/ug/logging-using-cloudtrail.html) | 02/21/2023 | 
 | Amazon Textract | [Logging Amazon Textract API Calls with AWS CloudTrail](https://docs.aws.amazon.com/textract/latest/dg/logging-using-cloudtrail.html) | 05/29/2019 | 
 | Amazon Transcribe | [Logging Amazon Transcribe API Calls with AWS CloudTrail](https://docs.aws.amazon.com/transcribe/latest/dg/monitoring-transcribe-cloud-trail.html) | 06/28/2018 | 
 | AWS Transfer for SFTP | [Logging AWS Transfer for SFTP API Calls with AWS CloudTrail](https://docs.aws.amazon.com/transfer/latest/userguide/logging-using-cloudtrail.html) | 01/08/2019 | 

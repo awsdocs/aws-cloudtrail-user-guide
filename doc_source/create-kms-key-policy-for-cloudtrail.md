@@ -170,7 +170,7 @@ The following is an example policy that is required to allow the CloudTrail serv
       "Principal": {
           "Service": "cloudtrail.amazonaws.com"
         },
-      "Action": "kms:Decrypt"
+      "Action": "kms:Decrypt",
       "Resource": "*"
 }
 ```
@@ -201,7 +201,7 @@ The following is an example policy that is required to allow the CloudTrail serv
       "Principal": {
           "Service": "cloudtrail.amazonaws.com"
         },
-      "Action": "kms:Decrypt"
+      "Action": "kms:Decrypt",
       "Resource": "*"
 }
 ```
@@ -328,7 +328,7 @@ KMS key policy statement:
  "Version": "2012-10-17",
  "Statement": [
    {
-     "Sid": "",
+     "Sid": "Allow CloudTrail access",
      "Effect": "Allow",
      "Principal": {
        "AWS": "arn:aws:iam::222222222222:root"

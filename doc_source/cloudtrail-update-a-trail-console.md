@@ -124,7 +124,9 @@ If you have more than 15,000 Lambda functions in your account, you cannot view o
 
 1. In **Insights events** choose **Edit** if you want your trail to log CloudTrail Insights events\.
 
-   In **Event type**, select **Insights events**\. You must be logging **Write** management events to log Insights events\. In **Insights events**, choose **API call rate**, **API error rate**, or both\. You must be logging **Write** management events to log Insights events\.
+   In **Event type**, select **Insights events**\. 
+
+    In **Insights events**, choose **API call rate**, **API error rate**, or both\. You must be logging **Write** management events to log Insights events for **API call rate**\. You must be logging **Read** or **Write** management events to log Insights events for **API error rate**\.
 
    CloudTrail Insights analyzes management events for unusual activity, and logs events when anomalies are detected\. By default, trails don't log Insights events\. For more information about Insights events, see [Logging Insights events for trails](logging-insights-events-with-cloudtrail.md)\. Additional charges apply for logging Insights events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
@@ -167,6 +169,7 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::CloudTrail::Channel`
         + `AWS::Cognito::IdentityPool`
         + `AWS::DynamoDB::Stream`
+        + `AWS::EC2::InstanceConnectEndpoint`
         + `AWS::EC2::Snapshot`
         + `AWS::Glue::Table`
         + `AWS::FinSpace::Environment`
