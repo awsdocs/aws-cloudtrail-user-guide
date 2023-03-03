@@ -16,7 +16,7 @@ Before you begin, you must complete the following prerequisites and setup\.
 **Topics**
 + [Sign up for an AWS account](#sign-up-for-aws)
 + [Create an administrative user](#create-an-admin)
-+ [Grant permissions to use the CloudTrail console](#w78aab8b7c21)
++ [Grant permissions to use the CloudTrail console](#w87aab8b7c21)
 
 ### Sign up for an AWS account<a name="sign-up-for-aws"></a>
 
@@ -58,7 +58,7 @@ After you sign up for an AWS account, create an administrative user so that you 
 
   For help signing in using an IAM Identity Center user, see [Signing in to the AWS access portal](https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html) in the *AWS Sign\-In User Guide*\.
 
-### Grant permissions to use the CloudTrail console<a name="w78aab8b7c21"></a>
+### Grant permissions to use the CloudTrail console<a name="w87aab8b7c21"></a>
 
 Grant permissions to use the CloudTrail console\. For more information, see [Granting permissions for CloudTrail administration](security_iam_id-based-policy-examples.md#grant-permissions-for-cloudtrail-administration)\.
 

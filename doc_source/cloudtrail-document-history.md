@@ -2,7 +2,7 @@
 
 The following table describes the important changes to the documentation for AWS CloudTrail\. For notification about updates to this documentation, you can subscribe to an RSS feed\.
 + **API version**: 2013\-11\-01
-+ **Latest documentation update**: 2023\-02\-22
++ **Latest documentation update**: 2023\-03\-01
 
 | Change | Description | Date | 
 | --- |--- |--- |

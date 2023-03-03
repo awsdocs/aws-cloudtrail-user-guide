@@ -5,6 +5,11 @@ Follow the procedure to create a trail that applies to all Regions\. A trail tha
 **Note**  
 After you create a trail, you can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.
 
+**Topics**
++ [Creating a trail in the console \(basic event selectors\)](#creating-a-trail-in-the-console)
++ [Creating a trail in the console \(advanced event selectors\)](#creating-a-trail-in-the-console-adv)
++ [Next steps](#cloudtrail-create-a-trail-using-the-console-first-time-next-steps)
+
 ## Creating a trail in the console \(basic event selectors\)<a name="creating-a-trail-in-the-console"></a>
 
 In the console, you create a trail that logs events in all AWS Regions [that you have enabled](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html)\. This is a recommended best practice\. To log events in a single region \(not recommended\), [use the AWS CLI](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-create-trail.md#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-examples-single)\.

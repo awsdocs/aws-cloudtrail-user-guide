@@ -635,7 +635,7 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
     ]
   },
   {
-    "Name": "Log all events for all buckets",
+    "Name": "Log all events for all Amazon S3 buckets",
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::S3::Object"] }
@@ -656,14 +656,14 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
     ]
   },
   {
-    "Name": "Log all PutAuditEvents events on CloudTrail Lake channels",
+    "Name": "Log all CloudTrail PutAuditEvents activity on a CloudTrail Lake channel,
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::CloudTrail::Channel"] }
     ]
   },
   {
-    "Name": "Log all events for S3 on Outposts",
+    "Name": "Log all events for Amazon S3 on Outposts",
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::S3Outposts::Object"] }
@@ -691,7 +691,7 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
     ]
   },
   {
-    "Name": "Log all events for S3 access points",
+    "Name": "Log all events for Amazon S3 access points",
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::S3::AccessPoint"] }
@@ -729,7 +729,7 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
     "Name": "Log all events for SageMaker feature stores",
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
-      { "Field": "resources.type", "Equals": ["AWS::SageMaker::AWS::SageMaker::FeatureGroup"] }
+      { "Field": "resources.type", "Equals": ["AWS::SageMaker::FeatureGroup"] }
     ]
   },
   {
@@ -745,6 +745,13 @@ aws cloudtrail put-event-selectors --trail-name TrailName2 \
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::Cognito::IdentityPool"] }
     ]
+  },
+  {
+    "Name": "Log all events for Amazon EC2 Instance Connect endpoints",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::EC2::InstanceConnectEndpoint"] }
+    ]
   }
 ]'
 ```
@@ -756,342 +763,255 @@ The example returns the advanced event selectors configured for the trail\.
   "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName2",
   "AdvancedEventSelectors": [
     {
-      "Name": "Log readOnly and writeOnly management events",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Management" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
+            "Name": "Log readOnly and writeOnly management events",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory", 
+                    "Equals": [ 
+                        "Management" 
+                    ]
+                }
+            ]
     },
     {
-      "Name": "Log all events for all buckets",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for all Amazon S3 buckets",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::S3::Object"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type", 
-          "Equals": [ "AWS::S3::Object" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for Lambda functions",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for Lambda functions",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::Lambda::Function"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type", 
-          "Equals": [ "AWS::Lambda::Function" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for DynamoDB tables",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for DynamoDB tables",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::DynamoDB::Table"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type", 
-          "Equals": [ "AWS::DynamoDB::Table" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },    
-    {
-      "Name": "Log all PutAuditEvents events on CloudTrail Lake channels",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all CloudTrail PutAuditEvents activity on a CloudTrail Lake channel",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::CloudTrail::Channel"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type", 
-          "Equals": [ "AWS::CloudTrail::Channel" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for S3 on Outposts",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for Amazon S3 on Outposts",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::S3Outposts::Object"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type", 
-          "Equals": [ "AWS::S3Outposts::Object" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all JSON-RPC call events for Ethereum on Managed Blockchain nodes",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all JSON-RPC calls for Ethereum nodes in Amazon Managed Blockchain",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::ManagedBlockchain::Node"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type", 
-          "Equals": [ "AWS::ManagedBlockchain::Node" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for Amazon S3 Object Lambda access points",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for Amazon S3 Object Lambda access points",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::S3ObjectLambda::AccessPoint"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type", 
-          "Equals": [ "AWS::S3ObjectLambda::AccessPoint" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all Amazon EBS direct API calls on snapshots",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all Amazon EBS direct API calls on snapshots",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::EC2::Snapshot"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type", 
-          "Equals": [ "AWS::EC2::Snapshot" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for S3 access points",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for Amazon S3 access points",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::S3::AccessPoint"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type", 
-          "Equals": [ "AWS::S3::AccessPoint" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for DynamoDB streams",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory",
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for DynamoDB streams",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::DynamoDB::Stream"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type",
-          "Equals": [ "AWS::DynamoDB::Stream" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for AWS Glue tables created by Lake Formation",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory",
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for AWS Glue tables created by Lake Formation",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::Glue::Table"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type",
-          "Equals": [ "AWS::Glue::Table" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for FinSpace environments",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory",
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for FinSpace environments",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::FinSpace::Environment"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type",
-          "Equals": [ "AWS::FinSpace::Environment" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for SageMaker metrics experiment trial components",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory",
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for SageMaker metrics experiment trial components",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::SageMaker::ExperimentTrialComponent"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type",
-          "Equals": [ "AWS::SageMaker::ExperimentTrialComponent" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
-      "Name": "Log all events for SageMaker feature stores",
-      "FieldSelectors": [
-        {
-          "Field": "eventCategory",
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+            "Name": "Log all events for SageMaker feature stores",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::SageMaker::FeatureGroup"
+                    ]
+                }
+            ]
         },
         {
-          "Field": "resources.type",
-          "Equals": [ "AWS::SageMaker::FeatureGroup" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
-        }
-      ]
-    },
-    {
             "Name": "Log all events for Amazon Kendra Intelligent Ranking rescore execution plans",
             "FieldSelectors": [
                 {

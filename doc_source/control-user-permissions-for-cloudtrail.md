@@ -1,8 +1,9 @@
 # Controlling user permissions for CloudTrail<a name="control-user-permissions-for-cloudtrail"></a>
 
-AWS CloudTrail integrates with AWS Identity and Access Management \(IAM\) to help you to control access to CloudTrail and other AWS resources that CloudTrail requires\. Examples of these resources include Amazon S3 buckets and Amazon Simple Notification Service \(Amazon SNS\) topics\. You can use IAM to control which AWS users can create, configure, or delete AWS CloudTrail trails, event data stores, or channels, start and stop logging, and access the buckets that contain log information\. To learn more, see [Identity and Access Management for AWS CloudTrail](security-iam.md)\.
+AWS CloudTrail integrates with AWS Identity and Access Management \(IAM\) to help you to control access to CloudTrail and other AWS resources that CloudTrail requires\. Examples of these resources include Amazon S3 buckets and Amazon Simple Notification Service \(Amazon SNS\) topics\. You can use IAM to control which AWS users can create, configure, or delete CloudTrail trails, event data stores, or channels, start and stop logging, and access the buckets that contain log information\. To learn more, see [Identity and Access Management for AWS CloudTrail](security-iam.md)\.
 
-The following topics can help you understand permissions, policies, and CloudTrail security:
+The following topics help you understand permissions, policies, and CloudTrail security:
++ [Granting permissions for CloudTrail administration](security_iam_id-based-policy-examples.md#grant-permissions-for-cloudtrail-administration)
 + [Amazon S3 bucket naming requirements](cloudtrail-s3-bucket-naming-requirements.md)
 + [Amazon S3 bucket policy for CloudTrail](create-s3-bucket-policy-for-cloudtrail.md)
 + [Amazon S3 bucket policy for CloudTrail Lake query results](s3-bucket-policy-lake-query-results.md)

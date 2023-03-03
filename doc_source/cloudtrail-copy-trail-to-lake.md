@@ -29,7 +29,7 @@ Consider the following factors when copying trail events\.
 
 ## Required permissions for copying trail events<a name="cloudtrail-copy-trail-events-permissions"></a>
 
-Before copying trial events, ensure you have all the required permissions for your IAM role and the event data store's S3 bucket\. You only need to update the IAM role permissions if you choose an existing IAM role to copy trail events\. If you choose to create a new IAM role, CloudTrail provides all necessary permissions for the role\.
+Before copying trail events, ensure you have all the required permissions for your IAM role and the event data store's S3 bucket\. You only need to update the IAM role permissions if you choose an existing IAM role to copy trail events\. If you choose to create a new IAM role, CloudTrail provides all necessary permissions for the role\.
 
 If the source S3 bucket uses a KMS key for data encryption, ensure that the KMS key policy allows CloudTrail to decrypt data in the bucket\. If the source S3 bucket uses multiple KMS keys, you must update each key's policy to allow CloudTrail to decrypt the data in the bucket\.
 
