@@ -137,10 +137,10 @@ Though you can add tags to trails when you create them in the CloudTrail console
 
 ## Step 3: View your log files<a name="tutorial-step3"></a>
 
-Within an average of about 15 minutes of creating your first trail, CloudTrail delivers the first set of log files to the Amazon S3 bucket for your trail\. You can look at these files and learn about the information they contain\.
+Within an average of about 5 minutes of creating your first trail, CloudTrail delivers the first set of log files to the Amazon S3 bucket for your trail\. You can look at these files and learn about the information they contain\.
 
 **Note**  
-CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
+CloudTrail typically delivers logs within an average of about 5 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
 1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 

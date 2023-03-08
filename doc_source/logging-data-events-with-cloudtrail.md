@@ -49,6 +49,7 @@ Unlike trails, event data stores only use advanced event selectors to specify da
 | Amazon EC2 Instance Connect | advanced | Amazon EC2 Instance connect endpoint | AWS::EC2::InstanceConnectEndpoint | Amazon EC2 Instance Connect API activity on endpoints\. | 
 | Amazon FinSpace | advanced | FinSpace | AWS::FinSpace::Environment | [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments | 
 | AWS Glue | advanced | Lake Formation | AWS::Glue::Table | AWS Glue API activity on tables that were created by Lake Formation  AWS Glue data events for tables are currently supported only in the following regions:   US East \(N\. Virginia\)   US East \(Ohio\)   US West \(Oregon\)   Europe \(Ireland\)   Asia Pacific \(Tokyo\) Region    | 
+| Amazon GuardDuty | advanced | GuardDuty detector | AWS::GuardDuty::Detector | Amazon GuardDuty API activity on detectors\. | 
 | Amazon Kendra Intelligent Ranking | advanced | Kendra Ranking | AWS::KendraRanking::ExecutionPlan | Amazon Kendra Intelligent Ranking API activity on [rescore execution plans](https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html#cloud-trail-intelligent-ranking-log-entry)\. | 
 | Amazon Managed Blockchain | advanced | Managed Blockchain | AWS::ManagedBlockchain::Node | [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`\. | 
 | Amazon SageMaker | advanced | SageMaker feature store | AWS::SageMaker::FeatureGroup | Amazon SageMaker API activity on feature stores | 
@@ -154,7 +155,7 @@ Logging data events for all functions also enables logging of data event activit
 
 1. \(Optional\) Enter a name for your custom log selector template\.
 
-1. In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, `PutAuditEvents` calls on CloudTrail Lake channels, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Kendra rescore execution plans, Amazon Cognito identity pools, and Amazon EC2 instance connect endpoints\.
+1. In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, `PutAuditEvents` calls on CloudTrail Lake channels, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Kendra rescore execution plans, Amazon Cognito identity pools, Amazon EC2 instance connect endpoints, and Amazon GuardDuty detectors\.
 
    1. Choose from the following fields\. For fields that accept an array \(more than one value\), CloudTrail adds an OR between values\.
       + **`readOnly`** \- `readOnly` can be set to **Equals** a value of `true` or `false`\. Read\-only data events are events that do not change the state of a resource, such as `Get*` or `Describe*` events\. Write events add, change, or delete resources, attributes, or artifacts, such as `Put*`, `Delete*`, or `Write*` events\. To log both `read` and `write` events, don't add a `readOnly` selector\.
@@ -169,6 +170,7 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::EC2::InstanceConnectEndpoint`
         + `AWS::EC2::Snapshot`
         + `AWS::Glue::Table`
+        + `AWS::GuardDuty::Detector`
         + `AWS::FinSpace::Environment`
         + `AWS::KendraRanking::ExecutionPlan`
         + `AWS::ManagedBlockchain::Node`
@@ -585,7 +587,7 @@ The command returns the following example output\.
 
 #### Log all data events by using advanced event selectors<a name="creating-data-adv-event-selectors-CLI-all-data"></a>
 
-The following example shows how to configure your trail to include data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Cognito identity pools, Amazon Kendra Intelligent Ranking rescore execution plans, and Amazon EC2 Instance Connect endpoints\.
+The following example shows how to configure your trail to include data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Cognito identity pools, Amazon Kendra Intelligent Ranking rescore execution plans, Amazon EC2 Instance Connect endpoints, and Amazon GuardDuty detectors\.
 
 **Note**  
 If the trail applies only to one Region, only events in that Region are logged, even though the event selector parameters specify all Amazon S3 buckets and Lambda functions\. In a single\-region trail, event selectors apply only to the Region where the trail is created\.
@@ -711,6 +713,13 @@ aws cloudtrail put-event-selectors --trail-name TrailName \
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::EC2::InstanceConnectEndpoint"] }
+    ]
+  },
+  {
+    "Name": "Log all events for Amazon GuardDuty detectors",
+    "FieldSelectors": [
+      { "Field": "eventCategory", "Equals": ["Data"] },
+      { "Field": "resources.type", "Equals": ["AWS::GuardDuty::Detector"] }
     ]
   }
 ]'
@@ -1007,6 +1016,23 @@ The command returns the following example output\.
                     "Field": "resources.type",
                     "Equals": [
                         "AWS::EC2::InstanceConnectEndpoint"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Log all events for Amazon GuardDuty detectors",
+            "FieldSelectors": [
+                {
+                    "Field": "eventCategory",
+                    "Equals": [
+                        "Data"
+                    ]
+                },
+                {
+                    "Field": "resources.type",
+                    "Equals": [
+                        "AWS::GuardDuty::Detector"
                     ]
                 }
             ]

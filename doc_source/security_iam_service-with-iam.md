@@ -56,7 +56,7 @@ To enable cross\-account access, you can specify an entire account or IAM entiti
 CloudTrail supports resource\-based policies on channels used for CloudTrail Lake integrations with event sources outside of AWS\. The resource\-based policy for the channel defines which principal entities \(accounts, users, roles, and federated users\) can call `PutAuditEvents` on the channel to deliver events to the destination event data store\. For more information about creating integrations with CloudTrail Lake, see [Create an integration with an event source outside of AWS](query-event-data-store-integration.md)\. 
 
 **Note**  
-Currently, CloudTrail Lake supports integrations in all commercial AWS Regions where the service is available except for Middle East \(UAE\)\. For information about CloudTrail Lake supported Regions, see [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)\. 
+Currently, CloudTrail Lake supports integrations in all commercial AWS Regions where CloudTrail Lake is available except for Middle East \(UAE\)\. For information about CloudTrail Lake supported Regions, see [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)\. 
 
 ### Examples<a name="security_iam_service-with-iam-resource-based-policies-examples"></a>
 

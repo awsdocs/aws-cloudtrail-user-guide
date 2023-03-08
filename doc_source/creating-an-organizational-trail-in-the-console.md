@@ -134,7 +134,7 @@ If you have more than 15,000 Lambda functions in your account, you cannot view o
 
 1. On the **Review and create** page, review your choices\. Choose **Edit** in a section to change the trail settings shown in that section\. When you are ready to create the trail, choose **Create trail**\.
 
-1. The new trail appears on the **Trails** page\. An organization trail might take up to 24 hours to be created in all regions in all member accounts\. The **Trails** page shows the trails in your account from all regions\. In about 15 minutes, CloudTrail publishes log files that show the AWS API calls made in your organization\. You can see the log files in the Amazon S3 bucket that you specified\.
+1. The new trail appears on the **Trails** page\. An organization trail might take up to 24 hours to be created in all regions in all member accounts\. The **Trails** page shows the trails in your account from all regions\. In about 5 minutes, CloudTrail publishes log files that show the AWS API calls made in your organization\. You can see the log files in the Amazon S3 bucket that you specified\.
 
 **Note**  
 You can't rename a trail after it has been created\. Instead, you can delete the trail and create a new one\.

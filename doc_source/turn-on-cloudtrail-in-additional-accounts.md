@@ -126,9 +126,9 @@ If you have more than 15,000 Lambda functions in your account, you cannot view o
 
 1. On the **Review and create** page, review your choices\. Choose **Edit** in a section to change the trail settings shown in that section\. When you are ready to create the trail, choose **Create trail**\.
 
-1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all Regions\. In about 15 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\. It can take up to 36 hours for CloudTrail to deliver the first Insights event, if you have enabled Insights event logging, and unusual activity is detected\.
+1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all Regions\. In about 5 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\. It can take up to 36 hours for CloudTrail to deliver the first Insights event, if you have enabled Insights event logging, and unusual activity is detected\.
 
-CloudTrail starts publishing log files that show the AWS calls made in your accounts in this region\. CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
+CloudTrail starts publishing log files that show the AWS calls made in your accounts in this region\. CloudTrail typically delivers logs within an average of about 5 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
 ## Using the CLI to turn on CloudTrail in additional AWS accounts<a name="turn-on-cloudtrail-in-additional-accounts-cli"></a>
 

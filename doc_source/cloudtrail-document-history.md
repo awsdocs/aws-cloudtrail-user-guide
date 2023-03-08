@@ -2,10 +2,11 @@
 
 The following table describes the important changes to the documentation for AWS CloudTrail\. For notification about updates to this documentation, you can subscribe to an RSS feed\.
 + **API version**: 2013\-11\-01
-+ **Latest documentation update**: 2023\-03\-01
++ **Latest documentation update**: 2023\-03\-07
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Added functionality](#cloudtrail-document-history) | You can now log CloudTrail data events on Amazon GuardDuty detectors by using advanced event selectors\. For more information, see [Logging data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\. | March 7, 2023 | 
 | [Added functionality](#cloudtrail-document-history) | You can now log CloudTrail data events on Amazon EC2 Instance Connect endpoints by using advanced event selectors\. For more information, see [Logging data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\. | February 22, 2023 | 
 | [Added service support](#cloudtrail-document-history) | This release supports AWS Telco Network Builder \(AWS TNB\)\. For more information, see [CloudTrail supported services and integrations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html) and [Logging AWS Telco Network Builder API calls using AWS CloudTrail](https://docs.aws.amazon.com/tnb/latest/ug/logging-using-cloudtrail.html)\. | February 21, 2023 | 
 | [Added functionality](#cloudtrail-document-history) | You can now log CloudTrail data events on Amazon Cognito identity pools by using advanced event selectors\. For more information, see [Logging data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\. | February 15, 2023 | 

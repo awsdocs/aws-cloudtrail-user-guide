@@ -136,10 +136,10 @@ If you have more than 15,000 Lambda functions in your account, you cannot view o
 
 1. On the **Review and create** page, review your choices\. Choose **Edit** in a section to change the trail settings shown in that section\. When you are ready to create the trail, choose **Create trail**\.
 
-1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all Regions\. In about 15 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\. It can take up to 36 hours for CloudTrail to deliver the first Insights event, if you have enabled Insights event logging, and unusual activity is detected\.
+1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all Regions\. In about 5 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\. It can take up to 36 hours for CloudTrail to deliver the first Insights event, if you have enabled Insights event logging, and unusual activity is detected\.
 
 **Note**  
-CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
+CloudTrail typically delivers logs within an average of about 5 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
 ## Creating a trail in the console \(advanced event selectors\)<a name="creating-a-trail-in-the-console-adv"></a>
 
@@ -241,6 +241,7 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::EC2::InstanceConnectEndpoint`
         + `AWS::EC2::Snapshot`
         + `AWS::Glue::Table`
+        + `AWS::GuardDuty::Detector`
         + `AWS::FinSpace::Environment`
         + `AWS::KendraRanking::ExecutionPlan`
         + `AWS::ManagedBlockchain::Node`
@@ -286,9 +287,9 @@ If you have more than 15,000 Lambda functions in your account, you cannot view o
 
 1. On the **Review and create** page, review your choices\. Choose **Edit** in a section to change the trail settings shown in that section\. When you are ready to create the trail, choose **Create trail**\.
 
-1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all Regions\. In about 15 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\. It can take up to 36 hours for CloudTrail to deliver the first Insights event, if you have enabled Insights event logging, and unusual activity is detected\.
+1. The new trail appears on the **Trails** page\. The **Trails** page shows the trails in your account from all Regions\. In about 5 minutes, CloudTrail publishes log files that show the AWS API calls made in your account\. You can see the log files in the S3 bucket that you specified\. It can take up to 36 hours for CloudTrail to deliver the first Insights event, if you have enabled Insights event logging, and unusual activity is detected\.
 **Note**  
-CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
+CloudTrail typically delivers logs within an average of about 5 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
 ## Next steps<a name="cloudtrail-create-a-trail-using-the-console-first-time-next-steps"></a>
 

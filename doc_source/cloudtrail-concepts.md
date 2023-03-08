@@ -75,6 +75,7 @@ Unlike trails, event data stores only use advanced event selectors to specify da
 | Amazon EC2 Instance Connect | advanced | Amazon EC2 Instance connect endpoint | AWS::EC2::InstanceConnectEndpoint | Amazon EC2 Instance Connect API activity on endpoints\. | 
 | Amazon FinSpace | advanced | FinSpace | AWS::FinSpace::Environment | [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments | 
 | AWS Glue | advanced | Lake Formation | AWS::Glue::Table | AWS Glue API activity on tables that were created by Lake Formation  AWS Glue data events for tables are currently supported only in the following regions:   US East \(N\. Virginia\)   US East \(Ohio\)   US West \(Oregon\)   Europe \(Ireland\)   Asia Pacific \(Tokyo\) Region    | 
+| Amazon GuardDuty | advanced | GuardDuty detector | AWS::GuardDuty::Detector | Amazon GuardDuty API activity on detectors\. | 
 | Amazon Kendra Intelligent Ranking | advanced | Kendra Ranking | AWS::KendraRanking::ExecutionPlan | Amazon Kendra Intelligent Ranking API activity on [rescore execution plans](https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html#cloud-trail-intelligent-ranking-log-entry)\. | 
 | Amazon Managed Blockchain | advanced | Managed Blockchain | AWS::ManagedBlockchain::Node | [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`\. | 
 | Amazon SageMaker | advanced | SageMaker feature store | AWS::SageMaker::FeatureGroup | Amazon SageMaker API activity on feature stores | 
@@ -209,7 +210,7 @@ This has the following effects:
 + If you configured an Amazon SNS topic for the trail, SNS notifications about log file deliveries in all AWS Regions are sent to that single SNS topic\.
 + If you enabled it, log file integrity validation is enabled for the trail in all AWS Regions\. For information, see [Validating CloudTrail log file integrity](cloudtrail-log-file-validation-intro.md)\.
 
-Regardless of whether a trail is multi\-Region or single\-Region, events sent to Amazon EventBridge are received in each Region's [event bus](https://docs.aws.amazon.com/https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html), rather than in one single event bus\.
+Regardless of whether a trail is multi\-Region or single\-Region, events sent to Amazon EventBridge are received in each Region's [event bus](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html), rather than in one single event bus\.
 
 ### Multiple trails per Region<a name="cloudtrail-concepts-trails-multiple-trails-per-region"></a>
 

@@ -69,7 +69,7 @@ If you want to use this role for a log group for an organization trail, you must
 
 ### Viewing events in the CloudWatch console<a name="viewing-events-in-cloudwatch"></a>
 
-After you configure your trail to send events to your CloudWatch Logs log group, you can view the events in the CloudWatch console\. CloudTrail typically delivers events to your log group within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
+After you configure your trail to send events to your CloudWatch Logs log group, you can view the events in the CloudWatch console\. CloudTrail typically delivers events to your log group within an average of about 5 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.
 
 **To view events in the CloudWatch console**
 

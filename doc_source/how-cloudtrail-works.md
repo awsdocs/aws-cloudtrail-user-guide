@@ -23,10 +23,10 @@ You can change the configuration of a trail after you create it, including wheth
 
 By default, CloudTrail event log files are encrypted using Amazon S3 server\-side encryption \(SSE\)\. You can also choose to encrypt your log files with an AWS Key Management Service \(AWS KMS\) key\. You can store your log files in your bucket for as long as you want\. You can also define Amazon S3 lifecycle rules to archive or delete log files automatically\. If you want notifications about log file delivery and validation, you can set up Amazon SNS notifications\.
 
-CloudTrail publishes log files multiple times an hour, about every five minutes\. These log files contain API calls from services in the account that support CloudTrail\. For more information, see [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.
+CloudTrail publishes log files multiple times an hour, about every 5 minutes\. These log files contain API calls from services in the account that support CloudTrail\. For more information, see [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.
 
 **Note**  
-CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.  
+CloudTrail typically delivers logs within an average of about 5 minutes of an API call\. This time is not guaranteed\. Review the [AWS CloudTrail Service Level Agreement](http://aws.amazon.com/cloudtrail/sla) for more information\.  
 CloudTrail captures actions made directly by the user or on behalf of the user by an AWS service\. For example, an AWS CloudFormation `CreateStack` call can result in additional API calls to Amazon EC2, Amazon RDS, Amazon EBS, or other services as required by the AWS CloudFormation template\. This behavior is normal and expected\. You can identify if the action was taken by an AWS service with the `invokedby` field in the CloudTrail event\.
 
 To get started with CloudTrail, see [Getting started with AWS CloudTrail tutorial](cloudtrail-tutorial.md)\.

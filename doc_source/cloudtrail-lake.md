@@ -21,7 +21,7 @@ CloudTrail Lake event data stores and queries incur CloudTrail charges\. For mor
 CloudTrail Lake supports Amazon CloudWatch metrics, which you can use to view information about the amount of data ingested into your event data store during the last hour and over the course of its retention period\. For more information about supported CloudWatch metrics, see [Supported CloudWatch metrics](cloudtrail-lake-cloudwatch-metrics.md)\.
 
 **Note**  
-CloudTrail typically delivers logs within an average of about 15 minutes of an API call\. This time is not guaranteed\.
+CloudTrail typically delivers logs within an average of about 5 minutes of an API call\. This time is not guaranteed\.
 
 **Topics**
 + [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)

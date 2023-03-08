@@ -45,7 +45,7 @@ This topic describes how to enable and disable SSE\-KMS log file encryption for 
    }
    ```
 
-   The presence of the `KmsKeyId` element indicates that log file encryption has been enabled\. The encrypted log files should appear in your bucket in about 15 minutes\.<a name="log-encryption-eds"></a>
+   The presence of the `KmsKeyId` element indicates that log file encryption has been enabled\. The encrypted log files should appear in your bucket in about 5 minutes\.<a name="log-encryption-eds"></a>
 
 **Enable log file encryption for an event data store**
 
@@ -92,7 +92,7 @@ This topic describes how to enable and disable SSE\-KMS log file encryption for 
    }
    ```
 
-   The presence of the `KmsKeyId` element indicates that log file encryption has been enabled\. The encrypted log files should appear in your event data store in about 15 minutes\.
+   The presence of the `KmsKeyId` element indicates that log file encryption has been enabled\. The encrypted log files should appear in your event data store in about 5 minutes\.
 
 ## Disabling CloudTrail log file encryption by using the AWS CLI<a name="cloudtrail-log-file-encryption-cli-disable"></a>
 

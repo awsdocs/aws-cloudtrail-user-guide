@@ -1,7 +1,7 @@
 # AWS CloudTrail resource\-based policy examples<a name="security_iam_resource-based-policy-examples"></a>
 
 **Note**  
-Currently, CloudTrail Lake supports integrations in all commercial AWS Regions where the service is available except for Middle East \(UAE\)\. For information about CloudTrail Lake supported Regions, see [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)\. 
+Currently, CloudTrail Lake supports integrations in all commercial AWS Regions where CloudTrail Lake is available except for Middle East \(UAE\)\. For information about CloudTrail Lake supported Regions, see [CloudTrail Lake supported Regions](cloudtrail-lake-supported-regions.md)\. 
 
 CloudTrail supports resource\-based permissions policies for CloudTrail channels used for CloudTrail Lake integrations\. For more information about creating integrations with CloudTrail Lake, see [Create an integration with an event source outside of AWS](query-event-data-store-integration.md)\. 
 

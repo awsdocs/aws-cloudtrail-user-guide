@@ -172,6 +172,7 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::EC2::InstanceConnectEndpoint`
         + `AWS::EC2::Snapshot`
         + `AWS::Glue::Table`
+        + `AWS::GuardDuty::Detector`
         + `AWS::FinSpace::Environment`
         + `AWS::KendraRanking::ExecutionPlan`
         + `AWS::ManagedBlockchain::Node`
