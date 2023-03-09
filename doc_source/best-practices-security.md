@@ -42,6 +42,10 @@ The following are some steps you can take:
 + Configure your trail to [send events to CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 + Consider implementing ongoing detective controls to help ensure all trails are sending events to CloudWatch Logs for monitoring by using the [cloud\-trail\-cloud\-watch\-logs\-enabled](https://docs.aws.amazon.com/config/latest/developerguide/cloud-trail-cloud-watch-logs-enabled.html) rule in AWS Config\. 
 
+**Use AWS Security Hub**
+
+Monitor your usage of CloudTrail as it relates to security best practices by using [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html)\. Security Hub uses detective *security controls* to evaluate resource configurations and *security standards* to help you comply with various compliance frameworks\. For more information about using Security Hub to evaluate CloudTrail resources, see [AWS CloudTrail controls](https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html) in the *AWS Security Hub User Guide*\.
+
 ## CloudTrail preventative security best practices<a name="best-practices-security-preventative"></a>
 
 The following best practices for CloudTrail can help prevent security incidents\.

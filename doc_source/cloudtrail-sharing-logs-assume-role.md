@@ -1,6 +1,6 @@
 # Assuming a role<a name="cloudtrail-sharing-logs-assume-role"></a>
 
-You must designate a separate IAM user to assume each role you creat in each account\. You must then ensure that each IAM user has appropriate permissions\.
+You must designate a separate IAM user to assume each role you create in each account\. You must then ensure that each IAM user has appropriate permissions\.
 
 ## IAM users and roles<a name="cloudtrail-sharing-logs-assume-role-iam-user-permission"></a>
 

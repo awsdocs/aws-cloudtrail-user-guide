@@ -4,7 +4,7 @@ CloudTrail uses a distributed computing model called [eventual consistency](http
 
  You must design your applications to account for these potential delays\. Ensure that they work as expected, even when a change made in one location is not instantly visible at another\. Such changes include creating or updating trails or event data stores, updating event selectors, and starting or stopping logging\. When you create or update a trail or event data store, CloudTrail delivers logs to the S3 bucket or event data store based on the last known configuration until the changes propagate to all locations\. 
 
- For more information about how this affects other AWS services, see the following resources: 
+ For more information about how this affects other AWS servicessome other AWS services are affected by this, see the following resources: 
 +  **Amazon DynamoDB**: [What is the consistency model of DynamoDB?](http://aws.amazon.com/dynamodb/faqs/) in the *DynamoDB FAQ*, and [Read consistency](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html) in the *Amazon DynamoDB Developer Guide*\. 
 +  **Amazon EC2**: [Eventual consistency](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#eventual-consistency) in the *Amazon Elastic Compute Cloud API Reference*\. 
 +  **Amazon EMR**: [Ensuring Consistency When Using Amazon S3 and Amazon Elastic MapReduce for ETL Workflows](http://aws.amazon.com/blogs/big-data/ensuring-consistency-when-using-amazon-s3-and-amazon-elastic-mapreduce-for-etl-workflows/) in the *AWS Big Data Blog*\. 

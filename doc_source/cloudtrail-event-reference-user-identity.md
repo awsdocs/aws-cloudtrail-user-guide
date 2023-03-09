@@ -138,7 +138,7 @@ If a user make a request with temporary security credentials, `sessionIssuer` pr
 **Optional:** True
 
 **`webIdFederationData`**  
-If the request was made with temporary security credentials obtained by [web identity federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html), `webIdFederationData` lists information about the identity provider\. AThis element has the following attributes:  
+If the request was made with temporary security credentials obtained by [web identity federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html), `webIdFederationData` lists information about the identity provider\. This element has the following attributes:  
 + `federatedProvider` – The principal name of the identity provider \(for example, `www.amazon.com` for Login with Amazon or `accounts.google.com` for Google\)\. 
 + `attributes` – The application ID and user ID as reported by the provider \(for example, `www.amazon.com:app_id` and `www.amazon.com:user_id` for Login with Amazon\)\.
 **Optional:** True

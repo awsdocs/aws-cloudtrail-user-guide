@@ -103,7 +103,7 @@ Additional charges apply for logging CloudTrail Insights events\. For CloudTrail
 
 ## What is CloudTrail event history?<a name="cloudtrail-concepts-event-history"></a>
 
-CloudTrail event history provides a viewable, searchable, and downloadable record of the past 90 days of CloudTrail events\. You can use this history to gain visibility into actions taken in your AWS account in the AWS Management Console, AWS SDKs, command line tools, and other AWS services\. You can customize your view of event history in the CloudTrail console by selecting which columns are displayed\. For more information, see [Viewing events with CloudTrail Event history](view-cloudtrail-events.md)\.
+CloudTrail event history provides a viewable, searchable, downloadable, and immutable record of the past 90 days of CloudTrail management events in an AWS Region\. You can use this history to gain visibility into actions taken in your AWS account in the AWS Management Console, AWS SDKs, command line tools, and other AWS services\. You can customize your view of event history in the CloudTrail console by selecting which columns are displayed\. For more information, see [Viewing events with CloudTrail Event history](view-cloudtrail-events.md)\.
 
 ## What are trails?<a name="cloudtrail-concepts-trails"></a>
 

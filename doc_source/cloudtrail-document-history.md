@@ -226,7 +226,7 @@ The following table describes the documentation release history of AWS CloudTrai
 |  Added service support  |  This release supports Amazon CloudWatch Logs\. See [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.   |  March 10, 2016  | 
 | Added service support | This release supports Amazon Cognito\. See [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\. | February 18, 2016 | 
 | Added service support | This release supports AWS Database Migration Service\. See [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\. | February 4, 2016 | 
-|  Added service support  |  This release supports Amazon GameLift \(GameLift\)\. See [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.   |  January 27, 2016  | 
+|  Added service support  |  This release supports Amazon GameLift \(Amazon GameLift\)\. See [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.   |  January 27, 2016  | 
 |  Added service support  |  This release supports Amazon CloudWatch Events\. See [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.   |  January 16, 2016  | 
 | Added region support | This release supports one additional region: ap\-northeast\-2 \(Asia Pacific \(Seoul\)\)\. See [CloudTrail supported Regions](cloudtrail-supported-regions.md)\. |  January 6, 2016  | 
 |  Added service support  |  This release supports Amazon Elastic Container Registry \(Amazon ECR\)\. See [CloudTrail supported services and integrations](cloudtrail-aws-service-specific-topics.md)\.   |  December 21, 2015  | 
