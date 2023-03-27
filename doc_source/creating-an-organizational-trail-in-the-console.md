@@ -16,7 +16,7 @@ You can configure an organization trail in multiple ways\. For example, you can 
 
 1. Choose **Trails**, and then choose **Create trail**\.
 
-1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
+1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
 1. Select **Enable for all accounts in my organization**\. You only see this option if you sign in to the console with a user or role in the management or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\.
 

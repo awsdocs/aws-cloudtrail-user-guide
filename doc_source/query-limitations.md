@@ -399,7 +399,9 @@ For more information about the supported date and time functions, see [Date and 
 
 | Date convert functions | 
 | --- | 
+|  `current_timestamp`  | 
 |  `date`  | 
+|  `date_add`  | 
 |  `date_trunc`  | 
 |  `day`  | 
 |  `day_of_month`  | 
@@ -411,6 +413,7 @@ For more information about the supported date and time functions, see [Date and 
 |  `millisecond`  | 
 |  `minute`  | 
 |  `month`  | 
+|  `now`  | 
 |  `quarter`  | 
 |  `second`  | 
 |  `week`  | 

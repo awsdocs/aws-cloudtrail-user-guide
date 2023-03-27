@@ -21,7 +21,7 @@ This section summarizes basic concepts related to CloudTrail\.
 + [How do you log CloudTrail Insights events?](#understanding-insight-selectors)
 + [How do you run complex queries on events logged by CloudTrail?](#cloudtrail-concepts-lake)
 + [How do you perform monitoring with CloudTrail?](#cloudtrail-concepts-monitoring)
-  + [CloudWatch Logs, CloudWatch Events, and CloudTrail](#cloudtrail-concepts-cloudwatch-logs)
+  + [CloudWatch Logs, EventBridge, and CloudTrail](#cloudtrail-concepts-cloudwatch-logs)
 + [How does CloudTrail behave regionally and globally?](#cloudtrail-concepts-regional-and-global-services)
   + [What are the advantages of applying a trail to all Regions?](#cloudtrail-concepts-trails-enable-all-regions-advantages)
   + [What happens when you apply a trail to all Regions?](#cloudtrail-concepts-trails-enable-all-regions)
@@ -56,33 +56,32 @@ Data events provide information about the resource operations performed on or in
 
 The following table shows the data event types available for trails and event data stores\. The **Data event type \(console\)** column shows the appropriate selection in the console\. The ** resources\.Type** column shows the `resources.Type` value that you would specify to include data events of that type in your trail or event data store\.
 
-Trails can use basic or advanced event selectors\. The **Event selector type** column of the table identities for trails whether the data event type is selectable using basic or advanced event selectors\. The first three rows of the table show the data event types selectable with basic event selectors\. The remaining rows show the data event types that you can specify using advanced event selectors\. 
+For trails, you can use basic or advanced event selectors to log data events for Amazon S3 buckets and bucket objects, Lambda functions, and DynamoDB tables \(shown in the first three rows of the table\)\. You can use only advanced event selectors to log the data event types shown in the remaining rows\.
 
-Unlike trails, event data stores only use advanced event selectors to specify data events\.
+For event data stores, you can use only advanced event selectors to include data events\.
 
 
 ****  
 
-| AWS service | Event selector type | Data event type \(console\) | resources\.Type | Description | 
-| --- | --- | --- | --- | --- | 
-| Amazon DynamoDB | basic | DynamoDB | AWS::DynamoDB::Table | Amazon DynamoDB object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)\. For more information about DynamoDB events, see [DynamoDB data plane events in CloudTrail](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail)\. | 
-| AWS Lambda | basic | Lambda | AWS::Lambda::Function | AWS Lambda function execution activity \(the `Invoke` API\)\. | 
-| Amazon S3 | basic | S3 | AWS::S3::Object | Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\) on buckets and objects in buckets\. | 
-| AWS CloudTrail | advanced | CloudTrail | AWS::CloudTrail::Channel | CloudTrail [https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html](https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html) activity on a [CloudTrail Lake channel](query-event-data-store-integration.md) that is used to log events from outside AWS\. | 
-| Amazon Cognito | advanced | Cognito Identity Pools | AWS::Cognito::IdentityPool | Amazon Cognito API activity on Amazon Cognito [identity pools](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-info-in-cloudtrail.html#identity-pools-cloudtrail-events)\. | 
-| Amazon DynamoDB | advanced | DynamoDB Streams | AWS::DynamoDB::Stream | [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams | 
-| Amazon Elastic Block Store | advanced | Amazon EBS direct APIs | AWS::EC2::Snapshot | [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots | 
-| Amazon EC2 Instance Connect | advanced | Amazon EC2 Instance connect endpoint | AWS::EC2::InstanceConnectEndpoint | Amazon EC2 Instance Connect API activity on endpoints\. | 
-| Amazon FinSpace | advanced | FinSpace | AWS::FinSpace::Environment | [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments | 
-| AWS Glue | advanced | Lake Formation | AWS::Glue::Table | AWS Glue API activity on tables that were created by Lake Formation  AWS Glue data events for tables are currently supported only in the following regions:   US East \(N\. Virginia\)   US East \(Ohio\)   US West \(Oregon\)   Europe \(Ireland\)   Asia Pacific \(Tokyo\) Region    | 
-| Amazon GuardDuty | advanced | GuardDuty detector | AWS::GuardDuty::Detector | Amazon GuardDuty API activity on detectors\. | 
-| Amazon Kendra Intelligent Ranking | advanced | Kendra Ranking | AWS::KendraRanking::ExecutionPlan | Amazon Kendra Intelligent Ranking API activity on [rescore execution plans](https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html#cloud-trail-intelligent-ranking-log-entry)\. | 
-| Amazon Managed Blockchain | advanced | Managed Blockchain | AWS::ManagedBlockchain::Node | [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`\. | 
-| Amazon SageMaker | advanced | SageMaker feature store | AWS::SageMaker::FeatureGroup | Amazon SageMaker API activity on feature stores | 
-| Amazon SageMaker | advanced | SageMaker metrics experiment trial component | AWS::SageMaker::ExperimentTrialComponent | Amazon SageMaker API activity on [experiment trial components](https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-monitoring.html) | 
-| Amazon S3 | advanced | S3 Access Point | AWS::S3::AccessPoint | Amazon S3 API activity on access points | 
-| Amazon S3 | advanced | S3 Object Lambda | AWS::S3ObjectLambda::AccessPoint | Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`\. | 
-| Amazon S3 on Outposts | advanced | S3 Outposts | AWS::S3Outposts::Object |  Amazon S3 on Outposts object\-level API activity\. | 
+| AWS service | Data event type \(console\) | resources\.Type | Description | 
+| --- | --- | --- | --- | 
+| Amazon DynamoDB | DynamoDB | AWS::DynamoDB::Table | Amazon DynamoDB object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)\. For more information about DynamoDB events, see [DynamoDB data plane events in CloudTrail](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail)\. | 
+| AWS Lambda | Lambda | AWS::Lambda::Function | AWS Lambda function execution activity \(the `Invoke` API\)\. | 
+| Amazon S3 | S3 | AWS::S3::Object | Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\) on buckets and objects in buckets\. | 
+| AWS CloudTrail | CloudTrail | AWS::CloudTrail::Channel | CloudTrail [https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html](https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html) activity on a [CloudTrail Lake channel](query-event-data-store-integration.md) that is used to log events from outside AWS\. | 
+| Amazon Cognito | Cognito Identity Pools | AWS::Cognito::IdentityPool | Amazon Cognito API activity on Amazon Cognito [identity pools](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-info-in-cloudtrail.html#identity-pools-cloudtrail-events)\. | 
+| Amazon DynamoDB | DynamoDB Streams | AWS::DynamoDB::Stream | [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams\. | 
+| Amazon Elastic Block Store | Amazon EBS direct APIs | AWS::EC2::Snapshot | [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots\. | 
+| Amazon FinSpace | FinSpace | AWS::FinSpace::Environment | [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments\. | 
+| AWS Glue | Lake Formation | AWS::Glue::Table | AWS Glue API activity on tables that were created by Lake Formation\.  AWS Glue data events for tables are currently supported only in the following regions:   US East \(N\. Virginia\)   US East \(Ohio\)   US West \(Oregon\)   Europe \(Ireland\)   Asia Pacific \(Tokyo\) Region    | 
+| Amazon GuardDuty | GuardDuty detector | AWS::GuardDuty::Detector | Amazon GuardDuty API activity for a detector\. | 
+| Amazon Kendra Intelligent Ranking | Kendra Ranking | AWS::KendraRanking::ExecutionPlan | Amazon Kendra Intelligent Ranking API activity on [rescore execution plans](https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html#cloud-trail-intelligent-ranking-log-entry)\. | 
+| Amazon Managed Blockchain | Managed Blockchain | AWS::ManagedBlockchain::Node | [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`\. | 
+| Amazon SageMaker | SageMaker feature store | AWS::SageMaker::FeatureGroup | Amazon SageMaker API activity on feature stores\. | 
+| Amazon SageMaker | SageMaker metrics experiment trial component | AWS::SageMaker::ExperimentTrialComponent | Amazon SageMaker API activity on [experiment trial components](https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-monitoring.html)\. | 
+| Amazon S3 | S3 Access Point | AWS::S3::AccessPoint | Amazon S3 API activity on access points\. | 
+| Amazon S3 | S3 Object Lambda | AWS::S3ObjectLambda::AccessPoint | Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`\. | 
+| Amazon S3 on Outposts | S3 Outposts | AWS::S3Outposts::Object |  Amazon S3 on Outposts object\-level API activity\. | 
 
 Data events are not logged by default when you create a trail or event data store\. To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Create an event data store for CloudTrail events](query-event-data-store-cloudtrail.md)\.
 
@@ -107,11 +106,11 @@ CloudTrail event history provides a viewable, searchable, downloadable, and immu
 
 ## What are trails?<a name="cloudtrail-concepts-trails"></a>
 
-A trail is a configuration that enables delivery of CloudTrail events to an Amazon S3 bucket, CloudWatch Logs, and CloudWatch Events\. You can use a trail to filter the CloudTrail events you want delivered, encrypt your CloudTrail event log files with an AWS KMS key, and set up Amazon SNS notifications for log file delivery\. For more information about how to create and manage a trail, see [Creating a trail for your AWS account](cloudtrail-create-and-update-a-trail.md)\.
+A trail is a configuration that enables delivery of CloudTrail events to an Amazon S3 bucket, CloudWatch Logs, and Amazon EventBridge\. You can use a trail to filter the CloudTrail events you want delivered, encrypt your CloudTrail event log files with an AWS KMS key, and set up Amazon SNS notifications for log file delivery\. For more information about how to create and manage a trail, see [Creating a trail for your AWS account](cloudtrail-create-and-update-a-trail.md)\.
 
 ## What are organization trails?<a name="cloudtrail-concepts-trails-org"></a>
 
-An organization trail is a configuration that enables delivery of CloudTrail events in the management account, delegated administrator account, and all member accounts in an AWS Organizations organization to the same Amazon S3 bucket, CloudWatch Logs, and CloudWatch Events\. Creating an organization trail helps you define a uniform event logging strategy for your organization\. 
+An organization trail is a configuration that enables delivery of CloudTrail events in the management account, delegated administrator account, and all member accounts in an AWS Organizations organization to the same Amazon S3 bucket, CloudWatch Logs, and Amazon EventBridge\. Creating an organization trail helps you define a uniform event logging strategy for your organization\. 
 
 When you create an organization trail, a trail with the name that you give it will be created in every AWS account that belongs to your organization\. Users with CloudTrail permissions in member accounts will be able to see this trail \(including the trail ARN\) when they log into the AWS CloudTrail console from their AWS accounts, or when they run AWS CLI commands such as `describe-trails` \(although member accounts must use the ARN for the organization trail, and not the name, when using the AWS CLI\)\. However, users in member accounts will not have sufficient permissions to delete the organization trail, turn logging on or off, change what types of events are logged, or otherwise alter the organization trail in any way\. For more information about AWS Organizations, see [Organizations Terminology and Concepts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html)\. For more information about creating and working with organization trails, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
@@ -175,15 +174,15 @@ CloudTrail Lake lets you run fine\-grained SQL\-based queries on your events, an
 
 ## How do you perform monitoring with CloudTrail?<a name="cloudtrail-concepts-monitoring"></a>
 
-### CloudWatch Logs, CloudWatch Events, and CloudTrail<a name="cloudtrail-concepts-cloudwatch-logs"></a>
+### CloudWatch Logs, EventBridge, and CloudTrail<a name="cloudtrail-concepts-cloudwatch-logs"></a>
 
 Amazon CloudWatch is a web service that collects and tracks metrics to monitor your Amazon Web Services \(AWS\) resources and the applications that you run on AWS\. Amazon CloudWatch Logs is a feature of CloudWatch that you can use specifically to monitor log data\. Integration with CloudWatch Logs enables CloudTrail to send events containing API activity in your AWS account to a CloudWatch Logs log group\. CloudTrail events that are sent to CloudWatch Logs can trigger alarms according to the metric filters you define\. You can optionally configure CloudWatch alarms to send notifications or make changes to the resources that you are monitoring based on log stream events that your metric filters extract\. Using CloudWatch Logs, you can also track CloudTrail events alongside events from the operating system, applications, or other AWS services that are sent to CloudWatch Logs\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 
-Amazon CloudWatch Events is an AWS service that delivers a near real\-time stream of system events that describe changes in AWS resources\. In CloudWatch Events, you can create rules that trigger on any event recorded by CloudTrail\. For more information, see [Creating a CloudWatch Events Rule That Triggers on an AWS API Call Using AWS CloudTrail](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/Create-CloudWatch-Events-CloudTrail-Rule.html)\.
+Amazon EventBridge is an AWS service that delivers a near real\-time stream of system events that describe changes in AWS resources\. In EventBridge, you can create rules that respond to events recorded by CloudTrail\. For more information, see [ Create a rule in Amazon EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-get-started.html#eb-gs-create-rule)\.
 
-Insights events are integrated with CloudWatch\. You can deliver events that you are subscribed to on your trail, including Insights events, to CloudWatch Events and CloudWatch Logs\. To configure CloudWatch Events with the CloudWatch console or API, choose the `AWS Insight via CloudTrail` event type on the **Create rule** page in the CloudWatch console\.
+You can deliver events that you are subscribed to on your trail, including Insights events, to EventBridge and CloudWatch Logs\. When you create a rule with the EventBridge console, choose either the `AWS API Call via CloudTrail` event type to deliver CloudTrail management or data events, or the `AWS Insight via CloudTrail` to deliver Insights events\.
 
-Sending data that is logged by CloudTrail to CloudWatch Logs or CloudWatch Events requires that you have at least one trail\. For more information about how to create a trail, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\.
+Sending data that is logged by CloudTrail to CloudWatch Logs or EventBridge requires that you have at least one trail\. For more information about how to create a trail, see [Creating a Trail](cloudtrail-create-a-trail-using-the-console-first-time.md)\.
 
 ## How does CloudTrail behave regionally and globally?<a name="cloudtrail-concepts-regional-and-global-services"></a>
 
@@ -236,7 +235,7 @@ For a complete list of AWS regional endpoints, see [AWS Regions and Endpoints](h
 ## Global service events<a name="cloudtrail-concepts-global-service-events"></a>
 
 **Important**  
-As of November 22, 2021, AWS CloudTrail will change how trails can be used to capture global service events\. After the change, events created by CloudFront, IAM, and AWS STS will be recorded in the Region in which they were created, the US East \(N\. Virginia\) Region, us\-east\-1\. This makes CloudTrail's treatment of these services consistent with that of other AWS global services\.  
+As of November 22, 2021, AWS CloudTrail changed how trails capture global service events\. Now, events created by CloudFront, IAM, and AWS STS are recorded in the Region in which they were created, the US East \(N\. Virginia\) Region, us\-east\-1\. This makes CloudTrail's treatment of these services consistent with that of other AWS global services\.  
 To continue receiving global service events outside of US East \(N\. Virginia\), be sure to convert *single\-Region trails* using global service events outside of US East \(N\. Virginia\) into *multi\-Region trails*\. Also update the Region of your lookup\-events API calls to view global service events\. For more information about using the CLI to update or create trails for global service events and update lookup events, see [Viewing CloudTrail events with the AWS CLI](view-cloudtrail-events-cli.md) and [Using update\-trail](cloudtrail-create-and-update-a-trail-by-using-the-aws-cli-update-trail.md)\. 
 
 For most services, events are recorded in the Region where the action occurred\. For global services such as AWS Identity and Access Management \(IAM\), AWS STS, and Amazon CloudFront, events are delivered to any trail that includes global services\.

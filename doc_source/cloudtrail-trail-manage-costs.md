@@ -1,6 +1,6 @@
 # Managing CloudTrail costs<a name="cloudtrail-trail-manage-costs"></a>
 
-As a best practice, we recommend using AWS services and tools that can help you manage CloudTrail costs\. You can also configure and manage CloudTrail trails in ways that capture the data you need while remaining cost\-effective\. For more information about CloudTrail pricing, see [AWS CloudTrail Pricing](http://aws.amazon.com/cloudtrail/pricing/)\.
+As a best practice, we recommend using AWS services and tools that can help you manage CloudTrail costs\. You can also configure and manage CloudTrail trails and event data stores in ways that capture the data you need while remaining cost\-effective\. For more information about CloudTrail pricing, see [AWS CloudTrail Pricing](http://aws.amazon.com/cloudtrail/pricing/)\.
 
 ## Tools to help manage costs<a name="cloudtrail-trail-manage-costs-tools"></a>
 
@@ -11,9 +11,18 @@ As you create multiple trails or event data stores, creating a budget for CloudT
 After you [create a budget](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-create.html), you can use AWS Cost Explorer to see how your CloudTrail costs are influencing your overall AWS bill\. In AWS Cost Explorer, after adding CloudTrail to the **Service** filter, you can compare your historical CloudTrail spending to that of your current month\-to\-date \(MTD\) spending, by both region and account\. This feature helps you monitor and detect unexpected costs in your monthly CloudTrail spending\. Additional features in Cost Explorer let you compare CloudTrail spending to monthly spending at the specific resource level, providing information about what might be driving cost increases or decreases in your bill\.
 
 **Note**  
-Though you can apply tags to CloudTrail resources, AWS Billing cannot currently use tags applied to trails and CloudTrail Lake event data stores for cost allocation\. Cost Explorer can currently show costs only for the CloudTrail service as a whole, not for individual CloudTrail resources\.
+Though you can apply tags to CloudTrail trails, AWS Billing cannot currently use tags applied to trails for cost allocation\. Cost Explorer can show costs for CloudTrail Lake event data stores and for the CloudTrail service as a whole\.
 
 To get started with AWS Budgets, open [AWS Billing and Cost Management](https://console.aws.amazon.com/billing), and then choose **Budgets** in the left navigation bar\. We recommend configuring budget alerts as you create a budget to track CloudTrail spending\. For more information about how to use AWS Budgets, see [Managing Your Costs with Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html) and [Best Practices for AWS Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-best-practices.html)\.
+
+### Creating user\-defined cost allocation tags for CloudTrail Lake event data stores<a name="cloudtrail-trail-manage-costs-tags"></a>
+
+You can create [user\-defined cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) to track the query and ingestion costs for your CloudTrail Lake event data stores\. A *user\-defined cost allocation tag* is a key\-value pair that you can associate with an event data store\. After you activate cost allocation tags, AWS uses the tags to organize your resource costs on your cost allocation report\.
++ To create tags in the console, see step 7 of the [To create an event data store for CloudTrail events](query-event-data-store-cloudtrail.md#query-event-data-store-cloudtrail-procedure) procedure\.
++ To create tags using the CloudTrail API, see [CreateEventDataStore](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateEventDataStore.html) and [AddTags](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_AddTags.html) in the *AWS CloudTrail API Reference*\. You can also define 
++ To create tags using the AWS CLI, see [create\-event\-data\-store](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudtrail/create-event-data-store.html) and [add\-tags](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudtrail/add-tags.html) in the *AWS CLI Command Reference*\.
+
+For more information about activating tags, see [Activating user\-defined cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html)\.
 
 ## Trail configuration<a name="cloudtrail-trail-manage-costs-trailconfig"></a>
 
@@ -28,7 +37,7 @@ To help limit the number of events that are logged to your trail, you can filter
 When you set up an Organizations trail with CloudTrail, CloudTrail replicates the trail to each member account within your organization\. The new trail is created *in addition to* any existing trails in member accounts\. Be sure that the configuration of your organization trail matches how you want trails configured for all accounts within an organization, because the organization trail configuration propagates to all accounts\.  
 Because Organizations creates a trail in each member account, an individual member account that creates an additional trail to collect the same management events as the Organizations trail is collecting a second copy of events\. The account is charged for the second copy\. Similarly, if an account has a multi\-region trail, and creates a second trail in a single region to collect the same management events as the multi\-region trail, the trail in the single region is delivering a second copy of events\. The second copy incurs charges\.
 
-## See also<a name="w122aab9c31b7b9"></a>
+## See also<a name="w131aab9c31b7b9"></a>
 + [AWS CloudTrail Pricing](http://aws.amazon.com/cloudtrail/pricing/)
 + [Managing Your Costs with Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html)
 + [Getting Started with Cost Explorer](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-getting-started.html)

@@ -1,7 +1,7 @@
 # Viewing CloudTrail events with the AWS CLI<a name="view-cloudtrail-events-cli"></a>
 
 **Important**  
-As of November 22, 2021, AWS CloudTrail will change how trails can be used to capture global service events\. After the change, events created by CloudFront, IAM, and AWS STS will be recorded in the region in which they were created, the US East \(N\. Virginia\) region, us\-east\-1\. This makes CloudTrail's treatment of these services consistent with that of other AWS global services\.  
+As of November 22, 2021, AWS CloudTrail changed how trails capture global service events\. Now, events created by CloudFront, IAM, and AWS STS are recorded in the region in which they were created, the US East \(N\. Virginia\) region, us\-east\-1\. This makes CloudTrail's treatment of these services consistent with that of other AWS global services\.  
 To continue receiving global service events outside of US East \(N\. Virginia\), be sure to convert *single\-region trails* using global service events outside of US East \(N\. Virginia\) into *multi\-region trails*\. Also update the region of your `lookup-events` API calls\. For more information about updating lookup events, including an example CLI command, see [Looking up events by attribute](#look-up-events-by-attributes) later in this section\.
 
 You can look up CloudTrail events for the last 90 days using the aws cloudtrail lookup\-events command\. The `lookup-events` command has the following options:

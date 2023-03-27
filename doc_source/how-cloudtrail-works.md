@@ -57,7 +57,7 @@ If you have created an organization in AWS Organizations, you can create an *org
 
 You can also create a CloudTrail trail to archive, analyze, and respond to changes in your AWS resources\. 
 
-A *trail* is a configuration that enables delivery of events to an Amazon S3 bucket that you specify\. You can also deliver and analyze events in a trail with Amazon CloudWatch Logs and Amazon CloudWatch Events\. You can create trails with the CloudTrail console, the AWS CLI, or the CloudTrail API\.
+A *trail* is a configuration that enables delivery of events to an Amazon S3 bucket that you specify\. You can also deliver and analyze events in a trail with Amazon CloudWatch Logs and Amazon EventBridge\. You can create trails with the CloudTrail console, the AWS CLI, or the CloudTrail API\.
 
 You can create two types of trails for an AWS account:
 

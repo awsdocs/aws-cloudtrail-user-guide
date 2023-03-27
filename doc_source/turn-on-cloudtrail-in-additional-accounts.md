@@ -10,7 +10,7 @@ You can use the CloudTrail console to turn on CloudTrail in additional accounts\
 
 1. On the CloudTrail service home page, the **Trails** page, or the **Trails** section of the **Dashboard** page, choose **Create trail**\.
 
-1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
+1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
 1. If this is an AWS Organizations organization trail, you can choose to enable the trail for all accounts in your organization\. You only see this option if you sign in to the console with a user or role in the management account or a delegated administrator account\. To create an organization trail, the user or role must have [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
 

@@ -14,15 +14,14 @@ You can configure CloudTrail with CloudWatch Logs to monitor your trail logs and
 
 Standard pricing for Amazon CloudWatch and Amazon CloudWatch Logs applies\. For more information, see [Amazon CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
 
-For more information about the regions in which you can configure your trails to send logs to CloudWatch Logs, see [Amazon CloudWatch Logs Regions and Quotas](https://docs.aws.amazon.com/general/latest/gr/cwl_region.html) in the *AWS General Reference*\.
+For more information about the Regions in which you can configure your trails to send logs to CloudWatch Logs, see [Amazon CloudWatch Logs Regions and Quotas](https://docs.aws.amazon.com/general/latest/gr/cwl_region.html) in the *AWS General Reference*\.
 
-The AWS GovCloud \(US\-West\) region requires a separate account\. For more information, see [AWS GovCloud \(US\-West\)](https://aws.amazon.com/govcloud-us/)\.
+The AWS GovCloud \(US\-West\) Region requires a separate account\. For more information, see [AWS GovCloud \(US\-West\)](https://aws.amazon.com/govcloud-us/)\.
 
 **Topics**
 + [Sending events to CloudWatch Logs](send-cloudtrail-events-to-cloudwatch-logs.md)
 + [Creating CloudWatch alarms with an AWS CloudFormation template](use-cloudformation-template-to-create-cloudwatch-alarms.md)
 + [Creating CloudWatch alarms for CloudTrail events: examples](cloudwatch-alarms-for-cloudtrail.md)
-+ [Configuring notifications for CloudWatch Logs alarms](cloudtrail-configure-notifications-for-cloudwatch-logs-alarms.md)
 + [Stopping CloudTrail from sending events to CloudWatch Logs](stop-cloudtrail-from-sending-events-to-cloudwatch-logs.md)
 + [CloudWatch log group and log stream naming for CloudTrail](cloudwatch-log-group-log-stream-naming-for-cloudtrail.md)
 + [Role policy document for CloudTrail to use CloudWatch Logs for monitoring](cloudtrail-required-policy-for-cloudwatch-logs.md)

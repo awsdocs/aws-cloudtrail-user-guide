@@ -8,6 +8,6 @@
 
 **Topics**
 + [Managing CloudTrail costs](cloudtrail-trail-manage-costs.md)
-+ [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)
++ [CloudTrail naming requirements](cloudtrail-trail-naming-requirements.md)
 + [Amazon S3 bucket naming requirements](cloudtrail-s3-bucket-naming-requirements.md)
 + [AWS KMS alias naming requirements](KMS-key-naming-requirements.md)

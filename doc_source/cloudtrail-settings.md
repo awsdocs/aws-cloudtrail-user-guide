@@ -2,9 +2,6 @@
 
 You can use the **Settings** page to review configured CloudTrail settings\.
 
-**Note**  
-The **Settings** page is not available in the AWS GovCloud \(US\) Regions\. Users in the AWS GovCloud \(US\-West\) and AWS GovCloud \(US\-East\) Regions can add and remove delegated administrators using the AWS CLI or SDK\.
-
 **To access settings**
 
 1. Choose **Settings** in the left navigation pane of the CloudTrail console\.

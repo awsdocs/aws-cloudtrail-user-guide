@@ -9,6 +9,12 @@ Before you copy trail events to CloudTrail Lake, create or have an event data st
 **Note**  
  After copying trail events to Lake, you might want to turn off logging for the trail to avoid additional charges\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\. 
 
+**Topics**
++ [Considerations](#cloudtrail-trail-copy-considerations-lake)
++ [Required permissions for copying trail events](#copy-trail-events-permissions)
++ [Copy trail events to an event data store](#cloudtrail-copy-trail-events-lake)
++ [Event copy details](copy-trail-details.md)
+
 ## Considerations<a name="cloudtrail-trail-copy-considerations-lake"></a>
 
 Consider the following factors when copying trail events\.
@@ -38,6 +44,8 @@ When copying trail events, you have the option to create a new IAM role, or use 
 If you choose an existing role, ensure the IAM role's policies allow CloudTrail to copy trail events to the destination event data store\. This section provides examples of the required IAM role permission and trust policies\.
 
 The following example provides the permissions policy, which allows CloudTrail to copy trail events to the event data store's S3 bucket\. Replace *myBucketName*, *myAccountID*, *region*, *prefix*, and *eventDataStoreArn* with the appropriate values for your configuration\. The *myAccountID* is the AWS account ID used for CloudTrail Lake, which may not be the same as the AWS account ID for the S3 bucket\.
+
+Replace *key\-region*, *keyAccountID*, and *keyID* with the values for the KMS key used to encrypt the source S3 bucket\. You can omit the `AWSCloudTrailImportKeyAccess` statement if the source S3 bucket does not use a KMS key for encryption\.
 
 ```
 {
@@ -71,6 +79,14 @@ The following example provides the permissions policy, which allows CloudTrail t
           "aws:SourceArn": "arn:aws:cloudtrail:region:myAccountID:eventdataStore/eventDataStoreArn"
          }
        }
+    },
+    {
+      "Sid": "AWSCloudTrailImportKeyAccess",
+      "Effect": "Allow",
+      "Action": ["kms:GenerateDataKey","kms:Decrypt"],
+      "Resource": [
+        "arn:aws:kms:key-region:keyAccountID:key/keyID"
+      ]
     }
   ]
 }
@@ -130,7 +146,7 @@ You can add the following statement to the event data store's S3 bucket policy t
 
 ### KMS key policy for decrypting data in the source S3 bucket<a name="copy-trail-events-permissions-kms"></a>
 
-If the source S3 bucket uses a KMS key for data encryption, ensure the KMS key policy allows CloudTrail to decrypt data in the bucket\. If your source S3 bucket uses multiple KMS keys, you must update each key's policy to allow CloudTrail to decrypt data in the bucket\. Updating the KMS key policy allows CloudTrail to decrypt data in the source S3 bucket, run validation checks to ensure that events conform to CloudTrail standards, and copy events into the CloudTrail Lake event data store\.
+If the source S3 bucket uses a KMS key for data encryption, ensure the KMS key policy provides CloudTrail with the `kms:Decrypt` and `kms:GenerateDataKey` permissions required to copy trail events from an S3 bucket with SSE\-KMS encryption enabled\. If your source S3 bucket uses multiple KMS keys, you must update each key's policy\. Updating the KMS key policy allows CloudTrail to decrypt data in the source S3 bucket, run validation checks to ensure that events conform to CloudTrail standards, and copy events into the CloudTrail Lake event data store\. 
 
 The following example provides the KMS key policy, which allows CloudTrail to decrypt the data in the source S3 bucket\. Replace *roleArn*, *myBucketName*, *myAccountID*, *region*, and *eventDataStoreArn* with the appropriate values for your configuration\. The *myAccountID* is the AWS account ID used for CloudTrail Lake, which may not be the same as the AWS account ID for the S3 bucket\.
 
@@ -138,7 +154,10 @@ The following example provides the KMS key policy, which allows CloudTrail to de
 {
   "Sid": "AWSCloudTrailImportDecrypt",
   "Effect": "Allow",
-  "Action": "kms:Decrypt",
+  "Action": [
+          "kms:Decrypt",
+          "kms:GenerateDataKey"
+  ],
   "Principal": {
     "AWS": "roleArn"
   },

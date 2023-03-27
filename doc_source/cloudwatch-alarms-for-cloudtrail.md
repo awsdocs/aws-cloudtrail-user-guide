@@ -11,6 +11,7 @@ Instead of manually creating the following metric filters and alarms examples, y
 + [Example security group configuration changes](#cloudwatch-alarms-for-cloudtrail-security-group)
 + [Example AWS Management Console sign\-in failures](#cloudwatch-alarms-for-cloudtrail-signin)
 + [Example: IAM policy changes](#cloudwatch-alarms-for-cloudtrail-iam-policy-changes)
++ [Configuring notifications for CloudWatch Logs alarms](#cloudtrail-configure-notifications-for-cloudwatch-logs-alarms)
 
 ## Prerequisites<a name="cloudwatch-alarms-prerequisites"></a>
 
@@ -264,3 +265,7 @@ After you create the metric filter, the CloudWatch Logs log group details page f
 1. On the **Preview and create** page, review your choices\. Choose **Edit** to make changes, or choose **Create alarm** to create the alarm\.
 
    After you create the alarm, CloudWatch opens the **Alarms** page\. The alarm's **Actions** column shows **Pending confirmation** until all email recipients on the SNS topic have confirmed that they want to subscribe to SNS notifications\.
+
+## Configuring notifications for CloudWatch Logs alarms<a name="cloudtrail-configure-notifications-for-cloudwatch-logs-alarms"></a>
+
+You can configure CloudWatch Logs to send a notification whenever an alarm is triggered for CloudTrail\. Doing so enables you to respond quickly to critical operational events captured in CloudTrail events and detected by CloudWatch Logs\. CloudWatch uses Amazon Simple Notification Service \(SNS\) to send email\. For more information, see [Set Up Amazon SNS](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/US_SetupSNS.html) in the *CloudWatch Developer Guide*\.

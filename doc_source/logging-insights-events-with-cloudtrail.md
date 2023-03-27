@@ -162,14 +162,12 @@ Run the [GetInsightSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/A
 
 ## Sending events to Amazon CloudWatch Logs<a name="insights-events-logging-CWL"></a>
 
-CloudTrail supports sending Insights events to CloudWatch Logs\. When you configure your trail to send Insights events to your CloudWatch Logs log group, CloudTrail Insights sends only the events that you specify in your trail\. For example, if you configure your trail to log management and Insights events, your trail delivers management and Insights events to your CloudWatch Logs log group\. To configure CloudWatch Events with the CloudWatch console or API, choose the `AWS Insight via CloudTrail` event type on the **Create rule** page in the CloudWatch console\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
+CloudTrail supports sending Insights events to CloudWatch Logs\. When you configure your trail to send Insights events to your CloudWatch Logs log group, CloudTrail Insights sends only the events that you specify in your trail\. For example, if you configure your trail to log management and Insights events, your trail delivers management and Insights events to your CloudWatch Logs log group\. For more information, see [Monitoring CloudTrail Log Files with Amazon CloudWatch Logs](monitor-cloudtrail-log-files-with-cloudwatch-logs.md)\.
 
-The following images show an example rule, **Insights\-test\-rule**, created in CloudWatch Events\. When CloudTrail logs Insights events, the rule targets an Amazon SNS topic to send notifications to recipients who are specified in the SNS topic\.
+You can use the Amazon EventBridge console or API to create a rule to deliver Insights events\. When you create a rule using the EventBridge console, choose the `AWS Insight via CloudTrail` event type\. 
 
-![\[Configuring a new CloudWatch Events rule for CloudTrail Insights.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/insights_cloudwatch_event_rule_setup.png)
+The following image shows an example rule, **Insights\-test\-rule**, created in EventBridge\. When CloudTrail logs Insights events, the rule targets an Amazon SNS topic to send notifications to recipients who are specified in the SNS topic\. For more information about creating rules in EventBridge, see [Create a rule in Amazon EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-get-started.html#eb-gs-create-rule) in the *Amazon EventBridge User Guide*\.
 
-After you choose the event source and targets, name the rule and provide a description\. When you're finished, choose **Create rule**\.
-
-![\[Name a new CloudWatch Events rule for CloudTrail Insights.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/insights_cloudwatch_event_rule_name.png)
+![\[Configuring a new EventBridge rule for CloudTrail Insights.\]](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/images/insights_eventbridge_event_rule_setup.png)
 
 When CloudTrail logs Insights events, recipients of the SNS topic should receive SNS notifications\.

@@ -3,7 +3,7 @@
 By default, trails and event data stores do not log data events\. Additional charges apply for data events\. For more information, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
 **Note**  
-The events that are logged by your trails and event data stores are available in Amazon CloudWatch Events\. For example, if you configure a trail to log data events for S3 objects but not management events, your trail processes and logs only data events for the specified S3 objects\. The data events for these S3 objects are available in Amazon CloudWatch Events\. For more information, see [AWS API Call Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/EventTypes.html#api_event_type) in the *Amazon CloudWatch Events User Guide*\. 
+The events that are logged by your trails are available in Amazon EventBridge\. For example, if you choose to log data events for S3 objects but not management events, your trail processes and logs only data events for the specified S3 objects\. The data events for these S3 objects are available in Amazon EventBridge\. For more information, see [Events from AWS services](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event.html) in the *Amazon EventBridge User Guide*\. 
 
 **Contents**
 + [Data events](#logging-data-events)
@@ -30,33 +30,32 @@ Data events provide visibility into the resource operations performed on or with
 
 The following table shows the data event types available for trails and event data stores\. The **Data event type \(console\)** column shows the appropriate selection in the console\. The ** resources\.Type** column shows the `resources.Type` value that you would specify to include data events of that type in your trail or event data store\.
 
-Trails can use basic or advanced event selectors\. The **Event selector type** column of the table identities for trails whether the data event type is selectable using basic or advanced event selectors\. The first three rows of the table show the data event types selectable with basic event selectors\. The remaining rows show the data event types that you can specify using advanced event selectors\. 
+For trails, you can use basic or advanced event selectors to log data events for Amazon S3 buckets and bucket objects, Lambda functions, and DynamoDB tables \(shown in the first three rows of the table\)\. You can use only advanced event selectors to log the data event types shown in the remaining rows\.
 
-Unlike trails, event data stores only use advanced event selectors to specify data events\.
+For event data stores, you can use only advanced event selectors to include data events\.
 
 
 ****  
 
-| AWS service | Event selector type | Data event type \(console\) | resources\.Type | Description | 
-| --- | --- | --- | --- | --- | 
-| Amazon DynamoDB | basic | DynamoDB | AWS::DynamoDB::Table | Amazon DynamoDB object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)\. For more information about DynamoDB events, see [DynamoDB data plane events in CloudTrail](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail)\. | 
-| AWS Lambda | basic | Lambda | AWS::Lambda::Function | AWS Lambda function execution activity \(the `Invoke` API\)\. | 
-| Amazon S3 | basic | S3 | AWS::S3::Object | Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\) on buckets and objects in buckets\. | 
-| AWS CloudTrail | advanced | CloudTrail | AWS::CloudTrail::Channel | CloudTrail [https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html](https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html) activity on a [CloudTrail Lake channel](query-event-data-store-integration.md) that is used to log events from outside AWS\. | 
-| Amazon Cognito | advanced | Cognito Identity Pools | AWS::Cognito::IdentityPool | Amazon Cognito API activity on Amazon Cognito [identity pools](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-info-in-cloudtrail.html#identity-pools-cloudtrail-events)\. | 
-| Amazon DynamoDB | advanced | DynamoDB Streams | AWS::DynamoDB::Stream | [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams | 
-| Amazon Elastic Block Store | advanced | Amazon EBS direct APIs | AWS::EC2::Snapshot | [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots | 
-| Amazon EC2 Instance Connect | advanced | Amazon EC2 Instance connect endpoint | AWS::EC2::InstanceConnectEndpoint | Amazon EC2 Instance Connect API activity on endpoints\. | 
-| Amazon FinSpace | advanced | FinSpace | AWS::FinSpace::Environment | [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments | 
-| AWS Glue | advanced | Lake Formation | AWS::Glue::Table | AWS Glue API activity on tables that were created by Lake Formation  AWS Glue data events for tables are currently supported only in the following regions:   US East \(N\. Virginia\)   US East \(Ohio\)   US West \(Oregon\)   Europe \(Ireland\)   Asia Pacific \(Tokyo\) Region    | 
-| Amazon GuardDuty | advanced | GuardDuty detector | AWS::GuardDuty::Detector | Amazon GuardDuty API activity on detectors\. | 
-| Amazon Kendra Intelligent Ranking | advanced | Kendra Ranking | AWS::KendraRanking::ExecutionPlan | Amazon Kendra Intelligent Ranking API activity on [rescore execution plans](https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html#cloud-trail-intelligent-ranking-log-entry)\. | 
-| Amazon Managed Blockchain | advanced | Managed Blockchain | AWS::ManagedBlockchain::Node | [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`\. | 
-| Amazon SageMaker | advanced | SageMaker feature store | AWS::SageMaker::FeatureGroup | Amazon SageMaker API activity on feature stores | 
-| Amazon SageMaker | advanced | SageMaker metrics experiment trial component | AWS::SageMaker::ExperimentTrialComponent | Amazon SageMaker API activity on [experiment trial components](https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-monitoring.html) | 
-| Amazon S3 | advanced | S3 Access Point | AWS::S3::AccessPoint | Amazon S3 API activity on access points | 
-| Amazon S3 | advanced | S3 Object Lambda | AWS::S3ObjectLambda::AccessPoint | Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`\. | 
-| Amazon S3 on Outposts | advanced | S3 Outposts | AWS::S3Outposts::Object |  Amazon S3 on Outposts object\-level API activity\. | 
+| AWS service | Data event type \(console\) | resources\.Type | Description | 
+| --- | --- | --- | --- | 
+| Amazon DynamoDB | DynamoDB | AWS::DynamoDB::Table | Amazon DynamoDB object\-level API activity on tables \(for example, `PutItem`, `DeleteItem`, and `UpdateItem` API operations\)\. For more information about DynamoDB events, see [DynamoDB data plane events in CloudTrail](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail)\. | 
+| AWS Lambda | Lambda | AWS::Lambda::Function | AWS Lambda function execution activity \(the `Invoke` API\)\. | 
+| Amazon S3 | S3 | AWS::S3::Object | Amazon S3 object\-level API activity \(for example, `GetObject`, `DeleteObject`, and `PutObject` API operations\) on buckets and objects in buckets\. | 
+| AWS CloudTrail | CloudTrail | AWS::CloudTrail::Channel | CloudTrail [https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html](https://docs.aws.amazon.com/awscloudtraildata/latest/APIReference/API_PutAuditEvents.html) activity on a [CloudTrail Lake channel](query-event-data-store-integration.md) that is used to log events from outside AWS\. | 
+| Amazon Cognito | Cognito Identity Pools | AWS::Cognito::IdentityPool | Amazon Cognito API activity on Amazon Cognito [identity pools](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-info-in-cloudtrail.html#identity-pools-cloudtrail-events)\. | 
+| Amazon DynamoDB | DynamoDB Streams | AWS::DynamoDB::Stream | [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html#ddb-data-plane-events-in-cloudtrail) API activity on streams\. | 
+| Amazon Elastic Block Store | Amazon EBS direct APIs | AWS::EC2::Snapshot | [Amazon Elastic Block Store \(EBS\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) direct APIs, such as `PutSnapshotBlock`, `GetSnapshotBlock`, and `ListChangedBlocks` on Amazon EBS snapshots\. | 
+| Amazon FinSpace | FinSpace | AWS::FinSpace::Environment | [Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/logging-cloudtrail-events.html#finspace-dataplane-events) API activity on environments\. | 
+| AWS Glue | Lake Formation | AWS::Glue::Table | AWS Glue API activity on tables that were created by Lake Formation\.  AWS Glue data events for tables are currently supported only in the following regions:   US East \(N\. Virginia\)   US East \(Ohio\)   US West \(Oregon\)   Europe \(Ireland\)   Asia Pacific \(Tokyo\) Region    | 
+| Amazon GuardDuty | GuardDuty detector | AWS::GuardDuty::Detector | Amazon GuardDuty API activity for a detector\. | 
+| Amazon Kendra Intelligent Ranking | Kendra Ranking | AWS::KendraRanking::ExecutionPlan | Amazon Kendra Intelligent Ranking API activity on [rescore execution plans](https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html#cloud-trail-intelligent-ranking-log-entry)\. | 
+| Amazon Managed Blockchain | Managed Blockchain | AWS::ManagedBlockchain::Node | [Amazon Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/logging-using-cloudtrail.html#ethereum-jsonrpc-logging) JSON\-RPC calls on Ethereum nodes, such as `eth_getBalance` or `eth_getBlockByNumber`\. | 
+| Amazon SageMaker | SageMaker feature store | AWS::SageMaker::FeatureGroup | Amazon SageMaker API activity on feature stores\. | 
+| Amazon SageMaker | SageMaker metrics experiment trial component | AWS::SageMaker::ExperimentTrialComponent | Amazon SageMaker API activity on [experiment trial components](https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-monitoring.html)\. | 
+| Amazon S3 | S3 Access Point | AWS::S3::AccessPoint | Amazon S3 API activity on access points\. | 
+| Amazon S3 | S3 Object Lambda | AWS::S3ObjectLambda::AccessPoint | Amazon S3 Object Lambda access points API activity, such as calls to `CompleteMultipartUpload` and `GetObject`\. | 
+| Amazon S3 on Outposts | S3 Outposts | AWS::S3Outposts::Object |  Amazon S3 on Outposts object\-level API activity\. | 
 
 Data events are not logged by default when you create a trail or event data store\. To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity\. For more information, see [Creating a trail](cloudtrail-create-a-trail-using-the-console-first-time.md) and [Create an event data store](query-event-data-store.md)\.
 
@@ -64,7 +63,7 @@ On a single\-Region trail or event data store, you can log data events only for 
 
 Additional charges apply for logging data events\. For CloudTrail pricing, see [AWS CloudTrail Pricing](https://aws.amazon.com/cloudtrail/pricing/)\.
 
-Steps for logging data events depend on whether you have advanced event selectors enabled\. Use the procedure in this section that matches the kind of event selectors you have enabled\.
+Steps for logging data events depend on whether you have advanced event selectors enabled\. You can use only advanced event selectors for event data stores\. For trails, you can use either basic or advanced event selectors, but not both\. Use the procedure in this section that matches the kind of event selectors you have enabled\.
 
 ### Logging data events with basic event selectors in the AWS Management Console<a name="logging-data-events-with-the-cloudtrail-console"></a>
 
@@ -144,9 +143,9 @@ You can only enable data events on event data stores that contain CloudTrail eve
 
 1. Choose a log selector template\. CloudTrail includes predefined templates that log all data events for the resource type\. To build a custom log selector template, choose **Custom**\.
 **Note**  
-Choosing a predefined template for S3 buckets enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail\. It also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
-If the trail applies only to one Region, choosing a predefined template that logs all S3 buckets enables data event logging for all buckets in the same Region as your trail and any buckets you create later in that Region\. It will not log data events for Amazon S3 buckets in other Regions in your AWS account\.  
-If you are creating a trail for all Regions, choosing a predefined template for Lambda functions enables data event logging for all functions currently in your AWS account, and any Lambda functions you might create in any Region after you finish creating the trail\. If you are creating a trail for a single Region \(done by using the AWS CLI\), this selection enables data event logging for all functions currently in that Region in your AWS account, and any Lambda functions you might create in that Region after you finish creating the trail\. It does not enable data event logging for Lambda functions created in other Regions\.  
+Choosing a predefined template for S3 buckets enables data event logging for all buckets currently in your AWS account and any buckets you create after you finish creating the trail or event data store\. It also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a bucket that belongs to another AWS account\.  
+If the trail or event data store applies only to one Region, choosing a predefined template that logs all S3 buckets enables data event logging for all buckets in the same Region as your trail or event data store and any buckets you create later in that Region\. It will not log data events for Amazon S3 buckets in other Regions in your AWS account\.  
+If you are creating a trail or event data store for all Regions, choosing a predefined template for Lambda functions enables data event logging for all functions currently in your AWS account, and any Lambda functions you might create in any Region after you finish creating the trail or event data store\. If you are creating a trail or event data store for a single Region \(for trails, this only can be done by using the AWS CLI\), this selection enables data event logging for all functions currently in that Region in your AWS account, and any Lambda functions you might create in that Region after you finish creating the trail or event data store\. It does not enable data event logging for Lambda functions created in other Regions\.  
 Logging data events for all functions also enables logging of data event activity performed by any user or role in your AWS account, even if that activity is performed on a function that belongs to another AWS account\.
 
 1. If you want to apply a predefined log selector template, and you do not want to add another data event resource type, choose **Save changes**\. You do not need to follow the rest of this procedure\. To apply a custom log selector template, go on to the next step\.
@@ -155,7 +154,7 @@ Logging data events for all functions also enables logging of data event activit
 
 1. \(Optional\) Enter a name for your custom log selector template\.
 
-1. In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, `PutAuditEvents` calls on CloudTrail Lake channels, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Kendra rescore execution plans, Amazon Cognito identity pools, Amazon EC2 instance connect endpoints, and Amazon GuardDuty detectors\.
+1. In **Advanced event selectors**, build an expression to collect data events on specific S3 buckets, AWS Lambda functions, `PutAuditEvents` calls on CloudTrail Lake channels, DynamoDB tables, Amazon S3 on Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, S3 Object Lambda access points, Amazon EBS direct APIs on EBS snapshots, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Kendra rescore execution plans, and Amazon Cognito identity pools\.
 
    1. Choose from the following fields\. For fields that accept an array \(more than one value\), CloudTrail adds an OR between values\.
       + **`readOnly`** \- `readOnly` can be set to **Equals** a value of `true` or `false`\. Read\-only data events are events that do not change the state of a resource, such as `Get*` or `Describe*` events\. Write events add, change, or delete resources, attributes, or artifacts, such as `Put*`, `Delete*`, or `Write*` events\. To log both `read` and `write` events, don't add a `readOnly` selector\.
@@ -167,7 +166,6 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::CloudTrail::Channel`
         + `AWS::Cognito::IdentityPool`
         + `AWS::DynamoDB::Stream`
-        + `AWS::EC2::InstanceConnectEndpoint`
         + `AWS::EC2::Snapshot`
         + `AWS::Glue::Table`
         + `AWS::GuardDuty::Detector`
@@ -191,12 +189,12 @@ Logging data events for all functions also enables logging of data event activit
 
       For more information about the ARN formats of data event resources, see [Actions, resources, and condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html) in the *AWS Identity and Access Management User Guide*\.
 
-   1. For each field, choose **\+ Conditions** to add as many conditions as you need, up to a maximum of 500 specified values for all conditions\. For example, to exclude data events for two S3 buckets from data events that are logged on your trail, you can set the field to **resources\.ARN**, set the operator for **NotStartsWith**, and then either paste in an S3 bucket ARN, or browse for the S3 buckets for which you do not want to log events\.
+   1. For each field, choose **\+ Conditions** to add as many conditions as you need, up to a maximum of 500 specified values for all conditions\. For example, to exclude data events for two S3 buckets from data events that are logged on your trail or event data store, you can set the field to **resources\.ARN**, set the operator for **NotStartsWith**, and then either paste in an S3 bucket ARN, or browse for the S3 buckets for which you do not want to log events\.
 
       To add the second S3 bucket, choose **\+ Conditions**, and then repeat the preceding instruction, pasting in the ARN for or browsing for a different bucket\.
 **Note**  
-You can have a maximum of 500 values for all selectors on a trail\. This includes arrays of multiple values for a selector such as `eventName`\. If you have single values for all selectors, you can have a maximum of 500 conditions added to a selector\.  
-If you have more than 15,000 Lambda functions in your account, you cannot view or select all functions in the CloudTrail console when creating a trail\. You can still log all functions with a predefined selector template, even if they are not displayed\. If you want to log data events for specific functions, you can manually add a function if you know its ARN\. You can also finish creating the trail in the console, and then use the AWS CLI and the put\-event\-selectors command to configure data event logging for specific Lambda functions\. For more information, see [Managing trails with the AWS CLI](cloudtrail-additional-cli-commands.md)\.
+You can have a maximum of 500 values for all selectors on a trail or event data store\. This includes arrays of multiple values for a selector such as `eventName`\. If you have single values for all selectors, you can have a maximum of 500 conditions added to a selector\.  
+If you have more than 15,000 Lambda functions in your account, you cannot view or select all functions in the CloudTrail console when creating a trail or event data store\. You can still log all functions with a predefined selector template, even if they are not displayed\. If you want to log data events for specific functions, you can manually add a function if you know its ARN\. You can also finish creating the trail or event data store in the console, and then use the AWS CLI to configure data event logging for specific Lambda functions\. For more information, see [Logging data events with the AWS Command Line Interface](#creating-data-event-selectors-with-the-AWS-CLI)\.
 
    1. Choose **\+ Field** to add additional fields as required\. To avoid errors, do not set conflicting or duplicate values for fields\. For example, do not specify an ARN in one selector to be equal to a value, then specify that the ARN not equal the same value in another selector\.
 
@@ -239,7 +237,7 @@ The following example demonstrates how logging works when you configure a trail 
 1. The event occurred on a bucket and prefix that are specified in the trail, but `GetObject` is a read\-type Amazon S3 object\-level API\. It is recorded as a **Read** data event in CloudTrail, and the trail is not configured to log **Read** events\. The trail doesn't log the event\.
 
 **Note**  
-If you are logging data events for specific Amazon S3 buckets, we recommend you do not use an Amazon S3 bucket for which you are logging data events to receive log files that you have specified in the data events section\. Using the same Amazon S3 bucket causes your trail to log a data event each time log files are delivered to your Amazon S3 bucket\. Log files are aggregated events delivered at intervals, so this is not a 1:1 ratio of event to log file; the event is logged in the next log file\. For example, when the trail delivers logs, the `PutObject` event occurs on the S3 bucket\. If the S3 bucket is also specified in the data events section, the trail processes and logs the `PutObject` event as a data event\. That action is another `PutObject` event, and the trail processes and logs the event again\. For more information, see [How CloudTrail works](how-cloudtrail-works.md)\.  
+If you are logging data events for specific Amazon S3 buckets, we recommend you do not use an Amazon S3 bucket for which you are logging data events to receive log files that you have specified in the data events section\. Using the same Amazon S3 bucket causes your trail or event data store to log a data event each time log files are delivered to your Amazon S3 bucket\. Log files are aggregated events delivered at intervals, so this is not a 1:1 ratio of event to log file; the event is logged in the next log file\. For example, when CloudTrail delivers logs, the `PutObject` event occurs on the S3 bucket\. If the S3 bucket is also specified in the data events section, the trail processes and logs the `PutObject` event as a data event\. That action is another `PutObject` event, and the trail processes and logs the event again\. For more information, see [How CloudTrail works](how-cloudtrail-works.md)\.  
 To avoid logging data events for the Amazon S3 bucket where you receive log files if you configure a trail to log all Amazon S3 data events in your AWS account, consider configuring delivery of log files to an Amazon S3 bucket that belongs to another AWS account\. For more information, see [Receiving CloudTrail log files from multiple accountsRedacting bucket owner account IDs for data events called by other accounts](cloudtrail-receive-logs-from-multiple-accounts.md)\.
 
 ### Logging data events for S3 objects in other AWS accounts<a name="logging-data-events-for-s3-resources-in-other-accounts"></a>
@@ -294,7 +292,7 @@ The following example shows the logging behavior when **Select all S3 buckets in
 
 ## Read\-only and write\-only events<a name="read-write-events-data"></a>
 
-When you configure your trail to log data and management events, you can specify whether you want read\-only events, write\-only events, or both\.
+When you configure your trail or event data store to log data and management events, you can specify whether you want read\-only events, write\-only events, or both\.
 + **Read**
 
   **Read** events include API operations that read your resources, but don't make changes\. For example, read\-only events include the Amazon EC2 `DescribeSecurityGroups` and `DescribeSubnets` API operations\. These operations return only information about your Amazon EC2 resources and don't change your configurations\. 
@@ -350,14 +348,14 @@ The following is an example result of the get\-event\-selectors command showing 
 
 ```
 {
+    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName",
     "EventSelectors": [
         {
             "IncludeManagementEvents": true,
             "DataResources": [],
             "ReadWriteType": "All"
         }
-    ],
-    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+    ]
 }
 ```
 
@@ -376,6 +374,7 @@ The command returns the event selectors that are configured for the trail\.
 
 ```
 {
+    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName",
     "EventSelectors": [
         {
             "IncludeManagementEvents": true,
@@ -390,8 +389,7 @@ The command returns the event selectors that are configured for the trail\.
             ],
             "ReadWriteType": "All"
         }
-    ],
-    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+    ]
 }
 ```
 
@@ -401,8 +399,9 @@ If you have opted to use advanced event selectors, the get\-event\-selectors com
 
 ```
 {
-    "AdvancedEventSelectors": [],
-    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+    "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName",
+    "AdvancedEventSelectors": []
+    
 }
 ```
 
@@ -436,18 +435,16 @@ The result shows the advanced event selectors that are configured for the trail\
 
 ```
 {
+  "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName",
   "AdvancedEventSelectors": [
     {
       "Name": "Log readOnly and writeOnly management events",
       "FieldSelectors": [
         {
           "Field": "eventCategory", 
-          "Equals": [ "Management" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+          "Equals": [ 
+                "Management" 
+           ]
         }
       ]
     },
@@ -456,35 +453,25 @@ The result shows the advanced event selectors that are configured for the trail\
       "FieldSelectors": [
         {
           "Field": "eventCategory", 
-          "Equals": [ "Data" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+          "Equals": [ 
+                "Data"
+           ]
         },
         {
           "Field": "resources.type", 
-          "Equals": [ "AWS::S3::Object" ],
-          "StartsWith": [],
-          "EndsWith": [],
-          "NotEquals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+          "Equals": [ 
+                "AWS::S3::Object" 
+           ]
         },
         {
           "Field": "resources.ARN", 
-          "Equals": [],
-          "StartsWith": [ "arn:aws:s3:::mybucket/prefix","arn:aws:s3:::mybucket2/prefix2" ],
-          "EndsWith": [],
-          "Equals": [],
-          "NotStartsWith": [],
-          "NotEndsWith": []
+          "StartsWith": [ 
+                "arn:aws:s3:::mybucket/prefix","arn:aws:s3:::mybucket2/prefix2" 
+           ]
         }
       ]
     }
-  ],
-  "TrailARN": "arn:aws:cloudtrail:us-east-2:123456789012:trail/TrailName"
+  ]
 }
 ```
 
@@ -511,6 +498,7 @@ The command returns the following example output\.
 
 ```
 {
+    "TrailARN": "arn:aws:cloudtrail:region:account_ID:trail/TrailName",
     "AdvancedEventSelectors": [
         {
             "Name": "S3EventSelector",
@@ -535,8 +523,7 @@ The command returns the following example output\.
                 }
             ]
         }
-    ],
-  "TrailARN": "arn:aws:cloudtrail:region:account_ID:trail/TrailName"
+    ]
 }
 ```
 
@@ -554,7 +541,7 @@ aws cloudtrail put-event-selectors --trail-name TrailName --region region \
                 { "Field": "eventCategory", "Equals": ["Data"] },
                 { "Field": "resources.type", "Equals": ["AWS::S3Outposts::Object"] }
             ]
-        }
+    }
 ]'
 ```
 
@@ -562,6 +549,7 @@ The command returns the following example output\.
 
 ```
 {
+    "TrailARN": "arn:aws:cloudtrail:region:account_ID:trail/TrailName",
     "AdvancedEventSelectors": [
         {
             "Name": "OutpostsEventSelector",
@@ -580,14 +568,13 @@ The command returns the following example output\.
                 }
             ]
         }
-    ],
-  "TrailARN": "arn:aws:cloudtrail:region:account_ID:trail/TrailName"
+    ]
 }
 ```
 
 #### Log all data events by using advanced event selectors<a name="creating-data-adv-event-selectors-CLI-all-data"></a>
 
-The following example shows how to configure your trail to include data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Cognito identity pools, Amazon Kendra Intelligent Ranking rescore execution plans, Amazon EC2 Instance Connect endpoints, and Amazon GuardDuty detectors\.
+The following example shows how to configure your trail to include data events for all S3 buckets, Lambda functions, DynamoDB tables, S3 object\-level API activity on AWS Outposts, Amazon Managed Blockchain JSON\-RPC calls on Ethereum nodes, API activity on S3 Object Lambda access points, Amazon EBS direct API activity on Amazon EBS snapshots in the AWS account, S3 access points, DynamoDB streams, AWS Glue tables created by Lake Formation, Amazon FinSpace environments, Amazon SageMaker metrics experiment trial components, Amazon SageMaker feature stores, Amazon Cognito identity pools, and Amazon Kendra Intelligent Ranking rescore execution plans\.
 
 **Note**  
 If the trail applies only to one Region, only events in that Region are logged, even though the event selector parameters specify all Amazon S3 buckets and Lambda functions\. In a single\-region trail, event selectors apply only to the Region where the trail is created\.
@@ -706,20 +693,6 @@ aws cloudtrail put-event-selectors --trail-name TrailName \
     "FieldSelectors": [
       { "Field": "eventCategory", "Equals": ["Data"] },
       { "Field": "resources.type", "Equals": ["AWS::Cognito::IdentityPool"] }
-    ]
-  },
-  {
-    "Name": "Log all events for Amazon EC2 Instance Connect endpoints",
-    "FieldSelectors": [
-      { "Field": "eventCategory", "Equals": ["Data"] },
-      { "Field": "resources.type", "Equals": ["AWS::EC2::InstanceConnectEndpoint"] }
-    ]
-  },
-  {
-    "Name": "Log all events for Amazon GuardDuty detectors",
-    "FieldSelectors": [
-      { "Field": "eventCategory", "Equals": ["Data"] },
-      { "Field": "resources.type", "Equals": ["AWS::GuardDuty::Detector"] }
     ]
   }
 ]'
@@ -999,40 +972,6 @@ The command returns the following example output\.
                     "Field": "resources.type",
                     "Equals": [
                         "AWS::Cognito::IdentityPool"
-                    ]
-                }
-            ]
-        },
-        {
-            "Name": "Log all events for Amazon EC2 Instance Connect endpoints",
-            "FieldSelectors": [
-                {
-                    "Field": "eventCategory",
-                    "Equals": [
-                        "Data"
-                    ]
-                },
-                {
-                    "Field": "resources.type",
-                    "Equals": [
-                        "AWS::EC2::InstanceConnectEndpoint"
-                    ]
-                }
-            ]
-        },
-        {
-            "Name": "Log all events for Amazon GuardDuty detectors",
-            "FieldSelectors": [
-                {
-                    "Field": "eventCategory",
-                    "Equals": [
-                        "Data"
-                    ]
-                },
-                {
-                    "Field": "resources.type",
-                    "Equals": [
-                        "AWS::GuardDuty::Detector"
                     ]
                 }
             ]

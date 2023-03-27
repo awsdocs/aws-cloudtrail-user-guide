@@ -76,7 +76,7 @@ The following command creates a single\-region trail\. The specified Amazon S3 b
 aws cloudtrail create-trail --name my-trail --s3-bucket-name my-bucket
 ```
 
-For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
+For more information, see [CloudTrail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
 The following is example output\.
 

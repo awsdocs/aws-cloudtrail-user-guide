@@ -43,7 +43,8 @@ The AWS region that the request was made to, such as `us-east-2`\. See [CloudTra
 **`sourceIPAddress`**  
 The IP address that the request was made from\. For actions that originate from the service console, the address reported is for the underlying customer resource, not the console web server\. For services in AWS, only the DNS name is displayed\.  
 **Since:** 1\.0  
-**Optional:** False
+**Optional:** False  
+For events originated by AWS, this field is usually `AWS Internal/#`, where `#` is a number used for internal purposes\.
 
 **`userAgent`**  
 The agent through which the request was made, such as the AWS Management Console, an AWS service, the AWS SDKs or the AWS CLI\. This field has a maximum size of 1 KB; content exceeding that limit is truncated\. The following are example values:  

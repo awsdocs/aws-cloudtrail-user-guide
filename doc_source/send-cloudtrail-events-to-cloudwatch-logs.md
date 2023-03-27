@@ -190,7 +190,7 @@ If you're creating a policy that might be used for organization trails as well, 
             ],
             "Resource": [
                 "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:111111111111_CloudTrail_us-east-2*",
-                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:o-exampleorgid_*",
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:o-exampleorgid_*"
             ]
         },
         {
@@ -201,7 +201,7 @@ If you're creating a policy that might be used for organization trails as well, 
             ],
             "Resource": [
                 "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:111111111111_CloudTrail_us-east-2*",             
-                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:o-exampleorgid_*",
+                "arn:aws:logs:us-east-2:111111111111:log-group:CloudTrail/DefaultLogGroupTest:log-stream:o-exampleorgid_*"
             ]
         }
     ]
@@ -228,6 +228,6 @@ For more information about the AWS CLI commands, see the [AWS CloudTrail Command
 
 ## Limitation<a name="send-cloudtrail-events-to-cloudwatch-logs-limitations"></a>
 
-CloudWatch Logs and CloudWatch Events each [allow a maximum event size of 256 KB](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html)\. Although most service events have a maximum size of 256 KB, some services still have events that are larger\. CloudTrail does not send these events to CloudWatch Logs or CloudWatch Events\.
+CloudWatch Logs and EventBridge each [allow a maximum event size of 256 KB](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html)\. Although most service events have a maximum size of 256 KB, some services still have events that are larger\. CloudTrail does not send these events to CloudWatch Logs or EventBridge\.
 
-Starting with CloudTrail event version 1\.05, events have a maximum size of 256 KB\. This is to help prevent exploitation by malicious actors, and allow events to be consumed by other AWS services, such as CloudWatch Logs and CloudWatch Events\.
+Starting with CloudTrail event version 1\.05, events have a maximum size of 256 KB\. This is to help prevent exploitation by malicious actors, and allow events to be consumed by other AWS services, such as CloudWatch Logs and EventBridge\.

@@ -130,7 +130,7 @@ The following command creates an organization trail that only logs events in a s
 aws cloudtrail create-trail --name my-trail --s3-bucket-name my-bucket --is-organization-trail
 ```
 
-For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
+For more information, see [CloudTrail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
 Sample output:
 

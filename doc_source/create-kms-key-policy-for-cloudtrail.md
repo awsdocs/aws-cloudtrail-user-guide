@@ -106,7 +106,7 @@ The following example policy statement illustrates how another account can use y
 + Your KMS key is in account *111111111111*\.
 + Both you and account *222222222222* will encrypt logs\.
 
-In the policy, you add one or more accounts that encrypt with your key to the CloudTrail **EncryptionContext**\. This restricts CloudTrail to using your key to encrypt logs only for the accounts that you specify\. When you give the root of account *222222222222* permission to encrypt logs, it delegates permission to the acount administrator to encrypt the necessary permissions to other users in that account\. The account administrator does this by changing the policies associated with those IAM users\.
+In the policy, you add one or more accounts that encrypt with your key to the CloudTrail **EncryptionContext**\. This restricts CloudTrail to using your key to encrypt logs only for the accounts that you specify\. When you give the root of account *222222222222* permission to encrypt logs, it delegates permission to the account administrator to encrypt the necessary permissions to other users in that account\. The account administrator does this by changing the policies associated with those IAM users\.
 
 As a security best practice, add an `aws:SourceArn` condition key to the KMS key policy\. The IAM global condition key `aws:SourceArn` helps ensure that CloudTrail uses the KMS key only for the specified trails\. This condition isn't supported in KMS key policies for event data stores\.
 

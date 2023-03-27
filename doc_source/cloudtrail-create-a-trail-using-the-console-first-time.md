@@ -22,7 +22,7 @@ Use the following procedure if you have not yet enabled advanced event selectors
 
 1. On the CloudTrail service home page, the **Trails** page, or the **Trails** section of the **Dashboard** page, choose **Create trail**\.
 
-1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
+1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
 1. If this is an AWS Organizations organization trail, you can enable the trail for all accounts in your organization\. To see this option, you must sign in to the console with a user or role in the management or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
@@ -153,7 +153,7 @@ Use the following procedure if you have enabled advanced event selectors\. If yo
 
 1. On the CloudTrail service home page, the **Trails** page, or the **Trails** section of the **Dashboard** page, choose **Create trail**\.
 
-1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail trail naming requirements](cloudtrail-trail-naming-requirements.md)\.
+1. On the **Create Trail** page, for **Trail name**, type a name for your trail\. For more information, see [CloudTrail naming requirements](cloudtrail-trail-naming-requirements.md)\.
 
 1. If this is an AWS Organizations organization trail, you can enable the trail for all accounts in your organization\. To see this option, you must sign in to the console with a user or role in the management or delegated administrator account\. To successfully create an organization trail, be sure that the user or role has [sufficient permissions](creating-an-organizational-trail-prepare.md#org_trail_permissions)\. For more information, see [Creating a trail for an organization](creating-trail-organization.md)\.
 
@@ -238,7 +238,6 @@ Logging data events for all functions also enables logging of data event activit
         + `AWS::CloudTrail::Channel`
         + `AWS::Cognito::IdentityPool`
         + `AWS::DynamoDB::Stream`
-        + `AWS::EC2::InstanceConnectEndpoint`
         + `AWS::EC2::Snapshot`
         + `AWS::Glue::Table`
         + `AWS::GuardDuty::Detector`
