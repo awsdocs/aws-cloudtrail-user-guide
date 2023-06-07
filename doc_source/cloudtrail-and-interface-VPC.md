@@ -1,6 +1,6 @@
 # Using AWS CloudTrail with interface VPC endpoints<a name="cloudtrail-and-interface-VPC"></a>
 
-If you use Amazon Virtual Private Cloud \(Amazon VPC\) to host your AWS resources, you can establish a private connection between your VPC and AWS CloudTrail\. You can use this connection to enable CloudTrail to communicate with your resources on your VPC without going through the public internet\.
+If you use Amazon Virtual Private Cloud \(Amazon VPC\) to host your AWS resources, you can establish a private connection between your VPC and AWS CloudTrail\. You can use this connection to enable your resources on your VPC to communicate with CloudTrail without going through the public internet\.
 
 Amazon VPC is an AWS service that you can use to launch AWS resources in a virtual network that you define\. With a VPC, you have control over your network settings, such the IP address range, subnets, route tables, and network gateways\. With VPC endpoints, the routing between the VPC and AWS services is handled by the AWS network, and you can use IAM policies to control access to service resources\.
 
