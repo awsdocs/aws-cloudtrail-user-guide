@@ -1,3 +1,0 @@
-# Event history and organization trails<a name="creating-an-organizational-trail-event-history"></a>
-
-When you view events in **Event history** for an organization in AWS Organizations, you can view the events only for the AWS account with which you are signed in\. For example, if you are signed in with the organization management account, **Event history** shows the last 90 days of management events for the management account\. Organization member account events are not shown in **Event history** for the management account\. To view member account events in **Event history**, sign in with the member account\.
